@@ -14,11 +14,11 @@
 // user/Jorge/vehiculos/datos
  
 const {Router} = require('express')
-
+const HandlerGetUsers = require("../handlers/handlerGetUsers.js")
 
 const usersRouter = Router();
 
-usersRouter.get("/",/* HANDLER USER*/)
+usersRouter.get("/", HandlerGetUsers)
 usersRouter.post("/",/* HANDLER USER*/)
 
 usersRouter.get("vehicle",/* HANDLER VEHICLE */)
