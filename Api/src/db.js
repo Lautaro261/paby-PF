@@ -32,38 +32,50 @@ modelDefiners.forEach((model) => model(sequelize));
 
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
-   entry[0][0].toUpperCase() + entry[0].slice(1),
-   entry[1],
+  entry[0][0].toUpperCase() + entry[0].slice(1),
+  entry[1],
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Document, Sex, User, Vehicle, Zone, Rol, Reservation, Permission, Floor, Parking, Payment } = sequelize.models;
+const {
+  Document,
+  Sex,
+  User,
+  Vehicle,
+  Zone,
+  Rol,
+  Reservation,
+  Permission,
+  Floor,
+  Parking,
+  Payment,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 
-//usuario con tipo de documento y sexo de uno a muchos.
+// Usuario con tipo de documento y sexo de uno a muchos.
 Sex.hasMany(User);
 User.belongsTo(Sex);
 Document.hasMany(User);
 User.belongsTo(Document);
 
-//Usuario con vehiculo relación de uno a muchos.
+// Usuario con vehiculo relación de uno a muchos.
 User.hasMany(Vehicle);
 Vehicle.belongsTo(User);
 
-//Usuario con rol relación de uno a muchos.
+// Usuario con rol relación de uno a muchos.
 Document.hasMany(User);
 User.belongsTo(Rol);
 
-//Relación de muchos a muchos entre el rol y permisos
+// Relación de muchos a muchos entre el rol y permisos
 Rol.belongsToMany(Permission, { through: "PermissionRol" });
 Permission.belongsToMany(Rol, { through: "PermissionRol" });
 
-//usuario con reservación
+// Usuario con reservación
 User.hasMany(Reservation);
 Reservation.belongsTo(User);
 
-//reservación con zona
+// Reservación con zona
 Zone.hasMany(Reservation);
 Reservation.belongsTo(Zone);
 
@@ -71,12 +83,12 @@ Reservation.belongsTo(Zone);
 Payment.hasMany(Reservation);
 Reservation.belongsTo(Payment);
 
-// relacion de zona con pisos
+// Zona con pisos
 Floor.hasMany(Zone);
 Zone.belongsTo(Floor);
 
-// //Relación de pisos con parqueadero
-Parking.hasMany(Floor, { as: 'parkingFloors' });
+// Pisos con parqueadero
+Parking.hasMany(Floor, { as: "parkingFloors" });
 Floor.belongsTo(Parking);
 
 module.exports = {
