@@ -1,0 +1,154 @@
+.Bg{
+    z-index: -1;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+@import url('https://fonts.google.com/specimen/Rubik?query=rub');
+@import url('https://fonts.google.com/specimen/Ysabeau');
+
+:root {
+  --primary-color: #4d8bc6;
+  --secondary-color: #A1B5D8;
+  --font1:@import url('https://fonts.google.com/specimen/Rubik?query=rub');
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Ysabeau', sans-serif;
+  color: var(--secondary-color);
+
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: var(--secondary-color);
+}
+.imglogo{
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.449)); 
+  position: relative;
+  overflow: hidden;
+  width:40%;
+  top: 5%;
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+
+}
+
+.headertitle {
+  font-family: 'Rubic';
+  font-weight: bold;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(95vh - 80px);
+}
+
+.introsection {
+  text-align: center;
+}
+
+.introsection h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: white;
+  animation-name: fadeIn2;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.introsection p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: white;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+.Link {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  border: none;
+  background-color: #A1B5D8;
+  color:  white;
+  font-family: 'Ysabeau', sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  transition: 0.5s ease-out;
+  animation-name: fadeIn;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+}
+
+.linktext{
+    color:  white;
+    text-decoration:none;
+}
+
+
+.Link:hover {
+  background-color: #6855f8;
+  color: bisque;
+
+}
+
+.footertext{
+    color:rgb(77, 77, 77);
+    text-decoration:none;
+    padding: auto;
+}
+
+.footer {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  height:10%;
+  width: 100%;
+  background-color: var(--secondary-color);
+  gap: 15px;
+  bottom:0%;
+  left: 0%;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn2 {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
