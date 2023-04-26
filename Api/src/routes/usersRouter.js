@@ -9,19 +9,23 @@
 // user/datos
 // vehiculo/datos
 
-// user/Jorge/vehiculos/datos
+// user/Jorge/vehiculos/datos 
+const {Router} = require('express')
+const handlerGetUsers = require("../handlers/handlerGetUsers.js")
+const handlerGetVehicle = require ("../handlers/handlerGetVehicle.js")
 
-const { Router } = require("express");
 
-const usersRouter = Router();
+const usersRouter = Router();       // 3001/USERS/vehicle
 
-usersRouter.get("/" /* HANDLER USER*/);
-usersRouter.post("/" /* HANDLER USER*/);
 
-usersRouter.get("vehicle" /* HANDLER VEHICLE */);
-usersRouter.post("vehicle" /* HANDLER VEHICLE */);
+usersRouter.get("/", handlerGetUsers) // 3001/USERS/ traer todo los usuarios
+usersRouter.post("/",/* HANDLER USER*/) //3001/USERS/ creo un usuario 
 
-usersRouter.get("vehicle/:id" /* HANDLER  VEHICLE BY ID*/);
-usersRouter.put("vehicle/:id" /* HANDLER VEHICLE BY ID*/);
+//usersRouter.get("/vehicle", handlerGetVehicle) //3001/users/allvehiculos
+usersRouter.post("/vehicle",/* HANDLER VEHICLE */)
+
+usersRouter.get("/vehicle/:id",/* HANDLER  VEHICLE BY ID*/)
+usersRouter.put("/vehicle/:id",/* HANDLER VEHICLE BY ID*/)  
+
 
 module.exports = usersRouter;
