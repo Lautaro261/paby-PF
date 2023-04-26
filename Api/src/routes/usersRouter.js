@@ -1,32 +1,26 @@
-
-
-//userRouter/:id/vehiculo  
+//userRouter/:id/vehiculo
 
 //get general y post
 
-//userRouter/:id/vehiculo/:id  
+//userRouter/:id/vehiculo/:id
 
-// get del vehico por id put 
+// get del vehico por id put
 
-// user/datos 
+// user/datos
 // vehiculo/datos
 
 // user/Jorge/vehiculos/datos
  
 const {Router} = require('express')
-const handlerGetUsers = require("../handlers/handlerGetUsers.js")
 
-const handlerGetVehicle = require ("../handlers/handlerGetVehicle.js")
 
 const usersRouter = Router();       // 3001/USERS/vehicle
 
-usersRouter.get("/", handlerGetUsers) // 3001/USERS/ traer todo los usuarios
-usersRouter.post("/",/* HANDLER USER*/) //3001/USERS/ creo un usuario 
+usersRouter.get("/",/* HANDLER USER*/)
+usersRouter.post("/",/* HANDLER USER*/)
 
-//usersRouter.get("/vehicle", handlerGetVehicle) //3001/users/allvehiculos
-usersRouter.post("/vehicle",/* HANDLER VEHICLE */)
+usersRouter.get("vehicle",/* HANDLER VEHICLE */)
+usersRouter.post("vehicle",/* HANDLER VEHICLE */)
 
-usersRouter.get("/vehicle/:id",/* HANDLER  VEHICLE BY ID*/)
-usersRouter.put("/vehicle/:id",/* HANDLER VEHICLE BY ID*/)  
-
-module.exports= usersRouter
+usersRouter.get("vehicle/:id",/* HANDLER  VEHICLE BY ID*/)
+usersRouter.put("vehicle/:id",/* HANDLER VEHICLE BY ID*/)  
