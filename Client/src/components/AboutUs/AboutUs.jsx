@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Team from "../Team/Team";
 
-export default function AcercaDeNosotros(){
+export default function AboutUs(){
     const [showDescription, setShowDescription] = useState(false)
 
     const toggleDescription = () => {
@@ -14,7 +14,7 @@ export default function AcercaDeNosotros(){
              {
                 showDescription && (
 
-                    <div className="Acerca de nosotros">
+                    <div className="AboutUs">
                         <h2>Acerca de nosotros</h2>
                         <p>En Paby, estamos dedicados a proporcionar la mejor experiencia de estacionamiento en línea. Y detrás de nuestra aplicación web, hay un equipo comprometido de ocho compañeros que trabajan arduamente para hacer posible este objetivo.
 

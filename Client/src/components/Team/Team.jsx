@@ -5,49 +5,49 @@ const teamMembers = [
     {
         image: "",
         name: "Andres Felipe Garcia Castro",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/andr%C3%A9s-felipe-garcia-castro-afgc96",
         gitHub: ""
     },
     {
         image: "",
         name: "Jorge Andres Escobar Vidal",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/andres-escobar-044504251",
         gitHub: ""
     },
     {
         image: "",
         name: "Nahuel Lautaro Torres Loretto",
-        linkedin: "",
-        gitHub: ""
+        linkedin: "https://www.linkedin.com/in/nahuel-lautaro-torres-loretto-511085235/",
+        gitHub: "https://github.com/Lautaro261"
     },
     {
         image: "",
         name: "Jose Armando Gomez Sanchez",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/armando-gomez-2b1a1424a/",
         gitHub: ""
     },
     {
         image: "",
         name: "Juan Diego  Florez Lora",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/juan-diego-florez-lora-9a689211b",
         gitHub: ""
     },
     {
         image: "",
         name: "Marco Polo Bejarano Maluquish",
-        linkedin: "",
-        gitHub: ""
+        linkedin: "https://www.linkedin.com/in/marco-bejarano/",
+        gitHub: "https://github.com/marcobejarano"
     },
     {
         image: "",
         name: "Camila Angeles Oyene",
-        linkedin: "",
-        gitHub: ""
+        linkedin: "https://www.linkedin.com/in/camila-oyene-129505175/",
+        gitHub: "https://github.com/CamilaOyene"
     },
     {
         image: "",
         name: "Juan Patricio Gutierrez Guzman",
-        linkedin: "",
+        linkedin: "https://www.linkedin.com/in/juan-gutiérrez-developer/",
         gitHub: ""
     }
 ]
