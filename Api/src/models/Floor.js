@@ -1,11 +1,12 @@
 const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Floor = sequelize.define(
+  sequelize.define(
     "floor",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         unique: true,
         primaryKey: true,
         allowNull: false,
