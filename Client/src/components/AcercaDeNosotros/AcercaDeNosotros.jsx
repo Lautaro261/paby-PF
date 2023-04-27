@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import Team from "../Team/Team";
 
-
 export default function AcercaDeNosotros(){
     const [showDescription, setShowDescription] = useState(false)
 
@@ -33,3 +32,4 @@ export default function AcercaDeNosotros(){
         </div>
     )
 }
+
