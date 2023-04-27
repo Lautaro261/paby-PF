@@ -3,7 +3,7 @@ const getAllUsers = require('../controllers/getAllUser')
 const handlerGetUsers = async (req, res)=>{
     try {
         const users = await getAllUsers()
-        console.log(users)
+        //console.log(users)
         res.status(200).json(users)
 /*         res.status(200).json({message: 'ESTAMOS EN HANDLER GET USERS',
     name: "Armando Gomez",
