@@ -56,6 +56,8 @@ const {
 // Usuario con tipo de documento y sexo de uno a muchos.
 Sex.hasMany(User);
 User.belongsTo(Sex);
+
+// Documento con user
 Document.hasMany(User);
 User.belongsTo(Document);
 
@@ -64,7 +66,7 @@ User.hasMany(Vehicle);
 Vehicle.belongsTo(User);
 
 // Usuario con rol relación de uno a muchos.
-Document.hasMany(User);
+Rol.hasMany(User);
 User.belongsTo(Rol);
 
 // Relación de muchos a muchos entre el rol y permisos

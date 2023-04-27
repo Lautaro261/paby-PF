@@ -4,9 +4,12 @@ const { Parking } = require("../db");
 const getAllParkings = async (req, res) => {
   try {
     const parkings = await Parking.findAll();
-    res.json(parkings);
+    if (parkings) {
+      res.status(200).json(parkings);
+    } else {
+      res.status(404).json({ message: "No hay parqueaderos creados" });
+    }
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });
   }
 };
@@ -17,7 +20,7 @@ const getParkingById = async (req, res) => {
   try {
     const parking = await Parking.findByPk(id);
     if (parking) {
-      res.json(parking);
+      res.status(200).json(parking);
     } else {
       res.status(404).json({
         message: "Parqueadero no encontrado o datos de busqueda incorrectos",
@@ -56,7 +59,7 @@ const createParking = async (req, res) => {
       photo,
       regulation,
     });
-    res.json(parking);
+    res.status(200).json(parking);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });
@@ -93,9 +96,13 @@ const updateParking = async (req, res) => {
         photo,
         regulation,
       });
-      res.json({ message: "Parqueadero actualizado correctamente" });
+      res
+        .status(200)
+        .json({ message: "Parqueadero actualizado correctamente" });
     } else {
-      res.status(404).json({ message: "Parqueadero no encontrado" });
+      res.status(404).json({
+        message: "Parqueadero no encontrado o datos ingresados incorrectos",
+      });
     }
   } catch (error) {
     console.error(error);
