@@ -64,7 +64,7 @@ User.hasMany(Vehicle);
 Vehicle.belongsTo(User);
 
 // Usuario con rol relación de uno a muchos.
-Document.hasMany(User);
+Rol.hasMany(User);
 User.belongsTo(Rol);
 
 // Relación de muchos a muchos entre el rol y permisos

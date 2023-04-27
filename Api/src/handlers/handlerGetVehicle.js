@@ -1,22 +1,22 @@
 
-const getAllVehicle =require("../controllers/getAllVehicle")
+const axios = require("axios");
+const getAllVehicle = require("../controllers/getAllVehicle");
 
 
-const handlerGetVehicle = async(req,res) =>{
+const handlerGetVehicle = async (req, res) => {
+  // Get all vehicle
+  //if (req.body.name)
+  try {
+    //onst vehicleDB = await axios.all([getAllVehicle()])
+    //const allVehicle = [... vehicleDB]
+    //res.status(200).json(allVehicle)
+    const vehicleDB = await getAllVehicle()
+    res.status(200).json({vehicleDB});
+  } catch (error) {
+    res.status(404).json(error.message);
+  }
+};
 
-    // Get all vehicle
 
-     try {
+module.exports = handlerGetVehicle;
 
-        const vehicle = await getAllVehicle()
-        console.log(vehicle);
-        res.status(200).json({message: "todo salio bien en get vehicles"})
-        
-    } catch (error) {
-       // res.status(401).json({message: 'TODO MAL '});
-    } 
-
-
-}
-
-module.exports = handlerGetVehicle()
