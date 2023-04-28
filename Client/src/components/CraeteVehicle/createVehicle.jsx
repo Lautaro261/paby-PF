@@ -38,6 +38,7 @@ export default function CreateVehicle() {
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
       const requestData = {
+        license_plate_id: values.license_plate,
         vehicle_tipe: values.vehicle_tipe,
         type_of_service: values.type_of_service,
         car_brand: values.car_brand,
@@ -47,16 +48,14 @@ export default function CreateVehicle() {
         license_plate: values.license_plate,
         photo: values.photo
       };
+      
 
       try {
-        /*const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
+        const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
           headers: {
             'Content-Type': 'application/json'
           }
         });
-      console.log(response.data);
-      console.log(JSON.stringify(requestData));*/
-        console.log(requestData);
       resetForm();
     } catch (error) {
       console.log(error);
