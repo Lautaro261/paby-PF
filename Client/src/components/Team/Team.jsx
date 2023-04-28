@@ -20,7 +20,7 @@ const teamMembers = [
         image: Jorge,
         name: "Jorge Andres Escobar Vidal",
         linkedin: "https://www.linkedin.com/in/andres-escobar-044504251",
-        gitHub: ""
+        gitHub: "https://github.com/Tatsumi0720?tab=repositories"
     },
     {
         image: Nahuel,
