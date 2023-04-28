@@ -3,7 +3,6 @@ import style from "./Landing.module.css"
 import { Link } from "react-router-dom"
 import Logopaby from "../../imgs/Logopaby.png"
 
-
 function Landing() {
     return (
       <>
