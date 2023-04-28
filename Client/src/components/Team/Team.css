@@ -1,0 +1,53 @@
+.conteiner-members{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.member-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #16425B;
+    width: calc(25% - 40px);
+}
+
+
+.mermber-card:hover{
+    box-shadow: 0px 0px 20px rgba(0,0,0, 0.4);
+}
+
+.mermber-card img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.card h3{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.social-links{
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: auto;
+}
+
+.social-links a{
+    font-size: 1.2rem;
+    color:#333;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.social-links a:hover{
+    color: #0077b5;
+}
