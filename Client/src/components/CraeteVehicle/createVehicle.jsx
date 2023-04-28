@@ -49,14 +49,14 @@ export default function CreateVehicle() {
       };
 
       try {
-        /*const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
+        const response = await axios.post('http://localhost:3001/users/vehicle', JSON.(requestData), {
           headers: {
             'Content-Type': 'application/json'
           }
         });
       console.log(response.data);
-      console.log(JSON.stringify(requestData));*/
-        console.log(requestData);
+      //console.log(JSON.stringify(requestData));
+      console.log(requestData);
       resetForm();
     } catch (error) {
       console.log(error);
@@ -66,88 +66,87 @@ export default function CreateVehicle() {
 
 
 	return (
-    <div className="container">
-      <h1 className="my-4">Crear Vehiculo</h1>
+    <div class="ContenedorPrimary">
+      <h1>Crear Vehiculo</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
         >
         {({ setFieldValue, isSubmitting }) => (
-        <Form className="row g-3">
-          <div className="col-md-6">
-            <label htmlFor="vehicle_tipe" className="form-label">Tipo de vehículo</label>
-            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" className="form-select">
+        <form>
+        <div class="selectecontenedor">
+          <div class="select-containerS">
+            <label htmlFor="vehicle_tipe">Tipo de vehículo</label>
+            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" class="select">
               <option value="auto">Auto</option>
               <option value="moto">Moto</option>
               <option value="bicicleta">Bicicleta</option>
             </Field>
-            <ErrorMessage name="vehicle_tipe" className="invalid-feedback" />
+            <ErrorMessage name="vehicle_tipe" />
           </div>
 
-          <div className="col-md-6">
-            <label htmlFor="type_of_service" className="form-label">Tipo de servicio</label>
-            <Field as="select" id="type_of_service" name="type_of_service" className="form-select">
+          <div class="select-containerS">
+            <label htmlFor="type_of_service">Tipo de servicio</label>
+            <Field as="select" id="type_of_service" name="type_of_service" class="select">
               <option value="particular">Particular</option>
               <option value="publico">Público</option>
             </Field>
-            <ErrorMessage name="type_of_service" className="invalid-feedback" />
+            <ErrorMessage name="type_of_service" />
           </div>
+        </div>
 
-          <div className="col-md-6">
-            <label htmlFor="car_brand" className="form-label">Marca</label>
-            <Field type="text" id="car_brand" name="car_brand" className="form-control" />
-            <ErrorMessage name="car_brand" className="invalid-feedback" />
-          </div>
+      <div>
+        <label htmlFor="car_brand">Marca</label>
+        <Field type="text" id="car_brand" name="car_brand" />
+        <ErrorMessage name="car_brand" />
+      </div>
 
-          <div className="col-md-6">
-            <label htmlFor="car_model" className="form-label">Modelo</label>
-            <Field type="text" id="car_model" name="car_model" className="form-control" />
-            <ErrorMessage name="car_model" className="invalid-feedback" />
-          </div>
+      <div>
+        <label htmlFor="car_model">Modelo</label>
+        <Field type="text" id="car_model" name="car_model" />
+        <ErrorMessage name="car_model" />
+      </div>
 
-          <div className="col-md-6">
-            <label htmlFor="car_model_year" className="form-label">Año</label>
-            <Field type="text" id="car_model_year" name="car_model_year" className="form-control" />
-            <ErrorMessage name="car_model_year" className="invalid-feedback" />
-          </div>
+      <div>
+        <label htmlFor="car_model_year">Año</label>
+        <Field type="text" id="car_model_year" name="car_model_year" />
+        <ErrorMessage name="car_model_year" />
+      </div>
 
-          <div className="col-md-6">
-            <label htmlFor="car_color" className="form-label">Color</label>
-            <Field type="text" id="car_color" name="car_color" className="form-control" />
-            <ErrorMessage name="car_color" className="invalid-feedback" />
-          </div>
+      <div>
+        <label htmlFor="car_color">Color</label>
+        <Field type="text" id="car_color" name="car_color" />
+        <ErrorMessage name="car_color" />
+      </div>
 
-          <div className="col-md-6">
-            <label htmlFor="license_plate" className="form-label">Matrícula</label>
-            <Field type="text" id="license_plate" name="license_plate" className="form-control" />
-            <ErrorMessage name="license_plate" className="invalid-feedback" />
-          </div>
+      <div>
+        <label htmlFor="license_plate">Matrícula</label>
+        <Field type="text" id="license_plate" name="license_plate" />
+        <ErrorMessage name="license_plate" />
+      </div>
 
-          <div className="col-md-6">
-            <label htmlFor="photo" className="form-label">Foto</label>
-            <Field
-              type="file"
-              id="photo"
-              name="photo"
-              className="form-control"
-              onChange={(event) => {
-                setFieldValue("photo", event.currentTarget.files[0]);
-              }}
-            />
-            {/*<ErrorMessage name="photo" className="invalid-feedback" />*/}
-          </div>
+      <div>
+        <label htmlFor="photo">Foto</label>
+        <Field
+          type="file"
+          id="photo"
+          name="photo"
+          onChange={(event) => {
+            setFieldValue("photo", event.currentTarget.files[0]);
+          }}
+        />
+      </div>
 
-          <div className="col-12">   
-            <button type="submit" disabled={isSubmitting}>
-              Crear
-            </button>
-          </div>
+      <div>   
+        <button type="submit" disabled={isSubmitting}>
+          Crear Vehiculo
+        </button>
+      </div>
 
-        </Form>
-        )}
-      </Formik>
-    </div>
+    </form>
+    )}
+    </Formik>
+  </div>
   );
-
 }

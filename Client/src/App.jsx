@@ -13,7 +13,7 @@ const App = () => {
   return (
       <Routes>
           <Route path='/' element={ <Landing /> } />
-          <Route path='/home' element={ <Home /> } />
+          {/*<Route path='/home' element={ <Home /> } />*/}
           {/* <Route path='/reservation-panel' element={ <PaneldeReservacion /> } /> */}
           <Route path='/createvehicle' element={ <CreateVehicle /> } />
           {/* <Route path='/contact-us' element={ <Contact-us /> } /> */}
