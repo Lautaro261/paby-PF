@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       nit: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       country: {
