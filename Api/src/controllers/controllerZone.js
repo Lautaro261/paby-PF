@@ -1,16 +1,16 @@
-const { Floor, Zone } = require("../db");
+const { Parking, Floor, Zone } = require("../db");
 
-// Handler para obtener todas las zonas de un piso
+//// Handler para obtener todas las zonas de los pisos
 const getAllZonesWithFloors = async (req, res) => {
   try {
     const zones = await Zone.findAll({
-      include: [
-        {
-          model: Floor,
-          attributes: ["id"],
-        },
+      attributes: [
+        "id",
+        "zone_status",
+        "zone_number",
+        "vehicle_type",
+        "floorId",
       ],
-      attributes: ["id", "zone_status", "zone_number", "vehicle_type"],
     });
 
     res.status(200).json(zones);
@@ -20,63 +20,98 @@ const getAllZonesWithFloors = async (req, res) => {
   }
 };
 
-// Handler para crear zonas a un piso
+//// Handler para asignar zonas automaticamente a un piso
 const createZones = async (req, res) => {
   try {
-    const { floorId } = req.params;
-    const floor = await Floor.findByPk(floorId);
+    const { id } = req.params;
 
+    // Verificar si el piso existe
+    const floor = await Floor.findByPk(id);
     if (!floor) {
-      return res.status(404).json({ message: "Floor not found" });
+      return res
+        .status(404)
+        .json({ message: "Piso no existe o datos ingresados incorrectos" });
     }
 
-    const { amount, car_capacity, motorcycle_capacity } = floor;
+    const { car_capacity, motorcycle_capacity } = floor;
 
     const zones = [];
     let zoneNumber = 1;
 
-    for (let i = 0; i < amount; i++) {
-      const vehicleType = i < car_capacity ? "Automovil" : "Motocicleta";
-
+    // Crear las zonas de carros
+    for (let i = 0; i < car_capacity; i++) {
       zones.push({
         zone_status: "Disponible",
-        zone_number: zoneNumber.toString(),
-        vehicle_type: vehicleType,
-        floorId: floor.id,
+        zone_number: zoneNumber,
+        vehicle_type: "Automovil",
+        floorId: id,
       });
-
       zoneNumber++;
     }
 
-    const createdZones = await Zone.bulkCreate(zones);
+    // Crear las zonas de motos
+    for (let i = 0; i < motorcycle_capacity; i++) {
+      zones.push({
+        zone_status: "Disponible",
+        zone_number: zoneNumber,
+        vehicle_type: "Motocicleta",
+        floorId: id,
+      });
+      zoneNumber++;
+    }
 
-    res
-      .status(201)
-      .json({ message: "Zones created successfully", zones: createdZones });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error creating zones" });
-  }
-};
+    await Zone.bulkCreate(zones);
 
-// Handler para obtener todas las zonas de un piso
-const getZonesByFloorId = async (req, res) => {
-  try {
-    const floor = await Floor.findAll({
-      attributes: ["id", "name", "amount"],
-      include: [
-        {
-          model: Zone,
-          as: "zonesFloor",
-          attributes: ["id", "zone_status", "zone_number", "vehicle_type"],
-        },
-      ],
-    });
-    res.status(200).json(floor);
+    res.status(201).json({ message: "Zonas creadas correctamente" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
-module.exports = { createZones, getAllZonesWithFloors, getZonesByFloorId };
+//// Handler para ver todas las zonas de todos los pisos del parqueadero
+async function getAllZones(req, res) {
+  try {
+    const zones = await Zone.findAll({
+      include: [
+        {
+          model: Floor,
+          attributes: ["name", "parkingId"],
+        },
+      ],
+    });
+
+    res.status(200).json(zones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+//// Handler para modificar el estado de disponibilidad y el nombre de una zona
+async function updateZone(req, res) {
+  try {
+    const { id } = req.params;
+    const { zone_status, zone_number } = req.body;
+
+    const zone = await Zone.findByPk(id);
+
+    if (!zone) {
+      res.status(404).json({ message: "Zona no encontrada" });
+    }
+
+    await zone.update({ zone_status, zone_number });
+
+    res.status(200).json({ message: "¡Zona actualizada correctamente!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+}
+
+module.exports = {
+  createZones,
+  getAllZonesWithFloors,
+  getAllZones,
+  updateZone,
+};
