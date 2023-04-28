@@ -14,7 +14,7 @@ const teamMembers = [
         image: Andy,
         name: "Andres Felipe Garcia Castro",
         linkedin: "https://www.linkedin.com/in/andr%C3%A9s-felipe-garcia-castro-afgc96",
-        gitHub: ""
+        gitHub: "https://github.com/AndresGarcia96"
     },
     {
         image: Jorge,
@@ -56,7 +56,7 @@ const teamMembers = [
         image: JuanPa,
         name: "Juan Patricio Gutierrez Guzman",
         linkedin: "https://www.linkedin.com/in/juan-gutiérrez-developer/",
-        gitHub: ""
+        gitHub: "https://github.com/juangutierrezjp"
     }
 ]
 
