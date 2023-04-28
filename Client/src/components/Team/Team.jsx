@@ -1,5 +1,6 @@
 import React from "react"
 import './Team.css'
+
 import Andy from '../../imgs/imgsAboutUs/Andy.jpg'
 import Marco from '../../imgs/imgsAboutUs/marco.jpeg'
 import Armando from '../../imgs/imgsAboutUs/Armando.jfif'
@@ -57,16 +58,7 @@ const teamMembers = [
         name: "Juan Patricio Gutierrez Guzman",
         linkedin: "https://www.linkedin.com/in/juan-gutiérrez-developer/",
         gitHub: "https://github.com/juangutierrezjp"
-    }
-]
 
-export default function Team() {
-    return (
-        <div className="conteiner-members">
-                {
-                    teamMembers.map((member) => (
-                        <div key={member.name} className="member-card">
-                            <img src={member.image} alt={member.name} max-width='200' height='200' />
                             <h3>{member.name}</h3>
                             <div className="social-links">
                                 <a href={member.linkedin} target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
