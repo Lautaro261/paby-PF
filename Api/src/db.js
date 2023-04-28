@@ -56,6 +56,8 @@ const {
 // Usuario con tipo de documento y sexo de uno a muchos.
 Sex.hasMany(User);
 User.belongsTo(Sex);
+
+// Documento con user
 Document.hasMany(User);
 User.belongsTo(Document);
 
@@ -84,7 +86,7 @@ Payment.hasMany(Reservation);
 Reservation.belongsTo(Payment);
 
 // Zona con pisos
-Floor.hasMany(Zone);
+Floor.hasMany(Zone, { as: "zonesFloor" });
 Zone.belongsTo(Floor);
 
 // Pisos con parqueadero

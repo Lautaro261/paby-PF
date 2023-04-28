@@ -3,18 +3,22 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkingSpaceCard from '../../components/ParkingSpaceCard/ParkingSpaceCard';
 import { setCurrentPage } from '../../redux/features/parkingSpacesPagination/parkingSpacesPaginationSlice';
+import { getParkingLotById,
+    getLevelsByParkingLotId,
+    getParkingSpacesByParkingLotId
+} from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ReservationPanel = () => {
     const dispatch = useDispatch();
     const parking_lot = useSelector(state => state.parkingSpaces.parkingLot);
-    const levels = useSelector(state => state.parkingSpaces.LevelsForThisParkingLot);
-    const parking_spaces = useSelector(state => state.parkingSpaces.ParkingSpacesForThisParkingLot);
+    const levels = useSelector(state => state.parkingSpaces.levelsForThisParkingLot);
+    const parking_spaces = useSelector(state => state.parkingSpaces.parkingSpacesForThisParkingLot);
 
     const initialLevel = levels[0];
     const [isParkingSpaceSelected, setIsParkingSpaceSelected] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState(initialLevel);
 
-    const parkingSpacesInThisLevel = parking_spaces.filter(pS => pS.levels_id === selectedLevel.id);
+    const parkingSpacesInThisLevel = parking_spaces.filter(pS => pS.floorId === selectedLevel.id);
     const [filteredParkingSpaces, setfilteredParkingSpaces] = useState(parkingSpacesInThisLevel);
 
     const availableParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'available');
@@ -45,7 +49,7 @@ const ReservationPanel = () => {
     const handleLevelSelection = (e) => {
         const selectedLevel = levels.find(level => level.name === e.target.textContent);
         setSelectedLevel(selectedLevel);
-        const parkingSpacesInSelectedLevel = parking_spaces.filter(pS => pS.levels_id === selectedLevel.id);
+        const parkingSpacesInSelectedLevel = parking_spaces.filter(pS => pS.floorId === selectedLevel.id);
         setfilteredParkingSpaces(parkingSpacesInSelectedLevel);
         document.getElementById('parkingSpaceStatusFilter').value = '';
         document.getElementById('vehicleTypeFilter').value = '';
