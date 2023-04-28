@@ -7,7 +7,7 @@ const getAllUsers = async(req, res)=>{
     const responseUsers = await User.findAll(/* {
         include: [{model: User }]
     } */)
-    console.log(responseUsers)
+    //console.log(responseUsers)
 
     return responseUsers
 } 

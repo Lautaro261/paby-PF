@@ -39,6 +39,7 @@ export default function CreateVehicle() {
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
       const requestData = {
+        license_plate_id: values.license_plate,
         vehicle_tipe: values.vehicle_tipe,
         type_of_service: values.type_of_service,
         car_brand: values.car_brand,
@@ -49,10 +50,12 @@ export default function CreateVehicle() {
         license_plate_id: values.license_plate,
         photo: values.photo
       };
+      
 
       try {
         console.log(requestData);
         const response = await axios.post('http://localhost:3001/users/vehicle',requestData, {
+        //const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -60,6 +63,7 @@ export default function CreateVehicle() {
       console.log(response.data);
       //console.log(JSON.stringify(requestData));
       alert("¡El vehículo ha sido creado!");
+
       resetForm();
     } catch (error) {
       console.log(error);
@@ -67,7 +71,7 @@ export default function CreateVehicle() {
   };
 
 	return (
-  <div>
+  <div className="container">
     <h1>Crear Vehiculo</h1>
     <Formik
       initialValues={initialValues}
@@ -148,5 +152,4 @@ export default function CreateVehicle() {
     </Formik>
   </div>
 );
-
 }

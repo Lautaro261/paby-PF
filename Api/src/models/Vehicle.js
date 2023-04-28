@@ -41,8 +41,9 @@ module.exports = (sequelize) => {
         }, 
         photo: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     },
-    { timestamps: false });
+    { timestamps: false }
+  );
 };

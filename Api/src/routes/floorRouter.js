@@ -9,4 +9,6 @@ floorRouter.get("/:id", handlerFloor.getFloorsById);
 floorRouter.post("/:id", handlerFloor.createNewFloor);
 floorRouter.put("/:id", handlerFloor.updateFloor);
 
+
 module.exports = floorRouter;
+
