@@ -86,7 +86,7 @@ Payment.hasMany(Reservation);
 Reservation.belongsTo(Payment);
 
 // Zona con pisos
-Floor.hasMany(Zone);
+Floor.hasMany(Zone, { as: "zonesFloor" });
 Zone.belongsTo(Floor);
 
 // Pisos con parqueadero

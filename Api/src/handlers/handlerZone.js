@@ -1,2 +1,6 @@
 // Controlador de los pisos del parqueadero
-const controllerFloor = require("../controllers/controllerZone");
+const controllerZone = require("../controllers/controllerZone");
+
+exports.getZonesOfFloor = controllerZone.getZonesByFloorId;
+exports.getZonesWithFloors = controllerZone.getAllZonesWithFloors;
+exports.createZonesInFloor = controllerZone.createZones;
