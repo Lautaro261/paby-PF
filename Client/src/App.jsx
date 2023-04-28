@@ -1,7 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import Landing from './views/Landing/Landing'
+
 import CreateVehicle from './components/CraeteVehicle/createVehicle.jsx'
 //import Home from "./components/Home/Home.jsx"
+
 
 
 //pueden hacer pruebas de su componente importandolo y descomentando la ruta que les correspode (ctrl+k+u)
@@ -11,7 +13,7 @@ const App = () => {
   return (
       <Routes>
           <Route path='/' element={ <Landing /> } />
-          {/* <Route path='/home' element={ <Home /> } /> */}
+          <Route path='/home' element={ <Home /> } />
           {/* <Route path='/reservation-panel' element={ <PaneldeReservacion /> } /> */}
           <Route path='/createvehicle' element={ <CreateVehicle /> } />
           {/* <Route path='/contact-us' element={ <Contact-us /> } /> */}
