@@ -4,6 +4,8 @@ import Landing from './views/Landing/Landing'
 import CreateVehicle from './components/CraeteVehicle/createVehicle.jsx'
 import Dash from './components/dashboard/dash';
 import HomeView from './views/home/homeView';
+import ReservationView from './views/ReservationPanel/ReservationView';
+import CarsView from './views/ListCars/carsView';
 //import Home from "./components/Home/Home.jsx"
 
 
@@ -16,9 +18,9 @@ const App = () => {
       <Routes>
           <Route path='/' element={ <Landing /> } />
           <Route path='/home' element={ <HomeView /> } /> 
-          {/* <Route path='/reservation-panel' element={ <PaneldeReservacion /> } /> */}
+          <Route path='/reservation-panel' element={ <ReservationView /> } /> 
           <Route path='/createvehicle' element={ <CreateVehicle /> } />
-          {/* <Route path='/contact-us' element={ <Contact-us /> } /> */}
+           <Route path='/vehicles' element={<CarsView/>} /> 
           {/* <Route path='/about' element={ <About /> } /> */}
           {/* <Route path='/navbar' element={ <BarraNav /> } /> */}
            <Route path='/dashboard' element={ <Dash /> } /> 
