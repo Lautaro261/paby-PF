@@ -1,9 +1,10 @@
 const { User }= require('../db');
 
-const postUser=async(name, identificacion,last_name,email,password,phone,country,city,address,neighborhood,photo)=>{
-    const response = await User.create({
-        name,
+const postUser=async(id, name, identificacion,last_name,email,password,phone,country,city,address,neighborhood,photo)=>{
+      await User.create({
+        id,
         identificacion,
+        name,
         last_name,
         email,
         password,
@@ -14,7 +15,6 @@ const postUser=async(name, identificacion,last_name,email,password,phone,country
         neighborhood,
         photo
     })
-    console.log(response)
     
 }
 
