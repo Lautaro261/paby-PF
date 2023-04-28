@@ -9,15 +9,15 @@ const ParkingSpaceCard = (props) => {
 	let parkingSpaceCardStatus;
 	let buttonAvailability;
 	switch (parking_space_status) {
-		case 'Available':
+		case 'Disponible':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_available;
 			buttonAvailability = false;
 		break;
-		case 'Occupied':
+		case 'Ocupado':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_occupied;
 			buttonAvailability = true;
 		break;
-		case 'Reserved':
+		case 'Reservado':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_reserved;
 			buttonAvailability = true;
 		break;
@@ -28,7 +28,7 @@ const ParkingSpaceCard = (props) => {
 	const handleClick = () => {
 		const selectedParkingSpace = {
 			id: parking_space_id,
-			zone_status: 'reserved'
+			zone_status: 'Reservado'
 		}
 		dispatch(setSelectedParkingSpace(selectedParkingSpace));
 	};

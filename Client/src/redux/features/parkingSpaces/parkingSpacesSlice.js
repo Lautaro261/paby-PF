@@ -12,12 +12,13 @@ const initialState = {
     error: null
 };
 
+// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
+// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
 export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
     async () => {
         try {
-            const response = await axios.get(`${ apiUrl }/parking/386f7e09-15c1-4930-9d0d-db37962a649a`);
-            console.log(response.data);
+            const response = await axios.get(`${ apiUrl }/parking/ae376455-85c7-45c2-a866-fdc126a851ff`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -26,11 +27,13 @@ export const getParkingLotById = createAsyncThunk(
     }
 );
 
+// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
+// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
 export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async () => {
         try {
-            const response = await axios.get(`${ apiUrl }/floors/386f7e09-15c1-4930-9d0d-db37962a649a`);
+            const response = await axios.get(`${ apiUrl }/floors/ae376455-85c7-45c2-a866-fdc126a851ff`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -39,12 +42,13 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     }
 );
 
-// Pendiente la ruta para traer las zonas del parqueadero
+// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
+// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
 export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async () => {
         try {
-            const response = await axios.get(`${ apiUrl }/zones`);
+            const response = await axios.get(`${ apiUrl }/zones/ae376455-85c7-45c2-a866-fdc126a851ff`);
             return response.data;
         } catch (error) {
             console.error(error.message);
