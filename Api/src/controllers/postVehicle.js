@@ -22,7 +22,7 @@ const postVehicle = async (
     car_color,
     photo,
   });
-  console.log(newVehicle);
+  //console.log(newVehicle);
   return newVehicle;
 };
 
