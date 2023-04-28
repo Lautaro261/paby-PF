@@ -1,27 +1,27 @@
-//userRouter/:id/vehiculo
-
-//get general y post
-
-//userRouter/:id/vehiculo/:id
-
-// get del vehico por id put
-
-// user/datos
-// vehiculo/datos
-
-// user/Jorge/vehiculos/datos
-
 const { Router } = require("express");
 
-const usersRouter = Router();
+const handlerPostUser = require("../handlers/handlerPostUser");
+const handlerGetUsers = require("../handlers/handlerGetUsers.js");
+const handlerGetVehicle = require("../handlers/handlerGetVehicle.js");
+const handlerPostVehicle = require("../handlers/handlerPostVehicle.js");
+const handlerPutVehicle = require("../handlers/handlerPutVehicle");
+const handlerGetVehicleId = require("../handlers/handlerGetVehicleId.js");
+const handlerGetVehiclesIdUser = require("../handlers/handlerGetVehiclesIdUser");
+const handlerGetUserId = require("../handlers/handlerGetUserId");
 
-usersRouter.get("/" /* HANDLER USER*/);
-usersRouter.post("/" /* HANDLER USER*/);
+const usersRouter = Router(); // 3001/USERS/vehicle
 
-usersRouter.get("vehicle" /* HANDLER VEHICLE */);
-usersRouter.post("vehicle" /* HANDLER VEHICLE */);
+//PARA EL ADMIN
+usersRouter.get("/", handlerGetUsers); // 3001/USERS/ traer todo los usuarios
+usersRouter.get("/vehicle", handlerGetVehicle); //3001/users/allvehiculosUser
+usersRouter.get("/:idUser", handlerGetUserId); //3001/users/5
 
-usersRouter.get("vehicle/:id" /* HANDLER  VEHICLE BY ID*/);
-usersRouter.put("vehicle/:id" /* HANDLER VEHICLE BY ID*/);
+// PARA EL USUARIO
+usersRouter.post("/", handlerPostUser); //3001/USERS/ creo un usuario
+usersRouter.post("/vehicle", handlerPostVehicle);
+
+usersRouter.get("/:idUser/vehicles", handlerGetVehiclesIdUser); //3001/users/:idUser/allvehiculosUser
+usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
+usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
 
 module.exports = usersRouter;
