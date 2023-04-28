@@ -1,0 +1,53 @@
+.flexcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+    height: 79vh
+  }
+  
+  .flexitems:nth-child(1) {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    width: 10vw;
+    height: 79vh;
+    
+  }
+  
+  .flexitems:nth-child(2) {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    width: 90vw;
+    height: 79vh;
+  }
+
+
+
+.div4{
+    position: relative;
+    width: 100%;
+    background-color: aqua;
+    height:10vh;
+    bottom:0%;
+    left: 0%;
+
+}
+.div1{
+    position: relative;
+    width: 100%;
+    background-color: var(--secondary-color);
+    height: 6vh;
+    bottom:0%;
+    left: 0%;
+
+}

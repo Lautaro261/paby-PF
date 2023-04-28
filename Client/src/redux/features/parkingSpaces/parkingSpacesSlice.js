@@ -5,8 +5,8 @@ const apiUrl = 'http://localhost:3001';
 
 const initialState = {
     parkingLot: {},
-    LevelsForThisParkingLot: [],
-    ParkingSpacesForThisParkingLot: [],
+    levelsForThisParkingLot: [],
+    parkingSpacesForThisParkingLot: [],
     selectedParkingSpace: {},
     status: 'idle',
     error: null
@@ -15,16 +15,27 @@ const initialState = {
 export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
     async () => {
-        const response = axios.get(`${ apiUrl }/parking/1`);
-        return response.data;
+        try {
+            const response = await axios.get(`${ apiUrl }/parking/386f7e09-15c1-4930-9d0d-db37962a649a`);
+            console.log(response.data);
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
     }
 );
 
 export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async () => {
-        const response = axios.get(`${ apiUrl }/floors/1`);
-        return response.data;
+        try {
+            const response = await axios.get(`${ apiUrl }/floors/386f7e09-15c1-4930-9d0d-db37962a649a`);
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
     }
 );
 
@@ -32,8 +43,13 @@ export const getLevelsByParkingLotId = createAsyncThunk(
 export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async () => {
-        const response = axios.get(`${ apiUrl }`);
-        return response.data;
+        try {
+            const response = await axios.get(`${ apiUrl }/zones`);
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
     }
 );
 
@@ -49,6 +65,7 @@ const parkingSpacesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+
             .addCase(getParkingLotById.pending, (state) => {
                 state.status = 'loading'
             })
@@ -60,23 +77,25 @@ const parkingSpacesSlice = createSlice({
                 state.status = 'rejected',
                 state.error = action.error.message 
             })
+
             .addCase(getLevelsByParkingLotId.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(getLevelsByParkingLotId.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.LevelsForThisParkingLot = action.payload
+                state.levelsForThisParkingLot = action.payload
             })
             .addCase(getLevelsByParkingLotId.rejected, (state, action) => {
                 state.status = 'rejected',
                 state.error = action.error.message
             })
+
             .addCase(getParkingSpacesByParkingLotId.pending, (state) => {
                 state.status = 'loading'
             })
             .addCase(getParkingSpacesByParkingLotId.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.ParkingSpacesForThisParkingLot = action.payload
+                state.parkingSpacesForThisParkingLot = action.payload
             })
             .addCase(getParkingSpacesByParkingLotId.rejected, (state, action) => {
                 state.status = 'rejected',
