@@ -11,6 +11,12 @@ const getAllZonesWithFloors = async (req, res) => {
         "vehicle_type",
         "floorId",
       ],
+      // include: [
+      //   {
+      //     model: Floor,
+      //     attributes: ["name", "parkingId"],
+      //   },
+      // ],
     });
 
     res.status(200).json(zones);
@@ -19,6 +25,48 @@ const getAllZonesWithFloors = async (req, res) => {
     res.status(500).json({ message: "Error interno del servidor" });
   }
 };
+
+//// Handler para ver todas las zonas de todos los pisos del parqueadero
+async function getZonesByParkingId(req, res) {
+  try {
+    const { id } = req.params;
+
+    // Verificar si el parqueadero existe
+    const parking = await Parking.findByPk(id);
+    if (!parking) {
+      return res.status(404).json({ message: "Parqueadero no encontrado" });
+    }
+
+    // Buscar todos los pisos asociados al parqueadero
+    const floors = await Floor.findAll({
+      where: { parkingId: id },
+      attributes: ["id"],
+    });
+
+    // Buscar todas las zonas asociadas a cada piso
+    const zones = await Zone.findAll({
+      where: { floorId: floors.map((floor) => floor.id) },
+      attributes: [
+        "id",
+        "zone_status",
+        "zone_number",
+        "vehicle_type",
+        "floorId",
+      ],
+      // include: [
+      //   {
+      //     model: Floor,
+      //     attributes: ["name", "parkingId"],
+      //   },
+      // ],
+    });
+
+    res.status(200).json(zones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error interno del servidor" });
+  }
+}
 
 //// Handler para asignar zonas automaticamente a un piso
 const createZones = async (req, res) => {
@@ -69,25 +117,6 @@ const createZones = async (req, res) => {
   }
 };
 
-//// Handler para ver todas las zonas de todos los pisos del parqueadero
-async function getAllZones(req, res) {
-  try {
-    const zones = await Zone.findAll({
-      include: [
-        {
-          model: Floor,
-          attributes: ["name", "parkingId"],
-        },
-      ],
-    });
-
-    res.status(200).json(zones);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-}
-
 //// Handler para modificar el estado de disponibilidad y el nombre de una zona
 async function updateZone(req, res) {
   try {
@@ -112,6 +141,6 @@ async function updateZone(req, res) {
 module.exports = {
   createZones,
   getAllZonesWithFloors,
-  getAllZones,
+  getZonesByParkingId,
   updateZone,
 };

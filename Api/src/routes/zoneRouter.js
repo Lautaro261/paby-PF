@@ -5,7 +5,7 @@ const zoneRouter = Router();
 
 //// Rutas de Pisos
 zoneRouter.get("/", handlerZone.getZonesWithFloors);
-zoneRouter.get("/all", handlerZone.getAllZonesOfAllFloors);
+zoneRouter.get("/:id", handlerZone.getZonesByIdParking);
 zoneRouter.post("/:id", handlerZone.createZonesInFloor);
 zoneRouter.put("/:id", handlerZone.updateZones);
 
