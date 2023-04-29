@@ -10,3 +10,4 @@ parkingRouter.post("/", handlerParking.postParking);
 parkingRouter.put("/:id", handlerParking.updateParking);
 
 module.exports = parkingRouter;
+
