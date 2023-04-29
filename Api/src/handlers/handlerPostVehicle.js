@@ -4,7 +4,6 @@ const postVehicle =require("../controllers/postVehicle");
 
 const handlerPostVehicle = async (req, res) => {
     
-    try {
   const {
     license_plate_id,
     license_plate,
@@ -16,7 +15,12 @@ const handlerPostVehicle = async (req, res) => {
     car_color,
     photo,
   } = req.body;
+
+  const { userId }= req.params
+  
+    try {
     const vehicle = await postVehicle(
+      userId,
       license_plate_id,
       license_plate,
       vehicle_tipe,

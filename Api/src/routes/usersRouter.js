@@ -18,10 +18,11 @@ usersRouter.get("/:idUser", handlerGetUserId); //3001/users/5
 
 // PARA EL USUARIO
 usersRouter.post("/", handlerPostUser); //3001/USERS/ creo un usuario
-usersRouter.post("/vehicle", handlerPostVehicle);
+usersRouter.post("/:userId/vehicle", handlerPostVehicle);
 
 usersRouter.get("/:idUser/vehicles", handlerGetVehiclesIdUser); //3001/users/:idUser/allvehiculosUser
 usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
+
 usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
 
 module.exports = usersRouter;

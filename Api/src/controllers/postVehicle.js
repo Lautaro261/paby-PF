@@ -1,6 +1,8 @@
 const { Vehicle } = require("../db");
+const { User } = require("../db");
 
 const postVehicle = async (
+  userId,
   license_plate_id,
   license_plate,
   vehicle_tipe,
@@ -21,9 +23,15 @@ const postVehicle = async (
     car_model_year,
     car_color,
     photo,
+
   });
-  //console.log(newVehicle);
+  
+ const user = await User.findByPk(userId)
+ 
+  await user.addVehicle(newVehicle);
+
   return newVehicle;
 };
 
 module.exports = postVehicle;
+
