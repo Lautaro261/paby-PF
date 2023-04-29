@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     width: 100%; /* Ancho del panel lateral */
-    height: 500%; /* Altura del panel lateral */
+    height: 100%; /* Altura del panel lateral */
     background-color: #C2D8B9; /* Color de fondo del panel lateral */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra del panel lateral */
   }
@@ -11,6 +11,9 @@
     list-style: none; /* Quitamos los puntos de la lista */
     padding: 0;
     margin: 0;
+  }
+  .textlink{
+    color: #000000;
   }
   
   .panellateral li {
