@@ -24,7 +24,7 @@ export default function Home() {
 
             <ContactUs/>
             
-            <AboutUs/> 
+            <Link to='/about'><button>Acerca de nosotros</button></Link>
 
            
 

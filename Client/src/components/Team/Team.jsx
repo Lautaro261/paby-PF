@@ -66,7 +66,7 @@ export default function Team() {
                 {
                     teamMembers.map((member) => (
                         <div key={member.name} className="member-card">
-                            <img src={member.image} alt={member.name} max-width='200' height='200' />
+                            <img src={member.image} alt={member.name} className="image" />
                             <h3>{member.name}</h3>
                             <div className="social-links">
                                 <a href={member.linkedin} target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
