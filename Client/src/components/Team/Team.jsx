@@ -61,6 +61,7 @@ const teamMembers = [
 ]
 
 export default function Team() {
+
     return (
         <div className="conteiner-members">
                 {

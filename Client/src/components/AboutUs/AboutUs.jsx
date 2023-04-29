@@ -1,10 +1,15 @@
+
 import React from "react";
 import Team from "../Team/Team";
 import logo from '../../imgs/Logopaby.png'
 import './AboutUs.css'
 
 export default function AboutUs(){
-  
+    const goBack= ()=>{
+
+        window.history.back();
+    }
+
     return(
                     <div className="AboutUs">
                         <h1>Acerca de nosotros </h1>
@@ -18,6 +23,7 @@ export default function AboutUs(){
 
                         <h2>Equipo <img src={logo} alt='logoPaby' className='logoAbout' /></h2>
                         <Team />
+                        <button onClick={goBack}>Volver</button>
                     </div>
     )
 }
