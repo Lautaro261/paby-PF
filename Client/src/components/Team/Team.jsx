@@ -32,7 +32,7 @@ const teamMembers = [
         image: Armando,
         name: "Jose Armando Gomez Sanchez",
         linkedin: "https://www.linkedin.com/in/armando-gomez-2b1a1424a/",
-        gitHub: ""
+        gitHub: "https://github.com/Armando1509",
     },
     {
         image: JuanDiego,
@@ -61,12 +61,13 @@ const teamMembers = [
 ]
 
 export default function Team() {
+
     return (
         <div className="conteiner-members">
                 {
                     teamMembers.map((member) => (
                         <div key={member.name} className="member-card">
-                            <img src={member.image} alt={member.name} max-width='200' height='200' />
+                            <img src={member.image} alt={member.name} className="image" />
                             <h3>{member.name}</h3>
                             <div className="social-links">
                                 <a href={member.linkedin} target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
@@ -75,13 +76,6 @@ export default function Team() {
                         </div>
                     ))
                 }
-        </div>
-    )
+        </div>
+    )
 }
-
-
-
-
-
-
-

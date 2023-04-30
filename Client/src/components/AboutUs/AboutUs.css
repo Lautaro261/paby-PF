@@ -1,5 +1,23 @@
-.logoAbout{
-    max-width: 100px;
-    height: auto;
-    transform: translateY(27%);
-  }
+.logoAbout {
+  max-width: 100px;
+ 
+}
+
+p {
+  font-family: "Ysabeau", serif;
+}
+
+h1 {
+  font-family: "Rubik", sans-serif;
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: #16425b;
+}
+
+h2 {
+  font-family: "Rubik", sans-serif;
+  font-size: 2em;
+  line-height: 1.1;
+  color: #16425b;
+  text-align: center;
+}

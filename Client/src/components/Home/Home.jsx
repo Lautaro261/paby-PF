@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import ContactUs from "../ContactUs/ContactUs";
-import AboutUs from '../AboutUs/AboutUs'
 import './Home.css'
 import logo from '../../imgs/Logopaby.png'
 
 export default function Home() {
- 
+    const [showDescription, setShowDescription] = useState(false)
+
+    const toggleDescription = () => {
+        setShowDescription(!showDescription)
+    };
     return (
         <div className="Home">
 
@@ -22,11 +25,16 @@ export default function Home() {
             <Link to='/reservation-panel'><button>Reservar plaza</button></Link>
 
 
-            <ContactUs/>
-            
-            <AboutUs/> 
+            <button onClick={toggleDescription}>Contáctanos</button>
+            {
+                showDescription && (
+                    <ContactUs/>
+                )
+            }
 
-           
+            <Link to='/about'><button>Acerca de nosotros</button></Link>
+
+
 
         </div>
     )
