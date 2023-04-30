@@ -1,0 +1,80 @@
+.parkingSpaceCard__container {
+	margin: 10px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.parkingSpaceCard__zoneAndImage {
+	border-block-start: 2px solid black;
+	border-inline: 2px solid black;
+	padding: 5px;
+	display: flex;
+	gap: 10px;
+}
+
+.parkingSpaceCard__label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.parkingSpaceCard__number {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.parkingSpaceCard__image {
+	margin-inline-start: 5px;
+	inline-size: 40px;
+}
+
+.parkingSpaceCard__status_available {
+	position: relative;
+	border: 2px solid black;
+	border-radius: 0;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: green;
+    cursor: default;
+}
+
+.parkingSpaceCard__status_occupied {
+	border: 2px solid black;
+	border-radius: 0;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: red;
+	cursor: not-allowed;
+}
+
+.parkingSpaceCard__status_reserved {
+	border: 2px solid black;
+	border-radius: 0;
+	padding: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: darkorange;
+	cursor: not-allowed;
+}
+
+.parkingSpaceCard__status_available:hover::after {
+	content: "Seleccionar";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 5px;
+	background-color: blue;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+  }

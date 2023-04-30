@@ -1,0 +1,41 @@
+.parkingLotCard__container {
+    position: relative;
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: default;
+}
+
+.parkingLotCard__container:hover::after {
+    content: "Seleccionar";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 5px;
+	background-color: blue;
+	color: #fff;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+.parkingLotCard__property {
+    display: flex;
+}
+
+.parkingLotCard__property_key {
+    margin-inline-end: 5px;
+    font-weight: bold;
+}
+
+.parkingLotCard__image {
+    width: 200px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+}
+
+.parkingLotCard__regulation {
+    text-align: center;
+    font-weight: bold;
+}
