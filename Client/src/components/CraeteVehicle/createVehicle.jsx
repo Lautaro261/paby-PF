@@ -8,33 +8,33 @@ import './createVehicle.module.css';
 import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
 
 export default function CreateVehicle() {
-	const initialValues = {  
-		vehicle_tipe:'auto',
-		type_of_service: 'particular',
-		car_brand: '',
-		car_model: '',
-		car_model_year: '',
-		car_color:'',
-		license_plate: '',
+  const initialValues = {  
+    vehicle_tipe:'auto',
+    type_of_service: 'particular',
+    car_brand: '',
+    car_model: '',
+    car_model_year: '',
+    car_color:'',
+    license_plate: '',
     license_plate_id:'',
-		photo: '',
-	};
+    photo: '',
+  };
 
-	//Esquema de validacion
-	const validationSchema = Yup.object({
-		vehicle_tipe: Yup.string().required('El tipo de vehiculo es obligatorio'),
-		type_of_service: Yup.string().required('El tipo de servicio es obligatorio'),
-		car_brand: Yup.string().required('La marca es obligatoria'),
-		car_model: Yup.string().required('El modelo es obligatorio'),
-		car_model_year: Yup.string().required('El año del vehiculo es obligatorio'),
-		car_color: Yup.string().required('El color del vehiculo es obligatorio'),
-		//license_plate: Yup.string().required('La matricula es obligatoria'),
+  //Esquema de validacion
+  const validationSchema = Yup.object({
+    vehicle_tipe: Yup.string().required('El tipo de vehiculo es obligatorio'),
+    type_of_service: Yup.string().required('El tipo de servicio es obligatorio'),
+    car_brand: Yup.string().required('La marca es obligatoria'),
+    car_model: Yup.string().required('El modelo es obligatorio'),
+    car_model_year: Yup.string().required('El año del vehiculo es obligatorio'),
+    car_color: Yup.string().required('El color del vehiculo es obligatorio'),
+    //license_plate: Yup.string().required('La matricula es obligatoria'),
     license_plate: Yup.string()
     .min(1, "La placa debe tener al menos 1 caracter")
     .max(7, "La placa no puede tener más de 7 caracteres")
     .required("La placa es un campo obligatorio"),
-		//photo: Yup.mixed().required('Foto obligatoria'),*/
-	});
+    //photo: Yup.mixed().required('Foto obligatoria'),*/
+  });
 
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
@@ -70,14 +70,14 @@ export default function CreateVehicle() {
     }
   };
 
-	return (
+  return (
   <div className="container">
     <h1>Crear Vehiculo</h1>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-    >
+      >
       {({ setFieldValue, isSubmitting }) => (
         <Form>
           <div>

@@ -4,7 +4,7 @@ import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/dash";
 import Home from "../../components/Home/Home";
 import style from "./carsView.module.css"
-import ViewVehicle from "../../components/ViewVehicles/viewVehicles";
+import ViewVehicles from "../../components/ViewVehicles/viewVehicles";
 const CarsView=()=>{
     return(
     <div class={style.parent}>
@@ -12,7 +12,7 @@ const CarsView=()=>{
         
         <div class={style.flexcontainer}>
             <div class={style.flexitems}><Dash/></div>
-             <div class={style.flexitems}><ViewVehicle/></div>
+             <div class={style.flexitems}><ViewVehicles/></div>
         </div>
 
         <div class={style.div4}><Footer></Footer> </div>
