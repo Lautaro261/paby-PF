@@ -12,32 +12,32 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 79vh;
-  width: 100%;
-  background-color: var(--secondary-color);
-}
-
-.buildIcon {
-  color: var(--light-color);
-  font-size: 10rem;
+  background-color: #f7f7f7;
 }
 
 .heading {
-  margin-top: 1rem;
-  font-size: 3rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-shadow: 2px 2px var(--dark-color);
+  text-align: center;
 }
-
 
 .message {
   font-size: 2rem;
   color: var(--accent-color);
   text-shadow: 2px 2px var(--light-color);
   font-family: 'Rubik', sans-serif;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  padding: 8px;
+}
+.table th {
+  padding: 20px;
+}
+.table td {
+  padding: 20px;
+}
+
+a {
+  color: #0077c2;
 }
