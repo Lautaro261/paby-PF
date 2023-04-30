@@ -28,9 +28,12 @@ const ParkingSpaceCard = (props) => {
 	const handleClick = () => {
 		const selectedParkingSpace = {
 			id: parking_space_id,
-			zone_status: 'Reservado'
+			zone_status: 'Reservado',
+			zone_number: parking_space_label,
+			vehicle_type
 		}
 		dispatch(setSelectedParkingSpace(selectedParkingSpace));
+		alert(`Usted seleccionó la zona ${ parking_space_label }`)
 	};
 
 	return (

@@ -33,6 +33,7 @@
 }
 
 .parkingSpaceCard__status_available {
+	position: relative;
 	border: 2px solid black;
 	border-radius: 0;
 	padding: 5px;
@@ -40,7 +41,6 @@
 	justify-content: center;
 	align-items: center;
 	background-color: green;
-	position: relative;
     cursor: default;
 }
 

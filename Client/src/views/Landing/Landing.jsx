@@ -2,22 +2,8 @@ import BG_1 from "../../components/Backgrounds/BG_1"
 import style from "./Landing.module.css"
 import { Link } from "react-router-dom"
 import Logopaby from "../../imgs/Logopaby.png"
-import { getParkingLotById,
-  getLevelsByParkingLotId,
-  getParkingSpacesByParkingLotId
-} from '../../redux/features/parkingSpaces/parkingSpacesSlice';
-import { useDispatch } from "react-redux";
-import { useEffect } from 'react';
 
-function Landing() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getParkingLotById());
-    dispatch(getLevelsByParkingLotId());
-    dispatch(getParkingSpacesByParkingLotId());
-  }, [dispatch]);
-  
+function Landing() {  
     return (
       <>
         <div className={style.Bg}>

@@ -1,8 +1,10 @@
 import styles from './ReservationPanel.module.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkingSpaceCard from '../../components/ParkingSpaceCard/ParkingSpaceCard';
 import { setCurrentPage } from '../../redux/features/parkingSpacesPagination/parkingSpacesPaginationSlice';
+import { updateParkingSpaceStatusById } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ReservationPanel = () => {
     const dispatch = useDispatch();
@@ -30,10 +32,8 @@ const ReservationPanel = () => {
     let selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
 
     useEffect(() => {
-        if (Object.keys(selectedParkingSpace) !== 0) {
+        if (Object.keys(selectedParkingSpace).length > 0) {
             setIsParkingSpaceSelected(true);
-            console.log(isParkingSpaceSelected);
-            // Falta corregir la actualización del atributo disabled del botón CONTINUAR
         } else {
             setIsParkingSpaceSelected(false);
         }
@@ -80,14 +80,32 @@ const ReservationPanel = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Se envió a actualizar al backend la zona con id ${ selectedParkingSpace.id }`);
+        dispatch(updateParkingSpaceStatusById(selectedParkingSpace));
+        alert(`Se envió a actualizar al backend la zona No ${ selectedParkingSpace.zone_number } del ${ selectedLevel.name }`);
     };
+
+    if (
+        Object.keys(parking_lot).length === 0 || 
+        Object.keys(levels).length === 0 ||
+        Object.keys(parking_spaces).length === 0
+    ) {
+        return (
+            <div className={ styles.reservationPanel__error }>
+                <div className={ styles.reservationPanel__error_message }>
+                    Por favor, seleccione primero un parqueadero que cuente con pisos y zonas.
+                </div>
+                <Link to='/parking-lot-selection'>
+                    <button>Ir a seleccionar parqueadero</button>
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <div>
             <form onSubmit={ handleSubmit } className={ styles.reservationPanel__formContainer }>
                 <div>Panel de Reservación</div>
-                <div>Total de Zonas: { selectedLevel.amount }</div>
+                <div>Total de Zonas del { selectedLevel.name }: { selectedLevel.amount }</div>
                 <div className={ styles.reservationPanel__parkingSpaces_statuses }>
                     <div>Disponibles: { availableParkingSpaces.length }</div>
                     <div>Ocupados: { occupiedParkingSpaces.length }</div>
@@ -107,14 +125,14 @@ const ReservationPanel = () => {
                         <label htmlFor='vehicleTypeFilter'>Zona para estacionar:</label>
                         <select id='vehicleTypeFilter' onChange={ filterByVehicleType } defaultValue=''>
                             <option value='' disabled>Tipo de vehículo</option>
-                            <option value='Automovil'>carro</option>
+                            <option value='Automovil'>automovil</option>
                             <option value='Motocicleta'>motocicleta</option>
                         </select>
                     </div>
                     <button type='button' onClick={ removeFilters }>Eliminar filtros</button>
                 </div>
                 <div className={ styles.reservationPanel__levelsContainer }>
-                    <div>Piso:</div>
+                    <div>Pisos:</div>
                     <div className={ styles.reservationPanel__levels }>
                         { levels.map(level => (
                             <button 
@@ -126,9 +144,10 @@ const ReservationPanel = () => {
                             </button>
                         )) }
                     </div>
+                    <div>Zonas del { selectedLevel.name }:</div>
                 </div>
                 <div className={ styles.reservationPanel__parkingSpaces_description }>
-					{ currentFilteredParkingSpaces.map(p_s => 
+					{ currentFilteredParkingSpaces.length > 0 ? currentFilteredParkingSpaces.map(p_s => 
 				    	<ParkingSpaceCard 
 				    	    key={ p_s.id }
                             parking_space_id={ p_s.id }
@@ -136,7 +155,8 @@ const ReservationPanel = () => {
 				    	    vehicle_type={ p_s.vehicle_type }
 				    	    parking_space_status={ p_s.zone_status }
 				    	/>
-				    )}
+				        ) : 'No hay zonas para mostrar' 
+                    }
 				</div>
                 <div className={ styles.reservationPanel__pagination__buttons }>
                     <button
@@ -147,7 +167,7 @@ const ReservationPanel = () => {
                         { '<<<' } Previous
                     </button>
                     <div className={ styles.reservationPanel__pagination__page}>
-                        { currentPage } out of {' '}
+                        { currentPage } de {' '}
                         { filteredParkingSpaces.length > 0 ? 
                         Math.ceil(filteredParkingSpaces.length/itemsPerPage) : 
                         1 } 
@@ -162,8 +182,8 @@ const ReservationPanel = () => {
                 </div>
                 <div>Tarifa por hora: { parking_lot.fee }</div>
 				<div>No dejar pertenencias en el auto. No nos hacemos responsables.</div>
-				<button type='submit' disabled={!isParkingSpaceSelected}>
-                    CONTINUAR
+				<button type='submit' disabled={ !isParkingSpaceSelected }>
+                    CONTINUAR CON EL PAGO
                 </button>
             </form>
         </div>

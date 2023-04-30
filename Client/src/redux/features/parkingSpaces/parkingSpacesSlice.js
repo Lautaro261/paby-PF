@@ -4,21 +4,34 @@ import axios from 'axios';
 const apiUrl = 'http://localhost:3001';
 
 const initialState = {
+    allParkingLots: [],
     parkingLot: {},
     levelsForThisParkingLot: [],
     parkingSpacesForThisParkingLot: [],
     selectedParkingSpace: {},
+    selectedParkingSpaceResponse: {},
     status: 'idle',
     error: null
 };
 
-// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
-// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
+export const getAllParkingLots = createAsyncThunk(
+    'parkingSpaces/getAllParkingLots',
+    async () => {
+        try {
+            const response = await axios.get(`${ apiUrl }/parking`);
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
+    }
+);
+
 export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
-    async () => {
+    async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/parking/ae376455-85c7-45c2-a866-fdc126a851ff`);
+            const response = await axios.get(`${ apiUrl }/parking/${ id }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -27,13 +40,11 @@ export const getParkingLotById = createAsyncThunk(
     }
 );
 
-// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
-// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
 export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
-    async () => {
+    async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/floors/ae376455-85c7-45c2-a866-fdc126a851ff`);
+            const response = await axios.get(`${ apiUrl }/floors/${ id }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -42,13 +53,24 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     }
 );
 
-// Cambiar el id alfanumérico por el id del parqueadero que tiene en su tabla. Luego, vuelva
-// a cargar el sitio web desde el landing page. La opción buscar parqueadero se implementará después
 export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
-    async () => {
+    async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/zones/ae376455-85c7-45c2-a866-fdc126a851ff`);
+            const response = await axios.get(`${ apiUrl }/zones/${ id }`);
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
+    }
+);
+
+export const updateParkingSpaceStatusById = createAsyncThunk(
+    'parkingSpaces/updateParkingSpaceStatusById',
+    async (selectedParkingSpace) => {
+        try {
+            const response = await axios.put(`${ apiUrl }/zones/${ selectedParkingSpace.id }`, selectedParkingSpace);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -69,6 +91,18 @@ const parkingSpacesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+
+            .addCase(getAllParkingLots.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getAllParkingLots.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.allParkingLots = action.payload
+            })
+            .addCase(getAllParkingLots.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message 
+            })
 
             .addCase(getParkingLotById.pending, (state) => {
                 state.status = 'loading'
@@ -103,7 +137,19 @@ const parkingSpacesSlice = createSlice({
             })
             .addCase(getParkingSpacesByParkingLotId.rejected, (state, action) => {
                 state.status = 'rejected',
-                state.error = action.error.message;
+                state.error = action.error.message
+            })
+
+            .addCase(updateParkingSpaceStatusById.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(updateParkingSpaceStatusById.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.selectedParkingSpaceResponse = action.payload
+            })
+            .addCase(updateParkingSpaceStatusById.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message
             })
     }
 });

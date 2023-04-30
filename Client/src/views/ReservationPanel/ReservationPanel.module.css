@@ -65,3 +65,15 @@
 	align-self: center;
 	font-weight: 500;
 }
+
+.reservationPanel__error {
+	margin: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.reservationPanel__error_message {
+	text-align: center;
+}
