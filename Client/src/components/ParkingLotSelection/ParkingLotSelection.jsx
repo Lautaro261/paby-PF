@@ -2,7 +2,7 @@ import styles from './ParkingLotSelection.module.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ParkingLotCard from '../../components/ParkingLotCard/ParkingLotCard';
+import ParkingLotCard from '../ParkingLotCard/ParkingLotCard';
 import { getAllParkingLots } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ParkingLotSelection = () => {
