@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {searchVehicleBrandByName} from '../../redux/features/vehicleBrand/vehicleBrandSlices'
 import './SearchBar.css'
 
 export default function SearchBar() {
@@ -9,15 +10,16 @@ export default function SearchBar() {
     function handleInputChange(e) {
         setVehicleBrand(e.target.value)
     }
-    // function handleSubmit(e) {
-    //     e.preventDefault()
-    //     if (!vehicleBrand) {
-    //         alert('Debe escribir un nombre')
-    //         return false
-    //     }
-    //     dispatch()
-    //     setVehicleBrand('')
-    // }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        if (!vehicleBrand) {
+            alert('Debe escribir un nombre')
+            return false
+        }
+        dispatch(searchVehicleBrandByName(vehicleBrand))
+        setVehicleBrand('')
+    }
 
     return (
         <div className="SearchBar">
@@ -29,5 +31,4 @@ export default function SearchBar() {
             <button type='submit' className='search-button' onClick={(e)=> handleSubmit(e)}><i className="fas fa-search"></i>Buscar</button>
         </div>
     )
-
 }

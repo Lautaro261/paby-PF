@@ -14,6 +14,7 @@ export const searchVehicleBrandByName = createAsyncThunk(
     async (car_brand) => {
         try {
             const response = await axios.get(`${apiUrl}/users/vehicle/search/${car_brand}`)
+            console.log(response.data);
             return response.data
         } catch (error) {
             console.error(error.message);
