@@ -5,6 +5,7 @@ import HomeView from './views/home/homeView';
 import ReservationView from './views/ReservationView/ReservationView';
 import CarsView from './views/ListCars/carsView';
 import LotSelectionView from './views/LotSelection/LotSelectionView';
+import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
 
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
@@ -25,6 +26,7 @@ const App = () => {
           <Route path='/parking-lot-selection' element={ <LotSelectionView /> } />
           <Route path='/reservation-panel' element={ <ReservationView /> } /> 
           <Route path='/vehicles' element={<CarsView/>} /> 
+          <Route path="/vehicle/:license_plate_id" exact element={<VehicleDetails />} />
           <Route path='/about-us' element={ <AboutUs /> } /> 
           <Route path='/nav' element={ <Navbar /> } /> 
       </Routes>
