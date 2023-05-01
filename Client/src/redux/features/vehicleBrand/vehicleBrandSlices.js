@@ -4,7 +4,7 @@ import axios from 'axios';
 const apiUrl = 'http://localhost:3001';
 
 const initialState = {
-    searchedBrandName: {},
+    searchedBrandName: [],
     status: 'idle',
     error: null,
 }
@@ -33,8 +33,8 @@ const vehicleBrandSlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(searchVehicleBrandByName.fulfilled, (state, action) => {
-                state.status = 'succeeded',
-                    state.searchedBrandName= action.payload
+                state.status = 'succeeded';
+                state.searchedBrandName = [action.payload]; // aquí se asigna el array nuevo
             })
             .addCase(searchVehicleBrandByName.rejected, (state, action) => {
                 state.status = 'rejected',
