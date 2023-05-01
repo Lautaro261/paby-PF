@@ -1,13 +1,17 @@
 const { Router } = require("express");
-const handlerParking = require("../handlers/handlerParking");
+const {
+  handlerGetAllParkings,
+  handlerGetParkingById,
+} = require("../handlers/handlerGetParkings");
+const handlerCreateParking = require("../handlers/handlerPostParking");
+const handlerUpdateParking = require("../handlers/handlerPutParking");
 
 const parkingRouter = Router();
 
 //// Rutas de Parqueadero
-parkingRouter.get("/", handlerParking.getParkings);
-parkingRouter.get("/:id", handlerParking.getParkingId);
-parkingRouter.post("/", handlerParking.postParking);
-parkingRouter.put("/:id", handlerParking.updateParking);
+parkingRouter.get("/", handlerGetAllParkings);
+parkingRouter.get("/:id", handlerGetParkingById);
+parkingRouter.post("/", handlerCreateParking);
+parkingRouter.put("/:id", handlerUpdateParking);
 
 module.exports = parkingRouter;
-
