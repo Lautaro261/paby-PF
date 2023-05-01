@@ -32,7 +32,7 @@ export default function Home() {
                 )
             }
 
-            <Link to='/about'><button>Acerca de nosotros</button></Link>
+            <Link to='/about-us'><button>Acerca de nosotros</button></Link>
 
 
 

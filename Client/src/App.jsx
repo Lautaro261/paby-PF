@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import Landing from './views/Landing/Landing'
-
 import CreateVehicle from './components/CraeteVehicle/createVehicle.jsx'
-import Dash from './components/dashboard/dash';
 import HomeView from './views/home/homeView';
-import ReservationView from './views/ReservationPanel/ReservationView';
+import ReservationView from './views/ReservationView/ReservationView';
 import CarsView from './views/ListCars/carsView';
-import ParkingLotSelection from './views/ParkingLotSelection/ParkingLotSelection';
-import ReservationPanel from './views/ReservationPanel/ReservationPanel';
+import LotSelectionView from './views/LotSelection/LotSelectionView';
+
+import AboutUs from './components/AboutUs/AboutUs';
+import Navbar from './components/Navbar/Navbar';
 //import Home from "./components/Home/Home.jsx"
 
 
@@ -20,16 +20,13 @@ const App = () => {
   return (
       <Routes>
           <Route path='/' element={ <Landing /> } />
-          {/* <Route path='/home' element={ <Home /> } /> */}
-          <Route path='/reservation-panel' element={ <ReservationPanel /> } />
-          <Route path='/createvehicle' element={ <CreateVehicle /> } />
+          <Route path='/create-vehicle' element={ <CreateVehicle /> } />
           <Route path='/home' element={ <HomeView /> } /> 
-          <Route path='/parking-lot-selection' element={ <ParkingLotSelection /> } />
+          <Route path='/parking-lot-selection' element={ <LotSelectionView /> } />
           <Route path='/reservation-panel' element={ <ReservationView /> } /> 
-           <Route path='/vehicles' element={<CarsView/>} /> 
-          {/* <Route path='/about' element={ <About /> } /> */}
-          {/* <Route path='/navbar' element={ <BarraNav /> } /> */}
-           <Route path='/dashboard' element={ <Dash /> } /> 
+          <Route path='/vehicles' element={<CarsView/>} /> 
+          <Route path='/about-us' element={ <AboutUs /> } /> 
+          <Route path='/nav' element={ <Navbar /> } /> 
       </Routes>
   );
 };

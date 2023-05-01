@@ -14,7 +14,7 @@ const Navbar=()=>{
             <ul>
                 <li><Link to="/contact-us" className={style.link}>Contactanos</Link></li>
                 <li><p className={style.text}> | </p></li>
-                <li><Link to="/about" className={style.link}>Acerca de nosotros...</Link></li>
+                <li><Link to="/about-us" className={style.link}>Acerca de nosotros...</Link></li>
             </ul>
             
             
