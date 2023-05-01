@@ -1,11 +1,13 @@
 import { configureStore  } from "@reduxjs/toolkit";
 import parkingSpacesPaginationReducer from "./features/parkingSpacesPagination/parkingSpacesPaginationSlice";
 import parkingSpacesReducer from "./features/parkingSpaces/parkingSpacesSlice";
+import vehicleBrandReducer from "./features/vehicleBrand/vehicleBrandSlices";
 
 const store = configureStore({
     reducer: {
         parkingSpacesPagination: parkingSpacesPaginationReducer,
-        parkingSpaces: parkingSpacesReducer
+        parkingSpaces: parkingSpacesReducer,
+        vehicleBrand: vehicleBrandReducer,
     }
 });
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './viewVehicles.module.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import SearchBar from '../Searchbar/SearchBar';
 
 export default function ViewVehicle(){
 
@@ -41,6 +42,7 @@ export default function ViewVehicle(){
 	return (
     	<div className={styles.container}>
       		<h1 className={`${styles.heading} ${styles.message}`}>Mis Vehículos</h1>
+			<SearchBar/>
       		<table className={styles.table}>
         	<thead>
           		<tr>
