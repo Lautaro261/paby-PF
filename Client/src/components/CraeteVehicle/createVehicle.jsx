@@ -54,7 +54,7 @@ export default function CreateVehicle() {
 
       try {
         console.log(requestData);
-        const response = await axios.post('http://localhost:3001/users/vehicle',requestData, {
+        const response = await axios.post('http://localhost:3001/users/1/vehicle',requestData, {
         //const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
           headers: {
             'Content-Type': 'application/json'
@@ -85,7 +85,6 @@ export default function CreateVehicle() {
             <Field as="select" id="vehicle_tipe" name="vehicle_tipe">
               <option value="auto">Auto</option>
               <option value="moto">Moto</option>
-              <option value="bicicleta">Bicicleta</option>
             </Field>
             <ErrorMessage name="vehicle_tipe" />
           </div>
@@ -93,6 +92,7 @@ export default function CreateVehicle() {
           <div>
             <label htmlFor="type_of_service">Tipo de servicio</label>
             <Field as="select" id="type_of_service" name="type_of_service">
+              <option>Seleccionar</option>
               <option value="particular">Particular</option>
               <option value="publico">Público</option>
             </Field>

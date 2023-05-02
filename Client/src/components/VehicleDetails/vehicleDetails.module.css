@@ -1,0 +1,37 @@
+/* vehicleDetails.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.details div {
+  font-size: 18px;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 20px;
+  color: white;
+  background-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.back:hover {
+  background-color: darkblue;
+}
+
