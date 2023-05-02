@@ -9,7 +9,7 @@ const floorRouter = Router();
 //// Rutas de Pisos
 floorRouter.get("/", handlerGetAllFloors);
 floorRouter.get("/:id", handlerGetFloorsByParkingId);
-// floorRouter.post("/:id", handlerFloor.createNewFloor);
-// floorRouter.put("/:id", handlerFloor.updateFloor);
+floorRouter.post("/:id", handlerFloor.createNewFloor);
+floorRouter.put("/:id", handlerFloor.updateFloor);
 
 module.exports = floorRouter;
