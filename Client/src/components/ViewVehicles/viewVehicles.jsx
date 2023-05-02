@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './viewVehicles.module.css';
@@ -8,71 +8,80 @@ import SearchBar from '../Searchbar/SearchBar';
 import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice.js';
 
 export default function ViewVehicle() {
-  const history = useNavigate();
-  const [vehicles, setVehicles] = useState([]);
-  const [showEditVehicle, setShowEditVehicle] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState(null);
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const history = useNavigate();
+	const [vehicles, setVehicles] = useState([]);
+	const [showEditVehicle, setShowEditVehicle] = useState(false);
+	const [selectedVehicle, setSelectedVehicle] = useState(null);
+	const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() => {
-    dispatch(getAllVehicles());
-  }, [dispatch]);
+	useEffect(() => {
+		dispatch(getAllVehicles());
+	}, [dispatch]);
 
-  const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
+	const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
+	const searchedBrandName = useSelector(state => state.vehicleBrand.searchedBrandName);
+	const vehiclesState = searchTerm ? searchedBrandName : allVehicles;
 
-  const handleVehicleDetails = (licensePlateId) => {
-    // Navega al componente de detalles del vehículo con el licensePlateId como parámetro
-    history.push(`/vehicle/${licensePlateId}`);
-  };
+	const handleSearchTermChange=(newSearchTerm)=> {
+		setSearchTerm(newSearchTerm);
+	  }
+	
 
-  const handleEditVehicle = (vehicle) => {
-    setSelectedVehicle(vehicle);
-    setShowEditVehicle(true);
-  };
 
-  const handleCloseEditVehicle = () => {
-    setSelectedVehicle(null);
-    setShowEditVehicle(false);
-  };
+	const handleVehicleDetails = (licensePlateId) => {
+		// Navega al componente de detalles del vehículo con el licensePlateId como parámetro
+		history.push(`/vehicle/${licensePlateId}`);
+	};
 
-  
+	const handleEditVehicle = (vehicle) => {
+		setSelectedVehicle(vehicle);
+		setShowEditVehicle(true);
+	};
 
-  return (
-    <>
-      {showEditVehicle && (
-        <UpdateVehicle vehicle={selectedVehicle} onClose={handleCloseEditVehicle} />
-      )}
+	const handleCloseEditVehicle = () => {
+		setSelectedVehicle(null);
+		setShowEditVehicle(false);
+	};
 
-      <div className={styles.container}>
-        <h1 className={`${styles.heading} ${styles.message}`}>Mis Vehículos</h1>
-        <SearchBar/>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Marca</th>
-              <th>Matrícula</th>
-              <th>Gestionar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allVehicles.map((vehicle) => (
-              <tr key={vehicle.license_plate_id}>
-                <td>{vehicle.vehicle_tipe}</td>
-                <td>{vehicle.car_brand}</td>
-                <td>{vehicle.license_plate}</td>
-                <td>
-                  <Link to={`/vehicle/${vehicle.license_plate_id}`}>Ver</Link>
-                  <button onClick={() => handleEditVehicle(vehicle)}>Editar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Link className={styles.link} to="/create-vehicle">
-          Crear Vehículo
-        </Link>
-      </div>
-    </>
-  );
+
+
+	return (
+		<>
+			{showEditVehicle && (
+				<UpdateVehicle vehicle={selectedVehicle} onClose={handleCloseEditVehicle} />
+			)}
+
+			<div className={styles.container}>
+				<h1 className={`${styles.heading} ${styles.message}`}>Mis Vehículos</h1>
+				<SearchBar onSearchTermChange={handleSearchTermChange}  />
+				<table className={styles.table}>
+					<thead>
+						<tr>
+							<th>Tipo</th>
+							<th>Marca</th>
+							<th>Matrícula</th>
+							<th>Gestionar</th>
+						</tr>
+					</thead>
+					<tbody>
+						{vehiclesState.map((vehicle) => (
+							<tr key={vehicle.license_plate_id}>
+								<td>{vehicle.vehicle_tipe}</td>
+								<td>{vehicle.car_brand}</td>
+								<td>{vehicle.license_plate}</td>
+								<td>
+									<Link to={`/vehicle/${vehicle.license_plate_id}`}>Ver</Link>
+									<button onClick={() => handleEditVehicle(vehicle)}>Editar</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+				<Link className={styles.link} to="/create-vehicle">
+					Crear Vehículo
+				</Link>
+			</div>
+		</>
+	);
 }

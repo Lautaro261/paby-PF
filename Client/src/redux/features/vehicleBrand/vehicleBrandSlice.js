@@ -56,7 +56,7 @@ const vehicleBrandSlice = createSlice({
             })
             .addCase(searchVehicleBrandByName.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.searchedBrandName = action.payload;
+                state.searchedBrandName = [action.payload];
             })
             .addCase(searchVehicleBrandByName.rejected, (state, action) => {
                 state.status = 'rejected';
