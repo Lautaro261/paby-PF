@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import {searchVehicleBrandByName} from '../../redux/features/vehicleBrand/vehicleBrandSlices'
+import {searchVehicleBrandByName} from '../../redux/features/vehicleBrand/vehicleBrandSlice'
 import './SearchBar.css'
 
-export default function SearchBar() {
+export default function SearchBar({ onSearchTermChange }) {
     const dispatch = useDispatch()
     const [vehicleBrand, setVehicleBrand] = useState('')
 
@@ -18,6 +18,7 @@ export default function SearchBar() {
             return false
         }
         dispatch(searchVehicleBrandByName(vehicleBrand))
+        onSearchTermChange(vehicleBrand)
         setVehicleBrand('')
     }
 
