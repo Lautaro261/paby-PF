@@ -15,7 +15,6 @@ const ParkingLotCard = (props) => {
         dispatch(getParkingLotById(id));
         dispatch(getLevelsByParkingLotId(id));
         dispatch(getParkingSpacesByParkingLotId(id));
-        alert(`Usted seleccionó el '${ name }'`);
     };
 
     return (

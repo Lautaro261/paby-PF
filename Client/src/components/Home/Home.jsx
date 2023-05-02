@@ -22,7 +22,7 @@ export default function Home() {
 
                 Únete a la comunidad de Paby y disfruta de la mejor experiencia de estacionamiento en línea. ¡Bienvenido a tu nueva forma de estacionar!</p>
 
-            <Link to='/reservation-panel'><button>Reservar plaza</button></Link>
+            <Link to='/parking-lot-selection'><button>Reservar plaza</button></Link>
 
 
             <button onClick={toggleDescription}>Contáctanos</button>
