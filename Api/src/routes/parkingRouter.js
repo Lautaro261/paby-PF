@@ -9,9 +9,9 @@ const handlerUpdateParking = require("../handlers/handlerPutParking");
 const parkingRouter = Router();
 
 //// Rutas de Parqueadero
-parkingRouter.get("/", handlerGetAllParkings);
+parkingRouter.get("/alls", handlerGetAllParkings);
 parkingRouter.get("/:id", handlerGetParkingById);
-parkingRouter.post("/", handlerCreateParking);
-parkingRouter.put("/:id", handlerUpdateParking);
+parkingRouter.post("/create", handlerCreateParking);
+parkingRouter.put("/:id/edit", handlerUpdateParking);
 
 module.exports = parkingRouter;
