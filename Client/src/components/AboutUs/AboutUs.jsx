@@ -23,7 +23,7 @@ export default function AboutUs(){
 
                         <h2>Equipo <img src={logo} alt='logoPaby' className='logoAbout' /></h2>
                         <Team />
-                        <button onClick={goBack}>Volver</button>
+                        <button onClick={goBack} className="buttonGoBack">Volver</button>
                     </div>
     )
 }

@@ -74,11 +74,9 @@ button:focus-visible {
   }
 }
 
-.logo{
-
+.logoPaby{
   max-width: 200px;
   height: auto;
-  transform: translateY(27%);
 }
 
 .description{
