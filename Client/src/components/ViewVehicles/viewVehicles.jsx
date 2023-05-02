@@ -6,6 +6,7 @@ import axios from 'axios';
 export default function ViewVehicle(){
 
 	const [vehicles, setVehicles] = useState([]);
+	//GLOBAL 
 
     const funcionGetVehicles = async()=>{
         const response = await axios.get('http://localhost:3001/users/vehicle')
