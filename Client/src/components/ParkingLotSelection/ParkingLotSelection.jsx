@@ -45,7 +45,7 @@ const ParkingLotSelection = () => {
         <form onSubmit={ handleSubmit }>
             <div className={ styles.parkingLotSelection__title }>Parqueaderos</div>
             <div className={ styles.parkingLotSelection__description }>Por favor, seleccionar el parqueadero:</div>
-            <div>
+            <div className={ styles.parkingLotSelection__parkingLots }>
                 { allParkingLots.map(parkingLot => 
                     <ParkingLotCard 
                         key = { parkingLot.id }
@@ -62,6 +62,9 @@ const ParkingLotSelection = () => {
                         regulation = { parkingLot.regulation } 
                     />)
                 }
+            </div>
+            <div className={ styles.parkingLotSelection__notification }>
+                { isButtonEnabled ? `Usted eligió el ${ parkingLot.name }` : null }
             </div>
             <button type='submit' disabled={ !isButtonEnabled }>CONTINUE</button>
         </form>

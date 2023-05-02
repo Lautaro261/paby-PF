@@ -10,6 +10,8 @@ const initialState = {
     parkingSpacesForThisParkingLot: [],
     selectedParkingSpace: {},
     selectedParkingSpaceResponse: {},
+    parkingSpaceStatusFromFilter: '',
+    vehicleTypeFromFilter: '',
     status: 'idle',
     error: null
 };
@@ -80,6 +82,8 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
 );
 
 export const setSelectedParkingSpace = createAction('parkingSpaces/setSelectedParkingSpace');
+export const setParkingSpaceStatusFromFilter = createAction('parkingSpaces/setParkingSpaceStatusFromFilter');
+export const setVehicleTypeFromFilter = createAction('parkingSpaces/setVehicleTypeFromFilter');
 
 const parkingSpacesSlice = createSlice({
     name: 'parkingSpaces',
@@ -87,6 +91,12 @@ const parkingSpacesSlice = createSlice({
     reducers: {
         setSelectedParkingSpace: (state, action) => {
             state.selectedParkingSpace = action.payload
+        },
+        setParkingSpaceStatusFromFilter: (state, action) => {
+            state.parkingSpaceStatusFromFilter = action.payload
+        },
+        setVehicleTypeFromFilter: (state, action) => {
+            state.vehicleTypeFromFilter = action.payload
         }
     },
     extraReducers: (builder) => {
