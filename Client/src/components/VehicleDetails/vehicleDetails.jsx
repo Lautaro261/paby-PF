@@ -8,13 +8,7 @@ export default function VehicleDetails() {
   const [vehicle, setVehicle] = useState(null);
 
   const getVehicleDetails = async (license_plate_id) => {
-    /*try {
-      const response = await axios.get(`http://localhost:3001/users/vehicle/${license_plate_id}`);
-      console.log(response.data.vehicleDB);
-      setVehicle(response.data.vehicleDB);
-     } catch (error) {
-      console.log(error);
-    }*/
+
     console.log(license_plate_id)
     const response = await axios.get(`http://localhost:3001/users/vehicle/${license_plate_id}`)
       .then(response => {
@@ -44,7 +38,7 @@ export default function VehicleDetails() {
         <div><strong>Año:</strong> {vehicle.car_model_year}</div>
         <div><strong>Color:</strong> {vehicle.car_color}</div>
       </div>
-      <Link to="/vehicles" className={Styles.back}>←</Link>
+      <Link to="/vehicles" className={Styles.back}>Atras</Link>
     </div>
   );
 }

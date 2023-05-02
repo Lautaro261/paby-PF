@@ -1,6 +1,7 @@
 body {
   background-image: linear-gradient(to right, #a1b5d8, #e4f0d0);
   animation: gradient 6s ease infinite;
+  
 }
 
 @keyframes gradient {
@@ -74,3 +75,24 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0069d9;
 }
+
+.back-button {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.back-button:hover {
+  background-color: lightblue;
+}
+
+.error-message {
+  color: red;
+}
+
