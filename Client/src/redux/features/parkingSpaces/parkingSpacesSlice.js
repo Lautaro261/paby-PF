@@ -20,7 +20,7 @@ export const getAllParkingLots = createAsyncThunk(
     'parkingSpaces/getAllParkingLots',
     async () => {
         try {
-            const response = await axios.get(`${ apiUrl }/parking`);
+            const response = await axios.get(`${ apiUrl }/parking/alls`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -46,7 +46,7 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/floors/${ id }`);
+            const response = await axios.get(`${ apiUrl }/parking/${ id }/floors`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -59,7 +59,7 @@ export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/zones/${ id }`);
+            const response = await axios.get(`${ apiUrl }/parking/${ id }/zones`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -72,7 +72,7 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
     'parkingSpaces/updateParkingSpaceStatusById',
     async (selectedParkingSpace) => {
         try {
-            const response = await axios.put(`${ apiUrl }/zones/${ selectedParkingSpace.id }`, selectedParkingSpace);
+            const response = await axios.put(`${ apiUrl }/parking/zone/${ selectedParkingSpace.id }/edit`, selectedParkingSpace);
             return response.data;
         } catch (error) {
             console.error(error.message);

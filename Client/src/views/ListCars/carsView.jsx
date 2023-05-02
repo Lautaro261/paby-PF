@@ -14,7 +14,7 @@ const CarsView=()=>{
              <div class={style.flexitems}><ViewVehicles/></div>
         </div>
 
-        <div class={style.div4}><Footer></Footer> </div>
+        {/* <div class={style.div4}><Footer></Footer> </div> */}
     </div>
     )
 

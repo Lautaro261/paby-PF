@@ -1,3 +1,7 @@
+.reservationPanel__pageContainer {
+	height: 50vh;
+}
+
 .reservationPanel__formContainer {
 	padding: 20px;
 	display: flex;
