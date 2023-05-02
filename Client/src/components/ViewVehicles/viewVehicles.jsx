@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './viewVehicles.module.css';
 import UpdateVehicle from '../UpdateVehicle/updateVehicle.jsx';
+import SearchBar from '../Searchbar/SearchBar';
+import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice.js';
 
 export default function ViewVehicle() {
   const history = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [showEditVehicle, setShowEditVehicle] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-
-  const funcionGetVehicles = async () => {
-    const response = await axios
-      .get('http://localhost:3001/users/vehicle')
-      .then((response) => {
-        setVehicles(response.data.vehicleDB);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    funcionGetVehicles();
-  }, []);
+    dispatch(getAllVehicles());
+  }, [dispatch]);
+
+  const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
 
   const handleVehicleDetails = (licensePlateId) => {
     // Navega al componente de detalles del vehículo con el licensePlateId como parámetro
@@ -40,6 +35,8 @@ export default function ViewVehicle() {
     setShowEditVehicle(false);
   };
 
+  
+
   return (
     <>
       {showEditVehicle && (
@@ -48,6 +45,7 @@ export default function ViewVehicle() {
 
       <div className={styles.container}>
         <h1 className={`${styles.heading} ${styles.message}`}>Mis Vehículos</h1>
+        <SearchBar/>
         <table className={styles.table}>
           <thead>
             <tr>
@@ -58,7 +56,7 @@ export default function ViewVehicle() {
             </tr>
           </thead>
           <tbody>
-            {vehicles.map((vehicle) => (
+            {allVehicles.map((vehicle) => (
               <tr key={vehicle.license_plate_id}>
                 <td>{vehicle.vehicle_tipe}</td>
                 <td>{vehicle.car_brand}</td>
