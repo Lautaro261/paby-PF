@@ -16,5 +16,4 @@ parkingRouter.get("/:id/floors", handlerGetFloorsByParkingId);
 parkingRouter.post("/:id/createfloor", handlerCreateFloor);
 parkingRouter.put("/editfloor/:id", handlerUpdateFloorById);
 
-
 module.exports = floorRouter;
