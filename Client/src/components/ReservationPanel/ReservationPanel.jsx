@@ -126,7 +126,7 @@ const ReservationPanel = () => {
     }
 
     return (
-        <div>
+        <div className={ styles.reservationPanel__pageContainer }>
             <form onSubmit={ handleSubmit } className={ styles.reservationPanel__formContainer }>
                 <div className={ styles.reservationPanel__title }>Panel de Reservación</div>
                 <div>Total de Zonas del { selectedLevel.name }: { selectedLevel.amount }</div>
