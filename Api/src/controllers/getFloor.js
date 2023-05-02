@@ -1,51 +1,36 @@
 const { Parking, Floor } = require("../db");
 
-// Handler para obtener todos los pisos de todos los parqueaderos
-const getAllFloors = async (req, res) => {
-  try {
-    const parkings = await Parking.findAll({
-      attributes: ["id", "name", "nit"],
-      include: [
-        {
-          model: Floor,
-          as: "parkingFloors",
-          attributes: [
-            "id",
-            "name",
-            "amount",
-            "car_capacity",
-            "motorcycle_capacity",
-          ],
-        },
-      ],
-    });
-    res.status(200).json(parkings);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error interno del servidor" });
+// Controller para obtener todos los pisos de todos los parqueaderos
+const getAllFloors = async () => {
+  const parkings = await Parking.findAll({
+    attributes: ["id", "name", "nit"],
+    include: [
+      {
+        model: Floor,
+        as: "parkingFloors",
+        attributes: [
+          "id",
+          "name",
+          "amount",
+          "car_capacity",
+          "motorcycle_capacity",
+        ],
+      },
+    ],
+  });
+  return parkings;
+};
+
+// Controller para obtener los pisos de un parqueadero
+const getFloorsByParkingId = async (id) => {
+  const parking = await Parking.findByPk(id);
+  if (parking) {
+    const floors = await parking.getParkingFloors();
+    return floors;
   }
 };
 
-// Handler para obtener los pisos de un parqueadero
-const getFloorsByParkingId = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const parking = await Parking.findByPk(id);
-    if (parking) {
-      const floors = await parking.getParkingFloors();
-      res.status(200).json(floors);
-    } else {
-      res.status(404).json({
-        message: "Parqueadero no encontrado o datos de busqueda incorrectos",
-      });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error interno del servidor" });
-  }
-};
-
-// Handler para añadir pisos a un parqueadero
+// Controller para añadir pisos a un parqueadero
 const createFloor = async (req, res) => {
   const { name, amount, car_capacity, motorcycle_capacity } = req.body;
   const { id } = req.params;
