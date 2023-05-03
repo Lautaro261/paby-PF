@@ -38,7 +38,6 @@
       display: block;
       color: white;
       text-align: center;
-      padding: 14px 16px;
       text-decoration: none;
       
     }
@@ -52,7 +51,7 @@
         
       }
     li .link:hover {
-      background-color: #111; /* color de fondo al pasar el cursor por encima */
+      background-color: #16425B; /* color de fondo al pasar el cursor por encima */
     }
   
     
