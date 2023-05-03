@@ -9,9 +9,11 @@ const handlerCreateZones = async (req, res) => {
     // Verificar si el piso existe
     const floor = await createZones(id);
     if (floor) {
-      res.status(200).json({ message: "Zonas creadas correctamente" });
+      res.status(200).json({ message: "¡Zonas creadas correctamente!" });
     } else {
-      res.status(404).json({ message: "Piso no encontrado" });
+      res.status(404).json({
+        message: "Piso no encontrado o datos de busqueda incorrectos",
+      });
     }
   } catch (error) {
     console.error(error);

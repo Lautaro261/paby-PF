@@ -4,6 +4,7 @@ const { Parking, Floor, Zone } = require("../db");
 const getAllZonesWithFloors = async () => {
   const zones = await Zone.findAll({
     attributes: ["id", "zone_status", "zone_number", "vehicle_type", "floorId"],
+    order: [["order", "ASC"]],
     // include: [
     //   {
     //     model: Floor,
@@ -29,6 +30,7 @@ const getZonesByParkingId = async (id) => {
   const zones = await Zone.findAll({
     where: { floorId: floors.map((floor) => floor.id) },
     attributes: ["id", "zone_status", "zone_number", "vehicle_type", "floorId"],
+    order: [["order", "ASC"]],
     // include: [
     //   {
     //     model: Floor,
