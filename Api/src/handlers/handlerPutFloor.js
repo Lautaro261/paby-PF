@@ -7,15 +7,15 @@ const handlerUpdateFloorById = async (req, res) => {
   const { name, amount, car_capacity, motorcycle_capacity } = req.body;
 
   try {
-    if (id) {
-      const updatedFloor = await updateFloorById(
-        id,
-        name,
-        amount,
-        car_capacity,
-        motorcycle_capacity
-      );
-      res.status(200).json(updatedFloor);
+    const updatedFloor = await updateFloorById(
+      id,
+      name,
+      amount,
+      car_capacity,
+      motorcycle_capacity
+    );
+    if (updatedFloor) {
+      res.status(200).json({ message: "¡Piso actualizado correctamente!" });
     } else {
       res.status(404).json({
         message: "Piso no encontrado o datos de busqueda incorrectos",

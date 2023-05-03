@@ -7,14 +7,14 @@ const handlerCreateFloor = async (req, res) => {
   const { id } = req.params;
 
   try {
-    if (id) {
-      const newFloor = await createFloor(
-        name,
-        amount,
-        car_capacity,
-        motorcycle_capacity,
-        id
-      );
+    const newFloor = await createFloor(
+      name,
+      amount,
+      car_capacity,
+      motorcycle_capacity,
+      id
+    );
+    if (newFloor) {
       res.status(200).json(newFloor);
     } else {
       res.status(404).json({

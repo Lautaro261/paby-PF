@@ -8,7 +8,13 @@ const {
 const handlerGetAllFloors = async (req, res) => {
   try {
     const parkings = await getAllFloors();
-    res.status(200).json(parkings);
+    if (parkings) {
+      res.status(200).json(parkings);
+    } else {
+      res.status(404).json({
+        message: "No hay parqueaderos con pisos creados",
+      });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });
