@@ -10,7 +10,11 @@ const updateZone = async (id, zone_status, zone_number) => {
 
   await zone.update({ zone_status, zone_number });
 
-  return true;
+  const zones = await Zone.findAll({
+    order: [["order", "ASC"]],
+  });
+
+  return zones;
 };
 
 module.exports = updateZone;
