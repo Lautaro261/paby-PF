@@ -15,7 +15,7 @@ const LotSelectionView=()=>{
              <div class={style.flexitems}><ParkingLotSelection/></div>
         </div>
 
-        <div class={style.div4}><Footer></Footer> </div>
+        {/* <div class={style.div4}><Footer></Footer> </div> */}
     </div>
     )
 

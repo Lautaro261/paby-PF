@@ -2,9 +2,10 @@ import { Routes, Route } from 'react-router-dom';
 import Landing from './views/Landing/Landing'
 import CreateVehicle from './components/CraeteVehicle/createVehicle.jsx'
 import HomeView from './views/home/homeView';
+import ParkingLotFilterView from './views/ParkingLotFilter/ParkingLotFilterView';
+import LotSelectionView from './views/LotSelection/LotSelectionView';
 import ReservationView from './views/ReservationView/ReservationView';
 import CarsView from './views/ListCars/carsView';
-import LotSelectionView from './views/LotSelection/LotSelectionView';
 import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
 
 import AboutUs from './components/AboutUs/AboutUs';
@@ -23,12 +24,13 @@ const App = () => {
           <Route path='/' element={ <Landing /> } />
           <Route path='/create-vehicle' element={ <CreateVehicle /> } />
           <Route path='/home' element={ <HomeView /> } /> 
+          <Route path='/parking-lot-filter' element={ <ParkingLotFilterView /> } />
           <Route path='/parking-lot-selection' element={ <LotSelectionView /> } />
           <Route path='/reservation-panel' element={ <ReservationView /> } /> 
           <Route path='/vehicles' element={<CarsView/>} /> 
           <Route path="/vehicle/:license_plate_id" exact element={<VehicleDetails />} />
           <Route path='/about-us' element={ <AboutUs /> } /> 
-          <Route path='/nav' element={ <Navbar /> } /> 
+          <Route path='/nav' element={ <Navbar /> } />
       </Routes>
   );
 };

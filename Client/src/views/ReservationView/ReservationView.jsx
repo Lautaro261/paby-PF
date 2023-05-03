@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/dash";
-import style from "./carsView.module.css"
+import style from "./ReservationView.module.css"
 import ReservationPanel from "../../components/ReservationPanel/ReservationPanel";
 
 const ReservationView=()=>{
@@ -15,7 +15,7 @@ const ReservationView=()=>{
              <div class={style.flexitems}><ReservationPanel/></div>
         </div>
 
-        <div class={style.div4}><Footer></Footer> </div>
+        {/* <div class={style.div4}><Footer></Footer> </div> */}
     </div>
     )
 
