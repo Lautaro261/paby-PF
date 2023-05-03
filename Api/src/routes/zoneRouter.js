@@ -9,7 +9,7 @@ const handlerUpdateZone = require("../handlers/handlerPutZone");
 const parkingRouter = require("../routes/parkingRouter");
 const zoneRouter = Router();
 
-//// Rutas de Pisos
+//// Rutas de Zonas
 zoneRouter.get("/alls", handlerGetAllZonesWithFloors);
 parkingRouter.get("/:id/zones", handlerGetZonesByParkingId);
 parkingRouter.post("/floor/:id/createzones", handlerCreateZones);
