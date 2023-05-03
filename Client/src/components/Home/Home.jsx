@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
-import ContactUs from "../ContactUs/ContactUs";
 import './Home.css'
 import logo from '../../imgs/Logopaby.png'
 
 export default function Home() {
-    const [showDescription, setShowDescription] = useState(false)
-
-    const toggleDescription = () => {
-        setShowDescription(!showDescription)
-    };
+   
     return (
         <div className="Home">
 
@@ -23,14 +18,6 @@ export default function Home() {
                 Únete a la comunidad de Paby y disfruta de la mejor experiencia de estacionamiento en línea. ¡Bienvenido a tu nueva forma de estacionar!</p>
 
             <Link to='/parking-lot-filter'><button>Reservar plaza</button></Link>
-
-
-            <button onClick={toggleDescription}>Contáctanos</button>
-            {
-                showDescription && (
-                    <ContactUs/>
-                )
-            }
 
             <Link to='/about-us'><button>Acerca de nosotros</button></Link>
 
