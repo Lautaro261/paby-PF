@@ -5,6 +5,8 @@ const apiUrl = 'http://localhost:3001';
 
 const initialState = {
     allParkingLots: [],
+    citiesForTheParkingLotFilter: [],
+    filteredParkingLots: [],
     parkingLot: {},
     levelsForThisParkingLot: [],
     parkingSpacesForThisParkingLot: [],
@@ -81,6 +83,8 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
     }
 );
 
+export const setCitiesForTheParkingLotFilter = createAction('parkingSpaces/setCitiesForTheParkingLotFilter');
+export const setFilteredParkingLots = createAction('parkingSpaces/setFilteredParkingLots');
 export const setSelectedParkingSpace = createAction('parkingSpaces/setSelectedParkingSpace');
 export const setParkingSpaceStatusFromFilter = createAction('parkingSpaces/setParkingSpaceStatusFromFilter');
 export const setVehicleTypeFromFilter = createAction('parkingSpaces/setVehicleTypeFromFilter');
@@ -89,6 +93,12 @@ const parkingSpacesSlice = createSlice({
     name: 'parkingSpaces',
     initialState,
     reducers: {
+        setCitiesForTheParkingLotFilter: (state, action) => {
+            state.citiesForTheParkingLotFilter = action.payload
+        },
+        setFilteredParkingLots: (state, action) => {
+            state.filteredParkingLots = action.payload
+        },
         setSelectedParkingSpace: (state, action) => {
             state.selectedParkingSpace = action.payload
         },

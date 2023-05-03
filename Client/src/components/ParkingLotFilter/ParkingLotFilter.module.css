@@ -1,0 +1,35 @@
+.parkingLotFilter__container {
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parkingLotFilter__title {
+    margin-block-end: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.parkingLotFilter__formGroup {
+    margin: 5px;
+}
+
+.parkingLotFilter__label {
+    text-align: center;
+}
+
+.parkingLotFilter__button {
+    background-color: black;
+}
+
+.parkingLotFilter__notes {
+    margin-block-start: 20px;
+}
+
+.parkingLotFilter__note {
+    text-align: center;
+    font-size: small;
+}
