@@ -1,15 +1,13 @@
 import styles from './ParkingLotSelection.module.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ParkingLotCard from '../ParkingLotCard/ParkingLotCard';
-import { getAllParkingLots } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ParkingLotSelection = () => {
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
-    const dispatch = useDispatch();
-    const allParkingLots = useSelector(state => state.parkingSpaces.allParkingLots);
+    const filteredParkingLots = useSelector(state => state.parkingSpaces.filteredParkingLots);
     const parkingLot = useSelector(state => state.parkingSpaces.parkingLot);
 
     useEffect(() => {
@@ -17,10 +15,6 @@ const ParkingLotSelection = () => {
             setIsButtonEnabled(true);
         }
     }, [parkingLot]);
-
-    useEffect(() => {
-        dispatch(getAllParkingLots());
-    }, [dispatch]);
 
     const navigate = useNavigate();
 
@@ -30,12 +24,13 @@ const ParkingLotSelection = () => {
         navigate('/reservation-panel');
     };
 
-    if (allParkingLots.length === 0) {
+    if (filteredParkingLots.length === 0) {
         return (
             <div className={ styles.parkingLotSelection__error }>
-                <div>No hay parqueaderos para mostrar</div>
-                <Link to='/home'>
-                    <button>Volver a Home</button>
+                <div>No hay parqueaderos para mostrar.</div>
+                <div>Seleccione su ciudad primero.</div>
+                <Link to='/parking-lot-filter'>
+                    <button>Ir a seleccionar ciudad</button>
                 </Link>
             </div>
         );
@@ -44,9 +39,9 @@ const ParkingLotSelection = () => {
     return (
         <form onSubmit={ handleSubmit }>
             <div className={ styles.parkingLotSelection__title }>Parqueaderos</div>
-            <div className={ styles.parkingLotSelection__description }>Por favor, seleccionar el parqueadero:</div>
+            <div className={ styles.parkingLotSelection__description }>Por favor, seleccionar un parqueadero:</div>
             <div className={ styles.parkingLotSelection__parkingLots }>
-                { allParkingLots.map(parkingLot => 
+                { filteredParkingLots.map(parkingLot => 
                     <ParkingLotCard 
                         key = { parkingLot.id }
                         id = { parkingLot.id }

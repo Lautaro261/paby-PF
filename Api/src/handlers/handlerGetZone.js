@@ -12,7 +12,7 @@ const handlerGetAllZonesWithFloors = async (req, res) => {
       res.status(200).json(zones);
     } else {
       res.status(404).json({
-        message: "Piso no encontrado o datos ingresados incorrectos",
+        message: "No hay pisos con zonas creadas",
       });
     }
   } catch (error) {
@@ -23,17 +23,17 @@ const handlerGetAllZonesWithFloors = async (req, res) => {
 
 //// Handler para ver todas las zonas de todos los pisos del parqueadero
 const handlerGetZonesByParkingId = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-
     // Verificar si el parqueadero existe
     const zones = await getZonesByParkingId(id);
-    if (!id) {
-      return res.status(404).json({
+    if (zones) {
+      res.status(200).json(zones);
+    } else {
+      res.status(404).json({
         message: "Parqueadero no encontrado o datos de busqueda incorrectos",
       });
     }
-    res.status(200).json(zones);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });

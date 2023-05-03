@@ -1,3 +1,4 @@
-.contact-us{
-    height:100%;
-}
+.contact-us p {
+    text-align: center;
+    margin: auto;
+  }

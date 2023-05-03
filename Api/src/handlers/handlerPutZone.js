@@ -11,6 +11,10 @@ const handlerUpdateZone = async (req, res) => {
 
     if (zone) {
       res.status(200).json({ message: "¡Zona actualizada correctamente!" });
+    } else {
+      res.status(404).json({
+        message: "Zona no encontrada o datos ingresados incorrectos",
+      });
     }
   } catch (error) {
     console.error(error);
