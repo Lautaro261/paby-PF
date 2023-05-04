@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import Dash from "../../components/dashboard/dash";
+import Dash from "../../components/dashboard/Dash";
 import style from "./ReservationView.module.css"
 import ReservationPanel from "../../components/ReservationPanel/ReservationPanel";
 
 const ReservationView=()=>{
     return(
-    <div class={style.parent}>
-        <div class={style.div1}><Navbar/> </div>
+    <div className={style.parent}>
+        <div className={style.div1}><Navbar/> </div>
         
-        <div class={style.flexcontainer}>
-            <div class={style.flexitems}><Dash/></div>
-             <div class={style.flexitems}><ReservationPanel/></div>
+        <div className={style.flexcontainer}>
+            <div className={style.flexitems}><Dash/></div>
+             <div className={style.flexitems}><ReservationPanel/></div>
         </div>
 
         {/* <div class={style.div4}><Footer></Footer> </div> */}

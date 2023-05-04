@@ -3,14 +3,14 @@ const {DataTypes} = require('sequelize')
 module.exports = (sequelize) =>{
     sequelize.define('user',{
         id:{
-            type: DataTypes.INTEGER,
-            
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
         },
         identificacion:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         name:{  
             type: DataTypes.STRING,
@@ -18,35 +18,35 @@ module.exports = (sequelize) =>{
         },
         last_name:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         email:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         password:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         phone:{
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
         },
         country:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         city:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         address:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         neighborhood:{
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         photo:{
             type: DataTypes.STRING,

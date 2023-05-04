@@ -1,13 +1,13 @@
 import React from "react";
-import './ContactUs.css'
+import style from "./ContactUs.module.css";
 
 export default function ContactUs() {
 
     return (
-        <div className="Contactanos">
-            <div className="contact-us">
+        <div>
+            <div className={style.contact}>
                 <h2>Contáctanos</h2>
-                <p>Puedes contactarnos en <i class="fab fa-whatsapp"></i>Whatsapp al 1123232323</p>
+                <p>Puedes contactarnos en Whatsapp al 1121423423</p>
             </div>
         </div>
 
