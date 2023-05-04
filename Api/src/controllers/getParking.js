@@ -3,6 +3,9 @@ const { Parking } = require("../db");
 // Controller para obtener todos los parqueaderos
 const getAllParkings = async () => {
   const parkings = await Parking.findAll();
+  if (parkings.length === 0) {
+    return { message: "No hay parqueaderos creados" };
+  }
   return parkings;
 };
 

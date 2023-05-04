@@ -9,7 +9,7 @@ const updateFloorById = async (
   motorcycle_capacity
 ) => {
   const floor = await Floor.findByPk(idFloor);
-  if (idFloor) {
+  if (floor) {
     const updatedFloor = await floor.update({
       name,
       amount,
@@ -17,7 +17,7 @@ const updateFloorById = async (
       motorcycle_capacity,
     });
     return updatedFloor;
-  }
+  } else return false;
 };
 
 module.exports = updateFloorById;

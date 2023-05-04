@@ -12,6 +12,9 @@ const getAllZonesWithFloors = async () => {
     //   },
     // ],
   });
+  if (zones.length === 0) {
+    return { message: "No hay pisos con zonas creadas" };
+  }
   return zones;
 };
 
@@ -38,6 +41,11 @@ const getZonesByParkingId = async (id) => {
     //   },
     // ],
   });
+  if (zones.length === 0) {
+    return {
+      message: "Parqueadero no encontrado o datos de busqueda incorrectos",
+    };
+  }
   return zones;
 };
 
