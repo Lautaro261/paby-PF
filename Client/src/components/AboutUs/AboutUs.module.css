@@ -1,10 +1,11 @@
 .logoAbout {
   max-width: 100px;
+ 
 }
 
 p {
   font-family: "Ysabeau", serif;
-  font-size: 1.2em;
+  font-size: 1.2em
 }
 
 h1 {
@@ -21,17 +22,10 @@ h2 {
   color: #16425b;
   text-align: center;
 }
-.contact-us {
-  display: block; /* convierte el botón en un bloque */
-  margin: auto; /* Centro horizontalmente */
-  margin-top: 0.5rem; 
-  text-align: center; /* centra el contenido del botón */
-}
 
 .buttonGoBack {
   display: block; /* convierte el botón en un bloque */
-  margin: auto; /* Centro horizontalmente */
-  margin-top: 0.5rem; 
+  margin: auto; /* centra el botón horizontalmente */
   text-align: center; /* centra el contenido del botón */
 }
 

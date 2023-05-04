@@ -19,6 +19,7 @@ export default function ViewVehicle() {
     dispatch(getAllVehicles());
   }, [dispatch]);
 
+
   const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
   const searchedBrandName = useSelector(state => state.vehicleBrand.searchedBrandName);
   const [vehiclesState, setVehiclesState] = useState(allVehicles);
