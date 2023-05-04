@@ -18,7 +18,7 @@ const handlerUpdateFloorById = async (req, res) => {
       res.status(200).json({ message: "¡Piso actualizado correctamente!" });
     } else {
       res.status(404).json({
-        message: "Piso no encontrado o datos de busqueda incorrectos",
+        message: "Piso no encontrado o datos ingresados incorrectos",
       });
     }
   } catch (error) {

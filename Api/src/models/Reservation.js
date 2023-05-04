@@ -29,6 +29,7 @@ module.exports = (sequelize) => {
       payment_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       },
       reservation_status: {
         type: DataTypes.STRING,

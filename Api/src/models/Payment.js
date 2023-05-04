@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      state: {
+      payment_status: {
         type: DataTypes.STRING,
         allowNull: false,
       },
