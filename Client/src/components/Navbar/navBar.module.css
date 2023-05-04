@@ -1,58 +1,58 @@
 .mainConteiner{
-    z-index: 30;
-    top:0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 6vh;
-      width: 100%;
-      background: linear-gradient(to right, #738290, #1a1834); /* color de fondo */
-      padding: 0 20px;
-      margin-bottom: 200px;
-      gap:12px;
-  }
-  .logo img {
-    
-    left: 0px;
-    
-  }
+  z-index: 30;
+  top:0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 6vh;
+    width: 100%;
+    background: linear-gradient(to right, #738290, #1a1834); /* color de fondo */
+    padding: 0 20px;
+    margin-bottom: 200px;
+    gap:12px;
+}
+.logo img {
   
-  .logo h1 .link2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
+  left: 0px;
+  
+}
+
+.logo h1 .link2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  padding: 0;
+  text-decoration:none
+}
+ul {
+    list-style-type: none; /* quitamos la viñeta de la lista */
     margin: 0;
     padding: 0;
-    text-decoration:none
+    overflow: hidden;
   }
-  ul {
-      list-style-type: none; /* quitamos la viñeta de la lista */
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    li {
-      float: left;
-    }
-    li .link {
+  li {
+    float: left;
+  }
+  li .link {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+  }
+
+  li .text {
       display: block;
       color: white;
       text-align: center;
-      padding: 5px;
+      padding: 14px 16px;
       text-decoration: none;
       
     }
+  li .link:hover {
+    background-color: #111; /* color de fondo al pasar el cursor por encima */
+  }
 
-    li .text {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        
-      }
-    li .link:hover {
-      background-color: #16425B; /* color de fondo al pasar el cursor por encima */
-    }
   
-    
