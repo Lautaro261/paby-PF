@@ -7,6 +7,15 @@
     text-align: center;
 }
 
+.parkingLotSelection__parkingLots {
+    margin: 15px;
+}
+
+.parkingLotSelection__notification {
+    text-align: center;
+    font-weight: bold;
+}
+
 .parkingLotSelection__error {
     margin: 40px;
     display: flex;

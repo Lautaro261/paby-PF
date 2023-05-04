@@ -1,14 +1,19 @@
 const { Router } = require("express");
-const handlerFloor = require("../handlers/handlerFloor");
+const {
+  handlerGetAllFloors,
+  handlerGetFloorsByParkingId,
+} = require("../handlers/handlerGetFloor");
+const handlerCreateFloor = require("../handlers/handlerPostFloor");
+const handlerUpdateFloorById = require("../handlers/handlerPutFloor");
 
+const parkingRouter = require("../routes/parkingRouter");
 const floorRouter = Router();
 
 //// Rutas de Pisos
-floorRouter.get("/", handlerFloor.getFloors);
-floorRouter.get("/:id", handlerFloor.getFloorsById);
-floorRouter.post("/:id", handlerFloor.createNewFloor);
-floorRouter.put("/:id", handlerFloor.updateFloor);
 
+floorRouter.get("/alls", handlerGetAllFloors);
+parkingRouter.get("/:id/floors", handlerGetFloorsByParkingId);
+parkingRouter.post("/:id/createfloor", handlerCreateFloor);
+parkingRouter.put("/editfloor/:id", handlerUpdateFloorById);
 
 module.exports = floorRouter;
-

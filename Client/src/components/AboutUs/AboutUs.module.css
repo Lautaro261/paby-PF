@@ -5,6 +5,7 @@
 
 p {
   font-family: "Ysabeau", serif;
+  font-size: 1.2em
 }
 
 h1 {
@@ -20,4 +21,14 @@ h2 {
   line-height: 1.1;
   color: #16425b;
   text-align: center;
+}
+
+.buttonGoBack {
+  display: block; /* convierte el botón en un bloque */
+  margin: auto; /* centra el botón horizontalmente */
+  text-align: center; /* centra el contenido del botón */
+}
+
+.AboutUs {
+  padding: 2rem;
 }

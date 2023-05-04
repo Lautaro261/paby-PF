@@ -11,15 +11,15 @@ const ParkingSpaceCard = (props) => {
 	switch (parking_space_status) {
 		case 'Disponible':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_available;
-			buttonAvailability = false;
+			buttonAvailability = true;
 		break;
 		case 'Ocupado':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_occupied;
-			buttonAvailability = true;
+			buttonAvailability = false;
 		break;
 		case 'Reservado':
 			parkingSpaceCardStatus = styles.parkingSpaceCard__status_reserved;
-			buttonAvailability = true;
+			buttonAvailability = false;
 		break;
 		default:
 			parkingSpaceCardStatus = '';
@@ -28,12 +28,11 @@ const ParkingSpaceCard = (props) => {
 	const handleClick = () => {
 		const selectedParkingSpace = {
 			id: parking_space_id,
-			zone_status: 'Reservado',
+			zone_status: 'Ocupado',
 			zone_number: parking_space_label,
 			vehicle_type
 		}
 		dispatch(setSelectedParkingSpace(selectedParkingSpace));
-		alert(`Usted seleccionó la zona ${ parking_space_label }`)
 	};
 
 	return (
@@ -46,7 +45,7 @@ const ParkingSpaceCard = (props) => {
 		    <button 
 			    type='button' 
 				className={ `${ parkingSpaceCardStatus }` }
-				disabled={ buttonAvailability }
+				disabled={ !buttonAvailability }
 				onClick={ handleClick }
 			>
 				{ parking_space_status }

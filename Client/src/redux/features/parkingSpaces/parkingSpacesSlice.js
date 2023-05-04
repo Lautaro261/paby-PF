@@ -10,6 +10,8 @@ const initialState = {
     parkingSpacesForThisParkingLot: [],
     selectedParkingSpace: {},
     selectedParkingSpaceResponse: {},
+    parkingSpaceStatusFromFilter: '',
+    vehicleTypeFromFilter: '',
     status: 'idle',
     error: null
 };
@@ -18,7 +20,7 @@ export const getAllParkingLots = createAsyncThunk(
     'parkingSpaces/getAllParkingLots',
     async () => {
         try {
-            const response = await axios.get(`${ apiUrl }/parking`);
+            const response = await axios.get(`${ apiUrl }/parking/alls`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -44,7 +46,7 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/floors/${ id }`);
+            const response = await axios.get(`${ apiUrl }/parking/${ id }/floors`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -57,7 +59,7 @@ export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`${ apiUrl }/zones/${ id }`);
+            const response = await axios.get(`${ apiUrl }/parking/${ id }/zones`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -70,7 +72,7 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
     'parkingSpaces/updateParkingSpaceStatusById',
     async (selectedParkingSpace) => {
         try {
-            const response = await axios.put(`${ apiUrl }/zones/${ selectedParkingSpace.id }`, selectedParkingSpace);
+            const response = await axios.put(`${ apiUrl }/parking/zone/${ selectedParkingSpace.id }/edit`, selectedParkingSpace);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -80,6 +82,8 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
 );
 
 export const setSelectedParkingSpace = createAction('parkingSpaces/setSelectedParkingSpace');
+export const setParkingSpaceStatusFromFilter = createAction('parkingSpaces/setParkingSpaceStatusFromFilter');
+export const setVehicleTypeFromFilter = createAction('parkingSpaces/setVehicleTypeFromFilter');
 
 const parkingSpacesSlice = createSlice({
     name: 'parkingSpaces',
@@ -87,6 +91,12 @@ const parkingSpacesSlice = createSlice({
     reducers: {
         setSelectedParkingSpace: (state, action) => {
             state.selectedParkingSpace = action.payload
+        },
+        setParkingSpaceStatusFromFilter: (state, action) => {
+            state.parkingSpaceStatusFromFilter = action.payload
+        },
+        setVehicleTypeFromFilter: (state, action) => {
+            state.vehicleTypeFromFilter = action.payload
         }
     },
     extraReducers: (builder) => {
