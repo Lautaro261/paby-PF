@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import Dash from "../../components/dashboard/dash";
+import Dash from "../../components/dashboard/Dash";
 import style from "./carsView.module.css"
 import ReservationPanel from "../../components/ReservationPanel/ReservationPanel";
 

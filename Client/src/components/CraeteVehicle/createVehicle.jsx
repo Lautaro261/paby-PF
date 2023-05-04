@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -41,6 +41,7 @@ export default function CreateVehicle() {
 
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
+      
       const requestData = {
         license_plate_id: values.license_plate,
         vehicle_tipe: values.vehicle_tipe,
@@ -51,7 +52,7 @@ export default function CreateVehicle() {
         car_color: values.car_color,
         license_plate: values.license_plate,
         license_plate_id: values.license_plate,
-        photo: values.photo
+        photo: values.photo,
       };
       
 

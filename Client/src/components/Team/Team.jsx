@@ -1,5 +1,5 @@
 import React from "react"
-import './Team.css'
+import style from "./Team.module.css";
 import Andy from '../../imgs/imgsAboutUs/Andy.jpg'
 import Marco from '../../imgs/imgsAboutUs/marco.jpeg'
 import Armando from '../../imgs/imgsAboutUs/Armando.jfif'
@@ -63,15 +63,15 @@ const teamMembers = [
 export default function Team() {
 
     return (
-        <div className="conteiner-members">
+        <div className={style.conteinerMembers}>
                 {
                     teamMembers.map((member) => (
-                        <div key={member.name} className="member-card">
-                            <img src={member.image} alt={member.name} className="image" />
+                        <div key={member.name} className={style.memberCard}>
+                            <img src={member.image} alt={member.name} className={style.image} />
                             <h3>{member.name}</h3>
-                            <div className="social-links">
-                                <a href={member.linkedin} target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-                                <a href={member.gitHub} target="_blank"><i class="fab fa-github"></i>GitHub</a>
+                            <div className={style.socialLinks}>
+                                <a href={member.linkedin} target="_blank"><i /* class="fab fa-linkedin" */></i>LinkedIn</a>
+                                <a href={member.gitHub} target="_blank"><i /* class="fab fa-github" */></i>GitHub</a>
                             </div>
                         </div>
                     ))

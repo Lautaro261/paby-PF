@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import {searchVehicleBrandByName} from '../../redux/features/vehicleBrand/vehicleBrandSlice'
-import './SearchBar.css'
+import style from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearchTermChange }) {
     const dispatch = useDispatch()
@@ -23,13 +23,13 @@ export default function SearchBar({ onSearchTermChange }) {
     }
 
     return (
-        <div className="SearchBar">
+        <div>
             <input
             type="text"
             placeholder="Buscar vehiculo.."
             value={vehicleBrand}
             onChange={e=>handleInputChange(e)}/>
-            <button type='submit' className='search-button' onClick={(e)=> handleSubmit(e)}><i className="fas fa-search"></i>Buscar</button>
+            <button type='submit' className={style.searchButton} onClick={(e)=> handleSubmit(e)}><i className="fas fa-search"></i>Buscar</button>
         </div>
     )
 }
