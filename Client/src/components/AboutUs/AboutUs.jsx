@@ -1,8 +1,8 @@
 
 import React from "react";
 import Team from "../Team/Team";
-import logo from '../../imgs/Logopaby.png'
-import './AboutUs.css'
+import logo from '../../imgs/Logopaby.png';
+import style from "./AboutUs.module.css";
 
 export default function AboutUs(){
     const goBack= ()=>{
@@ -11,7 +11,7 @@ export default function AboutUs(){
     }
 
     return(
-                    <div className="AboutUs">
+                    <div className={style.AboutUs}>
                         <h1>Acerca de nosotros </h1>
                         <p>En Paby, estamos dedicados a proporcionar la mejor experiencia de estacionamiento en línea. Y detrás de nuestra aplicación web, hay un equipo comprometido de ocho compañeros que trabajan arduamente para hacer posible este objetivo.
 
@@ -21,10 +21,11 @@ export default function AboutUs(){
 
                             Gracias por confiar en Paby para todas tus necesidades de estacionamiento en línea. ¡Esperamos que disfrutes nuestra aplicación tanto como nosotros disfrutamos creándola!</p>
 
-                        <h2>Equipo <img src={logo} alt='logoPaby' className='logoAbout' /></h2>
+                        <h2>Equipo <img src={logo} alt='logoPaby' className={style.logoAbout} /></h2>
                         <Team />
-                        <button onClick={goBack} className="buttonGoBack">Volver</button>
+                        <button onClick={goBack} className={style.buttonGoBack}>Volver</button>
                     </div>
     )
 }
+
 

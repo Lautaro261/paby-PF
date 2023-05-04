@@ -3,7 +3,7 @@ import styles from "./Dash.module.css";
 import { Link } from 'react-router-dom';
 
 
-const Dash = (props) => {
+const Dash = () => {
   return (
     <div className={styles.panellateral}>
         
@@ -20,4 +20,3 @@ const Dash = (props) => {
 }
 
 export default Dash
-
