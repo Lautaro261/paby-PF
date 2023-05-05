@@ -16,6 +16,6 @@ const reservationRouter = Router();
 // reservationRouter.get("/:idUser", handlerGetIdUser);
 // reservationRouter.get("/:idReservacion", handlerGetIdReservations);
 // reservationRouter.get("/:idZones", handlerGetIdZones);
-reservationRouter.post("/:zoneId/create", handlerCreateReservation);
+reservationRouter.post("/:userId/:zoneId/create", handlerCreateReservation);
 
 module.exports = reservationRouter;
