@@ -1,4 +1,12 @@
+// Modelos de base de base de datos
 const { Reservation, User, Zone, Payment } = require("../db");
+
+// Mercado Pago
+
+const mercadoPago = require("mercadopago");
+require("dotenv").config();
+
+mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 // Controller para crear reservaciones
 const createReservation = async (
@@ -44,6 +52,40 @@ const createReservation = async (
     throw new Error("El método de pago no existe");
   }
 
+  //// Asignar datos a la preferencia de pago en Mercado Pago ////
+  const preference = {
+    items: [
+      {
+        id: `${userId}-${zoneId}`,
+        category_id: "Transporte",
+        title: `Reservación de la zona # ${zone.zone_number}`,
+        description: `Reservación de la zona ${zone.zone_number} desde ${admission_time} hasta ${departure_time}`,
+        quantity: 1,
+        currency_id: "COP",
+        unit_price: full_reserve_value,
+      },
+    ],
+    payer: {
+      name: user.name,
+      // phone: user.phone,
+      email: user.email,
+      country_name: user.country,
+      city_name: user.city,
+    },
+    back_urls: {
+      success: "http://localhost:3000/success",
+      pending: "",
+      failure: "",
+    },
+    auto_return: "approved",
+    binary_mode: true,
+    // notification_url: "http://localhost:3000/notifications",
+  };
+
+  //// Crear la preferencia de pago en Mercado Pago ////
+
+  const response = await mercadoPago.preferences.create(preference);
+
   // Crear la reservación
   const newReservation = await Reservation.create({
     userId,
@@ -54,11 +96,12 @@ const createReservation = async (
     instant_photo,
     full_reserve_value,
     payment_date,
-    reservation_status,
+    reservation_status: response.body.auto_return,
     total_amount,
     comments,
+    preference_id: response.body.id,
   });
-  return newReservation;
+  return response.body.sandbox_init_point;
 };
 
 module.exports = { createReservation };
