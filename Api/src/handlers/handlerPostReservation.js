@@ -1,9 +1,17 @@
 // Controladores de reservacion:
 const { createReservation } = require("../controllers/postReservation");
 
+// Mercado Pago
+
+const mercadoPago = require("mercadopago");
+require("dotenv").config();
+
+mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
+
 // Handler para crear reservaciones
 const handlerCreateReservation = async (req, res) => {
   const {
+    userId,
     paymentId,
     admission_time,
     departure_time,
@@ -14,7 +22,7 @@ const handlerCreateReservation = async (req, res) => {
     total_amount,
     comments,
   } = req.body;
-  const { userId, zoneId } = req.params;
+  const { zoneId } = req.params;
 
   try {
     const newReservation = await createReservation(
@@ -30,7 +38,6 @@ const handlerCreateReservation = async (req, res) => {
       total_amount,
       comments
     );
-    console.log(newReservation);
     res.status(200).json(newReservation);
   } catch (error) {
     console.error(error);

@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
-import ContactUs from "../ContactUs/ContactUs";
 import style from "./Home.module.css";
 import logo from '../../imgs/Logopaby.png'
+import { useAuth0 } from '@auth0/auth0-react'
+import JSONPretty from 'react-json-pretty'
 
 export default function Home() {
-    const [showDescription, setShowDescription] = useState(false)
 
-    const toggleDescription = () => {
-        setShowDescription(!showDescription)
-    };
+    const { user, isAuthenticated } = useAuth0()
+
     return (
         <div className={style.Home}>
 
-            <h1>Bienvenidos a <img src={logo} alt='logoPaby'  className={style.logoPaby} /></h1>
+            <h1>Bienvenidos a <img src={logo} alt='logoPaby' className={style.logoPaby} /></h1>
             <p className={style.description}> Paby es la solución perfecta para tus necesidades de estacionamiento. Con nuestra aplicación web, puedes hacer reservas en cualquiera de nuestras sucursales de parqueaderos con tan solo unos clics. Olvídate de preocuparte por encontrar un lugar donde estacionar, con Paby tienes acceso a una red de parqueaderos confiables y seguros en todo momento.
 
 
@@ -24,16 +23,16 @@ export default function Home() {
 
             <Link to='/parking-lot-selection'><button>Reservar plaza</button></Link>
 
-
-            <button onClick={toggleDescription}>Contáctanos</button>
             {
-                showDescription && (
-                    <ContactUs/>
+                isAuthenticated && (
+                    <div>
+                        <img src={user.picture} alt={user.name} />
+                        <h2>{user.name}</h2>
+                        <p>{user.email}</p>
+                        <pre>{JSON.stringify(user)}</pre>
+                    </div>
                 )
             }
-
-            <Link to='/about-us'><button>Acerca de nosotros</button></Link>
-
 
 
         </div>
