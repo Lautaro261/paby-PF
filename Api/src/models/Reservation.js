@@ -37,11 +37,15 @@ module.exports = (sequelize) => {
       },
       total_amount: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       comments: {
         type: DataTypes.TEXT,
         allowNull: false,
+      },
+      preference_id: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     { timestamps: false }
