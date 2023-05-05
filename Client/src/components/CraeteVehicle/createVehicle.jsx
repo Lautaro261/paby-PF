@@ -58,8 +58,8 @@ export default function CreateVehicle() {
 
       try {
         console.log(requestData);
-        const response = await axios.post('http://localhost:3001/users/1/vehicle',requestData, {
-        //const response = await axios.post('http://localhost:3001/users/vehicle', JSON.stringify(requestData), {
+        const response = await axios.post('/users/1/vehicle',requestData, {
+        
           headers: {
             'Content-Type': 'application/json'
           }
@@ -89,8 +89,12 @@ export default function CreateVehicle() {
         <Form>
           <div>
             <label htmlFor="vehicle_tipe">Tipo de vehículo</label>
-            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" defaultValue="">
-              <option value="">Seleccionar</option>
+            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" defaultValue={'default'}>
+
+              {/* <select onChange={handlerInputChange} name='types' defaultValue={'default'}>
+                    <option value='default'>1 or 2 types</option> */}
+                    
+              <option value="default">Seleccionar</option>
               <option value="Auto">Auto</option>
               <option value="Moto">Moto</option>
             </Field>
@@ -99,8 +103,8 @@ export default function CreateVehicle() {
 
           <div>
             <label htmlFor="type_of_service">Tipo de servicio</label>
-            <Field as="select" id="type_of_service" name="type_of_service" defaultValue="">
-              <option value="">Seleccionar</option>
+            <Field as="select" id="type_of_service" name="type_of_service" defaultValue={'default'}>
+              <option value="default">Seleccionar</option>
               <option value="particular">Particular</option>
               <option value="publico">Público</option>
             </Field>

@@ -1,21 +1,34 @@
-const { User }= require('../db');
+const { User } = require("../db");
 
-const postUser=async(id, name, identificacion,last_name,email,password,phone,country,city,address,neighborhood,photo)=>{
-      await User.create({
-        id,
-        identificacion,
-        name,
-        last_name,
-        email,
-        password,
-        phone,
-        country,
-        city,
-        address,
-        neighborhood,
-        photo
-    })
-    
-}
+const postUser = async (
+  name,
+  identificacion,
+  last_name,
+  email,
+  password,
+  phone,
+  country,
+  city,
+  address,
+  neighborhood,
+  photo
+) => {
+ const newUser= await User.create({
+    name,
+    identificacion,
+    last_name,
+    email,
+    password,
+    phone,
+    country,
+    city,
+    address,
+    neighborhood,
+    photo,
+  });
 
-module.exports = postUser
+  return newUser;
+};
+
+
+module.exports = postUser;

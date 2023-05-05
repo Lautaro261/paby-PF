@@ -3,6 +3,7 @@ const postVehicle =require("../controllers/postVehicle");
 
 
 const handlerPostVehicle = async (req, res) => {
+  const { userId }= req.params
     
   const {
     license_plate_id,
@@ -16,7 +17,6 @@ const handlerPostVehicle = async (req, res) => {
     photo,
   } = req.body;
 
-  const { userId }= req.params
   
     try {
     const vehicle = await postVehicle(
@@ -31,10 +31,22 @@ const handlerPostVehicle = async (req, res) => {
       car_color,
       photo,
     );
-    res.status(202).json(vehicle)
+
+    if(vehicle){
+
+      res.status(202).json({message: 'Vehiculo creado',
+    vehicle: vehicle,
+    })
+    }else{
+      re.status(400).json({message: 'No se pudo crear el vehiculo',
+    error: error.message,
+    })
+    }
 
   } catch (error) {
-    res.status(400).json(error.message)
+    res.status(404).json({message: 'No se pudo crear el vehiculo',
+    error: error.message,
+    })
   }
 };
 

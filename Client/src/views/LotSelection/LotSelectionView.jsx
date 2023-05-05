@@ -7,12 +7,12 @@ import ParkingLotSelection from "../../components/ParkingLotSelection/ParkingLot
 
 const LotSelectionView=()=>{
     return(
-    <div class={style.parent}>
-        <div class={style.div1}><Navbar/> </div>
+    <div className={style.parent}>
+        <div className={style.div1}><Navbar/> </div>
         
-        <div class={style.flexcontainer}>
-            <div class={style.flexitems}><Dash/></div>
-             <div class={style.flexitems}><ParkingLotSelection/></div>
+        <div className={style.flexcontainer}>
+            <div className={style.flexitems}><Dash/></div>
+             <div className={style.flexitems}><ParkingLotSelection/></div>
         </div>
 
         {/* <div class={style.div4}><Footer></Footer> </div> */}
