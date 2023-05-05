@@ -22,7 +22,7 @@ axios.defaults.baseURL = 'http://localhost:3001'
 //y cambiando debajo la ruta que se renderiza el elemento que corresponde a su componente
 
 const App = () => {
-  return (
+  return ( 
       <Routes>
           <Route path='/' element={ <Landing /> } />
           <Route path='/create-vehicle' element={ <CreateVehicle /> } />

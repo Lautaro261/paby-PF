@@ -41,7 +41,8 @@ export default function CreateVehicle() {
 
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
-      
+
+      const licensePlate = values.license_plate;
       const requestData = {
         license_plate_id: values.license_plate,
         vehicle_tipe: values.vehicle_tipe,
@@ -50,8 +51,8 @@ export default function CreateVehicle() {
         car_model: values.car_model,
         car_model_year: values.car_model_year,
         car_color: values.car_color,
-        license_plate: values.license_plate,
-        license_plate_id: values.license_plate,
+        license_plate: licensePlate,
+        license_plate_id: licensePlate,
         photo: values.photo,
       };
       
@@ -89,7 +90,7 @@ export default function CreateVehicle() {
         <Form>
           <div>
             <label htmlFor="vehicle_tipe">Tipo de vehículo</label>
-            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" defaultValue={'default'}>
+            <Field as="select" id="vehicle_tipe" name="vehicle_tipe">
 
               {/* <select onChange={handlerInputChange} name='types' defaultValue={'default'}>
                     <option value='default'>1 or 2 types</option> */}
@@ -103,7 +104,7 @@ export default function CreateVehicle() {
 
           <div>
             <label htmlFor="type_of_service">Tipo de servicio</label>
-            <Field as="select" id="type_of_service" name="type_of_service" defaultValue={'default'}>
+            <Field as="select" id="type_of_service" name="type_of_service">
               <option value="default">Seleccionar</option>
               <option value="particular">Particular</option>
               <option value="publico">Público</option>

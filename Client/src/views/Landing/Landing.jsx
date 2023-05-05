@@ -2,6 +2,8 @@ import BG_1 from "../../components/Backgrounds/BG_1"
 import style from "./Landing.module.css"
 import { Link } from "react-router-dom"
 import Logopaby from "../../imgs/Logopaby.png"
+import Login from '../../components/Login/Login.jsx';
+import Logout from '../../components/Logout/Logout.jsx';
 
 function Landing() {  
     return (
@@ -18,7 +20,9 @@ function Landing() {
             <p>Aparcar nunca fue tan sencillo</p>
             <div className={style.Link}>
             <Link to="/home" className={style.linktext}>Ver Catálogo</Link>
-            </div>        
+            </div>
+            <Login/>
+            <Logout/>     
           </section>
         </main>
         <div className={style.footer}>
