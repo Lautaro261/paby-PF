@@ -7,9 +7,9 @@ const handlerUpdateZone = async (req, res) => {
     const { id } = req.params;
     const { zone_status, zone_number } = req.body;
 
-    const zone = await updateZone(id, zone_status, zone_number);
+    const updateZoneById = await updateZone(id, zone_status, zone_number);
 
-    if (zone) {
+    if (updateZoneById) {
       res.status(200).json({ message: "¡Zona actualizada correctamente!" });
     } else {
       res.status(404).json({
