@@ -14,6 +14,7 @@ const createZones = async (id) => {
 
   const zones = [];
   let zoneNumber = 1;
+  let orderNumber = 1;
 
   // Crear las zonas de carros
   for (let i = 0; i < car_capacity; i++) {
@@ -22,8 +23,10 @@ const createZones = async (id) => {
       zone_number: zoneNumber,
       vehicle_type: "Automovil",
       floorId: id,
+      order: orderNumber,
     });
     zoneNumber++;
+    orderNumber++;
   }
 
   // Crear las zonas de motos
@@ -33,8 +36,10 @@ const createZones = async (id) => {
       zone_number: zoneNumber,
       vehicle_type: "Motocicleta",
       floorId: id,
+      order: orderNumber,
     });
     zoneNumber++;
+    orderNumber++;
   }
 
   await Zone.bulkCreate(zones);

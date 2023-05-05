@@ -18,6 +18,9 @@ const getAllFloors = async () => {
       },
     ],
   });
+  if (parkings.length === 0) {
+    return { message: "No hay parqueaderos con pisos creados" };
+  }
   return parkings;
 };
 

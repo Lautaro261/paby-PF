@@ -16,23 +16,23 @@ const handlerUpdateParking = async (req, res) => {
     regulation,
   } = req.body;
   try {
-    const parking = await updateParking(id);
+    const parking = await updateParking(
+      id,
+      name,
+      nit,
+      country,
+      city,
+      address,
+      neighborhood,
+      floors,
+      fee,
+      photo,
+      regulation
+    );
     if (parking) {
-      await parking.update({
-        name,
-        nit,
-        country,
-        city,
-        address,
-        neighborhood,
-        floors,
-        fee,
-        photo,
-        regulation,
-      });
       res
         .status(200)
-        .json({ message: "Parqueadero actualizado correctamente" });
+        .json({ message: "¡Parqueadero actualizado correctamente!" });
     } else {
       res.status(404).json({
         message: "Parqueadero no encontrado o datos ingresados incorrectos",

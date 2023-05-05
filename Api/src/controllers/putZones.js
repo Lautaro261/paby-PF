@@ -4,13 +4,15 @@ const { Parking, Floor, Zone } = require("../db");
 const updateZone = async (id, zone_status, zone_number) => {
   const zone = await Zone.findByPk(id);
 
-  if (!zone) {
-    throw new Error("Zona no encontrada");
-  }
+  if (zone) {
+    await zone.update({ zone_status, zone_number });
 
-  await zone.update({ zone_status, zone_number });
+    const zones = await Zone.findAll({
+      order: [["order", "ASC"]],
+    });
 
-  return true;
+    return zones;
+  } else return false;
 };
 
 module.exports = updateZone;

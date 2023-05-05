@@ -4,6 +4,7 @@ const { Parking, Floor, Zone } = require("../db");
 const getAllZonesWithFloors = async () => {
   const zones = await Zone.findAll({
     attributes: ["id", "zone_status", "zone_number", "vehicle_type", "floorId"],
+    order: [["order", "ASC"]],
     // include: [
     //   {
     //     model: Floor,
@@ -11,6 +12,9 @@ const getAllZonesWithFloors = async () => {
     //   },
     // ],
   });
+  if (zones.length === 0) {
+    return { message: "No hay pisos con zonas creadas" };
+  }
   return zones;
 };
 
@@ -29,6 +33,7 @@ const getZonesByParkingId = async (id) => {
   const zones = await Zone.findAll({
     where: { floorId: floors.map((floor) => floor.id) },
     attributes: ["id", "zone_status", "zone_number", "vehicle_type", "floorId"],
+    order: [["order", "ASC"]],
     // include: [
     //   {
     //     model: Floor,
@@ -36,6 +41,11 @@ const getZonesByParkingId = async (id) => {
     //   },
     // ],
   });
+  if (zones.length === 0) {
+    return {
+      message: "Parqueadero no encontrado o datos de busqueda incorrectos",
+    };
+  }
   return zones;
 };
 
