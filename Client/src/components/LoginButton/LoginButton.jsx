@@ -1,9 +1,9 @@
 import {useAuth0} from "@auth0/auth0-react";
 
 const LoginButton= ()=>{
-    const { loginWithRedirect } = useAuth0();
+    const { loginWithPopup } = useAuth0();
     return(
-        <button onClick={()=> loginWithRedirect()}>Ingresar</button>
+        <button onClick={()=>  loginWithPopup()}>Ingresar</button>
     )
 }
 
