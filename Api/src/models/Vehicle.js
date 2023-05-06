@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
         },
       },
       vehicle_tipe: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("Automovil", "Motocicleta"),
         allowNull: false,
       },
       type_of_service: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("Particular", "Publico"),
         allowNull: false,
       },
       car_brand: {
@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       car_model_year: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       car_color: {

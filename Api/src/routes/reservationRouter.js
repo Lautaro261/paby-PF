@@ -1,21 +1,19 @@
 const { Router } = require("express");
 const {
   handlerGetAllReservations,
-  handlerGetIdUser,
-  handlerGetIdReservations,
-  handlerGetIdZones,
-} = require("../handlers/handlerGetParkings");
+  handlerGetReservationsByUserId,
+} = require("../handlers/handlerGetReservations");
 const {
   handlerCreateReservation,
 } = require("../handlers/handlerPostReservation");
+const { handlerUpdateStatus } = require("../handlers/handlerUpdateStatus");
 
 const reservationRouter = Router();
 
 //// Rutas de Reservacion
-// reservationRouter.get("/allsReservation", handlerGetAllReservations);
-// reservationRouter.get("/:idUser", handlerGetIdUser);
-// reservationRouter.get("/:idReservacion", handlerGetIdReservations);
-// reservationRouter.get("/:idZones", handlerGetIdZones);
-reservationRouter.post("/:userId/:zoneId/create", handlerCreateReservation);
+reservationRouter.get("/alls", handlerGetAllReservations);
+reservationRouter.get("/:id", handlerGetReservationsByUserId);
+reservationRouter.post("/updatestates", handlerUpdateStatus);
+reservationRouter.post("/create", handlerCreateReservation);
 
 module.exports = reservationRouter;

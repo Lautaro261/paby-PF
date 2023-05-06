@@ -1,5 +1,6 @@
 // Modelos de base de base de datos
-const { Reservation, User, Zone, Payment } = require("../db");
+const { Reservation, User, Zone, Vehicle } = require("../db");
+const { Op } = require("sequelize");
 
 // Mercado Pago
 
@@ -12,13 +13,11 @@ mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 const createReservation = async (
   userId,
   zoneId,
-  paymentId,
+  vehicleLicensePlateId,
   admission_time,
   departure_time,
   instant_photo,
   full_reserve_value,
-  payment_date,
-  reservation_status,
   total_amount,
   comments
 ) => {
@@ -34,23 +33,49 @@ const createReservation = async (
     throw new Error("La zona no existe");
   }
 
+  // Verificar si la zona existe
+  const vehicle = await Vehicle.findByPk(vehicleLicensePlateId);
+  if (!vehicle) {
+    throw new Error("El vehiculo no existe");
+  }
+
   // Verificar si la zona ya está reservada para la hora especificada
   const existingReservation = await Reservation.findOne({
     where: {
       zoneId: zoneId,
-      admission_time: admission_time,
-      departure_time: departure_time,
+      [Op.or]: [
+        {
+          admission_time: {
+            [Op.between]: [admission_time, departure_time],
+          },
+        },
+        {
+          departure_time: {
+            [Op.between]: [admission_time, departure_time],
+          },
+        },
+        {
+          admission_time: {
+            [Op.lte]: admission_time,
+          },
+          departure_time: {
+            [Op.gte]: departure_time,
+          },
+        },
+      ],
     },
   });
   if (existingReservation) {
-    throw new Error("La zona ya está reservada para la hora especificada");
+    throw new Error(
+      "La zona ya está reservada para el rango de tiempo especificado"
+    );
   }
 
-  // Verificar si el método de pago existe
-  const payment = await Payment.findByPk(paymentId);
-  if (!payment) {
-    throw new Error("El método de pago no existe");
-  }
+  // // Verificar si el método de pago existe
+  // const payment = await Payment.findByPk(paymentId);
+  // if (!payment) {
+  //   throw new Error("El método de pago no existe");
+  // }
 
   //// Asignar datos a la preferencia de pago en Mercado Pago ////
   const preference = {
@@ -58,7 +83,7 @@ const createReservation = async (
       {
         id: `${userId}-${zoneId}`,
         category_id: "Transporte",
-        title: `Reservación de la zona # ${zone.zone_number}`,
+        title: `Reservación de la zona # ${zone.zone_number} del Cliente ${user.name} con el vehiculo ${vehicle.car_brand}`,
         description: `Reservación de la zona ${zone.zone_number} desde ${admission_time} hasta ${departure_time}`,
         quantity: 1,
         currency_id: "COP",
@@ -73,9 +98,9 @@ const createReservation = async (
       city_name: user.city,
     },
     back_urls: {
-      success: "http://localhost:3000/success",
-      pending: "",
-      failure: "",
+      success: "http://localhost:5173/success-payment",
+      pending: "http://localhost:5173/pending-payment",
+      failure: "http://localhost:5173/failure-payment",
     },
     auto_return: "approved",
     binary_mode: true,
@@ -90,15 +115,14 @@ const createReservation = async (
   const newReservation = await Reservation.create({
     userId,
     zoneId,
-    paymentId,
+    vehicleLicensePlateId,
     admission_time,
     departure_time,
     instant_photo,
     full_reserve_value,
-    payment_date,
-    reservation_status: response.body.auto_return,
     total_amount,
     comments,
+    payment_link: response.body.sandbox_init_point,
     preference_id: response.body.id,
   });
   return response.body.sandbox_init_point;
