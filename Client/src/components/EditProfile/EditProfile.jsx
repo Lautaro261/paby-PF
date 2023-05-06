@@ -15,23 +15,36 @@ export default function EditProfile({ profile }) {
   };
 
   async function handleSubmit(event) {
-    event.preventDefault();
-    console.log(user.sub);
-    const updatedProfile = {
-      nickname,
-      phone,
-      country,
-      city,
-      address,
-      neighborhood,
-    };
-    try {
-      const response = await axios.put(`http://localhost:3001/users/edit/${user.sub}`, updatedProfile);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+  event.preventDefault();
+  console.log(user.sub);
+  const updatedProfile = {
+    sub: user.sub,
+    nickname,
+    phone,
+    country,
+    city,
+    address,
+    neighborhood,
+  };
+  
+  try {
+    const response = await axios.put(
+      'http://localhost:3001/users/edit/',
+      JSON.stringify(updatedProfile), // convertir objeto a JSON
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log(response.data);
+  } catch (error) {
+    console.error(error.message);
+    console.error(error.response.data);
+    console.error(error.response.status);
   }
+}
+
 
   return (
     <>
