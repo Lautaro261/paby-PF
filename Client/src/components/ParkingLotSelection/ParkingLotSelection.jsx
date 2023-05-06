@@ -12,6 +12,17 @@ const ParkingLotSelection = () => {
     const allParkingLots = useSelector(state => state.parkingSpaces.allParkingLots);
     const parkingLot = useSelector(state => state.parkingSpaces.parkingLot);
 
+    if (allParkingLots.length === 0) {
+        return (
+            <div className={ styles.parkingLotSelection__error }>
+                <div>No hay parqueaderos para mostrar</div>
+                <Link to='/home'>
+                    <button>Volver a Home</button>
+                </Link>
+            </div>
+        );
+    }
+
     useEffect(() => {
         if (Object.keys(parkingLot).length > 0) {
             setIsButtonEnabled(true);
@@ -29,17 +40,6 @@ const ParkingLotSelection = () => {
         setIsButtonEnabled(false);
         navigate('/reservation-panel');
     };
-
-    if (allParkingLots.length === 0) {
-        return (
-            <div className={ styles.parkingLotSelection__error }>
-                <div>No hay parqueaderos para mostrar</div>
-                <Link to='/home'>
-                    <button>Volver a Home</button>
-                </Link>
-            </div>
-        );
-    }
 
     return (
         <form onSubmit={ handleSubmit }>

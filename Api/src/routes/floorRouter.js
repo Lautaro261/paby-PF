@@ -10,6 +10,7 @@ const parkingRouter = require("../routes/parkingRouter");
 const floorRouter = Router();
 
 //// Rutas de Pisos
+
 floorRouter.get("/alls", handlerGetAllFloors);
 parkingRouter.get("/:id/floors", handlerGetFloorsByParkingId);
 parkingRouter.post("/:id/createfloor", handlerCreateFloor);
