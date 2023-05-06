@@ -2,6 +2,7 @@ import React from 'react'
 import styles from "./Dash.module.css";
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios'
 
 const Dash = () => {
   const { isAuthenticated, user } = useAuth0();
@@ -15,11 +16,11 @@ const Dash = () => {
 
 const sendDataToBackend = async () => {
     try {
-        // const response = await axios.post(`http://localhost:3001/users`, data , {
-        //                  headers: {
-        //                      'Content-Type': 'application/json'
-        //                  }})
-        console.log('soy data en sendDataToBack', data)
+        const response = await axios.post(`http://localhost:3001/users`, data , {
+                         headers: {
+                             'Content-Type': 'application/json'
+                         }})
+        return response 
     } catch (error) {
         console.log(error)
     }
@@ -30,7 +31,7 @@ const sendDataToBackend = async () => {
       <ul>
         <li><Link to="/parking-lot-filter" className={styles.textlink}>Hacer reserva</Link></li>
         <li>{isAuthenticated ? <Link to='/profile'><button onClick={ ()=> sendDataToBackend()}>Perfil</button></Link> : false}</li>
-        <li><Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link></li>
+        <li>{isAuthenticated ? <Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link>: false}</li>
         <li>Métodos de pago</li>
         <li>Soporte  en linea</li>
         <li>Cerrar Sesion</li>
