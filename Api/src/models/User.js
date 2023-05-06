@@ -3,54 +3,25 @@ module.exports = (sequelize) => {
   sequelize.define(
     "user",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+      sub: {
+        type: DataTypes.TEXT,
         primaryKey: true,
-        allowNull: false,
-      },
-      identificacion: {
-        type: DataTypes.STRING,
-        allowNull: false,
       },
       name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      last_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.TEXT,
+        //allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        //allowNull: false,
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      phone: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-      },
-      country: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      city: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      address: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      neighborhood: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      /* rol: {
+        type: DataTypes.ENUM('admin', 'client'),
+        defaultValue: 'client',
+        allowNull: false
+      }, */
       photo: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
     },
