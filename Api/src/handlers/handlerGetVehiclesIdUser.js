@@ -1,11 +1,11 @@
 //const {User}= require('../db');
 const {Vehicle} =require ("../db")
 const handlerGetVehiclesIdUser = async(req, res)=>{
-    const {idUser} = req.params
+    const {sub} = req.params
     try {
        
         const vehicles = await Vehicle.findAll({
-            where: {userId: idUser},
+            where: {userSub: sub},
             attributes: [ 
                 "license_plate_id",
                 "license_plate",
@@ -22,7 +22,7 @@ const handlerGetVehiclesIdUser = async(req, res)=>{
         
         res.status(200).json(vehicles)
     } catch (error) {
-        res.status(400).json({message: `No se encontraron vehiculos al usuario con el id ${idUser}`})
+        res.status(400).json({message: `No se encontraron vehiculos al usuario con el sub: ${sub}`})
     }
 
 }
