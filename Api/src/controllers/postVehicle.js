@@ -2,7 +2,7 @@ const { Vehicle } = require("../db");
 const { User } = require("../db");
 
 const postVehicle = async (
-  userId,
+  sub,
   license_plate_id,
   license_plate,
   vehicle_tipe,
@@ -15,7 +15,7 @@ const postVehicle = async (
 ) => {
   
   
-  const user = await User.findByPk(userId)
+  const user = await User.findByPk(sub)
   const newVehicle = await Vehicle.create({
     license_plate_id,
     license_plate,
@@ -26,7 +26,7 @@ const postVehicle = async (
     car_model_year,
     car_color,
     photo,
-    userId: user.id
+    userSub: user.sub
 
   });
 
