@@ -3,31 +3,18 @@ const postUser = require("../controllers/postUser");
 const handlerPostUser = async (req, res) => {
   try {
     const {
+      sub,
       name,
-      identificacion,
-      last_name,
       email,
-      password,
-      phone,
-      country,
-      city,
-      address,
-      neighborhood,
       photo,
     } = req.body;
+
     // console.log(name)
    const newUser =  await postUser(
-       name,
-      identificacion,
-      last_name,
+       sub,
+      name,
       email,
-      password,
-      phone,
-      country,
-      city,
-      address,
-      neighborhood,
-      photo
+      photo,
     );
 
     //console.log(user)

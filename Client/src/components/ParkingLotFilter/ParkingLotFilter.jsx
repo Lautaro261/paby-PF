@@ -1,12 +1,13 @@
 import styles from './ParkingLotFilter.module.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
     getAllParkingLots, 
     setCitiesForTheParkingLotFilter, 
     setFilteredParkingLots 
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice';
 
 const ParkingLotSelection = () => {
     const [isCountrySelected, setIsCountrySelected] = useState(false);
@@ -28,11 +29,10 @@ const ParkingLotSelection = () => {
 
     useEffect(() => {
         dispatch(getAllParkingLots());
+        dispatch(getAllVehicles());
     }, [dispatch]);
 
     const handleCountry = (e) => {
-        console.log(e.target.value);
-        console.log(allParkingLots);
         const cities = allParkingLots
             .filter(parkingLot => parkingLot.country === e.target.value)
             .map(parkingLot => parkingLot.city)
@@ -61,6 +61,17 @@ const ParkingLotSelection = () => {
         setIsCountrySelected(false);
         setIsButtonEnabled(false);
     };
+
+    if (!allParkingLots) {
+        return (
+            <div className={ styles.parkingLotFilter__error }>
+                <div>No se pudo cargar la lista de parqueaderos</div>
+                <Link to='/home'>
+                    <button>Volver a Home</button>
+                </Link>
+            </div>
+        );
+    }
 
     return (
         <form onSubmit={ handleSubmit } className={ styles.parkingLotFilter__container }>

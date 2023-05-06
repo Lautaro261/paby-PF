@@ -56,6 +56,7 @@ const {
   Permission,
   Floor,
   Parking,
+  Profile,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -99,6 +100,10 @@ Zone.belongsTo(Floor);
 // Pisos con parqueadero
 Parking.hasMany(Floor, { as: "parkingFloors" });
 Floor.belongsTo(Parking);
+
+//User con perfil 
+User.hasOne(Profile);
+Profile.belongsTo(User);
 
 module.exports = {
   ...sequelize.models,

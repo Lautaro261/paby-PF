@@ -1,1 +1,1 @@
-Pryecto Final Equipo 8
+<img src="./Client/src/imgs/Logopaby.png" alt="" />
