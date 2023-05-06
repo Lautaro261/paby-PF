@@ -21,7 +21,7 @@ export default function Home() {
 
                 Únete a la comunidad de Paby y disfruta de la mejor experiencia de estacionamiento en línea. ¡Bienvenido a tu nueva forma de estacionar!</p>
 
-            <Link to='/parking-lot-selection'><button>Reservar plaza</button></Link>
+            <Link to='/parking-lot-filter'><button>Reservar plaza</button></Link>
 
             {
                 isAuthenticated && (
@@ -29,6 +29,7 @@ export default function Home() {
                         <img src={user.picture} alt={user.name} />
                         <h2>{user.name}</h2>
                         <p>{user.email}</p>
+                        <p>{user.sub}</p>
                         <pre>{JSON.stringify(user)}</pre>
                     </div>
                 )

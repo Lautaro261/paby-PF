@@ -56,7 +56,7 @@ const {
   Permission,
   Floor,
   Parking,
-  Payment,
+  Profile,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -89,9 +89,9 @@ Reservation.belongsTo(User);
 Zone.hasMany(Reservation);
 Reservation.belongsTo(Zone);
 
-// Reservación metodo de pago
-Payment.hasMany(Reservation);
-Reservation.belongsTo(Payment);
+// Reservación con vehiculo
+Vehicle.hasMany(Reservation);
+Reservation.belongsTo(Vehicle);
 
 // Zona con pisos
 Floor.hasMany(Zone, { as: "zonesFloor" });
@@ -100,6 +100,10 @@ Zone.belongsTo(Floor);
 // Pisos con parqueadero
 Parking.hasMany(Floor, { as: "parkingFloors" });
 Floor.belongsTo(Parking);
+
+//User con perfil 
+User.hasOne(Profile);
+Profile.belongsTo(User);
 
 module.exports = {
   ...sequelize.models,

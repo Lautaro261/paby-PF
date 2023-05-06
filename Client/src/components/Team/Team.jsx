@@ -9,6 +9,7 @@ import JuanPa from "../../imgs/imgsAboutUs/JuanPa.jfif";
 import Nahuel from "../../imgs/imgsAboutUs/Nahuel.jfif";
 import Camila from "../../imgs/imgsAboutUs/camila.jpg";
 
+
 const teamMembers = [
   {
     image: Andy,
@@ -63,6 +64,7 @@ const teamMembers = [
 ];
 
 export default function Team() {
+
   return (
     <div className={style.conteinerMembers}>
       {teamMembers.map((member) => (
