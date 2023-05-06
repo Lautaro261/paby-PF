@@ -33,3 +33,11 @@
     text-align: center;
     font-size: small;
 }
+
+.parkingLotFilter__error {
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

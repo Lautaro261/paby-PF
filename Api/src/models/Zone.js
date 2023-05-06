@@ -12,8 +12,9 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       zone_status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("Disponible", "Ocupada", "Reservada"),
         allowNull: false,
+        defaultValue: "Disponible",
       },
       zone_number: {
         type: DataTypes.STRING,
@@ -25,8 +26,6 @@ module.exports = (sequelize) => {
       },
       order: {
         type: DataTypes.INTEGER,
-        // unique: true,
-        // autoIncrement: true,
         allowNull: false,
       },
     },
