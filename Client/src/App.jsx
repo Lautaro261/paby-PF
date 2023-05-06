@@ -7,7 +7,7 @@ import LotSelectionView from './views/LotSelection/LotSelectionView';
 import ReservationView from './views/ReservationView/ReservationView';
 import CarsView from './views/ListCars/carsView';
 import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
-
+import Profile from './components/Profile/Profile';
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
 //import Home from "./components/Home/Home.jsx"
@@ -34,6 +34,7 @@ const App = () => {
           <Route path="/vehicle/:license_plate_id" exact element={<VehicleDetails />} />
           <Route path='/about-us' element={ <AboutUs /> } /> 
           <Route path='/nav' element={ <Navbar /> } />
+          <Route path='/profile' element= { <Profile/>} />
       </Routes>
   );
 };
