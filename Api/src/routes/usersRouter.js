@@ -18,15 +18,18 @@ usersRouter.get("/", handlerGetUsers); // 3001/USERS/ traer todo los usuarios
 usersRouter.get("/vehicle", handlerGetVehicle); //3001/users/allvehiculosUser
 usersRouter.get("/:idUser", handlerGetUserId); //3001/users/
 
-// PARA EL USUARIO
-usersRouter.post("/", handlerPostUser); //3001/USERS/ creo un usuario
-usersRouter.post("/:userId/vehicle", handlerPostVehicle); // //3001/users/314f7114-3fa6-4199-a5b5-221041e032cc/vehicle
 
-usersRouter.get("/:idUser/vehicles", handlerGetVehiclesIdUser); //3001/users/:idUser/allvehiculosUser
+
+
+// PARA EL USUARIO
+usersRouter.post("/", handlerPostUser); //3001/users/ CREO UN USUARIO
+usersRouter.post("/create/vehicle", handlerPostVehicle); // //3001/users/vehicle  CREAR VEHICULO
+
+usersRouter.get("/:sub/vehicles", handlerGetVehiclesIdUser); //3001/users/:idUser/allvehiculosUser
 usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
 usersRouter.get("/vehicle/search/:car_brand", handlerGetVehicleByBrand);
 
 usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
-usersRouter.put("/edit/:userId", handlerPutProfile)
+usersRouter.put("/edit/", handlerPutProfile)
 
 module.exports = usersRouter;
