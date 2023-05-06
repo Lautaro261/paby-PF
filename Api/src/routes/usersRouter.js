@@ -30,10 +30,6 @@ usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
 usersRouter.get("/vehicle/search/:car_brand", handlerGetVehicleByBrand);
 
 usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
-<<<<<<< HEAD
-usersRouter.put("/edit/:userId", handlerPutProfile)
-=======
 usersRouter.put("/edit/", handlerPutProfile)
->>>>>>> development
 
 module.exports = usersRouter;

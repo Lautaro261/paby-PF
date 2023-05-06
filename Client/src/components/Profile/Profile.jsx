@@ -7,7 +7,7 @@ import { getProfile } from "../../redux/features/users/usersSlice.js";
 const Profile = () => {
     const { user } = useAuth0();
     const profile = useSelector(state => state.userProfile);
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getProfile(user.sub));
@@ -21,19 +21,19 @@ const Profile = () => {
     return (
         <div>
             <div>
-            <img src={user.picture} alt={user.name}/>
-            <h2>{user.name}</h2>
-            <p>Email:{user.email}</p>
-            <p>Apodo: {profile?.profileById?.nickname}</p>
-            <p>Telefono: {profile?.profileById?.phone}</p>
-            <p>País: {profile?.profileById?.country}</p>
-            <p>Ciudad: {profile?.profileById?.city}</p>
-            <p>Dirección: {profile?.profileById?.address}</p>
-            <p>Vecindario: {profile?.profileById?.neighborhood}</p>
+                <img src={user.picture} alt={user.name} />
+                <h2>{user.name}</h2>
+                <p>Email:{user.email}</p>
+                <p>Apodo: {profile?.profileById?.nickname}</p>
+                <p>Telefono: {profile?.profileById?.phone}</p>
+                <p>País: {profile?.profileById?.country}</p>
+                <p>Ciudad: {profile?.profileById?.city}</p>
+                <p>Dirección: {profile?.profileById?.address}</p>
+                <p>Vecindario: {profile?.profileById?.neighborhood}</p>
             </div>
 
             <button onClick={goBack}>Volver</button>
-            
+
         </div>
     )
 }

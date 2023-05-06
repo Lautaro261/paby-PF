@@ -13,18 +13,6 @@ RUTA POST : http://localhost:3001/users/
 ---------------------------------------------------------------------------------
 EDITAR PERFIL 
 
-<<<<<<< HEAD
-RUTA PUT: http://localhost:3001/users/edit/google-oauth2|101433141181017123204
-
-{
-       "userId":"google-oauth2|101433141181017123204"
-       "nickname": "Lautaro261",
-       "phone": 388563611,
-       "country":"argentina",
-       "city":"salta",
-       "address":"jujuy148",
-       "neighborhood":"centro"
-=======
 RUTA PUT: http://localhost:3001/users/edit/
 
 {
@@ -35,7 +23,6 @@ RUTA PUT: http://localhost:3001/users/edit/
     "city":"salta",
     "address":"jujuy148",
     "neighborhood":"centro"
->>>>>>> development
 }
 ---------------------------------------------------------------------------------
 
@@ -52,34 +39,6 @@ RUTA GET : http://localhost:3001/users/
 ---------------------------------------------------------------------------------
 CREAR VEHICULO ASOCIADO AL USUARIO (necesita id del usuario ej."google-oauth2|101433141181017123204")
 
-<<<<<<< HEAD
-RUTA POST : http://localhost:3001/users/google-oauth2|101433141181017123204/vehicle
-
-{
- "license_plate_id": "8756984",
-  "license_plate": "8756984",
-  "vehicle_tipe": "skdjf",
-  "type_of_service": "policia",
-  "car_brand": "corvete",
-  "car_model": "corvete",
-  "car_model_year": "1990",
-  "car_color": "morado",
-  "photo": "mi coche"
-}
----------------------------------------------------------------------------------
-MODIFICAR VEHICULO (necesita id del VEHICULO ej. 
-
-RUTA PUT : http://localhost:3001/users/vehicle/8756984
-
-{
- "license_plate_id": "8756984",
-  "license_plate": "8756984",
-  "vehicle_tipe": "auto",
-  "type_of_service": "empresa",
-  "car_brand": "tesla",
-  "car_model": "s",
-  "car_model_year": "1999",
-=======
 RUTA POST : http://localhost:3001/users/create/vehicle
 
 {
@@ -106,7 +65,6 @@ RUTA PUT : http://localhost:3001/users/vehicle/0001112
   "car_brand": "tesla",
   "car_model": "s",
   "car_model_year": 1999,
->>>>>>> development
   "car_color": "turquesa",
   "photo": "mi coche"
 }
@@ -118,15 +76,9 @@ RUTA GET :  http://localhost:3001/users/google-oauth2|101433141181017123204/vehi
 (responde con un array)
 ---------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-TRAER VEHICULO POR ID (para el detail del vehiculo)(necesita id del VEHICULO ej."1234567")
-
-RUTA GET : http://localhost:3001/users/vehicle/1234567
-=======
 TRAER VEHICULO POR ID (para el detail del vehiculo)(necesita id del VEHICULO ej."0001112")
 
 RUTA GET : http://localhost:3001/users/vehicle/0001112
->>>>>>> development
 ---------------------------------------------------------------------------------
 TRAE TODOS LOS VEHICULOS DE TODOS LOS USUARIOS (para el admin)
 
