@@ -9,6 +9,7 @@ const handlerGetVehicleId = require("../handlers/handlerGetVehicleId.js");
 const handlerGetVehiclesIdUser = require("../handlers/handlerGetVehiclesIdUser");
 const handlerGetUserId = require("../handlers/handlerGetUserId");
 const handlerGetVehicleByBrand = require("../handlers/handlerGetVehicleByBrand");
+const handlerPutProfile = require('../handlers/handlerPutProfile');
 
 const usersRouter = Router(); // 3001/USERS/vehicle
 
@@ -26,5 +27,6 @@ usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
 usersRouter.get("/vehicle/search/:car_brand", handlerGetVehicleByBrand);
 
 usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
+usersRouter.put("/edit/:userId", handlerPutProfile)
 
 module.exports = usersRouter;

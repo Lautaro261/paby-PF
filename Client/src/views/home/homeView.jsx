@@ -4,7 +4,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import Dash from "../../components/dashboard/Dash";
 import Home from "../../components/Home/Home";
 import style from "./home.module.css"
-
 const HomeView=()=>{
     return(
     <div className={style.parent}>
