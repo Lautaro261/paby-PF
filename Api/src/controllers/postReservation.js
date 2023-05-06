@@ -73,13 +73,13 @@ const createReservation = async (
       city_name: user.city,
     },
     back_urls: {
-      success: "http://localhost:3000/success",
-      pending: "",
+      success: "http://localhost:5173/success-payment",
+      pending: "http://localhost:5173/pending-payment",
       failure: "",
     },
     auto_return: "approved",
     binary_mode: true,
-    // notification_url: "http://localhost:3000/notifications",
+    // notification_url: "http://localhost:5173/notifications",
   };
 
   //// Crear la preferencia de pago en Mercado Pago ////

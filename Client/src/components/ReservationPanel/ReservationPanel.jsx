@@ -1,6 +1,6 @@
 import styles from './ReservationPanel.module.css';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkingSpaceCard from '../ParkingSpaceCard/ParkingSpaceCard';
 import { setCurrentPage } from '../../redux/features/parkingSpacesPagination/parkingSpacesPaginationSlice';
@@ -9,6 +9,7 @@ import {
     setVehicleTypeFromFilter, 
     updateParkingSpaceStatusById 
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { setSelectedParkingSpaceId } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 
 const ReservationPanel = () => {
     const dispatch = useDispatch();
@@ -101,11 +102,15 @@ const ReservationPanel = () => {
         dispatch(setCurrentPage(currentPage + 1));
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(updateParkingSpaceStatusById(selectedParkingSpace));
+        dispatch(setSelectedParkingSpaceId(selectedParkingSpace.id));
         setIsParkingSpaceSelected(false);
         alert(`Se envió al backend a actualizar la zona No ${ selectedParkingSpace.zone_number } del ${ selectedLevel.name }`);
+        navigate(`/parking-space-reservation/${ selectedParkingSpace.id }`);
     };
 
     if (
@@ -118,7 +123,7 @@ const ReservationPanel = () => {
                 <div className={ styles.reservationPanel__error_message }>
                     Por favor, seleccione primero un parqueadero que cuente con pisos y zonas.
                 </div>
-                <Link to='/parking-lot-selection'>
+                <Link to={ '/parking-lot-selection' }>
                     <button>Ir a seleccionar parqueadero</button>
                 </Link>
             </div>
