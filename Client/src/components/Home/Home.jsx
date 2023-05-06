@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 
 import style from "./Home.module.css";
 import logo from '../../imgs/Logopaby.png'
-import { useAuth0 } from '@auth0/auth0-react'
-import JSONPretty from 'react-json-pretty'
 
 export default function Home() {
-
-    const { user, isAuthenticated } = useAuth0()
-
     return (
         <div className={style.Home}>
 
@@ -22,19 +17,6 @@ export default function Home() {
                 Únete a la comunidad de Paby y disfruta de la mejor experiencia de estacionamiento en línea. ¡Bienvenido a tu nueva forma de estacionar!</p>
 
             <Link to='/parking-lot-filter'><button>Reservar plaza</button></Link>
-
-            {
-                isAuthenticated && (
-                    <div>
-                        <img src={user.picture} alt={user.name} />
-                        <h2>{user.name}</h2>
-                        <p>{user.email}</p>
-                        <pre>{JSON.stringify(user)}</pre>
-                    </div>
-                )
-            }
-
-
         </div>
     )
 }

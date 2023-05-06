@@ -1,10 +1,10 @@
-import {useAuth0} from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const LoginButton= ()=>{
-    const { loginWithPopup, user } = useAuth0();
+const LoginButton = () => {
+    const { loginWithPopup } = useAuth0();
 
-    return(
-        <button onClick={()=>  loginWithPopup()}>Ingresar</button>
+    return (
+        <button onClick={() => loginWithPopup()}>Ingresar</button>
     )
 }
 
