@@ -13,13 +13,11 @@ const handlerCreateReservation = async (req, res) => {
   const {
     userId,
     zoneId,
-    paymentId,
+    vehicleLicensePlateId,
     admission_time,
     departure_time,
     instant_photo,
     full_reserve_value,
-    payment_date,
-    reservation_status,
     total_amount,
     comments,
   } = req.body;
@@ -28,13 +26,11 @@ const handlerCreateReservation = async (req, res) => {
     const newReservation = await createReservation(
       userId,
       zoneId,
-      paymentId,
+      vehicleLicensePlateId,
       admission_time,
       departure_time,
       instant_photo,
       full_reserve_value,
-      payment_date,
-      reservation_status,
       total_amount,
       comments
     );

@@ -4,7 +4,12 @@ const parkingRouter = require("./parkingRouter");
 const floorRouter = require("./floorRouter");
 const zonesRouter = require("./zoneRouter");
 const reservationRouter = require("./reservationRouter");
-const paymentRouter = require("./paymentRouter");
+
+//// !! ACTUALIZAR CONTROLLER PARA ACTUALIZAR ESTADOS !! ////
+const cron = require("node-cron");
+const { updateStatus } = require("../controllers/updateStatus");
+// Ejecutar la actualización de estado cada 5 minutos
+cron.schedule("*/5 * * * *", updateStatus);
 
 const routes = Router();
 
@@ -14,6 +19,5 @@ routes.use("/parking", parkingRouter);
 routes.use("/floors", floorRouter);
 routes.use("/zones", zonesRouter);
 routes.use("/reservation", reservationRouter);
-routes.use("/payment", paymentRouter);
 
 module.exports = routes;
