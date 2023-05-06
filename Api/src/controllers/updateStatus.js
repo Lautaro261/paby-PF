@@ -5,7 +5,7 @@ const { Reservation, Zone } = require("../db");
 const updateStatus = async () => {
   const reservations = await Reservation.findAll({
     where: {
-      payment_status: "success",
+      payment_status: "approved",
     },
   });
 
