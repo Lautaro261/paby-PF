@@ -7,6 +7,7 @@ import LotSelectionView from './views/LotSelection/LotSelectionView';
 import ReservationView from './views/ReservationView/ReservationView';
 import CarsView from './views/ListCars/carsView';
 import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
+import EditProfile from './components/EditProfile/EditProfile.jsx';
 
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/' element={ <Landing /> } />
           <Route path='/create-vehicle' element={ <CreateVehicle /> } />
           <Route path='/home' element={ <HomeView /> } /> 
+          <Route path='/profile' element={ <EditProfile />}/>
           <Route path='/parking-lot-filter' element={ <ParkingLotFilterView /> } />
           <Route path='/parking-lot-selection' element={ <LotSelectionView /> } />
           <Route path='/reservation-panel' element={ <ReservationView /> } /> 

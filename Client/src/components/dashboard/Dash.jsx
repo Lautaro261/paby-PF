@@ -9,7 +9,7 @@ const Dash = () => {
         
         <ul>
             <li><Link to="/parking-lot-selection" className={styles.textlink}>Hacer reserva</Link></li>
-            <li>Editar perfil</li>
+            <li><Link to="/profile">Editar perfil</Link></li>
             <li><Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link></li>
             <li>Métodos de pago</li>
             <li>Soporte  en linea</li>
