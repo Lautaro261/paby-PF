@@ -34,7 +34,6 @@ const sendDataToBackend = async () => {
         <li>{isAuthenticated ? <Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link>: false}</li>
         <li>Métodos de pago</li>
         <li>Soporte  en linea</li>
-        <li>Cerrar Sesion</li>
       </ul>
     </div>
   )

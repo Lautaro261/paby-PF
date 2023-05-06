@@ -6,7 +6,7 @@ import { getProfile } from "../../redux/features/users/usersSlice.js";
 
 const Profile = () => {
     const { user } = useAuth0();
-    const profile = useSelector(state => state.userProfile);
+    const profile = useSelector(state => state.users.userProfile);
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,9 +21,9 @@ const Profile = () => {
     return (
         <div>
             <div>
-                <img src={user.picture} alt={user.name} />
-                <h2>{user.name}</h2>
-                <p>Email:{user.email}</p>
+                <img src={profile?.userById?.photo} alt={profile?.userById?.name} />
+                <h2>{profile?.userById?.name}</h2>
+                <p>Email:{profile?.userById?.email}</p>
                 <p>Apodo: {profile?.profileById?.nickname}</p>
                 <p>Telefono: {profile?.profileById?.phone}</p>
                 <p>País: {profile?.profileById?.country}</p>
