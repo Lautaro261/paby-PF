@@ -4,7 +4,7 @@ const { notification } = require("../controllers/postNotificationMp");
 // En el controlador handlerNotification
 const handlerNotification = async (req, res) => {
   try {
-    const updateStatusPayment = await notification();
+    const updateStatusPayment = await notification(req, res);
     res.status(200).json(updateStatusPayment);
   } catch (error) {
     console.error(error);
