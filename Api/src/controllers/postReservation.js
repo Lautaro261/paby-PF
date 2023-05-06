@@ -104,7 +104,7 @@ const createReservation = async (
     },
     auto_return: "approved",
     binary_mode: true,
-    // notification_url: "http://localhost:3000/notifications",
+    notification_url: "http://localhost:3001/reservation/notification",
   };
 
   //// Crear la preferencia de pago en Mercado Pago ////

@@ -1,5 +1,10 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+// Hora y fecha de Colombia
+const moment = require("moment-timezone");
+
+// Configurar la zona horaria de Colombia (Bogotá)
+moment.tz.setDefault("America/Bogota");
 
 conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
