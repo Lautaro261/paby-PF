@@ -27,6 +27,6 @@ usersRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
 usersRouter.get("/vehicle/search/:car_brand", handlerGetVehicleByBrand);
 
 usersRouter.put("/vehicle/:license_plate_id", handlerPutVehicle);
-usersRouter.put("/edit/:userId", handlerPutProfile)
+usersRouter.put("/edit/", handlerPutProfile)
 
 module.exports = usersRouter;
