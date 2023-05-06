@@ -12,29 +12,25 @@ mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 const handlerCreateReservation = async (req, res) => {
   const {
     userId,
-    paymentId,
+    zoneId,
+    vehicleLicensePlateId,
     admission_time,
     departure_time,
     instant_photo,
     full_reserve_value,
-    payment_date,
-    reservation_status,
     total_amount,
     comments,
   } = req.body;
-  const { zoneId } = req.params;
 
   try {
     const newReservation = await createReservation(
       userId,
       zoneId,
-      paymentId,
+      vehicleLicensePlateId,
       admission_time,
       departure_time,
       instant_photo,
       full_reserve_value,
-      payment_date,
-      reservation_status,
       total_amount,
       comments
     );

@@ -8,7 +8,7 @@ const Dash = () => {
     <div className={styles.panellateral}>
         
         <ul>
-            <li><Link to="/parking-lot-selection" className={styles.textlink}>Hacer reserva</Link></li>
+            <li><Link to="/parking-lot-filter" className={styles.textlink}>Hacer reserva</Link></li>
             <li>Editar perfil</li>
             <li><Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link></li>
             <li>Métodos de pago</li>

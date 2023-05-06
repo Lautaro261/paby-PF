@@ -1,0 +1,10 @@
+.failurePayment__container {
+    margin: 40px;
+    text-align: center;
+}
+
+.failurePayment__notification {
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
+}

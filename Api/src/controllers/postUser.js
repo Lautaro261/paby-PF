@@ -1,34 +1,34 @@
 const { User } = require("../db");
+const { Profile } = require("../db");
 
-const postUser = async (
-  name,
-  identificacion,
-  last_name,
-  email,
-  password,
-  phone,
-  country,
-  city,
-  address,
-  neighborhood,
-  photo
-) => {
- const newUser= await User.create({
+const postUser = async (sub, name, email, photo) => {
+  /*  const newObjUser = {
+    sub,
     name,
-    identificacion,
-    last_name,
     email,
-    password,
-    phone,
-    country,
-    city,
-    address,
-    neighborhood,
     photo,
+} */
+
+  const newUser = await User.findOrCreate({
+    //ENCUENTRA O CREA USER
+    where: {
+      sub: sub,
+    },
+    defaults: {
+      sub: sub,
+      name: name,
+      email: email,
+      photo: photo,
+    },
   });
 
-  return newUser;
-};
+  const findProfile = await Profile.findOne({ where: { userSub: sub } }); // BUSCA UN PERFIL CON EL SUB
 
+  if (!findProfile) {
+    await Profile.create({ userSub: sub });
+  }
+
+  return newUser; ///FALTAN COSAS POR HACER
+};
 
 module.exports = postUser;

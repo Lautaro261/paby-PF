@@ -11,11 +11,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       admission_time: {
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
         allowNull: false,
       },
       departure_time: {
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
         allowNull: false,
       },
       instant_photo: {
@@ -31,9 +31,20 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      reservation_status: {
-        type: DataTypes.STRING,
+      payment_status: {
+        type: DataTypes.ENUM("pending", "failure", "success"),
+        defaultValue: "pending",
         allowNull: false,
+      },
+      reservation_status: {
+        type: DataTypes.ENUM(
+          "En curso",
+          "Programada",
+          "Finalizada",
+          "En verificación"
+        ),
+        defaultValue: "En verificación",
+        allowNull: true,
       },
       total_amount: {
         type: DataTypes.FLOAT,
@@ -43,11 +54,23 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      payment_link: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
       preference_id: {
         type: DataTypes.STRING,
         allowNull: true,
       },
     },
-    { timestamps: false }
+    {
+      indexes: [
+        {
+          unique: true,
+          fields: ["zoneId", "admission_time", "departure_time"],
+        },
+      ],
+      timestamps: false,
+    }
   );
 };
