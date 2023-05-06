@@ -1,0 +1,87 @@
+---------------------------------------------------------------------------------
+CREAR USUARIO 
+
+RUTA POST : http://localhost:3001/users/
+
+{
+	"sub":"google-oauth2|101433141181017123204",
+	"name":"Nahuel Torres",
+	"email":"nahuelygoofy@gmail.com",
+	"photo":"https://lh3.googleusercontent.com/a/AGNmyxayNzu0MH9MZQghPdWCZfhucTqtp0Q4sVyRJYXY=s96-c"
+}
+
+---------------------------------------------------------------------------------
+EDITAR PERFIL 
+
+RUTA PUT: http://localhost:3001/users/edit/google-oauth2|101433141181017123204
+
+{
+       "userId":"google-oauth2|101433141181017123204"
+       "nickname": "Lautaro261",
+       "phone": 388563611,
+       "country":"argentina",
+       "city":"salta",
+       "address":"jujuy148",
+       "neighborhood":"centro"
+}
+---------------------------------------------------------------------------------
+
+
+TRAER USUARIO Y PERFIL POR ID
+
+RUTA GET : http://localhost:3001/users/google-oauth2|101433141181017123204
+
+---------------------------------------------------------------------------------
+TRAER TODOS LOS USUARIOS  (responde un array)
+
+RUTA GET : http://localhost:3001/users/
+
+---------------------------------------------------------------------------------
+CREAR VEHICULO ASOCIADO AL USUARIO (necesita id del usuario ej."google-oauth2|101433141181017123204")
+
+RUTA POST : http://localhost:3001/users/google-oauth2|101433141181017123204/vehicle
+
+{
+ "license_plate_id": "8756984",
+  "license_plate": "8756984",
+  "vehicle_tipe": "skdjf",
+  "type_of_service": "policia",
+  "car_brand": "corvete",
+  "car_model": "corvete",
+  "car_model_year": "1990",
+  "car_color": "morado",
+  "photo": "mi coche"
+}
+---------------------------------------------------------------------------------
+MODIFICAR VEHICULO (necesita id del VEHICULO ej. 
+
+RUTA PUT : http://localhost:3001/users/vehicle/8756984
+
+{
+ "license_plate_id": "8756984",
+  "license_plate": "8756984",
+  "vehicle_tipe": "auto",
+  "type_of_service": "empresa",
+  "car_brand": "tesla",
+  "car_model": "s",
+  "car_model_year": "1999",
+  "car_color": "turquesa",
+  "photo": "mi coche"
+}
+---------------------------------------------------------------------------------
+TRAER VEHICULOS DE UN USUARIO (necesita id del usuario ej."google-oauth2|101433141181017123204")
+
+RUTA GET :  http://localhost:3001/users/google-oauth2|101433141181017123204/vehicles
+
+(responde con un array)
+---------------------------------------------------------------------------------
+
+TRAER VEHICULO POR ID (para el detail del vehiculo)(necesita id del VEHICULO ej."1234567")
+
+RUTA GET : http://localhost:3001/users/vehicle/1234567
+---------------------------------------------------------------------------------
+TRAE TODOS LOS VEHICULOS DE TODOS LOS USUARIOS (para el admin)
+
+RUTA GET : http://localhost:3001/users/vehicle 
+
+(responde con un objeto con una sola propiedad que es un array)
