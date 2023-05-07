@@ -18,11 +18,11 @@ export default function Home() {
         if(!isProfileComplete) {
             setShowProfileCompleteModal(true);
         }
-    },[]);
+    },[userSub]);
 
-    function handleProfileComplete(){
+    const handleCloseModal= () => {
         localStorage.setItem(`isProfileComplete_${userSub}`, true);
-        setShowProfileCompleteModal(false);
+        setShowProfileCompleteModal(false)
     }
 
 
@@ -31,7 +31,7 @@ export default function Home() {
 
             <h1>Bienvenidos a <img src={logo} alt='logoPaby' className={style.logoPaby} /></h1>
             {isAuthenticated &&  showProfileCompleteModal && (
-                <ProfileCompleteModal onClose={()=> setShowProfileCompleteModal(false)}/>
+                <ProfileCompleteModal onClose={handleCloseModal}/>
             )}
             
             <p className={style.description}> Paby es la solución perfecta para tus necesidades de estacionamiento. Con nuestra aplicación web, puedes hacer reservas en cualquiera de nuestras sucursales de parqueaderos con tan solo unos clics. Olvídate de preocuparte por encontrar un lugar donde estacionar, con Paby tienes acceso a una red de parqueaderos confiables y seguros en todo momento.
