@@ -43,7 +43,7 @@ RUTA POST : http://localhost:3001/users/create/vehicle
 
 {
 	"sub":"google-oauth2|484985665648988481515",
- "license_plate_id": "0001112",
+  "license_plate_id": "0001112",
   "license_plate": "0001112",
   "vehicle_tipe": "Automovil",
   "type_of_service": "Particular",
