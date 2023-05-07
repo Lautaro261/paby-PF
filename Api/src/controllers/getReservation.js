@@ -13,7 +13,7 @@ const getAllReservations = async () => {
       "payment_status",
     ],
     include: [
-      { model: User, attributes: ["id", "name", "email", "phone"] },
+      { model: User, attributes: ["sub", "name", "email"] },
       { model: Zone, attributes: ["id", "zone_number"] },
       {
         model: Vehicle,
@@ -31,7 +31,7 @@ const getAllReservations = async () => {
 const getReservationsByUserId = async (id) => {
   // Verificar si el usuario existe
   const user = await User.findByPk(id, {
-    attributes: ["id", "name", "email", "phone"],
+    attributes: ["sub", "name", "email"],
   });
 
   if (!user) {
@@ -40,7 +40,7 @@ const getReservationsByUserId = async (id) => {
 
   // Buscar todas las reservaciones asociadas al usuario
   const reservations = await Reservation.findAll({
-    where: { userId: id },
+    where: { userSub: id },
     attributes: [
       "id",
       "admission_time",

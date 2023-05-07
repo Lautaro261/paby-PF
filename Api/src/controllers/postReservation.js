@@ -11,7 +11,7 @@ mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 // Controller para crear reservaciones
 const createReservation = async (
-  userId,
+  userSub,
   zoneId,
   vehicleLicensePlateId,
   admission_time,
@@ -22,7 +22,11 @@ const createReservation = async (
   comments
 ) => {
   // Verificar si el usuario existe
-  const user = await User.findByPk(userId);
+  const user = await User.findOne({
+    where: {
+      sub: userSub,
+    },
+  });
   if (!user) {
     throw new Error("El usuario no existe");
   }
@@ -81,7 +85,7 @@ const createReservation = async (
   const preference = {
     items: [
       {
-        id: `${userId}-${zoneId}`,
+        id: `${userSub}-${zoneId}`,
         category_id: "Transporte",
         title: `Reservación de la zona # ${zone.zone_number} del Cliente ${user.name} con el vehiculo ${vehicle.car_brand}`,
         description: `Reservación de la zona ${zone.zone_number} desde ${admission_time} hasta ${departure_time}`,
@@ -98,13 +102,13 @@ const createReservation = async (
       city_name: user.city,
     },
     back_urls: {
-      success: "http://localhost:5173/success-payment",
-      pending: "http://localhost:5173/pending-payment",
-      failure: "http://localhost:5173/failure-payment",
+      success: "http://localhost:5173/home",
+      pending: "",
+      failure: "",
     },
     auto_return: "approved",
     binary_mode: true,
-    notification_url: "http://localhost:3001/reservation/notification",
+    // notification_url: "http://localhost:3001/reservation/notification",
   };
 
   //// Crear la preferencia de pago en Mercado Pago ////
@@ -113,7 +117,7 @@ const createReservation = async (
 
   // Crear la reservación
   const newReservation = await Reservation.create({
-    userId,
+    userSub,
     zoneId,
     vehicleLicensePlateId,
     admission_time,
