@@ -27,7 +27,6 @@ const sendDataToBackend = async () => {
 }
   return (
     <div className={styles.panellateral}>
-
       <ul>
         <li><Link to="/parking-lot-filter" className={styles.textlink}>Hacer reserva</Link></li>
         <li>{isAuthenticated ? <Link to='/profile'><button onClick={ ()=> sendDataToBackend()}>Perfil</button></Link> : false}</li>

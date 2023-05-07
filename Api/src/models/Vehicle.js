@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       car_model_year: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       car_color: {

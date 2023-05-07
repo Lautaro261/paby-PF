@@ -18,7 +18,7 @@ function Landing() {
             <p>Aparcar nunca fue tan sencillo</p>
             <div className={style.Link}>
             <Link to="/home" className={style.linktext}>Ver Catálogo</Link>
-            </div>        
+            </div>   
           </section>
         </main>
         <div className={style.footer}>
