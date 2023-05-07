@@ -50,25 +50,25 @@ export default function EditProfile({ profile }) {
     <>
     <h1>Bienvenido {user.name}</h1>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="nickname">Nickname</label>
+      <label htmlFor="nickname">Nickname:</label>
       <input type="text" id="nickname" value={nickname || ''} onChange={(event) => setNickname(event.target.value)} />
 
-      <label htmlFor="phone">Phone</label>
+      <label htmlFor="phone">Telefono:</label>
       <input type="text" id="phone" value={phone || ''} onChange={(event) => setPhone(event.target.value)} />
 
-      <label htmlFor="country">Country</label>
+      <label htmlFor="country">Pais</label>
       <input type="text" id="country" value={country || ''} onChange={(event) => setCountry(event.target.value)} />
 
-      <label htmlFor="city">City</label>
+      <label htmlFor="city">Ciudad</label>
       <input type="text" id="city" value={city || ''} onChange={(event) => setCity(event.target.value)} />
 
-      <label htmlFor="address">Address</label>
+      <label htmlFor="address">Direccion:</label>
       <input type="text" id="address" value={address || ''} onChange={(event) => setAddress(event.target.value)} />
 
-      <label htmlFor="neighborhood">Neighborhood</label>
+      <label htmlFor="neighborhood">Vecindario:</label>
       <input type="text" id="neighborhood" value={neighborhood || ''} onChange={(event) => setNeighborhood(event.target.value)} />
 
-      <button type="submit">Save</button>
+      <button type="submit">Guardar Cambios</button>
     </form>
     </>
   );
