@@ -104,8 +104,8 @@ export default function CreateVehicle() {
                     <option value='default'>1 or 2 types</option> */}
                     
               <option value="default">Seleccionar</option>
-              <option value="Auto">Auto</option>
-              <option value="Moto">Moto</option>
+              <option value="Automovil">Automovil</option>
+              <option value="Motocicleta">Motocicleta</option>
             </Field>
             <ErrorMessage name="vehicle_tipe" className="error-message"/>
           </div>
@@ -114,8 +114,8 @@ export default function CreateVehicle() {
             <label htmlFor="type_of_service">Tipo de servicio</label>
             <Field as="select" id="type_of_service" name="type_of_service">
               <option value="default">Seleccionar</option>
-              <option value="particular">Particular</option>
-              <option value="publico">Público</option>
+              <option value="Particular">Particular</option>
+              <option value="Publico">Público</option>
             </Field>
             <ErrorMessage name="type_of_service" className="error-message"/>
           </div>
