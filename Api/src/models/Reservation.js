@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
       },
       payment_status: {
-        type: DataTypes.ENUM("pending", "failure", "success"),
+        type: DataTypes.ENUM("pending", "rejected", "approved"),
         defaultValue: "pending",
         allowNull: false,
       },
@@ -57,6 +57,10 @@ module.exports = (sequelize) => {
       payment_link: {
         type: DataTypes.TEXT,
         allowNull: false,
+      },
+      payment_transaction_id: {
+        type: DataTypes.TEXT,
+        allowNull: true,
       },
       preference_id: {
         type: DataTypes.STRING,
