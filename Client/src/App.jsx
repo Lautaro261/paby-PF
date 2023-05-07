@@ -43,7 +43,7 @@ const App = () => {
           <Route path='/vehicles' element={<CarsView/>} /> 
           <Route path="/vehicle/:license_plate_id" exact element={<VehicleDetails />} />
           <Route path='/about-us' element={ <AboutUs /> } /> 
-          <Route path='/nav' element={ <Navbar /> } />
+          <Route path='/nav' element={ <ReservationsHistory /> } />
       </Routes>
   );
 };
