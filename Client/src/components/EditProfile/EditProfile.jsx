@@ -13,10 +13,10 @@ export default function EditProfile({ profile }) {
   if (isLoading) {
     return <div>Cargando...</div>;
   };
-
+  
   async function handleSubmit(event) {
   event.preventDefault();
-  console.log(user.sub);
+  //console.log(user.sub);
   const updatedProfile = {
     sub: user.sub,
     nickname,
