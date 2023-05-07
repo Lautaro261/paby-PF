@@ -6,28 +6,28 @@ import socialmedia from "./socialmedia.png"
 const Footer=()=>{
     return(
         <div className={style.padre}>
-            <div class={style.flexcontainer}>
-                <img src={Logopaby} alt="logo" class={style.flexitems}/>
-                 <div class={style.flexitems}>SEGUINOS</div>
-                 <img src={socialmedia} alt="logo" class={style.flexitems}/>
+            <div className={style.flexcontainer}>
+                <img src={Logopaby} alt="logo" className={style.flexitems}/>
+                 <div className={style.flexitems}>SEGUINOS</div>
+                 <img src={socialmedia} alt="logo" className={style.flexitems}/>
             </div>
 
-            <div class={style.flexcontainer}>
-                <div class={style.flexitems}>USUARIOS</div>
-                 <div class={style.flexitems}>INGRESAR</div>
-                <div class={style.flexitems}>REGISTRARSE</div>
+            <div className={style.flexcontainer}>
+                <div className={style.flexitems}>USUARIOS</div>
+                 <div className={style.flexitems}>INGRESAR</div>
+                <div className={style.flexitems}>REGISTRARSE</div>
             </div>
 
-            <div class={style.flexcontainer}>
-            <div class={style.flexitems}>USUARIOS</div>
-                 <div class={style.flexitems}>INGRESAR</div>
-                <div class={style.flexitems}>REGISTRARSE</div>
+            <div className={style.flexcontainer}>
+            <div className={style.flexitems}>USUARIOS</div>
+                 <div className={style.flexitems}>INGRESAR</div>
+                <div className={style.flexitems}>REGISTRARSE</div>
             </div>
 
-            <div class={style.flexcontainer}>
-            <div class={style.flexitems}>Team PABY</div>
-                 <div class={style.flexitems}>Contactanos</div>
-                <div class={style.flexitems}>Acerca de nosotros</div>
+            <div className={style.flexcontainer}>
+            <div className={style.flexitems}>Team PABY</div>
+                 <div className={style.flexitems}>Contactanos</div>
+                <div className={style.flexitems}>Acerca de nosotros</div>
             </div>
 
 
