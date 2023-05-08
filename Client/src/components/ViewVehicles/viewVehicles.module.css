@@ -13,6 +13,12 @@ body {
 
 .container {
   background-color: #f7f7f7;
+  height: calc(100vh - 80px); 
+  width: 50%;
+  margin: auto;  
+  /* display: flex;  */
+  /* justify-content: center; */
+  /* align-items: center;  */
 }
 
 .heading {
@@ -24,6 +30,7 @@ body {
   color: var(--accent-color);
   text-shadow: 2px 2px var(--light-color);
   font-family: 'Rubik', sans-serif;
+  padding: 15px
 }
 
 .table {
@@ -40,4 +47,10 @@ body {
 
 a {
   color: #0077c2;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

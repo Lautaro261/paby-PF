@@ -6,20 +6,29 @@ import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 
 const Profile = () => {
-    const { user } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
     const profile = useSelector(state => state.users.userProfile);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
     const [isProfileComplete, setIsProfileComplete] = useState(false);
     const userSub= user.sub
 
+    if(isLoading){
+        return <div>Cargando... </div>
+    }
     useEffect(() => {
-        dispatch(getProfile(user.sub));
-    }, [dispatch, user.sub]);
+        dispatch(getProfile(userSub));
+    }, [dispatch, userSub, isAuthenticated]);
 
     const goBack = () => {
         window.history.back();
     }
-
+    useEffect(()=>{
+        const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`);
+        if(!isProfileComplete && isAuthenticated && profile?.profileById){
+            setShowProfileCompleteModal(true);
+        }
+    },[isAuthenticated, userSub, profile]);
     useEffect(() => {
         if (profile?.profileById?.phone &&
             profile?.profileById?.country &&
@@ -28,9 +37,8 @@ const Profile = () => {
             profile?.profileById?.neighborhood) {
             localStorage.setItem(`isProfileComplete_${userSub}`, true);
             setIsProfileComplete(true);
-
         }
-    }, [profile]);
+    }, [profile, userSub]);
 
     return (
         <div className={styles.continerPrincial}>
@@ -48,6 +56,11 @@ const Profile = () => {
 
             <Link className={styles.editBoton} to="/editprofile">Editar Perfil</Link>
             <button className={styles.Volver} onClick={goBack}>Volver</button>
+            
+                        {showProfileCompleteModal && (
+                <ProfileCompleteModal onClose={ () => setShowProfileCompleteModal(false)}/>
+            )}
+            
 
         </div>
     )
