@@ -89,10 +89,12 @@ export default function ViewVehicle() {
             ))}
           </tbody>
         </table>
+        <div className={styles.buttons}>
         <button onClick={handleResetTable}>Actualizar tabla</button>
-        <Link className={styles.link} to="/create-vehicle">
+        <Link to="/create-vehicle">
           Crear Vehículo
         </Link>
+        </div>
       </div>
     </>
   );

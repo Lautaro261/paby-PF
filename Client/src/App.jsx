@@ -13,12 +13,12 @@ import ReservationsHistory from './components/ReservationsHistory/ReservationsHi
 import CarsView from './views/ListCars/carsView';
 import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
 import EditProfile from './components/EditProfile/EditProfile.jsx';
-import Profile from './components/Profile/Profile';
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
 //import Home from "./components/Home/Home.jsx"
 
 import axios from 'axios'
+import ProfileView from './views/Profile/ProfileView';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 //axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
@@ -45,7 +45,7 @@ const App = () => {
       <Route path='/vehicle/:license_plate_id' element={<VehicleDetails />} />
       <Route path='/about-us' element={<AboutUs />} />
       <Route path='/nav' element={<Navbar />} />
-      <Route path='/profile' element={<Profile />} />
+      <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfile />} />
     </Routes>
   );
