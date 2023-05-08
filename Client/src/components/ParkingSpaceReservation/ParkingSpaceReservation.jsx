@@ -1,6 +1,6 @@
 import styles from './ParkingSpaceReservation.module.css';
 import { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import { postParkingSpaceReservation } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
@@ -21,15 +21,15 @@ const ParkingSpaceReservation = () => {
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
     const parkingLot = useSelector(state => state.parkingSpaces.parkingLot);
-    const { userSub } = useParams();
+    const userSub = useSelector(state => state.parkingSpacesReservation.currentUserId); 
     const selectedParkingSpaceId = useSelector(state => state.parkingSpacesReservation.selectedParkingSpaceId);
     const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
     const vehiclePhotoForReservationURL = useSelector(state => state.parkingSpacesReservation.vehiclePhotoForReservationURL);
 
-    if (Object.keys(parkingLot).length === 0 || allVehicles.length === 0) {
+    if (allVehicles.length === 0) {
         return (
             <div className={ styles.parkingSpaceReservation_error }>
-                <div>No seleccionó parqueadero y/o no hay vehiculos asociados al usuario</div>
+                <div>No hay vehiculos asociados al usuario</div>
                 <Link to='/home'>
                     <button>Volver a Home</button>
                 </Link>
@@ -38,11 +38,13 @@ const ParkingSpaceReservation = () => {
     }
 
     useEffect(() => {
-        setInputData({
-            ...inputData,
-            userSub,
-            zoneId: selectedParkingSpaceId
-        });
+        if (userSub && selectedParkingSpaceId) {
+            setInputData({
+                ...inputData,
+                userSub,
+                zoneId: selectedParkingSpaceId
+            });
+        }
     }, [userSub, selectedParkingSpaceId]);
 
     useEffect(() => {
