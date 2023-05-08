@@ -7,6 +7,7 @@
   text-rendering: optimizeLegibility;
   background-color: #FFFCF7;
   color: #738290;
+  height: calc(100vh - 80px); 
 }
 p{
   font-family: 'Ysabeau', serif;
