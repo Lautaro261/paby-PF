@@ -1,20 +1,19 @@
 import styles from './ParkingSpaceReservation.module.css';
 import { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import { postParkingSpaceReservation } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 
 const ParkingSpaceReservation = () => {
     const [inputData, setInputData] = useState({
-        userId: '22da7b7d-0684-4783-aab9-d48e6a623d5f',
+        userSub: '',
         zoneId: '',
-        paymentId: '1',
+        vehicleLicensePlateId: '',
         admission_time: '',
         departure_time: '',
         full_reserve_value: '',
-        reservation_status: "Pendiente",
-        total_amount: '150000',
+        total_amount: '',
         instant_photo: '',
         comments: ''
     });
@@ -22,14 +21,15 @@ const ParkingSpaceReservation = () => {
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
     const parkingLot = useSelector(state => state.parkingSpaces.parkingLot);
-    const { selectedParkingSpaceId } = useParams();
+    const userSub = useSelector(state => state.parkingSpacesReservation.currentUserId); 
+    const selectedParkingSpaceId = useSelector(state => state.parkingSpacesReservation.selectedParkingSpaceId);
     const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
     const vehiclePhotoForReservationURL = useSelector(state => state.parkingSpacesReservation.vehiclePhotoForReservationURL);
 
-    if (Object.keys(parkingLot).length === 0 || allVehicles.length === 0) {
+    if (allVehicles.length === 0) {
         return (
             <div className={ styles.parkingSpaceReservation_error }>
-                <div>No seleccionó parqueadero y/o no hay vehiculos asociados al usuario</div>
+                <div>No hay vehiculos asociados al usuario</div>
                 <Link to='/home'>
                     <button>Volver a Home</button>
                 </Link>
@@ -37,13 +37,15 @@ const ParkingSpaceReservation = () => {
         );
     }
 
-    console.log(selectedParkingSpaceId);
     useEffect(() => {
-        setInputData({
-            ...inputData,
-            zoneId: selectedParkingSpaceId
-        });
-    }, [selectedParkingSpaceId]);
+        if (userSub && selectedParkingSpaceId) {
+            setInputData({
+                ...inputData,
+                userSub,
+                zoneId: selectedParkingSpaceId
+            });
+        }
+    }, [userSub, selectedParkingSpaceId]);
 
     useEffect(() => {
         if (vehiclePhotoForReservationURL.length > 0) {
@@ -56,7 +58,7 @@ const ParkingSpaceReservation = () => {
 
     let hours = [];
     for (let i = 0; i < 24; i++) {
-        hours.push(i);
+        hours.push(`${ i }:00`);
     }
 
     const handleChange = (e) => {
@@ -75,7 +77,8 @@ const ParkingSpaceReservation = () => {
             const full_reserve_value = parkingTime * fee
             setInputData({
                 ...inputData,
-                full_reserve_value
+                full_reserve_value,
+                total_amount: full_reserve_value
             });
             setIsPriceShown(true);
         }
@@ -94,9 +97,8 @@ const ParkingSpaceReservation = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postParkingSpaceReservation(inputData));
-        console.log(inputData);
         navigate('/parking-space-payment');
-        document.getElementById('vehicleId').value = '';
+        document.getElementById('vehicleLicensePlateId').value = '';
         document.getElementById('admission_time').value = '';
         document.getElementById('departure_time').value = '';
         document.getElementById('comments').value = '';
@@ -110,7 +112,7 @@ const ParkingSpaceReservation = () => {
                 <label htmlFor='vehiculeId'>
                     Vehículo
                 </label>
-                <select id='vehicleId' name='vehicleId' onChange={ handleChange } defaultValue=''>
+                <select id='vehicleLicensePlateId' name='vehicleLicensePlateId' onChange={ handleChange } defaultValue=''>
                     <option value='' disabled>Marca de vehículo</option>
                     { allVehicles.map(vehicle => (
                         <option 
@@ -129,7 +131,7 @@ const ParkingSpaceReservation = () => {
                 <select id='admission_time' name='admission_time' onChange={ handleChange } defaultValue=''>
                     <option value='' disabled>Seleccione su hora de entrada</option>
                     { hours.map(hour => (
-                        <option key={ hour } value={ hour }>{ hour }:00</option>
+                        <option key={ hour } value={ hour }>{ hour }</option>
                     )) }
                 </select>
             </div>
@@ -140,7 +142,7 @@ const ParkingSpaceReservation = () => {
                 <select id='departure_time' name='departure_time' onChange={ handleChange } defaultValue=''>
                     <option value='' disabled>Seleccione su hora de salida</option>
                     { hours.map(hour => (
-                        <option key={ hour } value={ hour }>{ hour }:00</option>
+                        <option key={ hour } value={ hour }>{ hour }</option>
                     )) }
                 </select>
                 { parkingTime < 1 ?

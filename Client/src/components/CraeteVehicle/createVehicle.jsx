@@ -50,11 +50,12 @@ export default function CreateVehicle() {
     const handleSubmit = async (values, { resetForm }) => {
 
       //const licensePlate = values.license_plate;
+      const placa = values.license_plate;
       const requestData = {
 
         sub: user.sub,
-        license_plate_id: values.license_plate,
-        license_plate: values.license_plate,
+        license_plate_id: placa,
+        license_plate: placa,
         vehicle_tipe: values.vehicle_tipe,
         type_of_service: values.type_of_service,
         car_brand: values.car_brand,
@@ -66,15 +67,13 @@ export default function CreateVehicle() {
       
 
       try {
-        console.log(requestData);
+        //console.log(requestData);
         const response = await axios.post('http://localhost:3001/users/create/vehicle',requestData, {
         
           headers: {
             'Content-Type': 'application/json'
           }
         });
-      console.log(response.data);
-      //console.log(JSON.stringify(requestData));
       alert("¡El vehículo ha sido creado!");
 
       resetForm();

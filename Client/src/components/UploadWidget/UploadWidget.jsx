@@ -15,7 +15,6 @@ const UploadWidget = () => {
         }, (error, result) => {
             if (!error && result && result.event === 'success') {
                 dispatch(setVehiclePhotoForReservationURL(result.info.secure_url));
-                console.log('Uploaded image:', result.info.secure_url);
             }
         });
     }, [widget, dispatch]);

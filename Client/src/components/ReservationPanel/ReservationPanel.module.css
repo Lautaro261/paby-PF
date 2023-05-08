@@ -1,5 +1,5 @@
 .reservationPanel__pageContainer {
-	height: 50vh;
+	margin: 0 auto;
 }
 
 .reservationPanel__formContainer {
@@ -63,11 +63,17 @@
 	align-items: center;
 }
 
+.reservationPanel__filter_label {
+	text-align: center;
+}
+
 .reservationPanel__levelsContainer {
+	margin: 5px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	font-weight: bold;
 }
 
 .reservationPanel__levels {
@@ -101,16 +107,25 @@
 .reservationPanel__pagination__page {
 	padding: 10px;
 	align-self: center;
-	font-weight: 500;
+	font-weight: bold;
+}
+
+.reservationPanel__price {
+	font-weight: bold;
 }
 
 .reservationPanel__regulation {
 	text-align: center;
+	font-size: small;
 }
 
 .reservationPanel__notification {
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
+	background-color: rgb(34, 162, 212);
 }
 
 .reservationPanel__error {
