@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState={
-    historial:[],
+    historial:["elementos"],
     error:null,
     status:"idle"
 }
