@@ -1,12 +1,12 @@
 .successPayment__container {
-    margin: 40px;
+    margin: 40px 100px;
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px;
-    display: inline-block;
 }
 
 .successPayment__notification {
+    text-align: center;
     font-size: 40px;
     font-weight: bold;
     color: green;
@@ -20,6 +20,7 @@
 
 .successPayment__item_description {
     display: flex;
+    justify-content: center;
     margin: 10px;
     gap: 5px
 }

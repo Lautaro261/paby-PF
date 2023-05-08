@@ -29,6 +29,7 @@ axios.defaults.baseURL = 'http://localhost:3001'
 
 const App = () => {
   return (
+
     <Routes>
       <Route path='/' element={<Landing />} />
       <Route path='/create-vehicle' element={<CreateVehicle />} />
@@ -48,6 +49,7 @@ const App = () => {
       <Route path='/profile' element={<Profile />} />
       <Route path='/editprofile' element={<EditProfile />} />
     </Routes>
+
   );
 };
 

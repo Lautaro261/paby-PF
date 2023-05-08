@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const apiUrl = 'http://localhost:3001';
+
 const initialState = {
     allVehicles: [],
     searchedBrandName: [],
@@ -10,11 +12,11 @@ const initialState = {
 
 export const getAllVehicles = createAsyncThunk (
     'vehicleBrand/getAllVehicles',
-    async () => {
+    async (userId) => {
         try {
-            const response = await axios.get('/users/vehicle');
-            console.log(response.data && response.data.vehicleDB);
-            return response.data && response.data.vehicleDB;
+            const response = await axios.get(`${ apiUrl }/users/${ userId }/vehicles`);
+            console.log(response.data);
+            return response.data;
         } catch (error) {
             console.log(error);
         }
@@ -25,7 +27,7 @@ export const searchVehicleBrandByName = createAsyncThunk(
     'vehicleBrand/searchVehicleBrandByName',
     async (car_brand) => {
         try {
-            const response = await axios.get(`/users/vehicle/search/${car_brand}`);
+            const response = await axios.get(`${ apiUrl }/users/vehicle/search/${car_brand}`);
             console.log(response.data);
             return response.data;
         } catch (error) {
