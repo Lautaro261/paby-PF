@@ -16,7 +16,7 @@ const Dash = () => {
 
   const sendDataToBackend = async () => {
     try {
-      const response = await axios.post(`http://localhost:3001/users`, data , {
+      const response = await axios.post(`/users`, data , {
         headers: {
           'Content-Type': 'application/json'
         }

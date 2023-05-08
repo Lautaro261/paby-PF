@@ -29,7 +29,7 @@ export default function EditProfile({ profile }) {
   
   try {
     const response = await axios.put(
-      'http://localhost:3001/users/edit/',
+      '/users/edit/',
       JSON.stringify(updatedProfile), // convertir objeto a JSON
       {
         headers: {
