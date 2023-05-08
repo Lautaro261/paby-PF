@@ -45,11 +45,10 @@ const App = () => {
       <Route path='/vehicles' element={<CarsView />} />
       <Route path='/vehicle/:license_plate_id' element={<VehicleDetails />} />
       <Route path='/about-us' element={<AboutUs />} />
-      <Route path='/nav' element={<Navbar />} />
+      <Route path='/nav' element={<ReservationsHistory />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/editprofile' element={<EditProfile />} />
     </Routes>
-
   );
 };
 
