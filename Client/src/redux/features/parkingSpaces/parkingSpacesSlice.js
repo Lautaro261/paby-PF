@@ -22,7 +22,7 @@ export const getAllParkingLots = createAsyncThunk(
     'parkingSpaces/getAllParkingLots',
     async () => {
         try {
-            const response = await axios.get(`${apiUrl}/parking/alls`);
+            const response = await axios.get(`/parking/alls`);
             return response.data;
         } catch (error) {
             console.error(error.message);
