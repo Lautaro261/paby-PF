@@ -21,6 +21,23 @@ const ReservationPanel = () => {
     const [isParkingSpaceSelected, setIsParkingSpaceSelected] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState(initialLevel);
 
+    if (
+        Object.keys(parking_lot).length === 0 || 
+        Object.keys(levels).length === 0 ||
+        Object.keys(parking_spaces).length === 0
+    ) {
+        return (
+            <div className={ styles.reservationPanel__error }>
+                <div className={ styles.reservationPanel__error_message }>
+                    Por favor, seleccione primero un parqueadero que cuente con pisos y zonas.
+                </div>
+                <Link to={ '/parking-lot-selection' }>
+                    <button>Ir a seleccionar parqueadero</button>
+                </Link>
+            </div>
+        );
+    }
+
     const parkingSpacesInThisLevel = parking_spaces.filter(pS => pS.floorId === selectedLevel.id);
     const [filteredParkingSpaces, setFilteredParkingSpaces] = useState(parkingSpacesInThisLevel);
 
@@ -121,22 +138,7 @@ const ReservationPanel = () => {
         navigate(`/parking-space-reservation/${ userId }`);
     };
 
-    if (
-        Object.keys(parking_lot).length === 0 || 
-        Object.keys(levels).length === 0 ||
-        Object.keys(parking_spaces).length === 0
-    ) {
-        return (
-            <div className={ styles.reservationPanel__error }>
-                <div className={ styles.reservationPanel__error_message }>
-                    Por favor, seleccione primero un parqueadero que cuente con pisos y zonas.
-                </div>
-                <Link to={ '/parking-lot-selection' }>
-                    <button>Ir a seleccionar parqueadero</button>
-                </Link>
-            </div>
-        );
-    }
+    
 
     return (
         <div className={ styles.reservationPanel__pageContainer }>

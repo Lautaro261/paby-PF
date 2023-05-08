@@ -27,6 +27,7 @@ const ParkingLotSelection = () => {
 
     const { user } = useAuth0();
     const userId = user && user.sub;
+    
     useEffect(() => {
         if (userId) {
             dispatch(setCurrentUserId(userId));
