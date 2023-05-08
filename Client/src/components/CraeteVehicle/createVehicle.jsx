@@ -6,10 +6,17 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './createVehicle.module.css';
+import { useAuth0 } from '@auth0/auth0-react'
 import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
 
 export default function CreateVehicle() {
-  const initialValues = {  
+  const { user, isLoading } = useAuth0();
+  if (isLoading) {
+    return (<div>Cargando...</div>);
+  };
+  console.log(user.sub)
+  const initialValues = { 
+    sub:'',
     vehicle_tipe:'',
     type_of_service: '',
     car_brand: '',
@@ -41,31 +48,32 @@ export default function CreateVehicle() {
 
     // Aquí iría la lógica de enviar los datos al servidor
     const handleSubmit = async (values, { resetForm }) => {
-      
+
+      //const licensePlate = values.license_plate;
+      const placa = values.license_plate;
       const requestData = {
-        license_plate_id: values.license_plate,
+
+        sub: user.sub,
+        license_plate_id: placa,
+        license_plate: placa,
         vehicle_tipe: values.vehicle_tipe,
         type_of_service: values.type_of_service,
         car_brand: values.car_brand,
         car_model: values.car_model,
         car_model_year: values.car_model_year,
         car_color: values.car_color,
-        license_plate: values.license_plate,
-        license_plate_id: values.license_plate,
         photo: values.photo,
       };
       
 
       try {
-        console.log(requestData);
-        const response = await axios.post('/users/1/vehicle',requestData, {
+        //console.log(requestData);
+        const response = await axios.post('http://localhost:3001/users/create/vehicle',requestData, {
         
           headers: {
             'Content-Type': 'application/json'
           }
         });
-      console.log(response.data);
-      //console.log(JSON.stringify(requestData));
       alert("¡El vehículo ha sido creado!");
 
       resetForm();
@@ -89,24 +97,24 @@ export default function CreateVehicle() {
         <Form>
           <div>
             <label htmlFor="vehicle_tipe">Tipo de vehículo</label>
-            <Field as="select" id="vehicle_tipe" name="vehicle_tipe" defaultValue={'default'}>
+            <Field as="select" id="vehicle_tipe" name="vehicle_tipe">
 
               {/* <select onChange={handlerInputChange} name='types' defaultValue={'default'}>
                     <option value='default'>1 or 2 types</option> */}
                     
               <option value="default">Seleccionar</option>
-              <option value="Auto">Auto</option>
-              <option value="Moto">Moto</option>
+              <option value="Automovil">Automovil</option>
+              <option value="Motocicleta">Motocicleta</option>
             </Field>
             <ErrorMessage name="vehicle_tipe" className="error-message"/>
           </div>
 
           <div>
             <label htmlFor="type_of_service">Tipo de servicio</label>
-            <Field as="select" id="type_of_service" name="type_of_service" defaultValue={'default'}>
+            <Field as="select" id="type_of_service" name="type_of_service">
               <option value="default">Seleccionar</option>
-              <option value="particular">Particular</option>
-              <option value="publico">Público</option>
+              <option value="Particular">Particular</option>
+              <option value="Publico">Público</option>
             </Field>
             <ErrorMessage name="type_of_service" className="error-message"/>
           </div>
