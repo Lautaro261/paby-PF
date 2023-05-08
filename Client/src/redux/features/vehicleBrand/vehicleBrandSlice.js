@@ -12,9 +12,9 @@ const initialState = {
 
 export const getAllVehicles = createAsyncThunk (
     'vehicleBrand/getAllVehicles',
-    async (userId) => {
+    async (userSub) => {
         try {
-            const response = await axios.get(`/users/${ userId }/vehicles`);
+            const response = await axios.get(`/users/${ userSub }/vehicles`);
             console.log(response.data);
             return response.data;
         } catch (error) {
