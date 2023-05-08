@@ -104,10 +104,8 @@ const createReservation = async (
     back_urls: {
       success: "http://localhost:5173/home",
       pending: "",
-      failure: "",
+      failure: "http://localhost:5173/about-us",
     },
-    auto_return: "approved",
-    binary_mode: true,
     // notification_url: "http://localhost:3001/reservation/notification",
   };
 
