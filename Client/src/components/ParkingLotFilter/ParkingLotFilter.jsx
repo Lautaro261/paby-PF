@@ -7,13 +7,17 @@ import {
     setCitiesForTheParkingLotFilter, 
     setFilteredParkingLots 
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
-import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice';
 
 const ParkingLotSelection = () => {
     const [isCountrySelected, setIsCountrySelected] = useState(false);
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
     const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(getAllParkingLots());
+    }, [dispatch]);
+
     const allParkingLots = useSelector(state => state.parkingSpaces.allParkingLots);
     const citiesForTheParkingLotFilter = useSelector(state => state.parkingSpaces.citiesForTheParkingLotFilter);
 
@@ -26,11 +30,6 @@ const ParkingLotSelection = () => {
             }
             return acc;
         }, []);
-
-    useEffect(() => {
-        dispatch(getAllParkingLots());
-        dispatch(getAllVehicles());
-    }, [dispatch]);
 
     const handleCountry = (e) => {
         const cities = allParkingLots

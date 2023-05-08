@@ -12,28 +12,35 @@ const Dash = () => {
     name: user?.name,
     email: user?.email,
     photo: user?.picture,
-}
+  }
 
-const sendDataToBackend = async () => {
+  const sendDataToBackend = async () => {
     try {
-        const response = await axios.post(`http://localhost:3001/users`, data , {
-                         headers: {
-                             'Content-Type': 'application/json'
-                         }})
-        return response 
+      const response = await axios.post(`http://localhost:3001/users`, data , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      return response 
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-}
+  }
+
   return (
     <div className={styles.panellateral}>
-
       <ul>
         <li><Link to="/parking-lot-filter" className={styles.textlink}>Hacer reserva</Link></li>
-        <li>{isAuthenticated ? <Link to='/profile'><button onClick={ ()=> sendDataToBackend()}>Perfil</button></Link> : false}</li>
-        <li>{isAuthenticated ? <Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link>: false}</li>
+        {isAuthenticated && (
+          <li>
+            <Link to='/profile' onClick={sendDataToBackend} className={styles.textlink}>
+              Perfil
+            </Link>
+          </li>
+        )}
+        <li>{isAuthenticated ? <Link to="/vehicles" className={styles.textlink}>Mis Vehiculos</Link> : false}</li>
         <li>Métodos de pago</li>
-        <li>Soporte  en linea</li>
+        <li>Soporte en linea</li>
       </ul>
     </div>
   )
