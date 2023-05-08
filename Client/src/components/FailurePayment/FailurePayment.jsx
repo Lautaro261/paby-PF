@@ -1,4 +1,4 @@
-import styles from './failurePayment.module.css';
+import styles from './FailurePayment.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';

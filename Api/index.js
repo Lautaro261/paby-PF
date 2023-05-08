@@ -1,5 +1,7 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+require("dotenv").config();
+const { PORT } = process.env
 // Hora y fecha de Colombia
 const moment = require("moment-timezone");
 
@@ -7,7 +9,7 @@ const moment = require("moment-timezone");
 moment.tz.setDefault("America/Bogota");
 
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+  server.listen(PORT, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
