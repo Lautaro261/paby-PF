@@ -37,24 +37,19 @@ const ParkingSpaceReservation = () => {
         );
     }
 
+    console.log(selectedParkingSpaceId);
+    console.log(userSub);
+
     useEffect(() => {
-        if (userSub && selectedParkingSpaceId) {
+        if (userSub && selectedParkingSpaceId && vehiclePhotoForReservationURL.length > 0) {
             setInputData({
                 ...inputData,
                 userSub,
-                zoneId: selectedParkingSpaceId
-            });
-        }
-    }, [userSub, selectedParkingSpaceId]);
-
-    useEffect(() => {
-        if (vehiclePhotoForReservationURL.length > 0) {
-            setInputData({
-                ...inputData,
+                zoneId: selectedParkingSpaceId,
                 instant_photo: vehiclePhotoForReservationURL
             });
         }
-    }, [vehiclePhotoForReservationURL]);
+    }, [userSub, selectedParkingSpaceId, vehiclePhotoForReservationURL]);
 
     let hours = [];
     for (let i = 0; i < 24; i++) {
@@ -104,6 +99,8 @@ const ParkingSpaceReservation = () => {
         document.getElementById('comments').value = '';
         setIsButtonEnabled(false);
     };
+
+    console.log(inputData);
 
     return (
         <form onSubmit={ handleSubmit } className={ styles.parkingSpaceReservation__container }>
