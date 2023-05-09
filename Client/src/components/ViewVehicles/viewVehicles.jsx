@@ -44,7 +44,7 @@ export default function ViewVehicle() {
 
   const handleVehicleDetails = (licensePlateId) => {
     // Navega al componente de detalles del vehículo con el licensePlateId como parámetro
-    history.push(`/vehicle/${licensePlateId}`);
+    history.push(`http://localhost:3001/vehicle/${licensePlateId}`);
   };
 
   const handleEditVehicle = (vehicle) => {
@@ -89,10 +89,12 @@ export default function ViewVehicle() {
             ))}
           </tbody>
         </table>
+        <div className={styles.buttons}>
         <button onClick={handleResetTable}>Actualizar tabla</button>
-        <Link className={styles.link} to="/create-vehicle">
+        <Link to="/create-vehicle">
           Crear Vehículo
         </Link>
+        </div>
       </div>
     </>
   );

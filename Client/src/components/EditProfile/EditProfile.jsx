@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
+import styles from './EditProfile.module.css'
 
 export default function EditProfile({ profile }) {
   const [nickname, setNickname] = useState(profile?.nickname);
@@ -47,9 +48,9 @@ export default function EditProfile({ profile }) {
 
 
   return (
-    <>
+    <div>
     <h1>Bienvenido {user.name}</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.formEditProfile}>
       <label htmlFor="nickname">Nickname:</label>
       <input type="text" id="nickname" value={nickname || ''} onChange={(event) => setNickname(event.target.value)} />
 
@@ -70,6 +71,6 @@ export default function EditProfile({ profile }) {
 
       <button type="submit">Guardar Cambios</button>
     </form>
-    </>
+    </div>
   );
 }

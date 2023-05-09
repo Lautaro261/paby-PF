@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Landing from './views/Landing/Landing'
-import CreateVehicle from './components/CraeteVehicle/createVehicle.jsx'
-import HomeView from './views/home/homeView';
+import HomeView from './views/homeView/homeView';
 import ParkingLotFilterView from './views/ParkingLotFilter/ParkingLotFilterView';
 import LotSelectionView from './views/LotSelection/LotSelectionView';
 import ReservationView from './views/ReservationView/ReservationView';
@@ -12,15 +11,15 @@ import FailurePayment from './components/FailurePayment/FailurePayment';
 import ReservationsHistory from './components/ReservationsHistory/ReservationsHistory';
 import CarsView from './views/ListCars/carsView';
 import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
-import EditProfile from './components/EditProfile/EditProfile.jsx';
-import Profile from './components/Profile/Profile';
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
-//import Home from "./components/Home/Home.jsx"
+import CreateVehicleView from './views/CreateVehicleView/CreateVehicleView';
 
-import axios from 'axios'
+//import axios from 'axios'
+import ProfileView from './views/ProfileView/ProfileView';
+import EditProfileView from './views/EditProfileView/EditProfileView';
 
-axios.defaults.baseURL = 'http://localhost:3001'
+//axios.defaults.baseURL = 'http://localhost:3001/'
 //axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
 
 
@@ -32,7 +31,7 @@ const App = () => {
 
     <Routes>
       <Route path='/' element={<Landing />} />
-      <Route path='/create-vehicle' element={<CreateVehicle />} />
+      <Route path='/create-vehicle' element={<CreateVehicleView />} />
       <Route path='/home' element={<HomeView />} />
       <Route path='/parking-lot-filter' element={<ParkingLotFilterView />} />
       <Route path='/parking-lot-selection' element={<LotSelectionView />} />
@@ -45,9 +44,9 @@ const App = () => {
       <Route path='/vehicles' element={<CarsView />} />
       <Route path='/vehicle/:license_plate_id' element={<VehicleDetails />} />
       <Route path='/about-us' element={<AboutUs />} />
-      <Route path='/nav' element={<ReservationsHistory />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/editprofile' element={<EditProfile />} />
+      <Route path='/nav' element={<Navbar />} />
+      <Route path='/profile' element={<ProfileView />} />
+      <Route path='/editprofile' element={<EditProfileView />} />
     </Routes>
   );
 };

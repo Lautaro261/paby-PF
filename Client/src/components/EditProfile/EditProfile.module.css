@@ -1,0 +1,9 @@
+.conteinerEditProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formEditProfile{
+    width: 80vw;
+    margin: 0 auto;
+}

@@ -21,10 +21,8 @@ function Landing() {
             </div>   
           </section>
         </main>
-        <div className={style.footer}>
-        <Link to="/contact-us" className={style.footertext}>Contactanos</Link>
-          <p className={style.footertext}> | </p>
-        <Link to="/about" className={style.footertext}>Acerca de nosotros</Link>
+        <div className={style.footerLanding}>
+        <Link to="/about-us" className={style.footertext}>Acerca de nosotros</Link>
         </div>
         </div>
       </>
