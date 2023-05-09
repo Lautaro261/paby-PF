@@ -102,15 +102,9 @@ const createReservation = async (
       // city_name: user.city,
     },
     back_urls: {
-<<<<<<< HEAD
-      success: "http://localhost:5173/home",
-      pending: "",
-      failure: "http://localhost:5173/about-us",
-=======
       success: "http://localhost:5173/success-payment",
       pending: "http://localhost:5173/pending-payment",
       failure: "http://localhost:5173/failure-payment",
->>>>>>> development
     },
     // notification_url: "http://localhost:3001/reservation/notification",
   };

@@ -1,7 +1,7 @@
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 require("dotenv").config();
-const { PORT } = process.env
+const { PORT } = process.env;
 // Hora y fecha de Colombia
 const moment = require("moment-timezone");
 
