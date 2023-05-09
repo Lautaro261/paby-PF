@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { getProfile } from "../../redux/features/users/usersSlice.js";
+import { getProfile } from "../../redux/features/users/usersSlice";
 import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 
@@ -41,7 +41,7 @@ const Profile = () => {
     }, [profile, userSub]);
 
     return (
-        <div className={styles.continerPrincial}>
+        <div className={styles.conteinerPrincial}>
          <img className={styles.imgProfile} src={profile?.userById?.photo} alt={profile?.userById?.name} />
             <div className={styles.continer2}>
                 <h2 className={styles.nombreUsuario}>{profile?.userById?.name}</h2>

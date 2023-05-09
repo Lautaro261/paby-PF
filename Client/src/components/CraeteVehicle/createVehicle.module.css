@@ -24,8 +24,8 @@ body {
   margin-bottom: 3rem;
 }
 
-form {
-  max-width: 400px;
+.formCreateVehicle {
+  max-width: 60vw;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.65); /* Fondo con opacidad del 65% */
   padding: 1rem;

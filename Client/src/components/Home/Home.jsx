@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import ProfileCompleteModal from '../ProfileCompleteModal/ProfileCompleteModal';
-// import Footer from '../Footer/Footer';
 import { useAuth0 } from "@auth0/auth0-react";
 
 
@@ -43,7 +42,7 @@ export default function Home() {
                 Únete a la comunidad de Paby y disfruta de la mejor experiencia de estacionamiento en línea. ¡Bienvenido a tu nueva forma de estacionar!</p>
 
             <Link to='/parking-lot-filter'><button>Reservar plaza</button></Link>
-                {/* <Footer /> */}
+             
         </div>
     )
 }

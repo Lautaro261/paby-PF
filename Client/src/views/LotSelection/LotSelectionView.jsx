@@ -2,21 +2,17 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/Dash";
-import style from "./LotSelectionView.module.css"
 import ParkingLotSelection from "../../components/ParkingLotSelection/ParkingLotSelection";
+import styles from './LotSelectionView.module.css';
 
-const LotSelectionView=()=>{
-    return(
-    <div className={style.parent}>
-        <div className={style.div1}><Navbar/> </div>
-        
-        <div className={style.flexcontainer}>
-            <div className={style.flexitems}><Dash/></div>
-             <div className={style.flexitems}><ParkingLotSelection/></div>
+const LotSelectionView = () => {
+    return (
+        <div className={styles.containerLotSelection}>
+            <div><Navbar /> </div>
+            <div><Dash /></div>
+            <div><ParkingLotSelection /></div>
+            <div><Footer /></div>
         </div>
-
-        {/* <div class={style.div4}><Footer></Footer> </div> */}
-    </div>
     )
 
 }
