@@ -74,7 +74,10 @@ export const updateParkingSpaceStatusById = createAsyncThunk(
     'parkingSpaces/updateParkingSpaceStatusById',
     async (selectedParkingSpace) => {
         try {
-            const response = await axios.put(`${ apiUrl }/parking/zone/${ selectedParkingSpace.id }/edit`, selectedParkingSpace);
+            const response = await axios.put(
+                `${ apiUrl }/parking/zone/${ selectedParkingSpace.id }/edit`, 
+                    { zone_status: "Ocupada", zone_number: selectedParkingSpace.zone_number }
+            );
             return response.data;
         } catch (error) {
             console.error(error.message);

@@ -1,38 +1,17 @@
-import { Link } from "react-router-dom"
-import style from "./Footer.module.css"
-import Logopaby from "../../imgs/Logopaby.png"
-import socialmedia from "./socialmedia.png"
+import React from 'react';
+import styles from './Footer.module.css';
+import logo from '../../imgs/Logopaby.png'
 
-const Footer=()=>{
-    return(
-        <div className={style.padre}>
-            <div class={style.flexcontainer}>
-                <img src={Logopaby} alt="logo" class={style.flexitems}/>
-                 <div class={style.flexitems}>SEGUINOS</div>
-                 <img src={socialmedia} alt="logo" class={style.flexitems}/>
-            </div>
+const Footer = () => {
+  return (
+    <div className={styles.footer}>
+      <div className={styles.container}>
+        <img src={logo} alt="Paby Logo" className={styles.logo} />
+        <p>¡Gracias por elegir Paby para tus necesidades de estacionamiento!</p>
+      </div>
+    </div>
+  );
+};
 
-            <div class={style.flexcontainer}>
-                <div class={style.flexitems}>USUARIOS</div>
-                 <div class={style.flexitems}>INGRESAR</div>
-                <div class={style.flexitems}>REGISTRARSE</div>
-            </div>
+export default Footer;
 
-            <div class={style.flexcontainer}>
-            <div class={style.flexitems}>USUARIOS</div>
-                 <div class={style.flexitems}>INGRESAR</div>
-                <div class={style.flexitems}>REGISTRARSE</div>
-            </div>
-
-            <div class={style.flexcontainer}>
-            <div class={style.flexitems}>Team PABY</div>
-                 <div class={style.flexitems}>Contactanos</div>
-                <div class={style.flexitems}>Acerca de nosotros</div>
-            </div>
-
-
-        </div>
-    );
-}
-
-export default Footer

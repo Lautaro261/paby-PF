@@ -1,4 +1,4 @@
-.flexcontainer {
+/* .flexcontainer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -6,8 +6,8 @@
   align-items: normal;
   align-content: normal;
   height: 79vh
-}
-
+} */
+/* 
 .flexitems:nth-child(1) {
   display: block;
   flex-grow: 0;
@@ -29,8 +29,8 @@
   order: 0;
   width: 90vw;
   height: 79vh;
-}
-
+} */
+/* 
 
 
 .div4{
@@ -50,4 +50,4 @@
   bottom:0%;
   left: 0%;
 
-}
+} */

@@ -1,31 +1,31 @@
-.panellateral {
-  position:static; /* Fijamos la posición para que no se mueva con el scroll */
-  top: 0;
-  left: 0;
-  width: 100%; /* Ancho del panel lateral */
-  height: 100%; /* Altura del panel lateral */
-  background-color: #C2D8B9; /* Color de fondo del panel lateral */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra del panel lateral */
+.dash {
+  background-color: #d9dcd6;
+  height: 70px;
+  display: flex;
+  justify-content: center;
 }
-.panellateral ul {
-  list-style: none; /* Quitamos los puntos de la lista */
-  padding: 0;
+
+.dashList {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
   margin: 0;
-}
-.textlink{
-  color: #000000;
-}
-
-.panellateral li {
-  padding: 10px; /* Espacio interno entre elementos de la lista */
-  border-bottom: 1px solid #ccc; /* Línea separadora entre elementos de la lista */
-  display: block;
+  padding: 0;
+  height: 100%;
+  align-items: center;
 }
 
-.panellateral li:last-child {
-  border-bottom: none; /* Quitamos la línea separadora del último elemento de la lista */
+.dashItem {
+  margin-right: 20px;
 }
 
-.panellateral li:hover {
-  background-color: #f2f2f2; /* Cambiamos el color de fondo al pasar el cursor por encima */
+.dashLink {
+  font-weight: bold;
+  text-decoration: none;
+  color: #2f6690;
+  transition: color 0.2s ease-in-out;
+}
+
+.dashLink:hover {
+  color: #3a7ca5;
 }
