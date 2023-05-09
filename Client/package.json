@@ -24,6 +24,7 @@
     "react-json-pretty": "^2.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
+    "redux-persist": "^6.0.0",
     "yup": "^1.1.1"
   },
   "devDependencies": {
