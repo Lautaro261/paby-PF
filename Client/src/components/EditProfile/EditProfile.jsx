@@ -48,7 +48,7 @@ export default function EditProfile({ profile }) {
 
 
   return (
-    <div className={styles.conteinerEditProfile}>
+    <div>
     <h1>Bienvenido {user.name}</h1>
     <form onSubmit={handleSubmit} className={styles.formEditProfile}>
       <label htmlFor="nickname">Nickname:</label>
