@@ -4,6 +4,8 @@
     border: 2px solid black;
     border-radius: 10px;
     cursor: default;
+    display: block;
+  
 }
 
 .parkingLotCard__container:hover::after {
