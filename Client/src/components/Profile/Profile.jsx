@@ -57,9 +57,9 @@ const Profile = () => {
             <Link className={styles.editBoton} to="/editprofile">Editar Perfil</Link>
             <button className={styles.Volver} onClick={goBack}>Volver</button>
             
-                        {showProfileCompleteModal && (
+                        {/* {showProfileCompleteModal && (
                 <ProfileCompleteModal onClose={ () => setShowProfileCompleteModal(false)}/>
-            )}
+            )} */}
             
 
         </div>
