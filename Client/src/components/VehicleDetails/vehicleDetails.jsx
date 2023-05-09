@@ -10,7 +10,7 @@ export default function VehicleDetails() {
   const getVehicleDetails = async (license_plate_id) => {
 
     console.log(license_plate_id)
-    const response = await axios.get(`/users/vehicle/${license_plate_id}`)
+    const response = await axios.get(`http://localhost:3001/users/vehicle/${license_plate_id}`)
       .then(response => {
         console.log(response.data)
         setVehicle(response.data)

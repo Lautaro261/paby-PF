@@ -64,7 +64,7 @@ const ParkingLotSelection = () => {
     };
 
     return (
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ handleSubmit } className={styles.formParkinkgLotSelection} >
             <div className={ styles.parkingLotSelection__title }>Parqueaderos</div>
             <div className={ styles.parkingLotSelection__description }>Por favor, seleccionar el parqueadero:</div>
             <div className={ styles.parkingLotSelection__parkingLots }>

@@ -21,7 +21,7 @@ function Landing() {
             </div>   
           </section>
         </main>
-        <div className={style.footer}>
+        <div className={style.footerLanding}>
         <Link to="/about-us" className={style.footertext}>Acerca de nosotros</Link>
         </div>
         </div>

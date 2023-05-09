@@ -94,7 +94,7 @@ export default function CreateVehicle() {
       onSubmit={handleSubmit}
       >
       {({ setFieldValue, isSubmitting }) => (
-        <Form>
+        <Form className={styles.formCreateVehicle}>
           <div>
             <label htmlFor="vehicle_tipe">Tipo de vehículo</label>
             <Field as="select" id="vehicle_tipe" name="vehicle_tipe">

@@ -44,7 +44,7 @@ export default function ViewVehicle() {
 
   const handleVehicleDetails = (licensePlateId) => {
     // Navega al componente de detalles del vehículo con el licensePlateId como parámetro
-    history.push(`/vehicle/${licensePlateId}`);
+    history.push(`http://localhost:3001/vehicle/${licensePlateId}`);
   };
 
   const handleEditVehicle = (vehicle) => {
