@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState={
-    historial:["elementos"],
+    historial:[],
     error:null,
     status:"idle"
 }
@@ -11,9 +11,10 @@ export const Update = createAsyncThunk(
     'history/Update',
     async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3001/reservation/${id}`)
-            console.log(response.data, "lo que llegA")
-            return response.data;
+             const response = await axios.get(`http://localhost:3001/reservation/${id}`)
+             if(!response){return ["error",["Ha ocurrido un error"]]}
+             console.log(response.data, "lo que llegA")
+             return response.data;
         } catch (error) {
             console.log(error)
         }

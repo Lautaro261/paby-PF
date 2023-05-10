@@ -38,7 +38,7 @@ const Dash = () => {
           {isAuthenticated ? (<Link to="/vehicles" className={styles.dashLink}>Mis Vehiculos</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<span className={styles.dashLink}>Mis Reservas</span>) : null}
+          {isAuthenticated ? (<Link to="/reservations-history" className={styles.dashLink}>Mis Reservas</Link>) : null}
         </li>
         <li className={styles.dashItem}>
           {isAuthenticated ? (<Link to="/parking-lot-filter" className={styles.dashLink}>Hacer reserva</Link>) : null}
