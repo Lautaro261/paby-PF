@@ -29,6 +29,7 @@ const Dash = () => {
   };
 
   return (
+    isAuthenticated && (
     <div className={styles.dash}>
       <ul className={styles.dashList}>
         <li className={styles.dashItem}>
@@ -46,12 +47,10 @@ const Dash = () => {
         <li className={styles.dashItem}>
           {isAuthenticated ? (<span className={styles.dashLink}>Métodos de pago</span>) : null}
         </li>
-        {/* <li className={styles.dashItem}>
-          {isAuthenticated ? (<span className={styles.dashLink}>Soporte en línea</span>) : null}
-        </li> */}
+ 
       </ul>
     </div>
-  );
+  ));
 };
 
 export default Dash;
