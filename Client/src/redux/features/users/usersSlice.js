@@ -11,7 +11,7 @@ export const getProfile = createAsyncThunk(
     'users/getProfile',
     async (sub) => {
         try {
-            const response = await axios.get(`http://localhost:3001/users/${sub}`)
+            const response = await axios.get(`/users/${sub}`)
             console.log(response.data)
             
             return response.data;

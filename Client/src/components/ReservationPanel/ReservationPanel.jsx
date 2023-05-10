@@ -43,7 +43,7 @@ const ReservationPanel = () => {
 
     const availableParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Disponible');
     const occupiedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Ocupada');
-    const reservedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Reservada');
+    const reservedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Reservado');
 
     const currentPage = useSelector(state => state.parkingSpacesPagination.currentPage);
     const itemsPerPage = useSelector(state => state.parkingSpacesPagination.itemsPerPage);
@@ -132,6 +132,7 @@ const ReservationPanel = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(setSelectedParkingSpaceId(selectedParkingSpace.id));
+        sessionStorage.setItem('selectedParkingSpace', JSON.stringify(selectedParkingSpace));
         setIsParkingSpaceSelected(false);
         alert(`Usted seleccionó la zona No ${ selectedParkingSpace.zone_number } del ${ selectedLevel.name }`);
         navigate(`/parking-space-reservation/${ userId }`);
@@ -233,7 +234,7 @@ const ReservationPanel = () => {
                     { isParkingSpaceSelected ? 
                         `Usted seleccionó la zona ${ selectedParkingSpace.zone_number } ` + 
                         `para ${ selectedParkingSpace.vehicle_type }` : 
-                        'Usted no seleccionó ninguna zona'
+                        null
                     }
                 </div>
 				<button type='submit' disabled={ !isParkingSpaceSelected }>
