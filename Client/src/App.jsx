@@ -15,11 +15,11 @@ import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
 import CreateVehicleView from './views/CreateVehicleView/CreateVehicleView';
 
-//import axios from 'axios'
+import axios from 'axios'
 import ProfileView from './views/ProfileView/ProfileView';
 import EditProfileView from './views/EditProfileView/EditProfileView';
 
-//axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL = 'http://localhost:3001'
 //axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
 
 

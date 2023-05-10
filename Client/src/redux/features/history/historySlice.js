@@ -11,8 +11,8 @@ export const Update = createAsyncThunk(
     'history/Update',
     async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3001/reservation/${id}`)
-            console.log(response.data, "lo que llegA")
+            const response = await axios.get(`/reservation/${id}`)
+            console.log(response.data, "lo que llega")
             return response.data;
         } catch (error) {
             console.log(error)
