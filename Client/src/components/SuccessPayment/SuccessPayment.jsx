@@ -1,13 +1,8 @@
 import styles from './SuccessPayment.module.css';
-import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
-import { 
-    setSelectedParkingSpace, 
-    updateParkingSpaceStatusById, 
-    setParkingLotObjectToEmpty 
-} from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { updateParkingSpaceStatusById } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const SuccessPayment = () => {
     const { search } = useLocation();
@@ -26,18 +21,12 @@ const SuccessPayment = () => {
     } = Object.fromEntries(params.entries());
 
     const dispatch = useDispatch();
-    const selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
-    
-    useEffect(() => {
-        if (selectedParkingSpace) {
-            dispatch(updateParkingSpaceStatusById(selectedParkingSpace));
-            dispatch(setParkingLotObjectToEmpty({}));
-        }
-    }, [dispatch, selectedParkingSpace]);
+    const selectedParkingSpace = JSON.parse(sessionStorage.getItem('selectedParkingSpace'));
 
     const handleClick = () => {
         dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
-        dispatch(setSelectedParkingSpace({}));
+        dispatch(updateParkingSpaceStatusById(selectedParkingSpace));
+        sessionStorage.setItem('selectedParkingSpace', '');
     };
 
     return (
