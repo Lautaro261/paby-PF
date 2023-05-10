@@ -10,7 +10,7 @@ const initialState = {
 
 export const getAllVehicles = createAsyncThunk (
     'vehicleBrand/getAllVehicles',
-    async (userSub) => {
+    async (userId) => {
         try {
             const response = await axios.get(`/users/${ userId }/vehicles`);
             console.log(response.data);

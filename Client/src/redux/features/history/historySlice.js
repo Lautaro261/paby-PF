@@ -12,7 +12,7 @@ export const Update = createAsyncThunk(
     async (id) => {
         try {
             const response = await axios.get(`/reservation/${id}`)
-            console.log(response.data, "lo que llega")
+            console.log(response.data, "lo que llegA")
             return response.data;
         } catch (error) {
             console.log(error)

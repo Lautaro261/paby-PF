@@ -33,7 +33,7 @@ export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
     async (id) => {
         try {
-            const response = await axios.get(`/parking/${ id }`);
+            const response = await axios.get(`parking/${ id }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -89,7 +89,6 @@ export const setFilteredParkingLots = createAction('parkingSpaces/setFilteredPar
 export const setSelectedParkingSpace = createAction('parkingSpaces/setSelectedParkingSpace');
 export const setParkingSpaceStatusFromFilter = createAction('parkingSpaces/setParkingSpaceStatusFromFilter');
 export const setVehicleTypeFromFilter = createAction('parkingSpaces/setVehicleTypeFromFilter');
-export const setParkingLotObjectToEmpty = createAction('parkingSpaces/setParkingLotObjectToEmpty');
 
 const parkingSpacesSlice = createSlice({
     name: 'parkingSpaces',
@@ -109,9 +108,6 @@ const parkingSpacesSlice = createSlice({
         },
         setVehicleTypeFromFilter: (state, action) => {
             state.vehicleTypeFromFilter = action.payload
-        },
-        setParkingLotObjectToEmpty: (state, action) => {
-            state.parkingLot = action.payload
         }
     },
     extraReducers: (builder) => {
