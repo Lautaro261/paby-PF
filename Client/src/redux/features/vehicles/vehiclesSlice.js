@@ -12,7 +12,7 @@ export const getAllVehicles = createAsyncThunk (
     'vehicles/getAllVehicles',
     async (userId) => {
         try {
-            const response = await axios.get(`http://localhost:3001/users/${ userId }/vehicles`);
+            const response = await axios.get(`/users/${ userId }/vehicles`);
             console.log(response.data);
             return response.data;
         } catch (error) {
