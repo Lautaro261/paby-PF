@@ -6,10 +6,9 @@ import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 
 const Profile = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isLoading } = useAuth0();
     const profile = useSelector(state => state.users.userProfile);
     const dispatch = useDispatch();
-    const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
     const [isProfileComplete, setIsProfileComplete] = useState(false);
     const userSub= user.sub
 
@@ -18,19 +17,18 @@ const Profile = () => {
     }
     useEffect(() => {
         dispatch(getProfile(userSub));
-    }, [dispatch, userSub, isAuthenticated]);
+    }, [dispatch, userSub]);
 
     const goBack = () => {
         window.history.back();
     }
-    useEffect(()=>{
-        const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`);
-        if(!isProfileComplete && isAuthenticated && profile?.profileById){
-            setShowProfileCompleteModal(true);
-        }
-    },[isAuthenticated, userSub, profile]);
+
     useEffect(() => {
-        if (profile?.profileById?.phone &&
+        if (
+            profile?.userById?.name &&
+            profile?.userById?.email &&
+            profile?.userById?.photo &&
+            profile?.profileById?.phone &&
             profile?.profileById?.country &&
             profile?.profileById?.city &&
             profile?.profileById?.address &&

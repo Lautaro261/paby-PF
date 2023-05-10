@@ -2,31 +2,9 @@ import React from 'react';
 import styles from './Dash.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 
 const Dash = () => {
-  const { isAuthenticated, user } = useAuth0();
-
-  const data = {
-    sub: user?.sub,
-    name: user?.name,
-    email: user?.email,
-    photo: user?.picture,
-  };
-
-  const sendDataToBackend = async () => {
-    try {
-      const response = await axios.post('/users',data,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-});
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { isAuthenticated } = useAuth0();
 
   return (
     isAuthenticated && (

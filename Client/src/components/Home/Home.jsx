@@ -2,16 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import ProfileCompleteModal from '../ProfileCompleteModal/ProfileCompleteModal';
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { useDispatch } from 'react-redux';
+import { setUserSession, sendUserSession } from '../../redux/features/users/usersSlice'
 
 import style from "./Home.module.css";
 import logo from '../../imgs/Logopaby.png'
 
 export default function Home() {
-    const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
+    const dispatch = useDispatch()
     const { user, isAuthenticated } = useAuth0();
     const userSub = user?.sub
+    const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
 
+    
+    useEffect(() => {
+        if(user) {
+            dispatch(setUserSession({
+                sub: user.sub,
+                name: user.name,
+                email:user.email,
+                photo:user.picture
+            }));
+            dispatch(sendUserSession({
+                sub: user.sub,
+                name: user.name,
+                email:user.email,
+                photo:user.picture
+            }));
+        }
+    },[user, dispatch]);
 
     useEffect(() => {
         const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`)
