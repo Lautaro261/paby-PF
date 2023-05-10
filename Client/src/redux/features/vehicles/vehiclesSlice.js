@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const getAllVehicles = createAsyncThunk (
-    'vehicleBrand/getAllVehicles',
+    'vehicles/getAllVehicles',
     async (userId) => {
         try {
             const response = await axios.get(`http://localhost:3001/users/${ userId }/vehicles`);
@@ -22,11 +22,11 @@ export const getAllVehicles = createAsyncThunk (
 );
 
 export const searchVehicleBrandByName = createAsyncThunk(
-    'vehicleBrand/searchVehicleBrandByName',
+    'vehicles/searchVehicleBrandByName',
     async (car_brand) => {
         try {
             const response = await axios.get(`http://localhost:3001/users/vehicle/search/${car_brand}`);
-            console.log(response.data);
+            console.log("vehicleBrand", response.data);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -35,8 +35,8 @@ export const searchVehicleBrandByName = createAsyncThunk(
     }
 );
 
-const vehicleBrandSlice = createSlice({
-    name: 'vehicleBrand',
+const vehiclesSlice = createSlice({
+    name: 'vehicles',
     initialState,
     extraReducers: (builder) => {
         builder
@@ -56,7 +56,7 @@ const vehicleBrandSlice = createSlice({
             })
             .addCase(searchVehicleBrandByName.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.searchedBrandName = [action.payload];
+                state.searchedBrandName = action.payload;
             })
             .addCase(searchVehicleBrandByName.rejected, (state, action) => {
                 state.status = 'rejected';
@@ -65,4 +65,4 @@ const vehicleBrandSlice = createSlice({
     }
 });
 
-export default vehicleBrandSlice.reducer;
+export default vehiclesSlice.reducer;

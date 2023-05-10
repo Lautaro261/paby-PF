@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from './viewVehicles.module.css';
 import UpdateVehicle from '../UpdateVehicle/updateVehicle.jsx';
 import SearchBar from '../Searchbar/SearchBar';
-import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice.js';
+import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice.js';
 
 export default function ViewVehicle() {
   const dispatch = useDispatch();
@@ -20,8 +20,8 @@ export default function ViewVehicle() {
   }, [dispatch]);
 
 
-  const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
-  const searchedBrandName = useSelector(state => state.vehicleBrand.searchedBrandName);
+  const allVehicles = useSelector(state => state.vehicles.allVehicles);
+  const searchedBrandName = useSelector(state => state.vehicles.searchedBrandName);
   const [vehiclesState, setVehiclesState] = useState(allVehicles);
 
   const handleSearchTermChange = (newSearchTerm) => {

@@ -1,5 +1,8 @@
 .parkingSpaceReservation__container {
     text-align: center;
+    margin: 0 auto;
+    width: 80vw;
+    padding: 20px;
 }
 
 .parkingSpaceReservation__title {
