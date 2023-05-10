@@ -25,7 +25,7 @@ export const searchVehicleBrandByName = createAsyncThunk(
     'vehicles/searchVehicleBrandByName',
     async (car_brand) => {
         try {
-            const response = await axios.get(`http://localhost:3001/users/vehicle/search/${car_brand}`);
+            const response = await axios.get(`/users/vehicle/search/${car_brand}`);
             console.log("vehicleBrand", response.data);
             return response.data;
         } catch (error) {
