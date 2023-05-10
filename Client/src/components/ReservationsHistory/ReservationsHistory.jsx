@@ -43,38 +43,3 @@ const ReservationsHistory = () => {
 };
 
 export default ReservationsHistory;
-
-
-/* 
-import styles from './ReservationsHistory.module.css';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Update } from '../../redux/features/history/historySlice';
-import { useAuth0 } from "@auth0/auth0-react"
-
-const ReservationsHistory = () => {
-    const { user, isLoading } = useAuth0();
-    const history = useSelector(state => state.history);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (user) {
-            dispatch(Update(user.sub));
-        }
-    }, [dispatch, user]);
-
-    if (isLoading) {
-        return <div>cargando...</div>;
-    }
-
-    return (
-        <div>
-            {history.historial.map((elem) => (
-                <div key={elem.id}>{elem.id}</div>
-            ))}
-        </div>
-    );
-};
-
-export default ReservationsHistory;
-*/
