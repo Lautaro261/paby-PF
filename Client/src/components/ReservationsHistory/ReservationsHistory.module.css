@@ -18,7 +18,7 @@
     border-right: 0px solid rgb(229, 229, 240);
     border-top: 0rem ;
     border-bottom: 0.2rem solid rgb(230, 231, 244);
-
+    height: calc(100vh - 80px); 
 
 }
 .boxerr{
@@ -33,7 +33,7 @@
     border-top: 0rem ;
     border-bottom: 0rem solid rgb(230, 231, 244);
     text-align: center;
-
+    height: calc(100vh - 80px); 
 
 }
 
