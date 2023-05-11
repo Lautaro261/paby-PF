@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import styles from './EditProfile.module.css'
 
 export default function EditProfile({ profile }) {
+  const navigate = useNavigate()
   const [nickname, setNickname] = useState(profile?.nickname);
   const [phone, setPhone] = useState(profile?.phone);
   const [country, setCountry] = useState(profile?.country);
@@ -48,6 +50,7 @@ export default function EditProfile({ profile }) {
     console.error(error.response.data);
     console.error(error.response.status);
   }
+  navigate('/profile')
 }
 
 
