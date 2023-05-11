@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Dash.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
+// import axios from 'axios';
 
 const Dash = () => {
   const { isAuthenticated } = useAuth0();
