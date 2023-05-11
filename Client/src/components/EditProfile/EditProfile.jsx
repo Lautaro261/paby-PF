@@ -10,7 +10,11 @@ export default function EditProfile({ profile }) {
   const [city, setCity] = useState(profile?.city);
   const [address, setAddress] = useState(profile?.address);
   const [neighborhood, setNeighborhood] = useState(profile?.neighborhood);
-  const { user, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
+  const user = {"sub": localStorage.getItem(`sub`),
+  "name": localStorage.getItem(`name`),
+  "photo":localStorage.getItem(`photo`),
+  "email":localStorage.getItem(`email`),}
   if (isLoading) {
     return <div>Cargando...</div>;
   };

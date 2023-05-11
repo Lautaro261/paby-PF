@@ -8,9 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './createVehicle.module.css';
 import { useAuth0 } from '@auth0/auth0-react'
 import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateVehicle() {
-  const { user, isLoading } = useAuth0();
+  const navigate = useNavigate()
+  const {isLoading } = useAuth0();
+  const user = {"sub": localStorage.getItem(`sub`)}
   if (isLoading) {
     return (<div>Cargando...</div>);
   };
@@ -68,13 +71,14 @@ export default function CreateVehicle() {
 
       try {
         //console.log(requestData);
-        const response = await axios.post('http://localhost:3001/users/create/vehicle',requestData, {
+        const response = await axios.post('/users/create/vehicle',requestData/* , {
         
           headers: {
             'Content-Type': 'application/json'
           }
-        });
+        } */);
       alert("¡El vehículo ha sido creado!");
+      navigate('/vehicles')
 
       resetForm();
     } catch (error) {
