@@ -2,16 +2,16 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/Dash";
-import VehicleDetails from "../../components/VehicleDetails/vehicleDetails";
+import Vehicles from '../../components/Vehicles/Vehicles'
 
-const VehicleDetailsView = () => {
+const VehiclesView = () => {
     return (
         <div>
             <div><Navbar /> </div>
 
                 <div><Dash /></div>
             <div>
-                <div><VehicleDetails/></div>
+                <div><Vehicles /></div>
             </div>
 
             <div><Footer /></div>
@@ -19,4 +19,4 @@ const VehicleDetailsView = () => {
     )
 
 }
-export default VehicleDetailsView;
+export default VehiclesView;
