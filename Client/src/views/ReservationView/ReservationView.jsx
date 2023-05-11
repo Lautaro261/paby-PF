@@ -15,7 +15,7 @@ const ReservationView=()=>{
              <div className={style.flexitems}><ReservationPanel/></div>
         </div>
 
-        <div class={style.div4}><Footer/> </div>
+        <div className={style.div4}><Footer/> </div>
     </div>
     )
 

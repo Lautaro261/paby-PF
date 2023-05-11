@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const getAllVehicles = createAsyncThunk (
-    'vehicleBrand/getAllVehicles',
+    'vehicles/getAllVehicles',
     async (userId) => {
         try {
             const response = await axios.get(`/users/${ userId }/vehicles`);
@@ -22,7 +22,7 @@ export const getAllVehicles = createAsyncThunk (
 );
 
 export const searchVehicleBrandByName = createAsyncThunk(
-    'vehicleBrand/searchVehicleBrandByName',
+    'vehicles/searchVehicleBrandByName',
     async (car_brand) => {
         try {
             const response = await axios.get(`/users/vehicle/search/${car_brand}`);
@@ -35,8 +35,8 @@ export const searchVehicleBrandByName = createAsyncThunk(
     }
 );
 
-const vehicleBrandSlice = createSlice({
-    name: 'vehicleBrand',
+const vehiclesSlice = createSlice({
+    name: 'vehicles',
     initialState,
     extraReducers: (builder) => {
         builder
@@ -65,4 +65,4 @@ const vehicleBrandSlice = createSlice({
     }
 });
 
-export default vehicleBrandSlice.reducer;
+export default vehiclesSlice.reducer;

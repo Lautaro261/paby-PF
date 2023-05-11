@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import {searchVehicleBrandByName} from '../../redux/features/vehicleBrand/vehicleBrandSlice'
+import {searchVehicleBrandByName} from '../../redux/features/vehicles/vehiclesSlice'
 import style from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearchTermChange }) {
