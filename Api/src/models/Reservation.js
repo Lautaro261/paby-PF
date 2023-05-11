@@ -56,7 +56,7 @@ module.exports = (sequelize) => {
       },
       payment_link: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       payment_transaction_id: {
         type: DataTypes.TEXT,
