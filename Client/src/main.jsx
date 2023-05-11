@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import store from './redux/store';
 import App from './App.jsx';
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -13,9 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     clientId="M2hd6vZ7GU0APIdU0oHKmryZGRGXvskf"
      authorizationParams={{ redirect_uri: window.location.origin }}>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </Auth0Provider>
   </React.StrictMode>,
