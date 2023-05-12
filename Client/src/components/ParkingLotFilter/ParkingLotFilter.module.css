@@ -1,10 +1,13 @@
 .parkingLotFilter__container {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 80px); 
+    width: 80vw;
+    margin: 0 auto;
 }
 
 .parkingLotFilter__title {
@@ -40,4 +43,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 80px); 
 }

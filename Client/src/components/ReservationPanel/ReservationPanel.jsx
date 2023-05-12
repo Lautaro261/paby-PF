@@ -9,7 +9,7 @@ import {
     setVehicleTypeFromFilter
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 import { setSelectedParkingSpaceId } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
-import { getAllVehicles } from '../../redux/features/vehicleBrand/vehicleBrandSlice';
+import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice';
 
 const ReservationPanel = () => {
     const dispatch = useDispatch();
@@ -246,3 +246,7 @@ const ReservationPanel = () => {
 };
 
 export default ReservationPanel;
+
+
+
+

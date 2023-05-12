@@ -23,7 +23,7 @@ const ParkingSpaceReservation = () => {
     const parkingLot = useSelector(state => state.parkingSpaces.parkingLot);
     const userSub = useSelector(state => state.parkingSpacesReservation.currentUserId); 
     const selectedParkingSpaceId = useSelector(state => state.parkingSpacesReservation.selectedParkingSpaceId);
-    const allVehicles = useSelector(state => state.vehicleBrand.allVehicles);
+    const allVehicles = useSelector(state => state.vehicles.allVehicles);
     const vehiclePhotoForReservationURL = useSelector(state => state.parkingSpacesReservation.vehiclePhotoForReservationURL);
 
     if (allVehicles.length === 0) {

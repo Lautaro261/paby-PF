@@ -8,7 +8,7 @@ import {
     setFilteredParkingLots 
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
-const ParkingLotSelection = () => {
+const ParkingLotFilter= () => {
     const [isCountrySelected, setIsCountrySelected] = useState(false);
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
 
@@ -21,15 +21,7 @@ const ParkingLotSelection = () => {
     const allParkingLots = useSelector(state => state.parkingSpaces.allParkingLots);
     const citiesForTheParkingLotFilter = useSelector(state => state.parkingSpaces.citiesForTheParkingLotFilter);
 
-    const countries = allParkingLots
-        .map(parkingLot => parkingLot.country)
-        .filter(country => country.trim() !== '')
-        .reduce((acc, country) => {
-            if (!acc.includes(country)) {
-                acc.push(country);
-            }
-            return acc;
-        }, []);
+   
 
     const handleCountry = (e) => {
         const cities = allParkingLots
@@ -61,7 +53,8 @@ const ParkingLotSelection = () => {
         setIsButtonEnabled(false);
     };
 
-    if (!allParkingLots) {
+    if (!allParkingLots || !allParkingLots.length) {
+        
         return (
             <div className={ styles.parkingLotFilter__error }>
                 <div>No se pudo cargar la lista de parqueaderos</div>
@@ -71,6 +64,16 @@ const ParkingLotSelection = () => {
             </div>
         );
     }
+
+    const countries = allParkingLots
+    .map(parkingLot => parkingLot.country)
+    .filter(country => country.trim() !== '')
+    .reduce((acc, country) => {
+        if (!acc.includes(country)) {
+            acc.push(country);
+        }
+        return acc;
+    }, []);
 
     return (
         <form onSubmit={ handleSubmit } className={ styles.parkingLotFilter__container }>
@@ -111,4 +114,4 @@ const ParkingLotSelection = () => {
     );
 }
 
-export default ParkingLotSelection;
+export default ParkingLotFilter;

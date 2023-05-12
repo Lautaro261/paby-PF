@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import styles from './EditProfile.module.css'
 
 export default function EditProfile({ profile }) {
+  const navigate = useNavigate()
   const [nickname, setNickname] = useState(profile?.nickname);
   const [phone, setPhone] = useState(profile?.phone);
   const [country, setCountry] = useState(profile?.country);
   const [city, setCity] = useState(profile?.city);
   const [address, setAddress] = useState(profile?.address);
   const [neighborhood, setNeighborhood] = useState(profile?.neighborhood);
-  const { user, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
+  const user = {"sub": localStorage.getItem(`sub`),
+  "name": localStorage.getItem(`name`),
+  "photo":localStorage.getItem(`photo`),
+  "email":localStorage.getItem(`email`),}
   if (isLoading) {
     return <div>Cargando...</div>;
   };
@@ -29,7 +36,7 @@ export default function EditProfile({ profile }) {
   
   try {
     const response = await axios.put(
-      'http://localhost:3001/users/edit/',
+      '/users/edit/',
       JSON.stringify(updatedProfile), // convertir objeto a JSON
       {
         headers: {
@@ -43,13 +50,14 @@ export default function EditProfile({ profile }) {
     console.error(error.response.data);
     console.error(error.response.status);
   }
+  navigate('/profile')
 }
 
 
   return (
-    <>
+    <div className={styles.conteinerEditProfile}>
     <h1>Bienvenido {user.name}</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.formEditProfile}>
       <label htmlFor="nickname">Nickname:</label>
       <input type="text" id="nickname" value={nickname || ''} onChange={(event) => setNickname(event.target.value)} />
 
@@ -70,6 +78,6 @@ export default function EditProfile({ profile }) {
 
       <button type="submit">Guardar Cambios</button>
     </form>
-    </>
+    </div>
   );
 }

@@ -2,18 +2,22 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/Dash";
-import ParkingLotSelection from "../../components/ParkingLotSelection/ParkingLotSelection";
-import styles from './LotSelectionView.module.css';
+import ParkingSpaceReservation from '../../components/ParkingSpaceReservation/ParkingSpaceReservation'
 
-const LotSelectionView = () => {
+const ParkingSpaceReservationView = () => {
     return (
-        <div className={styles.containerLotSelection}>
+        <div>
             <div><Navbar /> </div>
+
             <div><Dash /></div>
-            <div><ParkingLotSelection /></div>
+            <div>
+                <div><ParkingSpaceReservation/></div>
+            </div>
+
             <div><Footer /></div>
         </div>
     )
 
 }
-export default LotSelectionView
+
+export default ParkingSpaceReservationView

@@ -16,7 +16,7 @@ export const postParkingSpaceReservation = createAsyncThunk(
     'parkingSpacesReservation/postParkingSpaceReservation',
     async (inputData) => {
         try {
-            const response = await axios.post(`${ apiUrl }/reservation/create`, inputData);
+            const response = await axios.post(`/reservation/create`, inputData);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -29,7 +29,7 @@ export const postParkingSpaceReservationNotification = createAsyncThunk(
     'parkingSpacesReservation/postParkingSpaceReservationNotification',
     async (queryParams) => {
         try {
-            const response = await axios.post(`${ apiUrl }/reservation/notification?${queryParams}`);
+            const response = await axios.post(`reservation/notification?${queryParams}`);
             return response.data;
         } catch (error) {
             console.error(error.message);
