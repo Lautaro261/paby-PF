@@ -1,34 +1,44 @@
 const { User } = require("../db");
 const { Profile } = require("../db");
+require("dotenv").config();
+
+const { EMAIL_ADMIN, NAME_ADMIN } = process.env
 
 const postUser = async (sub, name, email, photo) => {
-  /*  const newObjUser = {
+    
+  const user = await User.findOne({ where: { sub:sub } })
+  if(user){
+    console.log("Usuario ya existe");
+    //return user
+  }
+  
+  const newObjUser = {
     sub,
     name,
     email,
     photo,
-} */
+} 
 
-  const newUser = await User.findOrCreate({
-    //ENCUENTRA O CREA USER
-    where: {
-      sub: sub,
-    },
-    defaults: {
-      sub: sub,
-      name: name,
-      email: email,
-      photo: photo,
-    },
-  });
+// AQUIII VA LA LOGICA NUEVA 
 
-  const findProfile = await Profile.findOne({ where: { userSub: sub } }); // BUSCA UN PERFIL CON EL SUB
+// 1) BUSCO EL USER EN CASO QUE EXISTA 
 
-  if (!findProfile) {
-    await Profile.create({ userSub: sub });
-  }
+if(newObjUser.email === EMAIL_ADMIN && newObjUser.name === NAME_ADMIN){
+  newObjUser.rol = 'admin'
+}
+// 2) PREGUNTO SI USER.email=== ADMIN
 
-  return newUser; ///FALTAN COSAS POR HACER
+
+  const newUser = await User.create(newObjUser); 
+
+
+const findProfile = await Profile.findOne({ where: { userSub: sub } }); // BUSCA UN PERFIL CON EL SUB
+
+ if (!findProfile) {
+  await Profile.create({ userSub: sub });
+} 
+
+return newUser; ///FALTAN COSAS POR HACER
 };
 
 module.exports = postUser;

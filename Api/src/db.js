@@ -51,9 +51,9 @@ const {
   User,
   Vehicle,
   Zone,
-  Rol,
+/*   Rol, */
   Reservation,
-  Permission,
+ /*  Permission, */
   Floor,
   Parking,
   Profile,
@@ -74,12 +74,12 @@ User.hasMany(Vehicle);
 Vehicle.belongsTo(User);
 
 // Usuario con rol relación de uno a muchos.
-Rol.hasMany(User);
-User.belongsTo(Rol);
+/* Rol.hasMany(User);
+User.belongsTo(Rol); */
 
 // Relación de muchos a muchos entre el rol y permisos
-Rol.belongsToMany(Permission, { through: "PermissionRol" });
-Permission.belongsToMany(Rol, { through: "PermissionRol" });
+/* Rol.belongsToMany(Permission, { through: "PermissionRol" });
+Permission.belongsToMany(Rol, { through: "PermissionRol" }); */
 
 // Usuario con reservación
 User.hasMany(Reservation);
