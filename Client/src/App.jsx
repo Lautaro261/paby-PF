@@ -17,6 +17,7 @@ import ProfileView from './views/ProfileView/ProfileView';
 import EditProfileView from './views/EditProfileView/EditProfileView';
 import HistoryView from './views/HistoryView/HistoryView';
 import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/ParkingSpaceReservationView';
+import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 axios.defaults.baseURL = 'http://localhost:3001'
 //axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
 
@@ -42,9 +43,10 @@ const App = () => {
       <Route path='/vehicles' element={<VehiclesView />} />
       <Route path='/vehicle/:license_plate_id' element={<VehicleDetails />} />
       <Route path='/about-us' element={<AboutUs />} />
-      <Route path='/nav' element={<Navbar />} />
       <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfileView />} />
+      <Route path='/Shopping' element={<ShoppingCartView />} />
+      
     </Routes>
   );
 };
