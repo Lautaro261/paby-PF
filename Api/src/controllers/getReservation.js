@@ -49,6 +49,13 @@ const getReservationsByUserId = async (id) => {
       "payment_date",
       "payment_status",
     ],
+    include: [
+      { model: Zone, attributes: ["zone_number", "vehicle_type"] },
+      {
+        model: Vehicle,
+        attributes: ["car_brand", "license_plate"],
+      },
+    ],
   });
 
   if (reservations.length === 0) {
