@@ -18,7 +18,7 @@ const ShoppingCart=()=>{
   const renderizarCarrito = () => {
         // if (cart.length === 0 ) {
          if (true ) {  
-         return <p>No hay productos en el carrito</p>;
+         return <p>Aun no agregaste reservas</p>;
          }
 
         return carrito.map(producto => (

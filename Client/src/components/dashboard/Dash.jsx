@@ -32,7 +32,7 @@ const Dash = () => {
     <div className={styles.dash}>
       <ul className={styles.dashList}>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to="/profile" className={styles.dashLink}><button>Perfil</button></Link>) : null}
+          {isAuthenticated ? (<Link to="/profile" className={styles.dashLink}>Perfil</Link>) : null}
         </li>
         <li className={styles.dashItem}>
           {isAuthenticated ? (<Link to="/vehicles" className={styles.dashLink}>Mis Vehiculos</Link>) : null}
