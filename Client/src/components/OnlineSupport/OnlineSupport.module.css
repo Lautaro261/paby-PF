@@ -1,0 +1,21 @@
+.onlineSupport {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    height: calc(100vh - 80px); 
+    padding: 10%;
+  }
+  
+  .supportButton {
+    padding: 10px 20px;
+    background-color: #25d366;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .supportButton:hover {
+    background-color: #128c7e;
+  }
