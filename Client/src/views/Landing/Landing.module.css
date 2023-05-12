@@ -102,6 +102,10 @@ animation-timing-function: ease-in-out;
   color:  white;
   text-decoration:none;
 }
+.linktext:hover{
+  color:  white;
+  text-decoration:none;
+}
 
 
 .Link:hover {
