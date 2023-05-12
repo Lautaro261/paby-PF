@@ -44,7 +44,7 @@ const Dash = () => {
           {isAuthenticated ? (<Link to="/parking-lot-filter" className={styles.dashLink}>Hacer reserva</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<span className={styles.dashLink}>Soporte en línea</span>) : null}
+          {isAuthenticated ? (<Link to='/online-support' className={styles.dashLink}>Soporte en línea</Link>) : null}
         </li>
         <li className={styles.dashItem} >
         {isAuthenticated ? (   <Link to="/Shopping"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

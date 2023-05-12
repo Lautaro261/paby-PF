@@ -18,7 +18,6 @@ const handlerCreateReservation = async (req, res) => {
     departure_time,
     instant_photo,
     full_reserve_value,
-    total_amount,
     comments,
   } = req.body;
 
@@ -31,7 +30,6 @@ const handlerCreateReservation = async (req, res) => {
       departure_time,
       instant_photo,
       full_reserve_value,
-      total_amount,
       comments
     );
     res.status(200).json(newReservation);

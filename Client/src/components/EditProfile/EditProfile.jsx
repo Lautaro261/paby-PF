@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from './EditProfile.module.css'
+import Modal from "../Modal/Modal";
 
 export default function EditProfile({ profile }) {
   const navigate = useNavigate()
@@ -17,12 +18,15 @@ export default function EditProfile({ profile }) {
   "name": localStorage.getItem(`name`),
   "photo":localStorage.getItem(`photo`),
   "email":localStorage.getItem(`email`),}
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   if (isLoading) {
     return <div>Cargando...</div>;
   };
   
+  
   async function handleSubmit(event) {
-  event.preventDefault();
+    event.preventDefault();
   //console.log(user.sub);
   const updatedProfile = {
     sub: user.sub,
@@ -45,14 +49,18 @@ export default function EditProfile({ profile }) {
       }
     );
     console.log(response.data);
+    setIsModalOpen(true)
   } catch (error) {
     console.error(error.message);
     console.error(error.response.data);
     console.error(error.response.status);
   }
-  navigate('/profile')
-}
+  }
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    navigate('/profile')
+  };
 
   return (
     <div className={styles.conteinerEditProfile}>
@@ -77,6 +85,9 @@ export default function EditProfile({ profile }) {
       <input type="text" id="neighborhood" value={neighborhood || ''} onChange={(event) => setNeighborhood(event.target.value)} />
 
       <button type="submit">Guardar Cambios</button>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <p>¡Tus cambios se han guardado exitosamente!</p>
+      </Modal>
     </form>
     </div>
   );
