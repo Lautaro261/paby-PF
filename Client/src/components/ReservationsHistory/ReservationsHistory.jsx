@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Update } from '../../redux/features/history/historySlice';
 import {useAuth0} from "@auth0/auth0-react"
 import { Link } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 
 
@@ -30,7 +31,7 @@ const ReservationsHistory = () => {
 
     
     if(isLoading && !history[1]){
-        return(<div>cargando...</div>)
+        return(<div><Loader/> </div>)
     }
     if( history[1]===undefined){
         return (<div>
