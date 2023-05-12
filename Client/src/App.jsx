@@ -8,7 +8,6 @@ import ParkingSpacePayment from './components/ParkingSpacePayment/ParkingSpacePa
 import SuccessPayment from './components/SuccessPayment/SuccessPayment';
 import FailurePayment from './components/FailurePayment/FailurePayment';
 import VehiclesView from './views/VehiclesView/VehiclesView';
-import VehicleDetails from './components/VehicleDetails/vehicleDetails.jsx';
 import AboutUs from './components/AboutUs/AboutUs';
 import Navbar from './components/Navbar/Navbar';
 import CreateVehicleView from './views/CreateVehicleView/CreateVehicleView';
@@ -17,6 +16,7 @@ import ProfileView from './views/ProfileView/ProfileView';
 import EditProfileView from './views/EditProfileView/EditProfileView';
 import HistoryView from './views/HistoryView/HistoryView';
 import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/ParkingSpaceReservationView';
+import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 axios.defaults.baseURL = 'http://localhost:3001'
 //axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
@@ -41,7 +41,7 @@ const App = () => {
       <Route path='/failure-payment' element={<FailurePayment />} />
       <Route path='/reservations-history' element={<HistoryView />} />
       <Route path='/vehicles' element={<VehiclesView />} />
-      <Route path='/vehicle/:license_plate_id' element={<VehicleDetails />} />
+      <Route path='/vehicle/:license_plate_id' element={<VehicleDetailsView />} />
       <Route path='/about-us' element={<AboutUs />} />
       <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfileView />} />
