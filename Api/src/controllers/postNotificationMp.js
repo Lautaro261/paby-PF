@@ -7,13 +7,13 @@ const notification = async (req, res) => {
   const { preference_id, collection_id, collection_status } = req.query;
 
   // Buscar la reserva correspondiente en la base de datos
-  const reservation = await Reservation.findOne({
+  const reservations = await Reservation.findAll({
     where: {
       preference_id: preference_id,
     },
   });
 
-  if (!reservation) {
+  if (!reservations) {
     return res
       .status(404)
       .json({
@@ -22,10 +22,29 @@ const notification = async (req, res) => {
   }
 
   // Actualizar el estado de pago de la reserva a "approved"
-  reservation.payment_status = collection_status;
-  reservation.payment_transaction_id = collection_id;
-  await reservation.save();
+  // reservation.payment_status = collection_status;
+  // reservation.payment_transaction_id = collection_id;
 
+  // if (reservation.payment_status === "approved") {
+  //   reservation.reservation_status = "Pagada"
+  // }else{
+  //   reservation.reservation_status = "Pago rechazado"
+  // }
+  
+  // await reservation.save();
+
+  for (const reservation of reservations) {
+    reservation.payment_status = collection_status;
+    reservation.payment_transaction_id = collection_id;
+
+    if (reservation.payment_status === "approved") {
+      reservation.reservation_status = "Pagada"
+    } else {
+      reservation.reservation_status = "Pago rechazado"
+    }
+  
+    await reservation.save();
+  }
   // Enviar una respuesta a Mercado Pago para confirmar la recepción de la notificación
   res.sendStatus(200);
 };

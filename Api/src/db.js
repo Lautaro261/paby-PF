@@ -57,6 +57,7 @@ const {
   Floor,
   Parking,
   Profile,
+  Cart,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -104,6 +105,15 @@ Floor.belongsTo(Parking);
 //User con perfil 
 User.hasOne(Profile);
 Profile.belongsTo(User);
+
+//...
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+//
+Cart.hasMany(Reservation);
+Reservation.belongsTo(Cart);
+
 
 module.exports = {
   ...sequelize.models,
