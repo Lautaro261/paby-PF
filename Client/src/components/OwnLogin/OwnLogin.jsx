@@ -14,7 +14,7 @@ const OwnLogin = () => {
 
     return (
         <div>
-            <button onClick={handleLoginClick}>Ingresar</button>
+            <button onClick={handleLoginClick}>Ingresar Local</button>
             <LoginModal isOpen={isModalOpen} onClose={handleCloseModal}/>
         </div>
     )

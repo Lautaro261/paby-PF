@@ -4,8 +4,9 @@ import Logopaby from "../../imgs/Logopaby.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import LoginButton from "../LoginButton/LoginButton";
-import OwnLogin from "../OwnLogin/OwnLogin";
 import RegisterOwn from "../RegisterOwn/RegisterOwn";
+import OwnLogout from "../OwnLogout/OwnLogout";
+import OwnLogin from "../OwnLogin/OwnLogin";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth0();
@@ -30,6 +31,13 @@ const Navbar = () => {
         
         <li className={style.buttonContainer}>
           {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+        </li>
+        
+        <li className={style.buttonContainer}>
+       <OwnLogout />
+        </li>
+        <li className={style.buttonContainer}>
+       <OwnLogin />
         </li>
       </ul>
     </nav>
