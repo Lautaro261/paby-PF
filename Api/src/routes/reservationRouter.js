@@ -12,11 +12,8 @@ const {
 } = require("../handlers/handlerPostNotificationMp");
 
 const {handlerCreateCart} = require('../handlers/handlerPostCart');
-
 const { handlerCreateRC } = require('../handlers/handlerCreateRC');
-
 const { handlerGetCart } = require('../handlers/handlerGetCart');
-
 const { handlerPreferencia } = require('../handlers/handlerPreferencia');
 
 const reservationRouter = Router();

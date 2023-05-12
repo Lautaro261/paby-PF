@@ -1,6 +1,7 @@
 // Modelos de base de base de datos
 const { Reservation, User, Zone, Vehicle, Cart } = require("../db");
 const { Op } = require("sequelize");
+const { createMercadoPagoPreference } = require('../controllers/preferenciaPago')
 
 // Controlador para crear reservaciones y agregarlas al carrito de compras
 const createReservationCart = async (
@@ -11,7 +12,6 @@ const createReservationCart = async (
     departure_time,
     instant_photo,
     full_reserve_value,
-    total_amount,
     comments,
     req // Objeto request de Express
 ) => {
@@ -86,7 +86,7 @@ const createReservationCart = async (
         instant_photo,
         full_reserve_value,
         comments,
-        CartId: shoppingCart.id,
+        cartId: shoppingCart.id,
     });
 
     return newReservation;

@@ -4,13 +4,15 @@ const getCart = async (id) => {
     // Verificar si el carrito existe
     const cart = await Cart.findByPk(id);
     if (!cart) {
-        throw new Error("El carrito no existe");
+        return {
+            message: "Carrito no existe",
+        };
     }
 
     // Obtener las reservaciones asociadas al carrito
     const reservations = await Reservation.findAll({
         where: {
-            CartId: id,
+            cartId: id,
         },
     });
 

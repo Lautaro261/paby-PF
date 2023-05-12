@@ -38,16 +38,15 @@ module.exports = (sequelize) => {
       },
       reservation_status: {
         type: DataTypes.ENUM(
-          "En curso",
-          "Programada",
-          "Finalizada",
+          // "En curso",
+          // "Programada",
+          // "Finalizada",
+          "Pagada",
+          "Pago rechazado",
+          "Cancelada",
           "En verificación"
         ),
         defaultValue: "En verificación",
-        allowNull: true,
-      },
-      total_amount: {
-        type: DataTypes.FLOAT,
         allowNull: true,
       },
       comments: {

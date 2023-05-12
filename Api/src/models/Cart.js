@@ -1,23 +1,23 @@
 const {DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Cart',{    
+    sequelize.define('cart',{    
         id:{
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
             allowNull: false,
         },
-        quantity:{
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
         cart_amount:{
             type: DataTypes.FLOAT,
             allowNull: false,
         },
         cart_status:{
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM(
+                "Por pagar",
+                "Pagado",
+                "Vacio"),
+            defaultValue: "Vacio",
             allowNull: true
         }
     })

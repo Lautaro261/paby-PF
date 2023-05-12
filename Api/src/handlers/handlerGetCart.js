@@ -7,7 +7,7 @@ const handlerGetCart = async (req, res) => {
         res.status(200).json(reservations);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error interno del servidor" });
+        res.status(404).json({ message: "Error interno del servidor" });
     }
 };
 
