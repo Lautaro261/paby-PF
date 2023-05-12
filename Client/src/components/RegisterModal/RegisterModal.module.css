@@ -1,4 +1,4 @@
-.buttonRegisterOnClose {
+  .buttonRegisterOnClose {
     border: 2px solid #81C3D7;
     background-color: #16425B;
     color: #f1f1f1;
@@ -6,7 +6,6 @@
     width: 20px;
     height: 20px;
     position: relative;
-    margin-left: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,4 +30,14 @@
     background-color: white;
     padding: 20px;
     border-radius: 5px;
+  }        
+
+  .formRegisterOwn{
+    padding:5px;
+  }
+  .modalElements{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
