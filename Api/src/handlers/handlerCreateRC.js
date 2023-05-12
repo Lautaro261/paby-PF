@@ -1,15 +1,8 @@
 // Controladores de reservacion:
-const { createReservation } = require("../controllers/postReservation");
-
-// Mercado Pago
-
-const mercadoPago = require("mercadopago");
-require("dotenv").config();
-
-mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
+const { createReservationCart } = require("../controllers/postReservationCart");
 
 // Handler para crear reservaciones
-const handlerCreateReservation = async (req, res) => {
+const handlerCreateRC = async (req, res) => {
   const {
     userSub,
     zoneId,
@@ -22,7 +15,7 @@ const handlerCreateReservation = async (req, res) => {
   } = req.body;
 
   try {
-    const newReservation = await createReservation(
+    const newReservation = await createReservationCart(
       userSub,
       zoneId,
       vehicleLicensePlateId,
@@ -35,8 +28,8 @@ const handlerCreateReservation = async (req, res) => {
     res.status(200).json(newReservation);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: error.message });
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 };
 
-module.exports = { handlerCreateReservation };
+module.exports = { handlerCreateRC };

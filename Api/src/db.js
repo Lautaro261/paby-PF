@@ -5,14 +5,14 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 
-  const sequelize = new Sequelize(
+const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/paby`,
   {
     logging: false,
     native: false,
   }
-);  
- 
+);
+
 /*   const sequelize = new Sequelize(
   DB_DEPLOY,
   {
@@ -57,6 +57,7 @@ const {
   Floor,
   Parking,
   Profile,
+  Cart,
 } = sequelize.models;
 
 // Aca vendrian las relaciones
@@ -101,9 +102,17 @@ Zone.belongsTo(Floor);
 Parking.hasMany(Floor, { as: "parkingFloors" });
 Floor.belongsTo(Parking);
 
-//User con perfil 
+// Usuario con Perfil
 User.hasOne(Profile);
 Profile.belongsTo(User);
+
+// Usuario con Carrito
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+// Carrito con Reservacion
+Cart.hasMany(Reservation);
+Reservation.belongsTo(Cart);
 
 module.exports = {
   ...sequelize.models,

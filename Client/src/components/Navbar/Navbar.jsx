@@ -11,7 +11,7 @@ const Navbar = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <nav className={style.navbarContainer}>
+    <nav className={style.navbarContainer} id="nav">
       <div className={style.logoContainer}>
         <Link to="/home" className={style.logo}>
           <img src={Logopaby} alt="logo" />

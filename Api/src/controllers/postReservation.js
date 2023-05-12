@@ -18,7 +18,6 @@ const createReservation = async (
   departure_time,
   instant_photo,
   full_reserve_value,
-  total_amount,
   comments
 ) => {
   // Verificar si el usuario existe
@@ -37,7 +36,7 @@ const createReservation = async (
     throw new Error("La zona no existe");
   }
 
-  // Verificar si la zona existe
+  // Verificar si el vehiculo existe
   const vehicle = await Vehicle.findByPk(vehicleLicensePlateId);
   if (!vehicle) {
     throw new Error("El vehiculo no existe");
@@ -124,7 +123,6 @@ const createReservation = async (
     departure_time,
     instant_photo,
     full_reserve_value,
-    total_amount,
     comments,
     payment_link: response.body.sandbox_init_point,
     preference_id: response.body.id,
