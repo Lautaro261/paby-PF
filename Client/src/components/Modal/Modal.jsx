@@ -2,6 +2,7 @@ import React from "react";
 import styles from './Modal.module.css';
 
 const Modal = ({isOpen, children, onClose}) => {
+
     return isOpen? (
         <div className={styles.modal}>
             <section className={styles.modalMain}>
