@@ -13,7 +13,10 @@ const {
 
 const { handlerCreateCart } = require("../handlers/handlerPostCart");
 const { handlerCreateRC } = require("../handlers/handlerCreateRC");
-const { handlerGetCart } = require("../handlers/handlerGetCart");
+const {
+  handlerGetCart,
+  handlerGetCartAndReservations,
+} = require("../handlers/handlerGetCart");
 const {
   handlerPaymentPreference,
 } = require("../handlers/handlerPaymentPreference");
@@ -23,7 +26,8 @@ const reservationRouter = Router();
 //// Rutas de Reservacion
 reservationRouter.get("/alls", handlerGetAllReservations);
 reservationRouter.get("/:id", handlerGetReservationsByUserId);
-reservationRouter.get("/:id/cart", handlerGetCart);
+reservationRouter.get("/:id/carts", handlerGetCartAndReservations);
+reservationRouter.get("/:id/reservations", handlerGetCart);
 reservationRouter.post("/notification", handlerNotification);
 reservationRouter.post("/updatestates", handlerUpdateStatus);
 reservationRouter.post("/create", handlerCreateReservation);
