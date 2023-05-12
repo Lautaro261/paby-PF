@@ -23,9 +23,6 @@ const Navbar = () => {
             Acerca de nosotros
           </Link>
         </li>
-        <li className={style.buttonContainer}>
-       <OwnLogin />
-        </li>
         
         <li className={style.buttonContainer}>
        <RegisterOwn />

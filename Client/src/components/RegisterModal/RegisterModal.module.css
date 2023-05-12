@@ -6,7 +6,6 @@
     width: 20px;
     height: 20px;
     position: relative;
-    margin-left: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,3 +31,13 @@
     padding: 20px;
     border-radius: 5px;
   }        
+
+  .formRegisterOwn{
+    padding:5px;
+  }
+  .modalElements{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }

@@ -5,6 +5,7 @@ import { sendUserSession } from "../../redux/features/users/usersSlice";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
+import OwnLogin from '../../components/OwnLogin/OwnLogin'
 
 const RegisterModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
                 <button onClick={onClose} className={style.buttonRegisterOnClose}>X</button>
                 <h2>Registrarse</h2>
 
-                <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit} className={style.formRegisterOwn}>
                     <label htmlFor='name'>Nombre:
                         <input
                             type='text'
@@ -117,8 +118,12 @@ const RegisterModal = ({ isOpen, onClose }) => {
                     {formik.touched.passwordConfirmation && formik.errors.passwordConfirmation ? (
                         <div>{formik.errors.passwordConfirmation}</div>
                     ) : null}
-                    <button type='submit'>Ingresar</button>
+                    <button type='submit'>Registrarse</button>
                 </form>
+                <div className={style.modalElements}>
+                    <p>ó</p>
+                    <OwnLogin />
+                </div>
             </div>
         </div>
     )
