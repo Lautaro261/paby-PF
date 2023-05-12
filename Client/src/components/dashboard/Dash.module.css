@@ -1,8 +1,10 @@
 .dash {
-  background-color: #d9dcd6;
+  background-color: #aedfea;
   height: 70px;
   display: flex;
   justify-content: center;
+  box-shadow: 0px 10px 13px -7px #00000055, 5px 5px 15px 5px rgba(88, 85, 85, 0);
+  z-index: 100;
 }
 
 .dashList {
