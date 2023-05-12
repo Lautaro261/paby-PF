@@ -38,9 +38,9 @@ module.exports = (sequelize) => {
       },
       reservation_status: {
         type: DataTypes.ENUM(
-          // "En curso",
-          // "Programada",
-          // "Finalizada",
+          "En curso",
+          "Programada",
+          "Finalizada",
           "Pagada",
           "Pago rechazado",
           "Cancelada",
