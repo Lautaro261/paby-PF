@@ -47,8 +47,8 @@ const Dash = () => {
           {isAuthenticated ? (<Link to='/online-support' className={styles.dashLink}>Soporte en línea</Link>) : null}
         </li>
         <li className={styles.dashItem} >
-        {isAuthenticated ? (   <Link to="/Shopping"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="35px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
+        {isAuthenticated ? (   <Link to="/Shopping"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="35px" height="48px" viewBox="0 0 48 48" enableBackground="new 0 0 48 48" xmlSpace="preserve">
 <g id="color_17_">
 	<g>
 		<path fill="#898CC5" d="M45,17H16c-0.553,0-1,0.447-1,1l2,15c0,0.553,0.447,1,1,1h23c0.553,0,1-0.447,1-1l4-15
