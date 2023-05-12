@@ -47,7 +47,7 @@ const Dash = () => {
           {isAuthenticated ? (<span className={styles.dashLink}>Métodos de pago</span>) : null}
         </li> */}
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<span className={styles.dashLink}>Soporte en línea</span>) : null}
+          {isAuthenticated ? (<Link to='/online-support' className={styles.dashLink}>Soporte en línea</Link>) : null}
         </li>
       </ul>
     </div>
