@@ -18,7 +18,6 @@ const createReservation = async (
   departure_time,
   instant_photo,
   full_reserve_value,
-  total_amount,
   comments
 ) => {
   // Verificar si el usuario existe
@@ -124,7 +123,6 @@ const createReservation = async (
     departure_time,
     instant_photo,
     full_reserve_value,
-    total_amount,
     comments,
     payment_link: response.body.sandbox_init_point,
     preference_id: response.body.id,
