@@ -5,14 +5,14 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 
-  const sequelize = new Sequelize(
+const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/paby`,
   {
     logging: false,
     native: false,
   }
-);  
- 
+);
+
 /*   const sequelize = new Sequelize(
   DB_DEPLOY,
   {
@@ -51,9 +51,9 @@ const {
   User,
   Vehicle,
   Zone,
-  Rol,
+/*   Rol, */
   Reservation,
-  Permission,
+ /*  Permission, */
   Floor,
   Parking,
   Profile,
@@ -75,12 +75,12 @@ User.hasMany(Vehicle);
 Vehicle.belongsTo(User);
 
 // Usuario con rol relación de uno a muchos.
-Rol.hasMany(User);
-User.belongsTo(Rol);
+/* Rol.hasMany(User);
+User.belongsTo(Rol); */
 
 // Relación de muchos a muchos entre el rol y permisos
-Rol.belongsToMany(Permission, { through: "PermissionRol" });
-Permission.belongsToMany(Rol, { through: "PermissionRol" });
+/* Rol.belongsToMany(Permission, { through: "PermissionRol" });
+Permission.belongsToMany(Rol, { through: "PermissionRol" }); */
 
 // Usuario con reservación
 User.hasMany(Reservation);
@@ -102,18 +102,17 @@ Zone.belongsTo(Floor);
 Parking.hasMany(Floor, { as: "parkingFloors" });
 Floor.belongsTo(Parking);
 
-//User con perfil 
+// Usuario con Perfil
 User.hasOne(Profile);
 Profile.belongsTo(User);
 
-//...
+// Usuario con Carrito
 User.hasOne(Cart);
 Cart.belongsTo(User);
 
-//
+// Carrito con Reservacion
 Cart.hasMany(Reservation);
 Reservation.belongsTo(Cart);
-
 
 module.exports = {
   ...sequelize.models,

@@ -1,11 +1,10 @@
-
 import React from "react";
 import { useDispatch } from 'react-redux'
 import { sendUserSession } from "../../redux/features/users/usersSlice";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
-import OwnLogin from '../../components/OwnLogin/OwnLogin'
+// import OwnLogin from '../../components/OwnLogin/OwnLogin'
 
 const RegisterModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
@@ -120,10 +119,10 @@ const RegisterModal = ({ isOpen, onClose }) => {
                     ) : null}
                     <button type='submit'>Registrarse</button>
                 </form>
-                <div className={style.modalElements}>
+                {/* <div className={style.modalElements}>
                     <p>ó</p>
                     <OwnLogin />
-                </div>
+                </div> */}
             </div>
         </div>
     )
