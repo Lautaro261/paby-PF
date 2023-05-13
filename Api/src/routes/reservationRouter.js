@@ -20,6 +20,9 @@ const {
 const {
   handlerPaymentPreference,
 } = require("../handlers/handlerPaymentPreference");
+const {
+  handlerRemoveReservationCart,
+} = require("../handlers/handlerPutReservationCart");
 
 const reservationRouter = Router();
 
@@ -34,5 +37,6 @@ reservationRouter.post("/create", handlerCreateReservation);
 reservationRouter.post("/createcart", handlerCreateCart);
 reservationRouter.post("/createrc", handlerCreateRC);
 reservationRouter.post("/:id/payment", handlerPaymentPreference);
+reservationRouter.put("/:id/remove", handlerRemoveReservationCart);
 
 module.exports = reservationRouter;
