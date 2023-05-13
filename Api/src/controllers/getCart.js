@@ -49,6 +49,10 @@ const getCartAndReservations = async (id) => {
       cartId: cart.id,
     },
     attributes: ["id", "payment_status", "reservation_status"],
+    include: {
+      model: Cart,
+      attributes: ["cart_status", "cart_amount", "quantity"],
+    },
   });
 
   return {
