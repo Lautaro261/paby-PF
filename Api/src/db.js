@@ -80,8 +80,8 @@ User.belongsTo(Rol);
 
 // Relación de muchos a muchos entre el rol y permisos
 Rol.belongsToMany(Permission, { through: "PermissionRol" });
-Permission.belongsToMany(Rol, { through: "PermissionRol" });
- */
+Permission.belongsToMany(Rol, { through: "PermissionRol" }); */
+
 // Usuario con reservación
 User.hasMany(Reservation);
 Reservation.belongsTo(User);
