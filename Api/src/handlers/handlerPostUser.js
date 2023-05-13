@@ -7,6 +7,7 @@ const handlerPostUser = async (req, res) => {
       name,
       email,
       photo,
+      password
     } = req.body;
 
     // console.log(name)
@@ -15,6 +16,7 @@ const handlerPostUser = async (req, res) => {
       name,
       email,
       photo,
+      password
     );
 
     //console.log(user)
