@@ -14,7 +14,7 @@ const handlerNotification = async (req, res) => {
     if (updateStatusPayment) {
       res.status(200).json(updateStatusPayment);
     } else {
-      res.status(404).send({
+      res.status(200).send({
         message: "Los estados ya se actualizaron correctamente",
       });
     }

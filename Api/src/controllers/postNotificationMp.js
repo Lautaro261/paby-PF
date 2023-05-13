@@ -1,5 +1,7 @@
 // Modelos de base de base de datos
 const { Reservation, Cart } = require("../db");
+const { createCart } = require("../controllers/postCart"); // importar la función createCart
+const { Op } = require("sequelize");
 
 // Controlador handlerNotification
 const notification = async (
@@ -55,14 +57,21 @@ const notification = async (
 
   // Actualizar el estado del carrito a "Pagado"
   const cartId = oneReservation.cartId;
-  await Cart.update(
+  const [numAffectedRows, affectedRows] = await Cart.update(
     { cart_status: "Pagado" },
     {
       where: {
         id: cartId,
+        cart_status: { [Op.ne]: "Pagado" }, // solo actualizar si el carrito aún no está "Pagado"
       },
+      returning: true, // devolver las filas actualizadas para verificar el estado del carrito
     }
   );
+
+  if (numAffectedRows > 0 && affectedRows[0].cart_status === "Pagado") {
+    // si se actualizó al estado "Pagado", ejecutar createCart
+    await createCart(oneReservation.userSub);
+  }
 };
 
 module.exports = { notification };
