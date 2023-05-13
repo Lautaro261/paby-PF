@@ -18,7 +18,7 @@ const handlerGetUsers = async (req, res)=>{
            res.status(401).json({message: 'ALGO SALIO MAL EN HANLDER GET USERS'})
        }
     } else{
-         res.status(403).json("Error en la verificacion") 
+         res.status(403).json({message: "Error en la verificacion"}) 
    
         }
              

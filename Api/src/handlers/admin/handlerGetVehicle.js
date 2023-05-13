@@ -13,7 +13,7 @@ const handlerGetVehicle = async (req, res) => {
         res.status(404).json(error.message);
       }
     } else {
-      res.status(403).json("Error en la verificacion");
+      res.status(403).json({message: "Error en la verificacion"});
     }
   });
 };
