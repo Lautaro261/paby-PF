@@ -1,12 +1,26 @@
 import style from "./ShoppingCart.module.css"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Fill } from "../../redux/features/carts/cartsSlice";
+import {useAuth0} from "@auth0/auth0-react"
+import Loader from "../Loader/Loader";
 
 
 const ShoppingCart=()=>{
     const dispatch = useDispatch();
     //const productos = useSelector(state => state.productos);
-    const cart = useSelector(state => state.carrito);
+    const { user, isLoading} = useAuth0()
+    const userId = user && user.sub;    
+    
+    useEffect(() => {
+      if (userId) {
+        console.log(userId, "DESDE USEFECT")
+        dispatch(Fill(userId));
+        console.log("ok")
+      }
+    }, [dispatch, userId]);
+    
+    const cart = useSelector(state => state.carts.cart);
 
     //const eliminarReserva = (id) => {dispatch({ type: 'carrito/eliminarProducto', payload: id });};
 
@@ -16,16 +30,20 @@ const ShoppingCart=()=>{
   };
 
   const renderizarCarrito = () => {
-        // if (cart.length === 0 ) {
-         if (true ) {  
-         return <p>Aun no agregaste reservas</p>;
+    if (isLoading ) {
+      console.log(cart, "cargando...")
+     return (<div><Loader/></div>);
+     }
+        if (cart.length===0 ) {
+         return (<div>agrega reservaciones para continuar...</div>);
          }
 
-        return carrito.map(producto => (
-        <div key={producto.id}>
-            <p>{producto.nombre}</p>
-            <p>${producto.precio}</p>
-            <button onClick={() => eliminarProducto(producto.id)}>Eliminar</button>
+        return cart.map(elem => (
+        <div key={elem.id}>
+            <p>hora de entrada:</p><p>{elem.admission_time}</p>
+            <p>hora de salida:</p><p>{elem.departure_time}</p>
+            <p>hora de valor:</p><p>{elem.full_reserve_value}</p>
+            <button onClick={() => eliminarProducto(elem.id)}>Eliminar</button>
       </div>
     ));
   };
@@ -38,8 +56,8 @@ const ShoppingCart=()=>{
             <p>Tus reservas por pagar</p>
         <div className={style.cont}>
         {renderizarCarrito()}
-        {false > 0 && (
-            <button onClick={pagarCarrito}>Pagar</button>
+        {cart.length > 0 && (
+            <button onClick={pagarCarrito}>Ir a Pagar</button>
         )}
             </div>
         </div>
