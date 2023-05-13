@@ -13,7 +13,7 @@ export const sendUserSession = createAsyncThunk(
     'users/sendUserSession',
     async (userSession) => {
         try {
-            const response = await axios.post('/users', userSession)
+            const response = await axios.post('/user', userSession)
             console.log('soy el post de user', response.data);
             return response.data
         } catch (error) {
@@ -26,7 +26,7 @@ export const getProfile = createAsyncThunk(
     'users/getProfile',
     async (sub) => {
         try {
-            const response = await axios.get(`/users/${sub}`)
+            const response = await axios.get(`/user/${sub}`)
             console.log(response.data)
 
             return response.data;

@@ -1,4 +1,4 @@
-const { Vehicle } = require('../db');
+const { Vehicle } = require('../../db');
 
 const getVehicleByBrand = async(car_brand)=>{
 

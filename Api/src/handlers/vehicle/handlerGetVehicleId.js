@@ -1,5 +1,5 @@
-const { Vehicle } = require("../db");
-const getVehicleId = require("../controllers/getVehicleId");
+const { Vehicle } = require("../../db");
+const getVehicleId = require("../../controllers/vehicle/getVehicleId");
 
 const handlerGetVehicleId = async (req, res) => {
   const { license_plate_id } = req.params;

@@ -1,4 +1,4 @@
-const putVehicle = require("../controllers/putVehicle");
+const putVehicle = require("../../controllers/vehicle/putVehicle");
 
 const handlerPutVehicle = async (req, res) => {
   try {
