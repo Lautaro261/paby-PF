@@ -23,42 +23,69 @@ const getCart = async (id) => {
       "payment_date",
       "payment_status",
       "reservation_status",
+      "zoneId",
+      "vehicleLicensePlateId",
     ],
-  });
-
-  return reservations;
-};
-
-// Controller para obtener todos los carritos de un usuario
-const getCartAndReservations = async (id) => {
-  // Verificar si el usuario tiene un carrito asociado
-  const cart = await Cart.findOne({
-    where: {
-      userSub: id,
-    },
-  });
-  if (!cart) {
-    return {
-      message: "El usuario no tiene carrito",
-    };
-  }
-
-  // Obtener las reservaciones asociadas al carrito
-  const reservations = await Reservation.findAll({
-    where: {
-      cartId: cart.id,
-    },
-    attributes: ["id", "payment_status", "reservation_status"],
     include: {
       model: Cart,
       attributes: ["cart_status", "cart_amount", "quantity"],
     },
   });
 
-  return {
-    cartId: cart.id,
-    reservations: reservations,
-  };
+  if (reservations.length > 0) {
+    return reservations;
+  } else {
+    return {
+      cartId: cart.id,
+      cart_status: cart.cart_status,
+      cart_amount: cart.cart_amount,
+      quantity: cart.quantity,
+    };
+  }
+};
+
+// Controller para obtener todos los carritos de un usuario
+const getCartAndReservations = async (id) => {
+  // Verificar si el usuario tiene un carrito asociado
+  const carts = await Cart.findAll({
+    where: {
+      userSub: id,
+    },
+  });
+  if (!carts || carts.length === 0) {
+    return {
+      message: "El usuario no tiene carrito",
+    };
+  }
+
+  const cartsWithReservations = await Promise.all(
+    carts.map(async (cart) => {
+      // Obtener las reservaciones asociadas a cada carrito
+      const reservations = await Reservation.findAll({
+        where: {
+          cartId: cart.id,
+        },
+        attributes: [
+          "id",
+          "payment_status",
+          "reservation_status",
+          "admission_time",
+          "departure_time",
+          "zoneId",
+          "vehicleLicensePlateId",
+        ],
+      });
+
+      return {
+        cartId: cart.id,
+        cart_status: cart.cart_status,
+        cart_amount: cart.cart_amount,
+        quantity: cart.quantity,
+        reservations: reservations,
+      };
+    })
+  );
+  return cartsWithReservations;
 };
 
 module.exports = { getCart, getCartAndReservations };
