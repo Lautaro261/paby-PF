@@ -36,7 +36,7 @@ const createReservation = async (
     throw new Error("La zona no existe");
   }
 
-  // Verificar si la zona existe
+  // Verificar si el vehiculo existe
   const vehicle = await Vehicle.findByPk(vehicleLicensePlateId);
   if (!vehicle) {
     throw new Error("El vehiculo no existe");
