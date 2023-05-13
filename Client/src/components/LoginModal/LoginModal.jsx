@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import styles from './LoginModal.module.css'
-// import { loginUser } from "../../redux/features/users/usersSlice";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserSession } from "../../redux/features/users/usersSlice";
 
 const LoginModal = ({ isOpen, onClose }) => {
 
-    // // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // const userSession = {
-        //     email: email,
-        //     password: password
-        // }
-        // try {
-        //     dispatch(loginUser(userSession))
-        //     onClose()
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        const userSession = {
+            email: email,
+            password: password
+        }
+        try {
+            dispatch(setUserSession(userSession))
+            localStorage.setItem(`sub`, email);
+            localStorage.setItem(`email`,email)
+            onClose()
+        } catch (error) {
+            console.log(error)
+        }
         console.log('logueado')
     }
 

@@ -27,12 +27,12 @@ export default function Home() {
     
     useEffect(() => {
         if(user) {
-            dispatch(setUserSession({
-                sub: user.sub,
-                name: user.name,
-                email:user.email,
-                photo:user.picture
-            }));
+            // dispatch(setUserSession({
+            //     sub: user.sub,
+            //     name: user.name,
+            //     email:user.email,
+            //     photo:user.picture
+            // }));
             dispatch(sendUserSession({
                 sub: user.sub,
                 name: user.name,

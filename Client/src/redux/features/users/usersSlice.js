@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, createAction} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -14,7 +14,7 @@ export const sendUserSession = createAsyncThunk(
     async (userSession) => {
         try {
             const response = await axios.post('/users', userSession)
-            console.log('soy el post de user', response.data);
+            console.log('soy sendUserSession', response.data);
             return response.data
         } catch (error) {
             console.log(error)
@@ -24,9 +24,9 @@ export const sendUserSession = createAsyncThunk(
 
 // export const loginUser = createAsyncThunk(
 //     'users/loginUser',
-//     async(userSession) =>{
+//     async (userSession) => {
 //         try {
-//             const response = await axios.post('', userSession)
+//             const response = await axios.post('/users', userSession)
 //             console.log('soy loginUser en usersSlice', response.data)
 //             return response.data
 //         } catch (error) {
@@ -50,7 +50,7 @@ export const getProfile = createAsyncThunk(
 )
 
 export const setUserSession = createAction('users/setUserSession')
-export const logOutUser= createAction('users/logOutUser')
+export const logOutUser = createAction('users/logOutUser')
 
 const usersSlice = createSlice({
     name: 'users',
@@ -63,7 +63,7 @@ const usersSlice = createSlice({
             state.userSession = null;
         }
     },
-    
+
     extraReducers: (builder) => {
         builder
             .addCase(getProfile.pending, (state) => {
@@ -83,21 +83,22 @@ const usersSlice = createSlice({
             .addCase(sendUserSession.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.responseNotification = 'Sesión de usuario guardada con exito.';
+                state.userSession = action.payload;
             })
             .addCase(sendUserSession.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.error = action.error.message;
             })
-            // .addCase(loginUser.pending, (state)=>{
+            // .addCase(loginUser.pending, (state) => {
             //     state.status = 'loading';
-            //     state.error = null; 
+            //     state.error = null;
             // })
-            // .addCase(loginUser.fulfilled,(state, action)=>{
+            // .addCase(loginUser.fulfilled, (state, action) => {
             //     state.status = 'succeeded';
             //     state.userSession = action.payload;
             //     state.error = null
             // })
-            // .addCase(loginUser.rejected, (state,action)=>{
+            // .addCase(loginUser.rejected, (state, action) => {
             //     state.status = 'rejected';
             //     state.error = action.error.message;
             // })

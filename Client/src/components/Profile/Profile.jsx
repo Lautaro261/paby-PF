@@ -25,6 +25,7 @@ const Profile = () => {
         return <div>Cargando... </div>
     }
 
+
     useEffect(() => {
         if (userSub) {
             dispatch(getProfile(userSub));
