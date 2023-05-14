@@ -29,7 +29,7 @@ const Navbar = () => {
         </li>
 
         <li className={style.buttonContainer}>
-          {isLoggedIn? null : <OwnLogin />}
+          {isLoggedIn || isAuthenticated ? null : <OwnLogin />}
         </li>
 
         <li className={style.buttonContainer}>
