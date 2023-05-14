@@ -1,4 +1,4 @@
-const { Profile } = require("../db");
+const { Profile } = require("../../db");
 
 const PutProfile = async (
   sub,
@@ -9,7 +9,7 @@ const PutProfile = async (
   address,
   neighborhood
 ) => {
-  const profileById = await Profile.findOne({ where: { userSub: sub } }); //AQUI TENGO EL PERFIL
+  const profileById = await Profile.findOne({ where: { userSub: sub } }); 
 
   if (!profileById) {
     return null;

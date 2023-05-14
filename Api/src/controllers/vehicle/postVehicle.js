@@ -1,5 +1,5 @@
-const { Vehicle } = require("../db");
-const { User } = require("../db");
+const { Vehicle } = require("../../db");
+const { User } = require("../../db");
 
 const postVehicle = async (
   sub,

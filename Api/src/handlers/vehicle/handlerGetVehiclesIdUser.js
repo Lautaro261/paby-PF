@@ -1,5 +1,5 @@
 //const {User}= require('../db');
-const {Vehicle} =require ("../db")
+const {Vehicle} =require ("../../db")
 const handlerGetVehiclesIdUser = async(req, res)=>{
     const {sub} = req.params
     try {

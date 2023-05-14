@@ -1,8 +1,7 @@
-const { User } = require("../db");
-const { Profile } = require("../db");
+const { User } = require("../../db");
+const { Profile } = require("../../db");
 require("dotenv").config();
-
-const { EMAIL_ADMIN, NAME_ADMIN } = process.env;
+const { EMAIL_ADMIN, NAME_ADMIN, PASS_ADMIN } = process.env;
 
 const postUser = async (sub, name, email, photo, password) => {
   const user = await User.findOne({ where: { sub: sub } });
@@ -23,7 +22,7 @@ const postUser = async (sub, name, email, photo, password) => {
     newObjUser.password = password;
   }
 
-  if (newObjUser.email === EMAIL_ADMIN && newObjUser.name === NAME_ADMIN) {
+  if (newObjUser.email === EMAIL_ADMIN && newObjUser.name === NAME_ADMIN  && newObjUser.password === PASS_ADMIN ) {
     newObjUser.rol = "admin";
   }
 

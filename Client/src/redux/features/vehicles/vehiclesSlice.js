@@ -12,7 +12,7 @@ export const getAllVehicles = createAsyncThunk (
     'vehicles/getAllVehicles',
     async (userId) => {
         try {
-            const response = await axios.get(`/users/${ userId }/vehicles`);
+            const response = await axios.get(`/user/${ userId }/vehicles`);
             console.log(response.data);
             return response.data;
         } catch (error) {
@@ -25,7 +25,7 @@ export const searchVehicleBrandByName = createAsyncThunk(
     'vehicles/searchVehicleBrandByName',
     async (car_brand) => {
         try {
-            const response = await axios.get(`/users/vehicle/search/${car_brand}`);
+            const response = await axios.get(`/user/vehicle/search/${car_brand}`);
             console.log(response.data);
             return response.data;
         } catch (error) {
