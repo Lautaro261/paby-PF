@@ -38,24 +38,7 @@ const Profile = () => {
     const goBack = () => {
         window.history.back();
     }
-    /* useEffect(()=>{
-        const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`);
-        if(!isProfileComplete && isAuthenticated && profile?.profileById){
-            //setShowProfileCompleteModal(true);
-        }
-    },[isAuthenticated, userSub, profile]); */
-
-    // useEffect(() => {
-    //     if (userSub &&
-    //         profile?.profileById?.phone &&
-    //         profile?.profileById?.country &&
-    //         profile?.profileById?.city &&
-    //         profile?.profileById?.address &&
-    //         profile?.profileById?.neighborhood) {
-    //         localStorage.setItem(`isProfileComplete_${userSub}`, true);
-    //         //setIsProfileComplete(true);
-    //     }
-    // }, [profile,]);
+    
 
     return (
         <div className={styles.conteinerPrincial}>
