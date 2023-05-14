@@ -8,7 +8,7 @@ const moment = require("moment-timezone");
 // Configurar la zona horaria de Colombia (Bogotá)
 moment.tz.setDefault("America/Bogota");
 
-conn.sync({ force: true}).then(() => {
+conn.sync({ force: false}).then(() => {
   server.listen(PORT, () => {
     console.log("%s listening at", PORT); // eslint-disable-line no-console
   });
