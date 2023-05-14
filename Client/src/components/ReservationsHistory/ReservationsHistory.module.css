@@ -18,8 +18,11 @@
     border-right: 0px solid rgb(229, 229, 240);
     border-top: 0rem ;
     border-bottom: 0.2rem solid rgb(230, 231, 244);
-    height: calc(100vh - 80px); 
 
+
+}
+.cont{
+    height: calc(100vh - 80px); 
 }
 .boxerr{
     background-color: rgba(240, 248, 255, 0.307);

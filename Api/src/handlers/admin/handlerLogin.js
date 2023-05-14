@@ -16,7 +16,7 @@ const handlerLogin = async (req, res) => {
       email === user.email &&
       password === user.password
     ) {
-      //console.log('si son iguales', sub, user.sub)
+    
       const rol = user.rol;
       jwt.sign({ sub, email, rol }, KEY_SECRET, (err, token) => {
         res.status(201).json({

@@ -41,33 +41,33 @@ export default function EditProfile({ profile }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const updatedProfile = {
-      sub: user.sub,
-      nickname,
-      phone,
-      country,
-      city,
-      address,
-      neighborhood,
-    };
-
-    try {
-      const response = await axios.put(
-        '/user/profile/edit',
-        JSON.stringify(updatedProfile),
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log(response.data);
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error(error.message);
-      console.error(error.response.data);
-      console.error(error.response.status);
-    }
+  const updatedProfile = {
+    sub: user.sub,
+    nickname,
+    phone,
+    country,
+    city,
+    address,
+    neighborhood,
+  };
+  
+  try {
+    const response = await axios.put(
+      '/user/profile/edit/',
+      JSON.stringify(updatedProfile), // convertir objeto a JSON
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    console.log(response.data);
+    setIsModalOpen(true)
+  } catch (error) {
+    console.error(error.message);
+    console.error(error.response.data);
+    console.error(error.response.status);
+  }
   }
 
   const closeModal = () => {

@@ -4,7 +4,7 @@ import style from "./Loader.module.css"
 const Loader=()=>{
     return( <div className={style.loader}>
         <p>CARGANDO...</p>
-        <svg className={style.wheel} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 254.532 254.532" xml:space="preserve">
+        <svg className={style.wheel} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 254.532 254.532" xmlSpace="preserve">
             <g>
                 <path className={style.tire} d="M127.267,0C57.092,0,0,57.091,0,127.266s57.092,127.266,127.267,127.266c70.174,0,127.266-57.091,127.266-127.266
                     S197.44,0,127.267,0z M127.267,217.656c-49.922,0-90.391-40.468-90.391-90.39s40.469-90.39,90.391-90.39
