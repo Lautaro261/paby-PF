@@ -9,7 +9,7 @@ import VehicleDetails from '../VehicleDetails/vehicleDetails.jsx';
 import SearchBar from '../Searchbar/SearchBar';
 import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice.js';
 
-export default function ViewVehicle() {
+export default function Vehicles() {
   const dispatch = useDispatch();
   // const history = useNavigate();
   const { isLoading } = useAuth0();
@@ -24,6 +24,7 @@ export default function ViewVehicle() {
   const allVehicles = useSelector(state => state.vehicles.allVehicles);
   // const searchedBrandName = useSelector(state => state.vehicles.searchedBrandName);
   const [vehiclesState, setVehiclesState] = useState(allVehicles);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllVehicles(user.sub));
@@ -97,8 +98,9 @@ export default function ViewVehicle() {
                 <td>{vehicle.license_plate}</td>
                 <td>
                   {vehicle && vehicle.license_plate_id &&
-                    <VehicleDetails license_plate_id={vehicle.license_plate_id} />}
-                  <button onClick={() => handleShowVehicleDetails(vehicle)}>Ver</button>
+                    <VehicleDetails license_plate_id={vehicle.license_plate_id}   showModal={showModal}
+                    setShowModal={setShowModal}/>}
+                  <button onClick={() => setShowModal(true) }>Ver</button>
                   <button onClick={() => handleEditVehicle(vehicle)}>Editar</button>
                 </td>
               </tr>

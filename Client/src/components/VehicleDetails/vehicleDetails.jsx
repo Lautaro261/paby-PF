@@ -7,7 +7,7 @@ import Styles from './vehicleDetails.module.css';
 export default function VehicleDetails(props) {
   const license_plate_id = props.license_plate_id;
   const [vehicle, setVehicle] = useState(null);
-  const [showModal, setShowModal] = useState(true);
+
 
   const getVehicleDetails = async (license_plate_id) => {
 
@@ -26,7 +26,7 @@ export default function VehicleDetails(props) {
   }, [license_plate_id]);
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    props.setShowModal(false);
   }
 
   if (!vehicle) {
@@ -34,7 +34,7 @@ export default function VehicleDetails(props) {
   }
 
   return (
-    <Modal show={showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
+    <Modal show={props.showModal} onHide={handleCloseModal} backdrop="static" keyboard={false}>
       <Modal.Header closeButton>
         <Modal.Title>Detalles del Vehículo</Modal.Title>
       </Modal.Header>
