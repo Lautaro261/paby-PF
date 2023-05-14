@@ -5,6 +5,7 @@ import vehiclesReducer from "./features/vehicles/vehiclesSlice";
 import parkingSpacesReservationReducer from './features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import historyReducer from "./features/history/historySlice";
 import usersReducer from './features/users/usersSlice'
+import cartsReducer from "./features/carts/cartsSlice"
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,8 @@ const store = configureStore({
         vehicles: vehiclesReducer,
         history: historyReducer,
         users: usersReducer,
+        carts:cartsReducer
+
     }
 });
 

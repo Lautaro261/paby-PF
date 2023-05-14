@@ -34,7 +34,7 @@ const ReservationsHistory = () => {
         return(<div><Loader/> </div>)
     }
     if( history[1]===undefined){
-        return (<div>
+        return (<div >
             <div className={styles.title}>Historial de Reservas</div>
             <p className={styles.boxerr}>Vaya... parece ser que aún no tienes reservaciones</p>
             <Link to="/home">Volver</Link>
@@ -44,7 +44,7 @@ const ReservationsHistory = () => {
         console.log(history[1], "desde componente")
 
         return (
-            <div key="one">
+            <div key="one" className={styles.cont}>
                 <div className={styles.title}>Historial de Reservas</div>
                 {history[1].map((elem)=>{
                     return(<div className={styles.box} key={elem.id}>
