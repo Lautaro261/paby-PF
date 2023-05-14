@@ -12,6 +12,7 @@ import img4 from "../../imgs/img4.png"
 import logo from "../../imgs/Logopaby.png"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Fill } from '../../redux/features/carts/cartsSlice';
 
 export default function Home() {
     const dispatch = useDispatch()
@@ -39,6 +40,8 @@ export default function Home() {
                 email:user.email,
                 photo:user.picture
             }));
+            dispatch(Fill(user.sub))
+            
         }
     },[user, dispatch]);
 
