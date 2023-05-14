@@ -28,6 +28,7 @@ export default function EditProfile({ profile }) {
   async function handleSubmit(event) {
     event.preventDefault();
   //console.log(user.sub);
+
   const updatedProfile = {
     sub: user.sub,
     nickname,
@@ -85,10 +86,10 @@ export default function EditProfile({ profile }) {
       <input type="text" id="neighborhood" value={neighborhood || ''} onChange={(event) => setNeighborhood(event.target.value)} />
 
       <button type="submit">Guardar Cambios</button>
+    </form>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <p>¡Tus cambios se han guardado exitosamente!</p>
       </Modal>
-    </form>
     </div>
   );
 }

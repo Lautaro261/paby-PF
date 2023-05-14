@@ -4,7 +4,6 @@ import { sendUserSession } from "../../redux/features/users/usersSlice";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
-// import OwnLogin from '../../components/OwnLogin/OwnLogin'
 
 const RegisterModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
@@ -46,6 +45,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
                 localStorage.setItem(`sub`, sub);
                 localStorage.setItem(`email`, email);
                 localStorage.setItem(`name`, name);
+                localStorage.setItem('isLoggedIn', true)
+
                 console.log('soy sendUser en RegisterOwn', response);
                 onClose();
             } catch (error) {
@@ -119,10 +120,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
                     ) : null}
                     <button type='submit'>Registrarse</button>
                 </form>
-                {/* <div className={style.modalElements}>
-                    <p>ó</p>
-                    <OwnLogin />
-                </div> */}
+
             </div>
         </div>
     )

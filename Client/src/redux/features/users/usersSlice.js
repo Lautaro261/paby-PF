@@ -6,7 +6,8 @@ const initialState = {
     status: 'idle',
     error: null,
     userSession: null,
-    responseNotification: ''
+    responseNotification: '',
+    isLoggedIn: false,
 }
 
 export const sendUserSession = createAsyncThunk(
@@ -21,19 +22,6 @@ export const sendUserSession = createAsyncThunk(
         }
     }
 );
-
-// export const loginUser = createAsyncThunk(
-//     'users/loginUser',
-//     async (userSession) => {
-//         try {
-//             const response = await axios.post('/users', userSession)
-//             console.log('soy loginUser en usersSlice', response.data)
-//             return response.data
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }
-// )
 
 export const getProfile = createAsyncThunk(
     'users/getProfile',
@@ -58,9 +46,11 @@ const usersSlice = createSlice({
     reducers: {
         setUserSession: (state, action) => {
             state.userSession = action.payload;
+            state.isLoggedIn = true;
         },
         logOutUser: (state, action) => {
             state.userSession = null;
+            state.isLoggedIn = false;
         }
     },
 
@@ -89,19 +79,7 @@ const usersSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message;
             })
-            // .addCase(loginUser.pending, (state) => {
-            //     state.status = 'loading';
-            //     state.error = null;
-            // })
-            // .addCase(loginUser.fulfilled, (state, action) => {
-            //     state.status = 'succeeded';
-            //     state.userSession = action.payload;
-            //     state.error = null
-            // })
-            // .addCase(loginUser.rejected, (state, action) => {
-            //     state.status = 'rejected';
-            //     state.error = action.error.message;
-            // })
+   
     }
 })
 

@@ -1,8 +1,8 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import LogoutButton from "../LogoutButton/LogoutButton";
-import LoginButton from "../LoginButton/LoginButton";
 import RegisterOwn from "../RegisterOwn/RegisterOwn";
 import OwnLogin from "../OwnLogin/OwnLogin";
 import OwnLogout from "../OwnLogout/OwnLogout";
@@ -12,6 +12,7 @@ import style from "./navBar.module.css";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth0();
+  const isLoggedIn = localStorage.getItem(`isLoggedIn`)
 
   return (
     <nav className={style.navbarContainer} id="nav">
@@ -26,27 +27,23 @@ const Navbar = () => {
             Acerca de nosotros
           </Link>
         </li>
+
         <li className={style.buttonContainer}>
-       <OwnLogin />
+          {isLoggedIn? null : <OwnLogin />}
         </li>
+
         <li className={style.buttonContainer}>
-       <OwnLogout />
+          {isLoggedIn || isAuthenticated ? null : <RegisterOwn />}
         </li>
-        
+
         <li className={style.buttonContainer}>
-       <RegisterOwn />
+          {isLoggedIn ? <OwnLogout /> : null}
         </li>
-        
+
         <li className={style.buttonContainer}>
-          {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+          {isAuthenticated ? <LogoutButton /> : null}
         </li>
-        
-        <li className={style.buttonContainer}>
-       <OwnLogout />
-        </li>
-        <li className={style.buttonContainer}>
-       <OwnLogin />
-        </li>
+
       </ul>
     </nav>
   );

@@ -2,7 +2,7 @@ import styles from './ParkingLotSelection.module.css';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import ParkingLotCard from '../ParkingLotCard/ParkingLotCard';
 import { getAllParkingLots } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 import { setCurrentUserId } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
@@ -25,8 +25,9 @@ const ParkingLotSelection = () => {
         );
     }
 
-    const { user } = useAuth0();
-    const userId = user && user.sub;
+    // const { user } = useAuth0();
+    // const userId = user && user.sub;
+    const userId = localStorage.getItem(`sub`)
     
     useEffect(() => {
         if (userId) {
