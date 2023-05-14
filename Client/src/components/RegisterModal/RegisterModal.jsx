@@ -20,7 +20,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
         validationSchema: Yup.object({
             email: Yup.string().email('Email inválido')
                 .required('Campo requerido'),
-            password: Yup.string().min(8, 'La contraseña debe tener al menos 8 caracteres')
+                password: Yup.string()
+                .matches(/^[a-z0-9]{8,16}$/, 'La contraseña debe contener solo letras minúsculas y números y tener entre 8 y 16 caracteres')
                 .required('Campo requerido'),
             passwordConfirmation: Yup.string()
                 .oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden')
@@ -45,7 +46,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
                 localStorage.setItem(`sub`, sub);
                 localStorage.setItem(`email`, email);
                 localStorage.setItem(`name`, name);
-                localStorage.setItem('isLoggedIn', true)
+            localStorage.setItem('isLoggedIn', true)
 
                 console.log('soy sendUser en RegisterOwn', response);
                 onClose();
@@ -120,7 +121,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
                     ) : null}
                     <button type='submit'>Registrarse</button>
                 </form>
-
+              
             </div>
         </div>
     )

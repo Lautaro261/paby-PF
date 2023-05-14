@@ -14,7 +14,7 @@ export const sendUserSession = createAsyncThunk(
     'users/sendUserSession',
     async (userSession) => {
         try {
-            const response = await axios.post('/user', userSession)
+            const response = await axios.post('/user/create', userSession)
             console.log('soy el post de user', response.data);
             return response.data
         } catch (error) {
