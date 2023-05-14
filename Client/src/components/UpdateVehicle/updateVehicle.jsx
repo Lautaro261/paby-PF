@@ -7,7 +7,7 @@ export default function UpdateVehicle({ vehicle, onClose }) {
     const handleUpdateVehicle = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`/users/vehicle/${vehicle.license_plate_id}`, updatedVehicle);
+            const response = await axios.put(`/user/vehicle/edit/${vehicle.license_plate_id}`, updatedVehicle);
             console.log(response.data);
             onClose();
         } catch (error) {
