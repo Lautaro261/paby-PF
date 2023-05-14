@@ -7,16 +7,17 @@ import UpdateVehicle from '../UpdateVehicle/updateVehicle.jsx';
 import SearchBar from '../Searchbar/SearchBar';
 import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice.js';
 
-export default function ViewVehicle() {
+export default function Vehicles() {
   const dispatch = useDispatch();
   const history = useNavigate();
   const [vehicles, setVehicles] = useState([]);
   const [showEditVehicle, setShowEditVehicle] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const sub = localStorage.getItem('sub')
 
   useEffect(() => {
-    dispatch(getAllVehicles());
+    dispatch(getAllVehicles(sub));
   }, [dispatch]);
 
 

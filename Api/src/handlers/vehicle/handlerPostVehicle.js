@@ -1,5 +1,5 @@
 
-const postVehicle =require("../controllers/postVehicle");
+const postVehicle =require("../../controllers/vehicle/postVehicle");
 
 
 const handlerPostVehicle = async (req, res) => {

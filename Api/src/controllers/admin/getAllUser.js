@@ -1,4 +1,4 @@
-const { User } = require('../db')
+const { User } = require('../../db')
 // const { Vehicle } = require(')
 //const { Sex } = require('../db')
 //const { Document } = require('../db')  

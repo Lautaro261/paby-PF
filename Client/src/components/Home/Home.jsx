@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import ProfileCompleteModal from '../ProfileCompleteModal/ProfileCompleteModal';
+// import ProfileCompleteModal from '../ProfileCompleteModal/ProfileComplseteModal';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from 'react-redux';
 import { setUserSession, sendUserSession } from '../../redux/features/users/usersSlice'
@@ -21,7 +21,8 @@ export default function Home() {
     const name=user?.name
     const photo=user?.photo
     const email=user?.email
-    const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
+    // const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
+    const isLoggedIn = localStorage.getItem(`isLoggedIn`)
     useEffect(() => {
         AOS.init();
       }, [])
@@ -45,22 +46,24 @@ export default function Home() {
         }
     },[user, dispatch]);
 
-    useEffect(() => {
-        const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`)
-        if (!isProfileComplete) {
-            setShowProfileCompleteModal(true);
-        }
-    }, [userSub]);
+    // useEffect(() => {
+    //     const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`)
+    //     if (!isProfileComplete) {
+    //         setShowProfileCompleteModal(true);
+    //     }
+    // }, [userSub]);
 
-    const handleCloseModal = () => {
-        localStorage.setItem(`isProfileComplete_${userSub}`, true);
-        setShowProfileCompleteModal(false)
-    }
+    // const handleCloseModal = () => {
+    //     localStorage.setItem(`isProfileComplete_${userSub}`, true);
+    //     setShowProfileCompleteModal(false)
+    // }
     
-    localStorage.setItem(`sub`, userSub);
-    localStorage.setItem(`name`, name);
-    localStorage.setItem(`photo`, photo);
-    localStorage.setItem(`email`, email);
+    if(user){
+        localStorage.setItem(`sub`, userSub);
+        localStorage.setItem(`name`, name);
+        localStorage.setItem(`photo`, photo);
+        localStorage.setItem(`email`, email);
+    }
 
 
     return (
@@ -93,8 +96,8 @@ export default function Home() {
                     </div>
 
                 </div>
-            { isAuthenticated ?  null : <a href="#nav">iniciar sesión para continuar</a> } 
-           { isAuthenticated ?  <Link to='/parking-lot-filter'  ><button> Reservar plaza</button></Link> : null }             
+            { isAuthenticated || isLoggedIn ?  null : <a href="#nav">iniciar sesión para continuar</a> } 
+           { isAuthenticated || isLoggedIn ?  <Link to='/parking-lot-filter'  ><button> Reservar plaza</button></Link> : null }             
         </div>
     )
 }

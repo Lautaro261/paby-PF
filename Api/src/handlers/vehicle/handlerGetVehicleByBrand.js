@@ -1,4 +1,4 @@
-const getVehicleByBrand = require('../controllers/getVehicleByBrand');
+const getVehicleByBrand = require('../../controllers/vehicle/getVehicleByBrand');
 
 
 const handlerGetVehicleByBrand = async(req, res)=>{

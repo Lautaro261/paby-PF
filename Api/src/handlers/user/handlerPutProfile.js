@@ -1,4 +1,4 @@
-const PutProfile = require("../controllers/PutProfile");
+const PutProfile = require("../../controllers/user/PutProfile");
 
 const handlerPutProfile = async (req, res) => {
   try {
@@ -13,15 +13,15 @@ const handlerPutProfile = async (req, res) => {
       city,
       address,
       neighborhood
-    ); //AQUI TENGO EL PERFIL
+    );
 
     if (upProfile !== null) {
-      res.status(200).json({ message: "se modifico correctamente!" });
+      res.status(200).json({ message: "se modifico correctamente el perfil!" });
     } else {
       res.status(400).json({ message: "No se encontro el perfil", sub: sub });
     }
   } catch (error) {
-    res.status(400).json({ message: "no se pudo modificar", error: error.message });
+    res.status(400).json({ message: "No se pudo modificar el perfil", error: error.message });
   }
 };
 
