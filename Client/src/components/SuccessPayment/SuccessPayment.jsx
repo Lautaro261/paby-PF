@@ -1,8 +1,15 @@
 import styles from './SuccessPayment.module.css';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
-import { updateParkingSpaceStatusById } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { 
+    postParkingSpaceReservationNotification, 
+    setParkingSpacePaymentLink 
+} from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
+import { 
+    setSelectedParkingLot, 
+    updateParkingSpaceStatus 
+} from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const SuccessPayment = () => {
     const { search } = useLocation();
@@ -21,13 +28,17 @@ const SuccessPayment = () => {
     } = Object.fromEntries(params.entries());
 
     const dispatch = useDispatch();
-    const selectedParkingSpace = JSON.parse(sessionStorage.getItem('selectedParkingSpace'));
-
-    const handleClick = () => {
-        dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
-        dispatch(updateParkingSpaceStatusById(selectedParkingSpace));
-        sessionStorage.setItem('selectedParkingSpace', '');
-    };
+    const selectedParkingSpace = JSON.parse(localStorage.getItem('selectedParkingSpace'));
+    
+    useEffect(() => {
+        if (selectedParkingSpace) {
+            dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
+            dispatch(updateParkingSpaceStatus(selectedParkingSpace));
+            dispatch(setParkingSpacePaymentLink(''));
+            dispatch(setSelectedParkingLot({}));
+            localStorage.removeItem('selectedParkingSpace');
+        }
+    }, [dispatch, selectedParkingSpace]);
 
     return (
         <div className={ styles.successPayment__container }>
@@ -70,8 +81,11 @@ const SuccessPayment = () => {
             <div className={ styles.successPayment__item_description }>
                 <b>Merchant Account ID:</b><div>{ merchant_account_id }</div>
             </div>
+            <Link to='/reservations-history' className={ styles.successPayment__button }>
+                <button>Ir al historial de mis reservas</button>
+            </Link>
             <Link to='/home' className={ styles.successPayment__button }>
-                <button onClick={ handleClick }>Volver a Home</button>
+                <button>Volver a Home</button>
             </Link>
         </div>
     );

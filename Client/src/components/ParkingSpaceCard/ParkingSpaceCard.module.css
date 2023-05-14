@@ -32,6 +32,13 @@
 	inline-size: 40px;
 }
 
+.parkingSpaceCard__status_chosen {
+	border: 2px solid black;
+	padding: 5px;
+	background-color: rgb(53, 56, 236);
+	color: black;
+}
+
 .parkingSpaceCard__status_available {
 	position: relative;
 	border: 2px solid black;

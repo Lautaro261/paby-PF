@@ -1,11 +1,22 @@
 .parkingLotCard__container {
     position: relative;
+    inline-size: 280px;
     margin: 20px;
     border: 2px solid black;
     border-radius: 10px;
     cursor: default;
     display: block;
-  
+}
+
+.parkingLotCard__container_selected {
+    position: relative;
+    inline-size: 280px;
+    margin: 20px;
+    border: 6px solid black;
+    border-radius: 10px;
+    cursor: default;
+    display: block;
+    background-color: green;
 }
 
 .parkingLotCard__container:hover::after {
@@ -23,6 +34,7 @@
 
 .parkingLotCard__property {
     display: flex;
+    justify-content: center;
 }
 
 .parkingLotCard__property_key {
@@ -33,8 +45,6 @@
 .parkingLotCard__image {
     width: 200px;
     border: 2px solid black;
-    display: flex;
-    justify-content: center;
 }
 
 .parkingLotCard__regulation {

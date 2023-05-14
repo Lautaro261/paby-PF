@@ -2,6 +2,7 @@ import styles from './FailurePayment.module.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
+import { setSelectedParkingLot } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const FailurePayment = () => {
     const { search } = useLocation();
@@ -21,10 +22,12 @@ const FailurePayment = () => {
 
     const dispatch = useDispatch();
 
-    const handleClick = () => {
+    useEffect(() => {
         dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
-        sessionStorage.setItem('selectedParkingSpace', '');
-    };
+        dispatch(setParkingSpacePaymentLink(''));
+        dispatch(setSelectedParkingLot({}));
+        localStorage.removeItem('selectedParkingSpace');
+    }, []);
 
     return (
         <div className={ styles.failurePayment__container }>
@@ -68,7 +71,7 @@ const FailurePayment = () => {
                 <b>Merchant Account ID:</b><div>{ merchant_account_id }</div>
             </div>
             <Link to='/home' className={ styles.failurePayment__button }>
-                <button onClick={ handleClick }>Volver a Home</button>
+                <button>Volver a Home</button>
             </Link>
         </div>
     );
