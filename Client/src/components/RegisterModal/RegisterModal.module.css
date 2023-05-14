@@ -1,0 +1,41 @@
+  .buttonRegisterOnClose {
+    border: 2px solid #81C3D7;
+    background-color: #16425B;
+    color: #f1f1f1;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .buttonRegisterOnClose:hover {
+    color: #16425B;
+  }
+
+  .modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }        
+
+  .formRegisterOwn{
+    padding:5px;
+  }
+
+  .formRegisterOwn{
+    padding:5px;
+  }

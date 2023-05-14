@@ -2,52 +2,31 @@ import React from 'react';
 import styles from './Dash.module.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-// import axios from 'axios';
 
 const Dash = () => {
   const { isAuthenticated } = useAuth0();
-
-//   const data = {
-//     sub: user?.sub,
-//     name: user?.name,
-//     email: user?.email,
-//     photo: user?.picture,
-//   };
-
-//   const sendDataToBackend = async () => {
-//     try {
-//       const response = await axios.post('/users',data,
-//         {
-//           headers: {
-//             'Content-Type': 'application/json',
-//           },
-// });
-//       return response;
-//     } catch (error) {
-//       console.log(error);
-//     }
-  // };
+  const isLoggedIn = localStorage.getItem(`isLoggedIn`)
 
   return (
     <div className={styles.dash}>
       <ul className={styles.dashList}>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to="/profile" className={styles.dashLink}>Perfil</Link>) : null}
+          {isAuthenticated || isLoggedIn ? (<Link to="/profile" className={styles.dashLink}>Perfil</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to="/vehicles" className={styles.dashLink}>Mis Vehiculos</Link>) : null}
+          {isAuthenticated || isLoggedIn ? (<Link to="/vehicles" className={styles.dashLink}>Mis Vehiculos</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to="/reservations-history" className={styles.dashLink}>Mis Reservas</Link>) : null}
+          {isAuthenticated || isLoggedIn? (<Link to="/reservations-history" className={styles.dashLink}>Mis Reservas</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to="/parking-lot-filter" className={styles.dashLink}>Hacer reserva</Link>) : null}
+          {isAuthenticated || isLoggedIn ? (<Link to="/parking-lot-filter" className={styles.dashLink}>Hacer reserva</Link>) : null}
         </li>
         <li className={styles.dashItem}>
-          {isAuthenticated ? (<Link to='/online-support' className={styles.dashLink}>Soporte en línea</Link>) : null}
+          {isAuthenticated || isLoggedIn ? (<Link to='/online-support' className={styles.dashLink}>Soporte en línea</Link>) : null}
         </li>
         <li className={styles.dashItem} >
-        {isAuthenticated ? (   <Link to="/Shopping"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        {isAuthenticated || isLoggedIn? (   <Link to="/Shopping"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="35px" height="48px" viewBox="0 0 48 48" enable-background="new 0 0 48 48" xml:space="preserve">
 <g id="color_17_">
 	<g>
@@ -68,9 +47,7 @@ const Dash = () => {
 </g>
 </svg></Link>) : null}
         </li>
-        {/* <li className={styles.dashItem}>
-          {isAuthenticated ? (<span className={styles.dashLink}>Métodos de pago</span>) : null}
-        </li> */}
+       
       </ul>
     </div>
   );

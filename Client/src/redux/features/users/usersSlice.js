@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, createAction} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     status: 'idle',
     error: null,
     userSession: null,
-    responseNotification: ''
+    responseNotification: '',
+    isLoggedIn: false,
 }
 
 export const sendUserSession = createAsyncThunk(
@@ -37,6 +38,7 @@ export const getProfile = createAsyncThunk(
 )
 
 export const setUserSession = createAction('users/setUserSession')
+export const logOutUser = createAction('users/logOutUser')
 
 const usersSlice = createSlice({
     name: 'users',
@@ -44,8 +46,14 @@ const usersSlice = createSlice({
     reducers: {
         setUserSession: (state, action) => {
             state.userSession = action.payload;
+            state.isLoggedIn = true;
+        },
+        logOutUser: (state, action) => {
+            state.userSession = null;
+            state.isLoggedIn = false;
         }
     },
+
     extraReducers: (builder) => {
         builder
             .addCase(getProfile.pending, (state) => {
@@ -65,11 +73,13 @@ const usersSlice = createSlice({
             .addCase(sendUserSession.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.responseNotification = 'Sesión de usuario guardada con exito.';
+                state.userSession = action.payload;
             })
             .addCase(sendUserSession.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.error = action.error.message;
             })
+   
     }
 })
 

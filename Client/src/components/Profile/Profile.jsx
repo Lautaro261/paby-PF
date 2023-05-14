@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
 import { getProfile } from "../../redux/features/users/usersSlice";
 import { Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 
 const Profile = () => {
-    const {isAuthenticated} = useAuth0();
     const profile = useSelector(state => state.users.userProfile );
     const userSub=localStorage.getItem(`sub`)
     const user = {"sub": localStorage.getItem(`sub`),
@@ -25,11 +23,12 @@ const Profile = () => {
         return <div>Cargando... </div>
     }
 
+
     useEffect(() => {
         if (userSub) {
             dispatch(getProfile(userSub));
        }
-    }, [dispatch, isAuthenticated]);
+    }, [dispatch]);
 
 
     const goBack = () => {
