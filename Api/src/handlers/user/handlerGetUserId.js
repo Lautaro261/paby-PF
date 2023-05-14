@@ -1,4 +1,4 @@
-const getUserId = require("../controllers/getUserId");
+const getUserId = require("../../controllers/user/getUserId");
 
 const handlerGetUserId = async (req, res) => {
   const { idUser } = req.params;

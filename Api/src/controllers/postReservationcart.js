@@ -20,6 +20,8 @@ const createReservationCart = async (
       sub: userSub,
     },
   });
+
+  // Verificar si el usuario existe
   if (!user) {
     return {
       message: "El usuario no existe",
@@ -79,7 +81,16 @@ const createReservationCart = async (
     where: {
       userSub: user.sub,
     },
+    order: [["createdAt", "DESC"]],
+    limit: 1,
   });
+
+  // Verificar si el carrito de compras ya ha sido pagado
+  if (shoppingCart.cart_status === "Pagado") {
+    return {
+      message: "El carrito de compras ya ha sido pagado",
+    };
+  }
 
   // Crear la reservación con el shoppingCartId asignado
   const newReservation = await Reservation.create({

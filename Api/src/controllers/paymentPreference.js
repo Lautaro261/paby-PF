@@ -1,6 +1,6 @@
 const mercadopago = require("mercadopago");
 // const { getCart } = require("./getCart");
-const { Reservation, Zone } = require("../db");
+const { Reservation, Cart } = require("../db");
 
 const mercadoPago = require("mercadopago");
 require("dotenv").config();
@@ -13,15 +13,20 @@ const url_pending = "http://localhost:5173/failure-payment";
 
 const createMercadoPagoPreference = async (id) => {
   // Busca las reservaciones asociadas al carrito
-
   //   const reservations = await getCart(id);
+
+  // Traigo al modelo del carrito
+  const cart = await Cart.findByPk(id);
+
+  if (!cart) {
+    return {
+      message: "Carrito no existe",
+    };
+  }
 
   const reservations = await Reservation.findAll({
     where: {
       cartId: id,
-    },
-    include: {
-      model: Zone,
     },
   });
 
@@ -31,21 +36,18 @@ const createMercadoPagoPreference = async (id) => {
     };
   }
 
-  // Crea un arreglo de items para la preferencia de pago
-  const items = reservations.map((reservation) => {
-    return {
-      title: `Reserva(s) de la zona(s) ${reservation.zone.zone_number}`,
-      description: `Reservaciones de zona(s) para parquear`,
-      category_id: "Transporte",
-      quantity: 1,
-      currency_id: "COP",
-      unit_price: reservation.full_reserve_value,
-    };
-  });
-
   // Crea la preferencia de pago utilizando la API de MercadoPago
   const preference = {
-    items,
+    items: [
+      {
+        category_id: "Transporte",
+        title: `Reservación de zona(s) de parqueo`,
+        description: `Reservación de una o varias zonas de parqueo`,
+        quantity: 1,
+        currency_id: "COP",
+        unit_price: cart.cart_amount,
+      },
+    ],
     back_urls: {
       success: url_success,
       pending: url_pending,

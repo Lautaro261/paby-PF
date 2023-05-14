@@ -1,4 +1,4 @@
-const { Vehicle } = require("../db");
+const { Vehicle } = require("../../db");
 
 const getAllVehicle = async (req, res) => {
   const responseVehicle = await Vehicle.findAll(); //[{},{},{}] o {.... val: [{},{},{}]}

@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "0da34aeb-b7d1-4757-bb9c-d70235d87c69",
+		"name": "Vehicle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27208527",
+		"_collection_link": "https://galactic-water-210656.postman.co/workspace/Team-Workspace~15c2880d-c0fd-4547-8b41-95e9ede3b1e0/collection/27208527-0da34aeb-b7d1-4757-bb9c-d70235d87c69?action=share&creator=27208527&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Post vehicle for id user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"sub\": \"google-oauth2|484985665648982\",\r\n \"license_plate_id\": \"123456\",\r\n  \"license_plate\": \"123456\",\r\n  \"vehicle_tipe\": \"Automovil\",\r\n  \"type_of_service\": \"Particular\",\r\n  \"car_brand\": \"tesla\",\r\n  \"car_model\": \"tesla\",\r\n  \"car_model_year\": 2020,\r\n  \"car_color\": \"blanco\",\r\n  \"photo\": \"mi coche2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/user/vehicle/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"vehicle",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put vehicle by Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"sub\": \"google-oauth2|484985665648982\",\r\n \"license_plate_id\": \"123456\",\r\n  \"license_plate\": \"123456\",\r\n  \"vehicle_tipe\": \"Automovil\",\r\n  \"type_of_service\": \"Particular\",\r\n  \"car_brand\": \"tesla version lujo\",\r\n  \"car_model\": \"tesla cc1200\",\r\n  \"car_model_year\": 2021,\r\n  \"car_color\": \"negro\",\r\n  \"photo\": \"mi coche2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/user/vehicle/123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"vehicle",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Vehicle by User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/user/google-oauth2|484985665648982/vehicles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"google-oauth2|484985665648982",
+						"vehicles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get vehicle by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/user/vehicle/123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"vehicle",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get vehicle for car brand",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/user/vehicle/search/tesla version lujo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"vehicle",
+						"search",
+						"tesla version lujo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

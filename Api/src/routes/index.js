@@ -1,9 +1,10 @@
 const { Router } = require("express");
-const usersRouter = require("./usersRouter");
+const userRouter = require("./userRouter");
 const parkingRouter = require("./parkingRouter");
 const floorRouter = require("./floorRouter");
 const zonesRouter = require("./zoneRouter");
 const reservationRouter = require("./reservationRouter");
+const adminRouter = require("./adminRouter");
 
 //// !! ACTUALIZAR CONTROLLER PARA ACTUALIZAR ESTADOS !! ////
 const cron = require("node-cron");
@@ -13,8 +14,9 @@ cron.schedule("*/5 * * * *", updateStatus);
 
 const routes = Router();
 
-//routes.use('/vehicles', vehiclesRouter)
-routes.use("/users", usersRouter);
+
+routes.use("/user", userRouter);
+routes.use("/admin", adminRouter);
 routes.use("/parking", parkingRouter);
 routes.use("/floors", floorRouter);
 routes.use("/zones", zonesRouter);
