@@ -1,9 +1,9 @@
 const { Vehicle } = require("../../db");
 
 const getAllVehicle = async (req, res) => {
-  const responseVehicle = await Vehicle.findAll(); //[{},{},{}] o {.... val: [{},{},{}]}
+  const responseVehicle = await Vehicle.findAll();
 
-  return responseVehicle; // return responseVehicle o return responseVehicle.value
+  return responseVehicle;
 };
 
 module.exports = getAllVehicle;
