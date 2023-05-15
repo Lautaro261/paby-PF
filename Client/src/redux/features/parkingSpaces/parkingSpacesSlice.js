@@ -5,7 +5,7 @@ const initialState = {
     allParkingLots: [],
     citiesForTheParkingLotFilter: [],
     filteredParkingLots: [],
-    parkingLot: {},
+    selectedParkingLot: {},
     levelsForThisParkingLot: [],
     parkingSpacesForThisParkingLot: [],
     selectedParkingSpace: {},
@@ -20,9 +20,10 @@ export const getAllParkingLots = createAsyncThunk(
     'parkingSpaces/getAllParkingLots',
     async () => {
         try {
-            const response = await axios.get(`/parking/alls`);
+            const response = await axios.get(`http://localhost:3001/parking/alls`);
             return response.data;
         } catch (error) {
+            const response = await axios.get(`http://localhost:3001/parking/alls`);
             console.error(error.message);
             throw error;
         }
@@ -33,7 +34,7 @@ export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
     async (id) => {
         try {
-            const response = await axios.get(`parking/${ id }`);
+            const response = await axios.get(`http://localhost:3001/parking/${ id }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -46,7 +47,7 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`/parking/${ id }/floors`);
+            const response = await axios.get(`http://localhost:3001/parking/${ id }/floors`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -59,7 +60,7 @@ export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`/parking/${ id }/zones`);
+            const response = await axios.get(`http://localhost:3001/parking/${ id }/zones`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -68,14 +69,15 @@ export const getParkingSpacesByParkingLotId = createAsyncThunk(
     }
 );
 
-export const updateParkingSpaceStatusById = createAsyncThunk(
-    'parkingSpaces/updateParkingSpaceStatusById',
+export const updateParkingSpaceStatus = createAsyncThunk(
+    'parkingSpaces/updateParkingSpaceStatus',
     async (selectedParkingSpace) => {
         try {
             const response = await axios.put(
-                `/parking/zone/${ selectedParkingSpace.id }/edit`, 
+                `http://localhost:3001/parking/zone/${ selectedParkingSpace.id }/edit`, 
                     { zone_status: "Ocupada", zone_number: selectedParkingSpace.zone_number }
             );
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -89,6 +91,7 @@ export const setFilteredParkingLots = createAction('parkingSpaces/setFilteredPar
 export const setSelectedParkingSpace = createAction('parkingSpaces/setSelectedParkingSpace');
 export const setParkingSpaceStatusFromFilter = createAction('parkingSpaces/setParkingSpaceStatusFromFilter');
 export const setVehicleTypeFromFilter = createAction('parkingSpaces/setVehicleTypeFromFilter');
+export const setSelectedParkingLot = createAction('parkingSpaces/setSelectedParkingLot');
 
 const parkingSpacesSlice = createSlice({
     name: 'parkingSpaces',
@@ -108,6 +111,9 @@ const parkingSpacesSlice = createSlice({
         },
         setVehicleTypeFromFilter: (state, action) => {
             state.vehicleTypeFromFilter = action.payload
+        },
+        setSelectedParkingLot: (state, action) => {
+            state.selectedParkingLot = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -130,7 +136,7 @@ const parkingSpacesSlice = createSlice({
             })
             .addCase(getParkingLotById.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.parkingLot = action.payload
+                state.selectedParkingLot = action.payload
             })
             .addCase(getParkingLotById.rejected, (state, action) => {
                 state.status = 'rejected',
@@ -161,14 +167,14 @@ const parkingSpacesSlice = createSlice({
                 state.error = action.error.message
             })
 
-            .addCase(updateParkingSpaceStatusById.pending, (state) => {
+            .addCase(updateParkingSpaceStatus.pending, (state) => {
                 state.status = 'loading'
             })
-            .addCase(updateParkingSpaceStatusById.fulfilled, (state, action) => {
+            .addCase(updateParkingSpaceStatus.fulfilled, (state, action) => {
                 state.status = 'succeeded',
                 state.selectedParkingSpaceResponse = action.payload
             })
-            .addCase(updateParkingSpaceStatusById.rejected, (state, action) => {
+            .addCase(updateParkingSpaceStatus.rejected, (state, action) => {
                 state.status = 'rejected',
                 state.error = action.error.message
             })

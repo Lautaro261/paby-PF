@@ -16,7 +16,7 @@ import ProfileView from './views/ProfileView/ProfileView';
 import EditProfileView from './views/EditProfileView/EditProfileView';
 import HistoryView from './views/HistoryView/HistoryView';
 import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/ParkingSpaceReservationView';
-import VehicleDetailsView from './views/VehiclesView/VehiclesView';
+// import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 // import { useSelector } from "react-redux";
@@ -51,13 +51,13 @@ const App = () => {
       <Route path='/parking-lot-filter' element={<ParkingLotFilterView />} />
       <Route path='/parking-lot-selection' element={<LotSelectionView />} />
       <Route path='/reservation-panel' element={<ReservationView />} />
-      <Route path='/parking-space-reservation/:selectedParkingSpaceId' element={<ParkingSpaceReservationView />} />
+      <Route path='/parking-space-reservation' element={<ParkingSpaceReservationView />} />
       <Route path='/parking-space-payment' element={<ParkingSpacePayment />} />
       <Route path='/success-payment' element={<SuccessPayment />} />
       <Route path='/failure-payment' element={<FailurePayment />} />
       <Route path='/reservations-history' element={<HistoryView />} />
       <Route path='/vehicles' element={<VehiclesView />} />
-      <Route path='/vehicle/:license_plate_id' element={<VehicleDetailsView />} />
+      {/* <Route path='/vehicle/:license_plate_id' element={<VehiclesView />} /> */}
       <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />

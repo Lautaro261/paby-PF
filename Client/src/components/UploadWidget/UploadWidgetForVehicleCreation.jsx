@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setVehiclePhotoForReservationURL } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
+import { setVehiclePhotoForCreationURL } from '../../redux/features/vehicles/vehiclesSlice';
 
 const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 
-const UploadWidget = () => {
+const UploadWidgetForVehicleCreation = () => {
     const dispatch = useDispatch();
     let widget = {};
 
@@ -14,7 +14,8 @@ const UploadWidget = () => {
             uploadPreset: VITE_UPLOAD_PRESET
         }, (error, result) => {
             if (!error && result && result.event === 'success') {
-                dispatch(setVehiclePhotoForReservationURL(result.info.secure_url));
+                console.log('se cargo bien');
+                dispatch(setVehiclePhotoForCreationURL(result.info.secure_url));
             }
         });
     }, [widget, dispatch]);
@@ -30,5 +31,4 @@ const UploadWidget = () => {
     )
 };
 
-export default UploadWidget;
-
+export default UploadWidgetForVehicleCreation;

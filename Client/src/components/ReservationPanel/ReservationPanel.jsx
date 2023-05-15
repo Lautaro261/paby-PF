@@ -3,17 +3,17 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ParkingSpaceCard from '../ParkingSpaceCard/ParkingSpaceCard';
-import { setCurrentPage } from '../../redux/features/parkingSpacesPagination/parkingSpacesPaginationSlice';
+import { setCurrentPage } from '../../redux/features/pagination/paginationSlice';
 import { 
     setParkingSpaceStatusFromFilter, 
     setVehicleTypeFromFilter
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
-import { setSelectedParkingSpaceId } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice';
 
 const ReservationPanel = () => {
     const dispatch = useDispatch();
-    const parking_lot = useSelector(state => state.parkingSpaces.parkingLot);
+    const navigate = useNavigate();
+    const parking_lot = useSelector(state => state.parkingSpaces.selectedParkingLot);
     const levels = useSelector(state => state.parkingSpaces.levelsForThisParkingLot);
     const parking_spaces = useSelector(state => state.parkingSpaces.parkingSpacesForThisParkingLot);
 
@@ -43,15 +43,18 @@ const ReservationPanel = () => {
 
     const availableParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Disponible');
     const occupiedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Ocupada');
-    const reservedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Reservado');
+    const reservedParkingSpaces = parkingSpacesInThisLevel.filter(pS => pS.zone_status === 'Reservada');
 
-    const currentPage = useSelector(state => state.parkingSpacesPagination.currentPage);
-    const itemsPerPage = useSelector(state => state.parkingSpacesPagination.itemsPerPage);
+    const currentPage = useSelector(state => state.pagination.currentPage);
+    const itemsPerPage = useSelector(state => state.pagination.itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentFilteredParkingSpaces = filteredParkingSpaces.slice(startIndex, endIndex);
 
-    let selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
+    const selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
+    const vehicleTypeFromFilter = useSelector(state => state.parkingSpaces.vehicleTypeFromFilter);
+    const parkingSpaceStatusFromFilter = useSelector(state => state.parkingSpaces.parkingSpaceStatusFromFilter);
+    const userId = useSelector(state => state.parkingSpacesReservation.currentUserId);
 
     useEffect(() => {
         if (Object.keys(selectedParkingSpace).length > 0) {
@@ -70,9 +73,6 @@ const ReservationPanel = () => {
         document.getElementById('vehicleTypeFilter').value = '';
         dispatch(setCurrentPage(1));
     };
-
-    let vehicleTypeFromFilter = useSelector(state => state.parkingSpaces.vehicleTypeFromFilter);
-    let parkingSpaceStatusFromFilter = useSelector(state => state.parkingSpaces.parkingSpaceStatusFromFilter);
 
     const filterParkingSpaceByStatus = (e) => {
         dispatch(setParkingSpaceStatusFromFilter(e.target.value));
@@ -119,26 +119,17 @@ const ReservationPanel = () => {
         dispatch(setCurrentPage(currentPage + 1));
     };
 
-    const navigate = useNavigate();
-
-    const userId = useSelector(state => state.parkingSpacesReservation.currentUserId);
-
     useEffect(() => {
         if (userId) {
             dispatch(getAllVehicles(userId));
         }
-    }, [userId]);
+    }, [dispatch, userId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(setSelectedParkingSpaceId(selectedParkingSpace.id));
-        sessionStorage.setItem('selectedParkingSpace', JSON.stringify(selectedParkingSpace));
         setIsParkingSpaceSelected(false);
-        alert(`Usted seleccionó la zona No ${ selectedParkingSpace.zone_number } del ${ selectedLevel.name }`);
-        navigate(`/parking-space-reservation/${ userId }`);
+        navigate('/parking-space-reservation');
     };
-
-    
 
     return (
         <div className={ styles.reservationPanel__pageContainer }>
@@ -161,7 +152,9 @@ const ReservationPanel = () => {
                 </div>
                 <div className={ styles.reservationPanel__parkingSpaces_filters }>
                     <div className={ styles.reservationPanel__parkingSpaces_filter }>
-                        <label htmlFor='parkingSpaceStatusFilter' className={ styles.reservationPanel__filter_label }>Estatus de la zona:</label>
+                        <label htmlFor='parkingSpaceStatusFilter' className={ styles.reservationPanel__filter_label }>
+                            Estatus de la zona:
+                        </label>
                         <select id='parkingSpaceStatusFilter' onChange={ filterParkingSpaceByStatus } defaultValue=''>
                             <option value='' disabled>Estatus</option>
                             <option value='Disponible'>Disponibles</option>
@@ -170,14 +163,26 @@ const ReservationPanel = () => {
                         </select>
                     </div>
                     <div className={ styles.reservationPanel__parkingSpaces_filter }>
-                        <label htmlFor='vehicleTypeFilter' className={ styles.reservationPanel__filter_label }>Zona para estacionar:</label>
+                        <label htmlFor='vehicleTypeFilter' className={ styles.reservationPanel__filter_label }>
+                            Zona para estacionar:
+                        </label>
                         <select id='vehicleTypeFilter' onChange={ filterByVehicleType } defaultValue=''>
                             <option value='' disabled>Tipo de vehículo</option>
                             <option value='Automovil'>automovil</option>
                             <option value='Motocicleta'>motocicleta</option>
                         </select>
                     </div>
-                    <button type='button' onClick={ removeFilters }>Eliminar filtros</button>
+                    <button 
+                        type='button' 
+                        onClick={ removeFilters }
+                        className={ styles.reservationPanel__filters_button }
+                    >
+                        Eliminar filtros
+                    </button>
+                </div>
+                <div className={ styles.reservationPanel__price }>Tarifa por hora: $ { parking_lot.fee } COP</div>
+                <div className={ styles.reservationPanel__regulation }>
+                    No dejar pertenencias en el auto. No nos hacemos responsables.
                 </div>
                 <div className={ styles.reservationPanel__levelsContainer }>
                     <div>Pisos:</div>
@@ -187,6 +192,7 @@ const ReservationPanel = () => {
                                 key={ level.id }
                                 type='button'
                                 onClick={ handleLevelSelection }
+                                className={ styles.reservationPanel__level_button }
                             >
                                 { level.name }
                             </button>
@@ -195,49 +201,55 @@ const ReservationPanel = () => {
                 </div>
                 <b>Zonas del { selectedLevel.name }:</b>
                 <div className={ styles.reservationPanel__parkingSpaces_description }>
-					{ currentFilteredParkingSpaces.length > 0 ? currentFilteredParkingSpaces.map(p_s => 
-				    	<ParkingSpaceCard 
-				    	    key={ p_s.id }
+                    { currentFilteredParkingSpaces.length > 0 ? currentFilteredParkingSpaces.map(p_s => 
+                        <ParkingSpaceCard 
+                            key={ p_s.id }
                             parking_space_id={ p_s.id }
-				    	    parking_space_label={ p_s.zone_number }
-				    	    vehicle_type={ p_s.vehicle_type }
-				    	    parking_space_status={ p_s.zone_status }
-				    	/>
-				        ) : 'No hay zonas para mostrar' 
+                            parking_space_label={ p_s.zone_number }
+                            vehicle_type={ p_s.vehicle_type }
+                            parking_space_status={ p_s.zone_status }
+                            order={ p_s.order }
+                            isSelected = { selectedParkingSpace && selectedParkingSpace.id === p_s.id }
+                        />
+                        ) : 'No hay zonas para mostrar' 
                     }
-				</div>
+                </div>
                 <div className={ styles.reservationPanel__pagination__buttons }>
                     <button
                         onClick={ handlePreviousPage } 
                         disabled={ currentPage === 1 }
-                        className={ styles.reservationPanel__pagination__button }
                     >
-                        { '<<<' } Atrás
+                        <img 
+                            src='/images/left_pagination_icon.jpg' 
+                            alt='Left pagination icon' 
+                            className={ styles.reservationPanel__pagination_button} 
+                        />
                     </button>
                     <div className={ styles.reservationPanel__pagination__page }>
-                        { currentPage } de {' '}
+                        Página { currentPage } de {' '}
                         { filteredParkingSpaces.length > 0 ? 
                         Math.ceil(filteredParkingSpaces.length/itemsPerPage) : 
                         1 } 
                     </div>
                     <button 
                         onClick={ handleNextPage }
-                        disabled={ endIndex >= filteredParkingSpaces.length } 
-                        className={ styles.reservationPanel__pagination__button }
+                        disabled={ endIndex >= filteredParkingSpaces.length }
                     >
-                        Siguiente { '>>>' }
+                        <img 
+                            src={ '/images/right_pagination_icon.jpg' } 
+                            alt='Right pagination icon' 
+                            className={ styles.reservationPanel__pagination_button} 
+                        />
                     </button>
                 </div>
-                <div className={ styles.reservationPanel__price }>Tarifa por hora: $ { parking_lot.fee } COP</div>
-				<div className={ styles.reservationPanel__regulation }>No dejar pertenencias en el auto. No nos hacemos responsables.</div>
                 <div className={ styles.reservationPanel__notification }>
                     { isParkingSpaceSelected ? 
                         `Usted seleccionó la zona ${ selectedParkingSpace.zone_number } ` + 
-                        `para ${ selectedParkingSpace.vehicle_type }` : 
-                        null
+                        `del ${ selectedLevel.name }` : 
+                        'Usted no seleccionó ninguna zona'
                     }
                 </div>
-				<button type='submit' disabled={ !isParkingSpaceSelected }>
+                <button type='submit' disabled={ !isParkingSpaceSelected }>
                     CONTINUAR
                 </button>
             </form>
@@ -246,7 +258,3 @@ const ReservationPanel = () => {
 };
 
 export default ReservationPanel;
-
-
-
-

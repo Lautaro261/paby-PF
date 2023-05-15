@@ -1,11 +1,8 @@
 import { createAsyncThunk, createAction, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:3001';
-
 const initialState = {
     currentUserId: '',
-    selectedParkingSpaceId: '',
     vehicleForParkingId: '',
     vehiclePhotoForReservationURL: '',
     parkingSpacePaymentLink: '',
@@ -39,9 +36,9 @@ export const postParkingSpaceReservationNotification = createAsyncThunk(
 )
 
 export const setCurrentUserId = createAction('parkingSpacesReservation/setCurrentUserId');
-export const setSelectedParkingSpaceId = createAction('parkingSpacesReservation/setSelectedParkingSpaceId');
 export const setVehicleForParkingId = createAction('parkingSpacesReservation/setVehicleForParkingId');
 export const setVehiclePhotoForReservationURL = createAction('parkingSpacesReservation/setVehiclePhotoForReservationURL');
+export const setParkingSpacePaymentLink = createAction('parkingSpacesReservation/setParkingSpacePaymentLink');
 
 const parkingSpacesReservationSlice = createSlice({
     name: 'parkingSpacesReservation',
@@ -50,14 +47,14 @@ const parkingSpacesReservationSlice = createSlice({
         setCurrentUserId: (state, action) => {
             state.currentUserId = action.payload
         },
-        setSelectedParkingSpaceId: (state, action) => {
-            state.selectedParkingSpaceId = action.payload
-        },
         setVehicleForParkingId: (state, action) => {
             state.vehicleForParkingId = action.payload
         },
         setVehiclePhotoForReservationURL: (state, action) => {
             state.vehiclePhotoForReservationURL = action.payload
+        },
+        setParkingSpacePaymentLink: (state, action) => {
+            state.parkingSpacePaymentLink = action.payload
         }
     },
     extraReducers: (builder) => {
