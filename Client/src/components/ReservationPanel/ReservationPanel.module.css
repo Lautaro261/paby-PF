@@ -18,8 +18,7 @@
 
 .reservationPanel__parkingSpaces_statuses {
 	display: flex;
-	flex-direction: column;
-	gap: 10px;
+	gap: 30px;
 }
 
 .reservationPanel__parkingSpaces_status {
@@ -60,11 +59,17 @@
 .reservationPanel__parkingSpaces_filter {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 }
 
 .reservationPanel__filter_label {
 	text-align: center;
+}
+
+.reservationPanel__filters_button {
+	margin-block: 30px;
+	border-radius: 10px;
 }
 
 .reservationPanel__levelsContainer {
@@ -81,6 +86,10 @@
 	gap: 20px;
 }
 
+.reservationPanel__level_button {
+	border-radius: 5px;
+}
+
 .reservationPanel__parkingSpaces_description {
 	display: flex;
 	flex-wrap: wrap;
@@ -93,15 +102,8 @@
 	justify-content: center;
 }
 
-.reservationPanel__pagination__button {
-	padding: 10px;
-	border-radius: 5px;
-	font-weight: 700;
-	background-color: green;
-}
-
-.reservationPanel__pagination__button:disabled {
-	background-color: blue;
+.reservationPanel__pagination_button {
+	inline-size: 30px;
 }
 
 .reservationPanel__pagination__page {

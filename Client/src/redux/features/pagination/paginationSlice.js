@@ -5,10 +5,10 @@ const initialState = {
     itemsPerPage: 8
 };
 
-export const setCurrentPage = createAction('parkingSpacesPagination/setCurrentPage');
+export const setCurrentPage = createAction('pagination/setCurrentPage');
 
-const parkingSpacesPaginationSlice = createSlice({
-    name: 'parkingSpacesPagination',
+const paginationSlice = createSlice({
+    name: 'pagination',
     initialState,
     reducers: {
         setCurrentPage: (state, action) => {
@@ -17,4 +17,4 @@ const parkingSpacesPaginationSlice = createSlice({
     }
 });
 
-export default parkingSpacesPaginationSlice.reducer;
+export default paginationSlice.reducer;

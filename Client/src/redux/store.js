@@ -1,5 +1,5 @@
 import { configureStore  } from "@reduxjs/toolkit";
-import parkingSpacesPaginationReducer from "./features/parkingSpacesPagination/parkingSpacesPaginationSlice";
+import paginationReducer from "./features/pagination/paginationSlice";
 import parkingSpacesReducer from "./features/parkingSpaces/parkingSpacesSlice";
 import vehiclesReducer from "./features/vehicles/vehiclesSlice";
 import parkingSpacesReservationReducer from './features/parkingSpacesReservation/parkingSpacesReservationSlice';
@@ -9,14 +9,13 @@ import cartsReducer from "./features/carts/cartsSlice"
 
 const store = configureStore({
     reducer: {
-        parkingSpacesPagination: parkingSpacesPaginationReducer,
+        pagination: paginationReducer,
         parkingSpaces: parkingSpacesReducer,
         parkingSpacesReservation: parkingSpacesReservationReducer,
         vehicles: vehiclesReducer,
         history: historyReducer,
         users: usersReducer,
-        carts:cartsReducer
-
+        carts: cartsReducer
     }
 });
 
