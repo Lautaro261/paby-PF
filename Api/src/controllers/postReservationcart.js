@@ -126,4 +126,4 @@ const createReservationCart = async (
   return newReservation;
 };
 
-module.exports = { createReservationCart };
+module.exports =  createReservationCart ;

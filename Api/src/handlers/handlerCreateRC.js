@@ -1,5 +1,5 @@
 // Controladores de reservacion:
-const { createReservationCart } = require("../controllers/postReservationCart");
+const createReservationCart = require('../controllers/postReservationCart');
 
 // Handler para crear reservaciones
 const handlerCreateRC = async (req, res) => {
