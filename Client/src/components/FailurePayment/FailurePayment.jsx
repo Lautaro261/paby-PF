@@ -2,10 +2,7 @@ import styles from './FailurePayment.module.css';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { 
-    postParkingSpaceReservationNotification, 
-    setParkingSpacePaymentLink 
-} from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
+import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import { setSelectedParkingLot } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const FailurePayment = () => {
@@ -28,7 +25,6 @@ const FailurePayment = () => {
 
     useEffect(() => {
         dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
-        dispatch(setParkingSpacePaymentLink(''));
         dispatch(setSelectedParkingLot({}));
         localStorage.removeItem('selectedParkingSpace');
     }, []);

@@ -2,21 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-// import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './createVehicle.module.css';
 import { useAuth0 } from '@auth0/auth0-react'
-// import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createVehicle } from '../../redux/features/vehicles/vehiclesSlice';
 import UploadWidgetForVehicleCreation from '../UploadWidget/UploadWidgetForVehicleCreation';
+import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice';
 
 export default function CreateVehicle() {
   const navigate = useNavigate()
   const { isLoading } = useAuth0()
   const user = { 'sub': localStorage.getItem('sub') }
   const vehiclePhotoForCreationURL = useSelector(state => state.vehicles.vehiclePhotoForCreationURL)
+
+
 
   const initialValues = { 
     vehicle: {
@@ -62,7 +63,7 @@ export default function CreateVehicle() {
     car_model: values.car_model,
     car_model_year: values.car_model_year,
     car_color: values.car_color,
-    photo: values.photo,
+    photo: vehiclePhotoForCreationURL,
   };
   try {
     dispatch(createVehicle(requestData));
@@ -170,5 +171,3 @@ export default function CreateVehicle() {
   </div>
 );
 }
-
-
