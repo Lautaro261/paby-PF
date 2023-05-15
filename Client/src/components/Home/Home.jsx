@@ -42,7 +42,6 @@ export default function Home() {
                 photo:user.picture
             }));
             dispatch(Fill(user.sub))
-            
         }
     },[user, dispatch]);
 

@@ -28,7 +28,12 @@ export default function Vehicles() {
 
   useEffect(() => {
     dispatch(getAllVehicles(user.sub));
-  }, [dispatch]);
+  },[]);
+  useEffect(() => {
+    if (allVehicles.length > 0) {
+      setVehiclesState(allVehicles);
+    }
+  }, [allVehicles]);
 
   if (isLoading) {
     return <div>Cargando...</div>;
@@ -48,9 +53,9 @@ export default function Vehicles() {
     }
   };
 
-  const handleResetTable = () => {
+   const handleResetTable = () => {
     setVehiclesState(allVehicles);
-  };
+  }; 
 
   const handleShowVehicleDetails = (vehicle) => {
     setSelectedVehicle(vehicle);
@@ -66,6 +71,7 @@ export default function Vehicles() {
     setSelectedVehicle(null);
     setShowEditVehicle(false);
   };
+ 
 
   return (
     <>
@@ -108,7 +114,7 @@ export default function Vehicles() {
           </tbody>
         </table>
         <div className={styles.buttons}>
-          <button onClick={handleResetTable}>Actualizar tabla</button>
+         {/*  <button onClick={handleResetTable}>Actualizar tabla</button> */}
           <Link to="/create-vehicle">
             Crear Vehículo
           </Link>

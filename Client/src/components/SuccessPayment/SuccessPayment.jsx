@@ -2,10 +2,7 @@ import styles from './SuccessPayment.module.css';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { 
-    postParkingSpaceReservationNotification, 
-    setParkingSpacePaymentLink 
-} from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
+import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import { 
     setSelectedParkingLot, 
     updateParkingSpaceStatus 
@@ -34,7 +31,6 @@ const SuccessPayment = () => {
         if (selectedParkingSpace) {
             dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
             dispatch(updateParkingSpaceStatus(selectedParkingSpace));
-            dispatch(setParkingSpacePaymentLink(''));
             dispatch(setSelectedParkingLot({}));
             localStorage.removeItem('selectedParkingSpace');
         }
