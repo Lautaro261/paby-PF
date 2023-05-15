@@ -11,7 +11,7 @@ const {
   handlerNotification,
 } = require("../handlers/handlerPostNotificationMp");
 
-const { handlerCreateCart } = require("../handlers/handlerPostCart");
+const { handlerPostCart } = require("../handlers/handlerPostCart");
 const { handlerCreateRC } = require("../handlers/handlerCreateRC");
 const {
   handlerGetCart,
@@ -34,7 +34,7 @@ reservationRouter.get("/:id/reservations", handlerGetCart);
 reservationRouter.post("/notification", handlerNotification);
 reservationRouter.post("/updatestates", handlerUpdateStatus);
 reservationRouter.post("/create", handlerCreateReservation);
-reservationRouter.post("/createcart", handlerCreateCart);
+reservationRouter.post("/createcart", handlerPostCart);
 reservationRouter.post("/createrc", handlerCreateRC);
 reservationRouter.post("/:id/payment", handlerPaymentPreference);
 reservationRouter.put("/:id/remove", handlerRemoveReservationCart);

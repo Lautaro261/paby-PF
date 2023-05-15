@@ -1,6 +1,6 @@
 const { createCart } = require("../controllers/postCart");
 
-const handlerCreateCart = async (req, res) => {
+const handlerPostCart = async (req, res) => {
   const { userSub } = req.body; // suponiendo que obtienes el id del usuario a través del middleware de autenticación
   try {
     const newShoppingCart = await createCart(userSub);
@@ -17,4 +17,4 @@ const handlerCreateCart = async (req, res) => {
   }
 };
 
-module.exports = { handlerCreateCart };
+module.exports = { handlerPostCart };
