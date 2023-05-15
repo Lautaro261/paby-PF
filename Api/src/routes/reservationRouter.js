@@ -12,7 +12,7 @@ const {
 } = require("../handlers/handlerPostNotificationMp");
 
 const { handlerCreateCart } = require("../handlers/handlerPostCart");
-const { handlerCreateRC } = require("../handlers/handlerCreateRC");
+const handlerCreateRC = require('../handlers/handlerCreateRC');
 const {
   handlerGetCart,
   handlerGetCartAndReservations,

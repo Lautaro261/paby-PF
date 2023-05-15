@@ -32,4 +32,4 @@ const handlerCreateRC = async (req, res) => {
   }
 };
 
-module.exports = { handlerCreateRC };
+module.exports =  handlerCreateRC ;
