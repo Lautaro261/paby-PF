@@ -28,7 +28,12 @@ export default function Vehicles() {
 
   useEffect(() => {
     dispatch(getAllVehicles(user.sub));
-  }, [dispatch]);
+  },[]);
+  useEffect(() => {
+    if (allVehicles.length > 0) {
+      setVehiclesState(allVehicles);
+    }
+  }, [allVehicles]);
 
   if (isLoading) {
     return <div>Cargando...</div>;
@@ -66,6 +71,7 @@ export default function Vehicles() {
     setSelectedVehicle(null);
     setShowEditVehicle(false);
   };
+ 
 
   return (
     <>
