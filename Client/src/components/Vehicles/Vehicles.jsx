@@ -53,9 +53,9 @@ export default function Vehicles() {
     }
   };
 
-  const handleResetTable = () => {
+   const handleResetTable = () => {
     setVehiclesState(allVehicles);
-  };
+  }; 
 
   const handleShowVehicleDetails = (vehicle) => {
     setSelectedVehicle(vehicle);
@@ -114,7 +114,7 @@ export default function Vehicles() {
           </tbody>
         </table>
         <div className={styles.buttons}>
-          <button onClick={handleResetTable}>Actualizar tabla</button>
+         {/*  <button onClick={handleResetTable}>Actualizar tabla</button> */}
           <Link to="/create-vehicle">
             Crear Vehículo
           </Link>
