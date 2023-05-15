@@ -7,7 +7,7 @@ import {
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ParkingLotCard = (props) => {
-    const { id, name, nit, country, city, address, neighborhood, floors, fee, photo, regulation } = props;
+    const { id, name, nit, country, city, address, neighborhood, floors, fee, photo, regulation, isSelected } = props;
     
     const dispatch = useDispatch();
     
@@ -18,7 +18,7 @@ const ParkingLotCard = (props) => {
     };
 
     return (
-        <button type='button' onClick={ handleClick } className={ styles.parkingLotCard__container }>
+        <button type='button' onClick={ handleClick } className={ isSelected ? styles.parkingLotCard__container_selected : styles.parkingLotCard__container }>
             <div className={ styles.parkingLotCard__property }>
                 <div className={ styles.parkingLotCard__property_key }>Nombre:</div><div>{ name }</div>
             </div>
@@ -43,7 +43,7 @@ const ParkingLotCard = (props) => {
             <div className={ styles.parkingLotCard__property }>
                 <div className={ styles.parkingLotCard__property_key }>Costo por hora: </div><div>{ fee }</div>
             </div>
-            <img className={ styles.parkingLotCard__image } src={ photo } alt='Parking lot image' />
+            <img src={ photo } alt='Parking lot image' className={ styles.parkingLotCard__image } />
             <div className={ styles.parkingLotCard__regulation }>{ regulation }</div>
         </button>
     );

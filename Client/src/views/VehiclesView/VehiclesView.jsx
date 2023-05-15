@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import Dash from "../../components/dashboard/Dash";
-import ViewVehicles from "../../components/Vehicles/Vehicles";
+import Vehicles from '../../components/Vehicles/Vehicles'
+
 const VehiclesView = () => {
     return (
         <div>
@@ -10,7 +11,7 @@ const VehiclesView = () => {
 
                 <div><Dash /></div>
             <div>
-                <div><ViewVehicles /></div>
+                <div><Vehicles /></div>
             </div>
 
             <div><Footer /></div>

@@ -21,6 +21,9 @@
 
 
 }
+.cont{
+    height: calc(100vh - 80px); 
+}
 .boxerr{
     background-color: rgba(240, 248, 255, 0.307);
     border: solid ;
@@ -33,7 +36,7 @@
     border-top: 0rem ;
     border-bottom: 0rem solid rgb(230, 231, 244);
     text-align: center;
-
+    height: calc(100vh - 80px); 
 
 }
 

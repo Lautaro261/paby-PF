@@ -1,14 +1,28 @@
 .parkingSpaceReservation__container {
+    margin: 10px;
     text-align: center;
 }
 
 .parkingSpaceReservation__title {
-    margin-block-end: 20px;
+    margin-block-end: 10px;
     font-weight: bold;
 }
 
+.parkingSpaceReservation__formControl_pair {
+    display: flex;
+    justify-content: space-around;
+}
+
 .parkingSpaceReservation__formControl {
-    margin-block-end: 10px;
+    margin: 10px;
+}
+
+.parkingSpaceReservation__Field {
+    text-align: center;
+}
+
+.parkingSpaceReservation__ErrorMessage {
+    color: red
 }
 
 .parkingSpaceReservation__warning {
@@ -21,6 +35,14 @@
     border: 2px solid black;
     border-radius: 10px;
     background-color: aquamarine;
+}
+
+.parkingSpaceReservation__notification_photo {
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: aquamarine;
+    font-weight: bold;
 }
 
 .parkingSpaceReservation_error {

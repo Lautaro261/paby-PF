@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Update } from '../../redux/features/history/historySlice';
 import {useAuth0} from "@auth0/auth0-react"
 import { Link } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 
 
@@ -30,10 +31,10 @@ const ReservationsHistory = () => {
 
     
     if(isLoading && !history[1]){
-        return(<div>cargando...</div>)
+        return(<div><Loader/> </div>)
     }
     if( history[1]===undefined){
-        return (<div>
+        return (<div >
             <div className={styles.title}>Historial de Reservas</div>
             <p className={styles.boxerr}>Vaya... parece ser que aún no tienes reservaciones</p>
             <Link to="/home">Volver</Link>
@@ -43,7 +44,7 @@ const ReservationsHistory = () => {
         console.log(history[1], "desde componente")
 
         return (
-            <div key="one">
+            <div key="one" className={styles.cont}>
                 <div className={styles.title}>Historial de Reservas</div>
                 {history[1].map((elem)=>{
                     return(<div className={styles.box} key={elem.id}>

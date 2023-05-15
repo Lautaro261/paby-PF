@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setSelectedParkingSpace } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
 
 const ParkingSpaceCard = (props) => {
-	const { parking_space_id, parking_space_label, vehicle_type, parking_space_status } = props;
+	const { parking_space_id, parking_space_label, vehicle_type, parking_space_status, order, isSelected } = props;
 	const dispatch = useDispatch();
 
 	let parkingSpaceCardStatus;
@@ -28,11 +28,13 @@ const ParkingSpaceCard = (props) => {
 	const handleClick = () => {
 		const selectedParkingSpace = {
 			id: parking_space_id,
-			zone_status: 'Reservada',
+			zone_status: parking_space_status,
 			zone_number: parking_space_label,
-			vehicle_type
+			vehicle_type,
+			order
 		}
 		dispatch(setSelectedParkingSpace(selectedParkingSpace));
+		localStorage.setItem('selectedParkingSpace', JSON.stringify(selectedParkingSpace));
 	};
 
 	return (
@@ -44,7 +46,7 @@ const ParkingSpaceCard = (props) => {
 		    </div>
 		    <button 
 			    type='button' 
-				className={ `${ parkingSpaceCardStatus }` }
+				className={ isSelected ? styles.parkingSpaceCard__status_chosen : `${ parkingSpaceCardStatus }` }
 				disabled={ !buttonAvailability }
 				onClick={ handleClick }
 			>

@@ -4,7 +4,7 @@ const LoginButton = () => {
     const { loginWithPopup, loginWithRedirect } = useAuth0();
 
     return (
-        <button onClick={() => loginWithRedirect()}>Ingresar</button>
+        <button onClick={() => loginWithRedirect()}>Ingresar con Google</button>
     )
 }
 

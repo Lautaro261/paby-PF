@@ -1,90 +1,86 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+// import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './createVehicle.module.css';
 import { useAuth0 } from '@auth0/auth0-react'
-import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
+// import { Form as BSForm, FormGroup, FormLabel, FormControl, FormSelect, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createVehicle } from '../../redux/features/vehicles/vehiclesSlice';
+import UploadWidgetForVehicleCreation from '../UploadWidget/UploadWidgetForVehicleCreation';
 
 export default function CreateVehicle() {
   const navigate = useNavigate()
-  const {isLoading } = useAuth0();
-  const user = {"sub": localStorage.getItem(`sub`)}
-  if (isLoading) {
-    return (<div>Cargando...</div>);
-  };
-  console.log(user.sub)
-  const initialValues = { 
-    sub:'',
-    vehicle_tipe:'',
-    type_of_service: '',
-    car_brand: '',
-    car_model: '',
-    car_model_year: '',
-    car_color:'',
-    license_plate: '',
-    license_plate_id:'',
-    photo: '',
-  };
+  const { isLoading } = useAuth0()
+  const user = { 'sub': localStorage.getItem('sub') }
+  const vehiclePhotoForCreationURL = useSelector(state => state.vehicles.vehiclePhotoForCreationURL)
 
-  //Esquema de validacion
+  const initialValues = { 
+    vehicle: {
+      sub: '',
+      vehicle_tipe: '',
+      type_of_service: '',
+      car_brand: '',
+      car_model: '',
+      car_model_year: '',
+      car_color: '',
+      license_plate: '',
+      license_plate_id: '',
+      photo: '',
+  },
+  }
+
   const validationSchema = Yup.object({
     vehicle_tipe: Yup.string().required('Debe seleccionar un tipo de vehiculo'),
     type_of_service: Yup.string().required('Debe seleccionar el tipo de servicio'),
     car_brand: Yup.string().required('La marca es obligatoria'),
     car_model: Yup.string().required('El modelo es obligatorio'),
     car_model_year: Yup.string()
-    .required('El año del vehículo es obligatorio')
-    .matches(/^\d+$/, 'El año debe ser un número'),
+      .required('El año del vehículo es obligatorio')
+      .matches(/^\d+$/, 'El año debe ser un número'),
     car_color: Yup.string().required('El color del vehiculo es obligatorio'),
-    //license_plate: Yup.string().required('La matricula es obligatoria'),
     license_plate: Yup.string()
-    .min(1, "La placa debe tener al menos 1 caracter")
-    .max(7, "La placa no puede tener más de 7 caracteres")
-    .required("La placa es un campo obligatorio"),
-    //photo: Yup.mixed().required('Foto obligatoria'),*/
-  });
+      .min(1, 'La placa debe tener al menos 1 caracter')
+      .max(7, 'La placa no puede tener más de 7 caracteres')
+      .required('La placa es un campo obligatorio'),
+  })
 
-    // Aquí iría la lógica de enviar los datos al servidor
-    const handleSubmit = async (values, { resetForm }) => {
-
-      //const licensePlate = values.license_plate;
-      const placa = values.license_plate;
-      const requestData = {
-
-        sub: user.sub,
-        license_plate_id: placa,
-        license_plate: placa,
-        vehicle_tipe: values.vehicle_tipe,
-        type_of_service: values.type_of_service,
-        car_brand: values.car_brand,
-        car_model: values.car_model,
-        car_model_year: values.car_model_year,
-        car_color: values.car_color,
-        photo: values.photo,
-      };
-      
-
-      try {
-        //console.log(requestData);
-        const response = await axios.post('/users/create/vehicle',requestData/* , {
-        
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        } */);
-      alert("¡El vehículo ha sido creado!");
-      navigate('/vehicles')
-
-      resetForm();
-    } catch (error) {
-      console.log(error);
-    }
+  //logica para mandar datos al back por el redux
+  const dispatch = useDispatch();
+  const handleSubmit = async (values, { resetForm }) => {
+  const placa = values.license_plate;
+  const requestData = {
+    sub: user.sub,
+    license_plate_id: placa,
+    license_plate: placa,
+    vehicle_tipe: values.vehicle_tipe,
+    type_of_service: values.type_of_service,
+    car_brand: values.car_brand,
+    car_model: values.car_model,
+    car_model_year: values.car_model_year,
+    car_color: values.car_color,
+    photo: values.photo,
   };
+  try {
+    dispatch(createVehicle(requestData));
+    alert('¡El vehículo ha sido creado!');
+    navigate('/vehicles');
+    resetForm();
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  if (isLoading) {
+    return (<div>Cargando...</div>)
+  }
+
+  console.log(user.sub)
+  console.log('La URL de la foto es:', vehiclePhotoForCreationURL)
 
   return (
   <div className="container">
@@ -155,16 +151,14 @@ export default function CreateVehicle() {
 
           <div>
             <label htmlFor="photo">Foto</label>
-            <Field
-              type="file"
-              id="photo"
-              name="photo"
-              onChange={(event) => {
-                setFieldValue("photo", event.currentTarget.files[0]);
-              }}
-            />
+            <div>Cargar foto:</div>
+            <UploadWidgetForVehicleCreation />
+            {
+              vehiclePhotoForCreationURL &&
+              <div>Se cargó la foto</div>
+            }
           </div>
-
+          
           <div>
             <button type="submit" disabled={isSubmitting}>
               Crear
@@ -176,3 +170,5 @@ export default function CreateVehicle() {
   </div>
 );
 }
+
+

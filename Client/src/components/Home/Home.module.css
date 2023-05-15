@@ -1,28 +1,17 @@
 .Home{
-  width: 90vw;
+  width:99vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
-  background-color: #FFFCF7;
-  color: #738290;
-  height: calc(100vh - 80px); 
+   color: #414346;
+  height: 100%
 }
 p{
   font-family: 'Ysabeau', serif;
 }
-a {
-  font-weight: 500;
-  color: #A1B5D8;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #16425B;
-}
-
-h1 {
+.Home h1 {
   font-size: 3em;
   line-height: 1.1;
   color: #16425B;
@@ -58,23 +47,90 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #738290;
-    background-color: #FFFFFF;
-  }
-  a:hover {
-    color: #A1B5D8;
-  }
-  button {
-    background-color: #A1B5D8;
-    color: #16425B;
-  }
-  button:hover {
-    background-color: #D9DCD6;
-  }
+
+
+
+.flexcontainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: normal;
+  gap: 35vh ;
+  margin-top: 10vh;
+  margin-bottom: 20vh;
 }
 
+.flexitems:nth-child(1) {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: normal;
+}
+
+.flexitems:nth-child(2) {
+  font-size: 30px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: normal;
+}
+
+.flexitems:nth-child(3) {
+  font-size: 30px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: normal;
+}
+
+.flexitems:nth-child(4) {
+  font-size: 30px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: normal;
+}
+
+
+
+.imgs{
+  max-width: 450px;
+  height: auto;
+}
 .logoPaby{
   max-width: 200px;
   height: auto;
@@ -82,4 +138,38 @@ button:focus-visible {
 
 .description{
   font-weight: bold;
+}
+.scroll{
+  position: absolute;
+  top: 80vh;
+  
+}
+
+
+
+.downarrow:after {
+  content: " ";
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 4px solid;
+  border-right: 4px solid;
+  border-radius: 4px;
+  transform: rotateZ(45deg);
+  animation: jumpInfinite 3s infinite;
+}
+
+
+@keyframes jumpInfinite {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: 20px;
+  }
+  100% {
+    margin-top: 0;
+  }
 }

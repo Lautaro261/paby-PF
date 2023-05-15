@@ -2,10 +2,15 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LogoutButton = () => {
-    const {logout, user } = useAuth0()
+    const {logout } = useAuth0()
+
+    const handleLogoutAuth0 = ()=> {
+        logout()
+        localStorage.clear()
+    }
 
     return(
-        <button onClick={() => logout()}>Cerrar sesión</button>
+        <button onClick={handleLogoutAuth0}>Cerrar sesión</button>
     )
 }
 export default LogoutButton

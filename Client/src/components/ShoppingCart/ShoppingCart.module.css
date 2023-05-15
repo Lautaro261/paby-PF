@@ -1,0 +1,46 @@
+.main{
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+    text-align: center; 
+}
+.cont{
+    min-height: calc(100vh - 80px); 
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+
+    background-color: aliceblue;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+.father{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: flex-start;
+}
+.element{
+    width: 100%;
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    gap: 6%;
+    background-color: aliceblue;
+    border: solid ;
+    border-left: 0px solid rgb(211, 211, 225);
+    border-right: 0px solid rgb(229, 229, 240);
+    border-top: 0rem ;
+    border-bottom: 0.2rem solid rgb(230, 231, 244);
+
+
+}
+.buttons{
+    margin: auto;
+    position: relative;
+}

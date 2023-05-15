@@ -1,3 +1,11 @@
+.parkingLotSelection__container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .formParkinkgLotSelection{
     margin: 0 ;
     display: flex;
@@ -17,11 +25,18 @@
 
  .parkingLotSelection__parkingLots {
     margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .parkingLotSelection__notification {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
     text-align: center;
     font-weight: bold;
+    background-color: rgb(34, 162, 212);
 }
 
 .parkingLotSelection__error {

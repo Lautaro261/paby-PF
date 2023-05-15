@@ -17,7 +17,7 @@ function Landing() {
             <h2>Bienvenido a Paby!</h2>
             <p>Aparcar nunca fue tan sencillo</p>
             <div className={style.Link}>
-            <Link to="/home" className={style.linktext}>Ver Catálogo</Link>
+            <Link to="/home" className={style.linktext}>Vamos a ello!</Link>
             </div>   
           </section>
         </main>
