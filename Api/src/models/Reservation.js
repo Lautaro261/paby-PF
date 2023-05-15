@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       },
       instant_photo: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       full_reserve_value: {
         type: DataTypes.FLOAT,

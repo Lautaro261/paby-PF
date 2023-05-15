@@ -26,7 +26,7 @@ async function sendPaymentStatusEmail(reservation) {
         subject: 'Actualización del estado de pago', // asunto del correo electrónico
         // text: `Hola ${user.name},\n\nEl estado de pago de tu(s) reserva(s) con numero de referencia ${reservation.payment_transaction_id} ha sido "${reservation.payment_status}"\n\nGracias por reservar con nosotros,\n Att: Equipo Paby`, // cuerpo del correo electrónico en texto plano
         text: `Estimado/a ${user.name},\n\nLe informamos que el estado de pago de su reserva con número de referencia ${reservation.payment_transaction_id} ha sido actualizado a "${reservation.payment_status}".\n\nSi tiene alguna duda o necesita ayuda adicional, no dude en ponerse en contacto con nosotros.\n\nGracias por elegir Paby para su reserva,\n Atentamente, el equipo de Paby`, // cuerpo del correo electrónico en texto plano
-        html: `<p>Hola ${user.name},</p><p>El estado de pago de tu reserva ha sido actualizado a "${reservation.payment_status}"</p><p>Gracias por reservar con nosotros,</p><p>El equipo de reservas</p>` // cuerpo del correo electrónico en formato HTML
+        //html: `<p>Hola ${user.name},</p><p>El estado de pago de tu reserva ha sido actualizado a "${reservation.payment_status}"</p><p>Gracias por reservar con nosotros,</p><p>El equipo de reservas</p>` // cuerpo del correo electrónico en formato HTML
     };
 
     // Enviar el correo electrónico
