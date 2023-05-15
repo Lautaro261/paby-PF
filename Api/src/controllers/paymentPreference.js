@@ -7,9 +7,9 @@ require("dotenv").config();
 
 mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
-const url_success = "http://localhost:5173/success-payment";
-const url_failure = "http://localhost:5173/pending-payment";
-const url_pending = "http://localhost:5173/failure-payment";
+const url_success = "https://smart-twig-production.up.railway.app/success-payment";
+const url_failure = "https://smart-twig-production.up.railway.app/pending-payment";
+const url_pending = "https://smart-twig-production.up.railway.app/failure-payment";
 
 const createMercadoPagoPreference = async (id) => {
   // Busca las reservaciones asociadas al carrito

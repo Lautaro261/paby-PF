@@ -101,9 +101,9 @@ const createReservation = async (
       // city_name: user.city,
     },
     back_urls: {
-      success: "http://localhost:5173/success-payment",
-      pending: "http://localhost:5173/pending-payment",
-      failure: "http://localhost:5173/failure-payment",
+      success: "https://smart-twig-production.up.railway.app/success-payment",
+      pending: "https://smart-twig-production.up.railway.app/pending-payment",
+      failure: "https://smart-twig-production.up.railway.app/failure-payment",
     },
     auto_return: "approved",
     binary_mode: true,
