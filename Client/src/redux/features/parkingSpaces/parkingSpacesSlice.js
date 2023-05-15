@@ -20,10 +20,9 @@ export const getAllParkingLots = createAsyncThunk(
     'parkingSpaces/getAllParkingLots',
     async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/parking/alls`);
+            const response = await axios.get(`/parking/alls`);
             return response.data;
         } catch (error) {
-            const response = await axios.get(`http://localhost:3001/parking/alls`);
             console.error(error.message);
             throw error;
         }
@@ -34,7 +33,7 @@ export const getParkingLotById = createAsyncThunk(
     'parkingSpaces/getParkingLotById',
     async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3001/parking/${ id }`);
+            const response = await axios.get(`/parking/${ id }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -47,7 +46,7 @@ export const getLevelsByParkingLotId = createAsyncThunk(
     'parkingSpaces/getLevelsByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3001/parking/${ id }/floors`);
+            const response = await axios.get(`/parking/${ id }/floors`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -60,7 +59,7 @@ export const getParkingSpacesByParkingLotId = createAsyncThunk(
     'parkingSpaces/getParkingSpacesByParkingLotId',
     async (id) => {
         try {
-            const response = await axios.get(`http://localhost:3001/parking/${ id }/zones`);
+            const response = await axios.get(`/parking/${ id }/zones`);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -74,7 +73,7 @@ export const updateParkingSpaceStatus = createAsyncThunk(
     async (selectedParkingSpace) => {
         try {
             const response = await axios.put(
-                `http://localhost:3001/parking/zone/${ selectedParkingSpace.id }/edit`, 
+                `/parking/zone/${ selectedParkingSpace.id }/edit`, 
                     { zone_status: "Ocupada", zone_number: selectedParkingSpace.zone_number }
             );
             console.log(response.data);
