@@ -16,7 +16,7 @@ export const createVehicle = createAsyncThunk(
     'vehicles/createVehicle',
     async (requestData, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/user/create/vehicle', requestData);
+            const response = await axios.post('/user/vehicle/create', requestData);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
