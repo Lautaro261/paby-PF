@@ -4,16 +4,15 @@ import axios from 'axios';
 const initialState = {
     currentUserId: '',
     vehicleForParkingId: '',
-    vehiclePhotoForReservationURL: '',
-    parkingSpacePaymentLink: '',
+    reservationBooking: '',
     responseNotification: ''
 };
 
 export const postParkingSpaceReservation = createAsyncThunk(
     'parkingSpacesReservation/postParkingSpaceReservation',
-    async (inputData) => {
+    async (values) => {
         try {
-            const response = await axios.post(`/reservation/create`, inputData);
+            const response = await axios.post(`/reservation/createrc`, values);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -26,19 +25,18 @@ export const postParkingSpaceReservationNotification = createAsyncThunk(
     'parkingSpacesReservation/postParkingSpaceReservationNotification',
     async (queryParams) => {
         try {
-            const response = await axios.post(`reservation/notification?${queryParams}`);
+            const response = await axios.post(`reservation/notification?${ queryParams }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
             throw error;
         }
     }
-)
+);
 
 export const setCurrentUserId = createAction('parkingSpacesReservation/setCurrentUserId');
 export const setVehicleForParkingId = createAction('parkingSpacesReservation/setVehicleForParkingId');
 export const setVehiclePhotoForReservationURL = createAction('parkingSpacesReservation/setVehiclePhotoForReservationURL');
-export const setParkingSpacePaymentLink = createAction('parkingSpacesReservation/setParkingSpacePaymentLink');
 
 const parkingSpacesReservationSlice = createSlice({
     name: 'parkingSpacesReservation',
@@ -52,9 +50,6 @@ const parkingSpacesReservationSlice = createSlice({
         },
         setVehiclePhotoForReservationURL: (state, action) => {
             state.vehiclePhotoForReservationURL = action.payload
-        },
-        setParkingSpacePaymentLink: (state, action) => {
-            state.parkingSpacePaymentLink = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -65,7 +60,7 @@ const parkingSpacesReservationSlice = createSlice({
             })
             .addCase(postParkingSpaceReservation.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.parkingSpacePaymentLink = action.payload
+                state.reservationBooking = action.payload
             })
             .addCase(postParkingSpaceReservation.rejected, (state, action) => {
                 state.status = 'rejected',

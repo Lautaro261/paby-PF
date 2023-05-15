@@ -15,6 +15,7 @@ export const Fill = createAsyncThunk(
     async (id) => {
         try {
              const response = await axios.get(`/reservation/${id}/carts`)
+
              console.log(response.data, "lo que llega")
              if(response.data.message   ==="El usuario no tiene carrito"){
                 axios.post("/reservation/createcart",{
@@ -22,11 +23,17 @@ export const Fill = createAsyncThunk(
                   })
                 
              }else{
-                console.log(response.data[0].cartId, "cart ID")
-                const fill = await axios.get(`reservation/${response.data[0].cartId}/reservations`)
-                const link = await axios.post(`reservation/${response.data[0].cartId}/payment`)
+                const index=(response.data.length-1)
+                console.log(index)
+                const id2=(response.data[index].cartId)
+                console.log(response.data[index].cartId, "cart ID")
+                console.log(response.data[index].cart_amount, "precio")
+                const fill = await axios.get(`reservation/${id2}/reservations`)
+                console.log(fill.data, "fill")
+                const link = await axios.post(`reservation/${id2}/payment`)
+                console.log(link.data, "link")
                 console.log(fill.data, "reservaciones", link.data,"link")
-                return ([fill.data, link.data, response.data[0].cart_amount ]);
+                return ([fill.data, link.data, response.data[index].cart_amount ]);
              }
         } catch (error) {
             console.log(error)
@@ -43,7 +50,8 @@ export const Delete = createAsyncThunk(
             })
              console.log("eliminada")
              const response = await axios.get(`/reservation/${data[0]}/carts`)
-             return response.data[0].cart_amount
+             const index=(response.data.length-1)
+             return response.data[index].cart_amount
         } catch (error) {
             console.log(error)
         }
@@ -54,7 +62,8 @@ export const Price = createAsyncThunk(
     'carts/Price',
     async (Id) => {
         try {const response = await axios.get(`/reservation/${Id}/carts`)
-             return response.data[0].cart_amount
+        const index=(response.data.length-1)
+        return response.data[index].cart_amount
         } catch (error) {
             console.log(error)
         }
@@ -79,6 +88,7 @@ export const cartsSlice = createSlice({
                 state.status = 'succeeded',
                 state.cart = action.payload[0]
                 state.payment=action.payload[1] 
+                state.total=action.payload[2]
             })
             .addCase(Fill.rejected, (state, action) => {
                 state.status = 'rejected',
