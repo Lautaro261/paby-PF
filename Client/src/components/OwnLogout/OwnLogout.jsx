@@ -13,6 +13,8 @@ const OwnLogout = () => {
         dispatch(logOutUser())
         localStorage.removeItem(`sub`)
         localStorage.removeItem(`email`)
+        localStorage.removeItem(`name`)
+        localStorage.removeItem(`photo`)
         localStorage.setItem(`isLoggedIn`, false)
         localStorage.removeItem(`isLoggedIn`)
         navigate('/')
