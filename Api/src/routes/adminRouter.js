@@ -14,7 +14,7 @@ adminRouter.post("/login", handlerLogin );
 
 adminRouter.get("/allusers", verifyToken ,handlerGetUsers); 
 adminRouter.get("/allvehicles", verifyToken ,handlerGetVehicle); 
-adminRouter.get("/user/:idUser", verifyToken, handlerGetUserById)
+adminRouter.get("/user/:idUser", verifyToken, handlerGetUserById);
 
 adminRouter.put("/delete/user/", handlerDeleteUser)
 //adminRouter.post("/prueba",verifyToken, handlerPrueba);
