@@ -51,7 +51,7 @@ const App = () => {
       <Route path='/parking-lot-filter' element={<ParkingLotFilterView />} />
       <Route path='/parking-lot-selection' element={<LotSelectionView />} />
       <Route path='/reservation-panel' element={<ReservationView />} />
-      <Route path='/parking-space-reservation/:selectedParkingSpaceId' element={<ParkingSpaceReservationView />} />
+      <Route path='/parking-space-reservation' element={<ParkingSpaceReservationView />} />
       <Route path='/parking-space-payment' element={<ParkingSpacePayment />} />
       <Route path='/success-payment' element={<SuccessPayment />} />
       <Route path='/failure-payment' element={<FailurePayment />} />
