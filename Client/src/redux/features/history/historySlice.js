@@ -13,7 +13,7 @@ export const Update = createAsyncThunk(
         try {
              const response = await axios.get(`/reservation/${id}`)
              if(!response){return ["error",["Ha ocurrido un error"]]}
-             console.log(response.data, "lo que llegA")
+             console.log(response.data, "lo que llega")
              return response.data;
         } catch (error) {
             console.log(error)
