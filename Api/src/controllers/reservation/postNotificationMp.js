@@ -2,7 +2,7 @@
 const { Reservation, Cart } = require("../../db");
 const { createCart } = require("../../controllers/cart/postCart"); // importar la función createCart
 const { Op } = require("sequelize");
-const { sendPaymentStatusEmail } = require("./notificationEmail");
+const { sendPaymentStatusEmail } = require("../notificationEmail");
 
 // Controlador handlerNotification
 const notification = async (

@@ -12,6 +12,11 @@ const getAllParkings = async () => {
 // Controller para obtener un parqueadero por id
 const getParkingById = async (id) => {
   const parking = await Parking.findByPk(id);
+  if (!parking) {
+    return {
+      message: "Parqueadero no encontrado o datos ingresados incorrectos",
+    };
+  }
   return parking;
 };
 

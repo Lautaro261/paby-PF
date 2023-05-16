@@ -18,6 +18,10 @@ const createFloor = async (
       parkingId: parking.id,
     });
     return newFloor;
+  } else {
+    return {
+      message: "Parqueadero no encontrado o datos ingresados incorrectos",
+    };
   }
 };
 

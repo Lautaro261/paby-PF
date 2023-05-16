@@ -30,6 +30,10 @@ const getFloorsByParkingId = async (id) => {
   if (parking) {
     const floors = await parking.getParkingFloors();
     return floors;
+  } else {
+    return {
+      message: "Parqueadero no encontrado o datos ingresados incorrectos",
+    };
   }
 };
 

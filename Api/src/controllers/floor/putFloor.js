@@ -17,7 +17,11 @@ const updateFloorById = async (
       motorcycle_capacity,
     });
     return updatedFloor;
-  } else return false;
+  } else {
+    return {
+      message: "Piso no encontrado o datos ingresados incorrectos",
+    };
+  }
 };
 
 module.exports = updateFloorById;

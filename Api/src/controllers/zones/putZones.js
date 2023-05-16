@@ -12,7 +12,9 @@ const updateZone = async (id, zone_status, zone_number) => {
     });
 
     return zones;
-  } else return false;
+  } else {
+    return { message: "Zona no encontrada o datos ingresados incorrectos" };
+  }
 };
 
 module.exports = updateZone;

@@ -29,6 +29,10 @@ const updateParking = async (
       regulation,
     });
     return parking;
+  } else {
+    return {
+      message: "Parqueadero no encontrado o datos ingresados incorrectos",
+    };
   }
 };
 
