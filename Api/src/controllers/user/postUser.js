@@ -1,5 +1,6 @@
 const { User } = require("../../db");
 const { Profile } = require("../../db");
+const { sendRegisterEmail } = require('../notificationEmail')
 require("dotenv").config();
 const { EMAIL_ADMIN, NAME_ADMIN, PASS_ADMIN } = process.env;
 
@@ -36,7 +37,7 @@ const postUser = async (sub, name, email, photo, password) => {
   if (!findProfile) {
     await Profile.create({ userSub: sub });
   }
-
+  await sendRegisterEmail(newUser);
   return newUser;
 };
 

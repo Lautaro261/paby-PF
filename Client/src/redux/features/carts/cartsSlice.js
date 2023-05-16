@@ -29,6 +29,7 @@ export const Fill = createAsyncThunk(
                 console.log(response.data[index].cartId, "cart ID")
                 console.log(response.data[index].cart_amount, "precio")
                 const fill = await axios.get(`reservation/${id2}/reservations`)
+                
                 console.log(fill.data, "fill")
                 const link = await axios.post(`reservation/${id2}/payment`)
                 console.log(link.data, "link")
@@ -86,6 +87,7 @@ export const cartsSlice = createSlice({
             })
             .addCase(Fill.fulfilled, (state, action) => {
                 state.status = 'succeeded',
+                console.log(action.payload, "toda la data")
                 state.cart = action.payload[0]
                 state.payment=action.payload[1] 
                 state.total=action.payload[2]

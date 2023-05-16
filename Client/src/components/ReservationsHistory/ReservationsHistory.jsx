@@ -12,7 +12,7 @@ import Loader from '../Loader/Loader';
 const ReservationsHistory = () => {
     const dispatch=useDispatch()
     const { user, isLoading} = useAuth0()
-    const userId = user && user.sub;
+    const userId =localStorage.getItem(`sub`);
     console.log(userId, "ANTES DE HISTORY")
     const history= useSelector(state=>state.history.historial)
     // useEffect(()=>{ if (user) {
