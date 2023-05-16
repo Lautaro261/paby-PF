@@ -15,11 +15,13 @@ export const createVehicle = createAsyncThunk(
     'vehicles/createVehicle',
     async (values) => {
         try {
+
             const response = await axios.post('/user/vehicle/create', values);
             return response.data && response.data.message;
         } catch(error) {
             console.error(error.message);
             throw error;
+
         }
     }
 );
