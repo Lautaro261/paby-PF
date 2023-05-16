@@ -2,6 +2,7 @@
 const { Reservation, Cart } = require("../../db");
 const { createCart } = require("../../controllers/cart/postCart"); // importar la función createCart
 const { Op } = require("sequelize");
+const { sendPaymentStatusEmail } = require('./notificationEmail');
 
 // Controlador handlerNotification
 const notification = async (
@@ -48,8 +49,10 @@ const notification = async (
 
     if (reservation.payment_status === "approved") {
       reservation.reservation_status = "Pagada";
+      await sendPaymentStatusEmail(reservation)
     } else {
       reservation.reservation_status = "Pago rechazado";
+      await sendPaymentStatusEmail(reservation)
     }
     // Guardar cambios en el modelo Reservacion
     await reservation.save();

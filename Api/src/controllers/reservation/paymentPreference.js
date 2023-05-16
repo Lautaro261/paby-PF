@@ -4,12 +4,9 @@ const { Reservation, Cart } = require("../../db");
 
 const mercadoPago = require("mercadopago");
 require("dotenv").config();
+const { URL_SUCCESS, URL_PENDING, URL_FAILURE } = process.env
 
 mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
-
-const url_success = "http://localhost:5173/success-payment";
-const url_failure = "http://localhost:5173/pending-payment";
-const url_pending = "http://localhost:5173/failure-payment";
 
 const createMercadoPagoPreference = async (id) => {
   // Busca las reservaciones asociadas al carrito
@@ -49,9 +46,9 @@ const createMercadoPagoPreference = async (id) => {
       },
     ],
     back_urls: {
-      success: url_success,
-      pending: url_pending,
-      failure: url_failure,
+      success: URL_SUCCESS,
+      pending: URL_PENDING,
+      failure: URL_FAILURE,
     },
     auto_return: "approved",
   };

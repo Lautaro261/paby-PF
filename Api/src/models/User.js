@@ -24,6 +24,10 @@ module.exports = (sequelize) => {
         defaultValue: 'client',
         allowNull: false
       },
+      borrado:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
+      },
       photo: {
         type: DataTypes.TEXT,
         allowNull: true,

@@ -6,6 +6,7 @@ const { Op } = require("sequelize");
 
 const mercadoPago = require("mercadopago");
 require("dotenv").config();
+const { URL_SUCCESS, URL_PENDING, URL_FAILURE } = process.env
 
 mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
@@ -101,9 +102,9 @@ const createReservation = async (
       // city_name: user.city,
     },
     back_urls: {
-      success: "http://localhost:5173/success-payment",
-      pending: "http://localhost:5173/pending-payment",
-      failure: "http://localhost:5173/failure-payment",
+      success: URL_SUCCESS,
+      pending: URL_PENDING,
+      failure: URL_FAILURE,
     },
     auto_return: "approved",
     binary_mode: true,
