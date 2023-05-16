@@ -2,9 +2,9 @@ const { Router } = require("express");
 const {
   handlerGetAllZonesWithFloors,
   handlerGetZonesByParkingId,
-} = require("../handlers/handlerGetZone");
-const handlerCreateZones = require("../handlers/handlerPostZone");
-const handlerUpdateZone = require("../handlers/handlerPutZone");
+} = require("../handlers/zones/handlerGetZone");
+const handlerCreateZones = require("../handlers/zones/handlerPostZone");
+const handlerUpdateZone = require("../handlers/zones/handlerPutZone");
 
 const parkingRouter = require("../routes/parkingRouter");
 const zoneRouter = Router();

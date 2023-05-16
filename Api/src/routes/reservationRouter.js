@@ -2,27 +2,27 @@ const { Router } = require("express");
 const {
   handlerGetAllReservations,
   handlerGetReservationsByUserId,
-} = require("../handlers/handlerGetReservations");
+} = require("../handlers/reservation/handlerGetReservations");
 const {
   handlerCreateReservation,
-} = require("../handlers/handlerPostReservation");
+} = require("../handlers/reservation/handlerPostReservation");
 const { handlerUpdateStatus } = require("../handlers/handlerUpdateStatus");
 const {
   handlerNotification,
-} = require("../handlers/handlerPostNotificationMp");
+} = require("../handlers/reservation/handlerPostNotificationMp");
 
-const { handlerPostCart } = require("../handlers/handlerPostCart");
-const { handlerCreateRC } = require("../handlers/handlerCreateRC");
+const { handlerPostCart } = require("../handlers/cart/handlerPostCart");
+const { handlerCreateRC } = require("../handlers/cart/handlerCreateRC");
 const {
   handlerGetCart,
   handlerGetCartAndReservations,
-} = require("../handlers/handlerGetCart");
+} = require("../handlers/cart/handlerGetCart");
 const {
   handlerPaymentPreference,
-} = require("../handlers/handlerPaymentPreference");
+} = require("../handlers/reservation/handlerPaymentPreference");
 const {
   handlerRemoveReservationCart,
-} = require("../handlers/handlerPutReservationCart");
+} = require("../handlers/cart/handlerPutReservationCart");
 
 const reservationRouter = Router();
 
