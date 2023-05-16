@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import { useDispatch } from "react-redux";
+import { clearError } from "../../redux/features/users/usersSlice";
 
 const RegisterOwn = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useDispatch()
 
     const handleRegisterClick = () => {
         setIsModalOpen(true);
@@ -10,6 +13,7 @@ const RegisterOwn = () => {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+        dispatch(clearError())
     };
 
     return (
