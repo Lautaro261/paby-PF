@@ -2,9 +2,9 @@ const { Router } = require("express");
 const {
   handlerGetAllParkings,
   handlerGetParkingById,
-} = require("../handlers/handlerGetParkings");
-const handlerCreateParking = require("../handlers/handlerPostParking");
-const handlerUpdateParking = require("../handlers/handlerPutParking");
+} = require("../handlers/parking/handlerGetParkings");
+const handlerCreateParking = require("../handlers/parking/handlerPostParking");
+const handlerUpdateParking = require("../handlers/parking/handlerPutParking");
 
 const parkingRouter = Router();
 
