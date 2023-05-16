@@ -1,35 +1,52 @@
 import React, { useState } from "react";
-import styles from './LoginModal.module.css'
-import { useDispatch } from "react-redux";
-import { setUserSession } from "../../redux/features/users/usersSlice";
 import LoginButton from '../../components/LoginButton/LoginButton'
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import styles from './LoginModal.module.css'
+import { setUserSession, loginUser } from "../../redux/features/users/usersSlice";
+import { loginAdmin} from '../../redux/features/admin/adminSlice'
 
 const LoginModal = ({ isOpen, onClose }) => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const error = useSelector(state => state.users.error)
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const userSession = {
-            email: email,
-            password: password
-        }
-        try {
-            dispatch(setUserSession(userSession))
-            localStorage.setItem(`sub`, email);
-            localStorage.setItem(`email`,email)
+        if (email === 'armandoAdmin@gmail.com' && password === 'pabyelmejor') {
+            const sub = email
+            const userAdmin = {
+                sub: sub,
+                email: email,
+                password: password,
+            }
+            dispatch(loginAdmin(userAdmin))
+            dispatch(setUserSession(userAdmin))
+            localStorage.setItem(`sub`, email)
+            localStorage.setItem(`email`, email)
             localStorage.setItem(`isLoggedIn`, true)
             onClose()
-            navigate('/home')
-        } catch (error) {
-            console.log(error)
+        } else {
+            const sub = email
+            const userSession = {
+                sub: sub,
+                email: email,
+                password: password
+            }
+            dispatch(loginUser(userSession))
+                .then((response) => {
+                    if (response.payload && response.payload.success) {
+                        dispatch(setUserSession(userSession))
+                        localStorage.setItem(`sub`, email);
+                        localStorage.setItem(`email`, email)
+                        localStorage.setItem(`isLoggedIn`, true)
+                        onClose()
+                    }
+                })
+               
         }
-        console.log('logueado')
     }
-    
+
     return isOpen ? (
         <div className={styles.modal}>
             <div className={styles.modalContent}>
@@ -51,6 +68,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         onChange={(e) => setPassword(e.target.value)} />
                     </label>
                     <button type='submit'>Ingresar</button>
+                    {error && <p>¡Algo salio mal! verifica que tu email y contraseña sean correctas.</p>}
                 </form>
                 <div className={styles.modalElements} >
                     <p>ó</p>

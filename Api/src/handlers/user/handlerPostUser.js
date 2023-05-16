@@ -20,11 +20,11 @@ const handlerPostUser = async (req, res) => {
     );
 
     //console.log(user)
-    res.status(200).json({ message: "se creo correctamente",
+    res.status(200).json({ message: "Se creo correctamente",
     user :  newUser,
 });
   } catch (error) {
-    res.status(400).json({message: "no se pudo crear usuario",
+    res.status(400).json({message: "No se pudo crear usuario",
     error : error.message
 });
   }

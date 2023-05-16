@@ -17,7 +17,7 @@ const removeReservationCart = async (id, userId) => {
 
   if (!reservation) {
     return {
-      message: "La reservación no existe",
+      message: "La reservación o el usuario no existe",
     };
   }
 
@@ -32,6 +32,7 @@ const removeReservationCart = async (id, userId) => {
   const shoppingCart = await Cart.findOne({
     where: {
       userSub: userId,
+      cart_status: "Por pagar",
     },
   });
 
@@ -48,7 +49,7 @@ const removeReservationCart = async (id, userId) => {
   });
 
   await shoppingCart.update({
-    cart_status: reservationsCount > 0 ? "Por pagar" : "Vacío",
+    cart_status: reservationsCount > 0 ? "Por pagar" : "Vacio",
     cart_amount: cartAmount,
     quantity: reservationsCount,
   });

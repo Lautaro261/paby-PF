@@ -21,7 +21,6 @@ export default function Home() {
     const name=user?.name
     const photo=user?.photo
     const email=user?.email
-    // const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
     const isLoggedIn = localStorage.getItem(`isLoggedIn`)
     useEffect(() => {
         AOS.init();
@@ -42,21 +41,9 @@ export default function Home() {
                 photo:user.picture
             }));
             dispatch(Fill(user.sub))
-            
         }
     },[user, dispatch]);
 
-    // useEffect(() => {
-    //     const isProfileComplete = localStorage.getItem(`isProfileComplete_${userSub}`)
-    //     if (!isProfileComplete) {
-    //         setShowProfileCompleteModal(true);
-    //     }
-    // }, [userSub]);
-
-    // const handleCloseModal = () => {
-    //     localStorage.setItem(`isProfileComplete_${userSub}`, true);
-    //     setShowProfileCompleteModal(false)
-    // }
     
     if(user){
         localStorage.setItem(`sub`, userSub);

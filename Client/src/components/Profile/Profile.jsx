@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile } from "../../redux/features/users/usersSlice";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Profile.module.css';
 
 const Profile = () => {
+    const navigate= useNavigate()
     const profile = useSelector(state => state.users.userProfile);
     const userSub = localStorage.getItem(`sub`)
     const user = {
@@ -19,10 +20,7 @@ const Profile = () => {
     localStorage.setItem(`photo`, photo)
     localStorage.setItem(`name`, name)
     const dispatch = useDispatch();
-    //const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
-    // const [isProfileComplete, setIsProfileComplete] = useState(false);
-
-
+  
     if (!user) {
         return <div>Cargando... </div>
     }
@@ -34,10 +32,6 @@ const Profile = () => {
         }
     }, [dispatch]);
 
-
-    const goBack = () => {
-        window.history.back();
-    }
     
 
     return (
@@ -55,9 +49,7 @@ const Profile = () => {
             </div>
 
             <Link className={styles.editBoton} to="/editprofile">Editar Perfil</Link>
-            <button className={styles.Volver} onClick={goBack}>Volver</button>
-
-
+            <button className={styles.Volver} onClick={() => navigate('/home')}>Volver</button>
 
         </div>
     )
