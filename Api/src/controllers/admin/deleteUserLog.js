@@ -1,15 +1,16 @@
-const { User } = require('../../db');
+const { User } = require("../../db");
 
-const deleteUserLog = async (sub, delet) =>{
+const deleteUserLog = async (sub, delet) => {
+  let userDelete;
+  const findUser = await User.findOne({ where: { sub: sub } });
 
-    let userDelete  
-    const findUser = await User.findOne({where: { sub: sub }})
+  findUser[delet] ? (userDelete = false) : (userDelete = true);
 
-    findUser[delet]? userDelete = false : userDelete = true
-    
-    const user = await User.update({[delet]:userDelete}, {where: { sub: sub }})
-    return user
+  const user = await User.update(
+    { [delet]: userDelete },
+    { where: { sub: sub } }
+  );
+  return user;
+};
 
-}
-
-module.exports= deleteUserLog
+module.exports = deleteUserLog;

@@ -1,6 +1,9 @@
 const { Router } = require("express");
 // VERIFY TOKEN
 const verifyToken = require("../utils/verifyToken");
+
+/////////// HANDLERS ////////////
+
 // USUARIOS
 const handlerGetUsers = require("../handlers/admin/handlerGetUsers.js");
 // VEHICULOS
@@ -16,6 +19,8 @@ const handlerCreateParking = require("../handlers/admin/handlerPostParking");
 const handlerUpdateParking = require("../handlers/admin/handlerPutParking");
 
 const adminRouter = Router();
+
+/////////// ROUTES ////////////
 
 adminRouter.post("/login", handlerLogin);
 

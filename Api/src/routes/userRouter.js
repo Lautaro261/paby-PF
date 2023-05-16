@@ -7,20 +7,17 @@ const handlerGetVehicleId = require("../handlers/vehicle/handlerGetVehicleId.js"
 const handlerGetVehiclesIdUser = require("../handlers/vehicle/handlerGetVehiclesIdUser");
 const handlerGetUserId = require("../handlers/user/handlerGetUserId");
 const handlerGetVehicleByBrand = require("../handlers/vehicle/handlerGetVehicleByBrand");
-const handlerPutProfile = require('../handlers/user/handlerPutProfile');
-const handlerLoginClient =  require('../handlers/user/handlerLoginClient');
+const handlerPutProfile = require("../handlers/user/handlerPutProfile");
+const handlerLoginClient = require("../handlers/user/handlerLoginClient");
 
-const userRouter = Router(); 
+const userRouter = Router();
 
-
-
-
-userRouter.post("/create", handlerPostUser); 
+userRouter.post("/create", handlerPostUser);
 userRouter.post("/login", handlerLoginClient);
-userRouter.post("/vehicle/create", handlerPostVehicle); 
+userRouter.post("/vehicle/create", handlerPostVehicle);
 
-userRouter.get("/:idUser", handlerGetUserId); 
-userRouter.get("/:sub/vehicles", handlerGetVehiclesIdUser); 
+userRouter.get("/:idUser", handlerGetUserId);
+userRouter.get("/:sub/vehicles", handlerGetVehiclesIdUser);
 userRouter.get("/vehicle/:license_plate_id", handlerGetVehicleId);
 userRouter.get("/vehicle/search/:car_brand", handlerGetVehicleByBrand);
 

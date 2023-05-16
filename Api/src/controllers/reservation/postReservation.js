@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 
 const mercadoPago = require("mercadopago");
 require("dotenv").config();
-const { URL_SUCCESS, URL_PENDING, URL_FAILURE } = process.env
+const { URL_SUCCESS, URL_PENDING, URL_FAILURE } = process.env;
 
 mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
