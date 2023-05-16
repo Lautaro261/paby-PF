@@ -9,12 +9,11 @@ const PutProfile = async (
   address,
   neighborhood
 ) => {
-  const profileById = await Profile.findOne({ where: { userSub: sub } }); 
+  const profileById = await Profile.findOne({ where: { userSub: sub } });
 
   if (!profileById) {
     return null;
   }
-
 
   await profileById.update({
     nickname,

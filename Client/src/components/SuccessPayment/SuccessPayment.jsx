@@ -26,9 +26,10 @@ const SuccessPayment = () => {
 
     const dispatch = useDispatch();
     const selectedParkingSpace = JSON.parse(localStorage.getItem('selectedParkingSpace'));
-    
+    console.log(selectedParkingSpace)
     useEffect(() => {
         if (selectedParkingSpace) {
+            console.log("entré al usefect")
             dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
             dispatch(updateParkingSpaceStatus(selectedParkingSpace));
             dispatch(setSelectedParkingLot({}));

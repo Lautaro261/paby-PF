@@ -2,9 +2,9 @@ const { Router } = require("express");
 const {
   handlerGetAllFloors,
   handlerGetFloorsByParkingId,
-} = require("../handlers/handlerGetFloor");
-const handlerCreateFloor = require("../handlers/handlerPostFloor");
-const handlerUpdateFloorById = require("../handlers/handlerPutFloor");
+} = require("../handlers/floor/handlerGetFloor");
+const handlerCreateFloor = require("../handlers/floor/handlerPostFloor");
+const handlerUpdateFloorById = require("../handlers/floor/handlerPutFloor");
 
 const parkingRouter = require("../routes/parkingRouter");
 const floorRouter = Router();

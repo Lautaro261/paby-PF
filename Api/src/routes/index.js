@@ -14,7 +14,6 @@ cron.schedule("*/5 * * * *", updateStatus);
 
 const routes = Router();
 
-
 routes.use("/user", userRouter);
 routes.use("/admin", adminRouter);
 routes.use("/parking", parkingRouter);

@@ -1,17 +1,13 @@
-const { Vehicle } = require('../../db');
+const { Vehicle } = require("../../db");
 
-const getVehicleByBrand = async(car_brand)=>{
+const getVehicleByBrand = async (car_brand) => {
+  const resVehicle = await Vehicle.findOne({
+    where: { car_brand: car_brand },
+  });
 
-    const resVehicle = await Vehicle.findOne({
-        where : { car_brand: car_brand}
-    })
+  // console.log(resVehicle)
 
-   // console.log(resVehicle)
-
-    return resVehicle
-}
+  return resVehicle;
+};
 
 module.exports = getVehicleByBrand;
-
-
-

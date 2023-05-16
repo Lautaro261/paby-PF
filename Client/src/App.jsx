@@ -21,6 +21,8 @@ import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 // import { useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
+import ManualReserveForm from './components/ManualReserveForm/ManualReserveForm';
+import DataEditView from './views/admin/DataEditView/DataEditView';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -62,6 +64,16 @@ const App = () => {
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
+      //ADMIN ROUTES
+      <Route path='/admin/dataedit' element={<DataEditView />} />
+      <Route path='/admin/manual-reserve' element={<DataEditView />} />
+      <Route path='/admin/manual-reserve/form' element={<DataEditView />} />
+      <Route path='/admin/ok' element={<DataEditView />} />
+      <Route path='/admin/clients' element={<DataEditView />} />
+      <Route path='/admin/clients/details' element={<DataEditView />} />
+
+
+      
       </>
       : null }
 
