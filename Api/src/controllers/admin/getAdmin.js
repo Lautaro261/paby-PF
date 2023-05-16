@@ -1,9 +1,9 @@
-const { User } = require('../../db');
+const { User } = require("../../db");
 
-const getAdmin = async(sub )=>{
-    const user = await User.findOne({ where: { sub: sub } });
+const getAdmin = async (sub) => {
+  const user = await User.findOne({ where: { sub: sub } });
 
-    return user;
-}
+  return user;
+};
 
-module.exports= getAdmin 
+module.exports = getAdmin;

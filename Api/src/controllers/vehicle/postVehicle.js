@@ -13,9 +13,7 @@ const postVehicle = async (
   car_color,
   photo
 ) => {
-  
-  
-  const user = await User.findByPk(sub)
+  const user = await User.findByPk(sub);
   const newVehicle = await Vehicle.create({
     license_plate_id,
     license_plate,
@@ -26,14 +24,12 @@ const postVehicle = async (
     car_model_year,
     car_color,
     photo,
-    userSub: user.sub
-
+    userSub: user.sub,
   });
 
- await user.addVehicle(newVehicle);
+  await user.addVehicle(newVehicle);
 
   return newVehicle;
 };
 
 module.exports = postVehicle;
-

@@ -17,25 +17,27 @@ const postUser = async (sub, name, email, photo, password) => {
     photo,
   };
 
-
   if (password !== undefined || password !== null) {
     newObjUser.password = password;
   }
 
-  if (newObjUser.email === EMAIL_ADMIN && newObjUser.name === NAME_ADMIN  && newObjUser.password === PASS_ADMIN ) {
+  if (
+    newObjUser.email === EMAIL_ADMIN &&
+    newObjUser.name === NAME_ADMIN &&
+    newObjUser.password === PASS_ADMIN
+  ) {
     newObjUser.rol = "admin";
   }
 
-
   const newUser = await User.create(newObjUser);
 
-  const findProfile = await Profile.findOne({ where: { userSub: sub } }); 
+  const findProfile = await Profile.findOne({ where: { userSub: sub } });
 
   if (!findProfile) {
     await Profile.create({ userSub: sub });
   }
 
-  return newUser; 
+  return newUser;
 };
 
 module.exports = postUser;
