@@ -72,6 +72,7 @@ const vehiclesSlice = createSlice({
                 state.status = 'succeeded',
                 state.vehicleCreationNotification = action.payload
                 state.allVehicles = [];
+                state.error = null;
             })
             .addCase(createVehicle.rejected, (state, action) => {
                 state.status = 'rejected'
@@ -83,6 +84,7 @@ const vehiclesSlice = createSlice({
             .addCase(getAllVehicles.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.allVehicles = action.payload;
+                state.error = null;
             })
             .addCase(getAllVehicles.rejected, (state, action) => {
                 state.status = 'rejected';
@@ -94,6 +96,7 @@ const vehiclesSlice = createSlice({
             .addCase(searchVehicleBrandByName.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.searchedBrandName = [action.payload];
+                state.error = null;
             })
             .addCase(searchVehicleBrandByName.rejected, (state, action) => {
                 state.status = 'rejected';

@@ -6,6 +6,7 @@ import parkingSpacesReservationReducer from './features/parkingSpacesReservation
 import historyReducer from "./features/history/historySlice";
 import usersReducer from './features/users/usersSlice'
 import cartsReducer from "./features/carts/cartsSlice"
+import adminReducer from "./features/admin/adminSlice"
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         vehicles: vehiclesReducer,
         history: historyReducer,
         users: usersReducer,
-        carts: cartsReducer
+        carts: cartsReducer,
+        admin: adminReducer
     }
 });
 
