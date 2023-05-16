@@ -49,7 +49,7 @@ const removeReservationCart = async (id, userId) => {
   });
 
   await shoppingCart.update({
-    cart_status: reservationsCount > 0 ? "Por pagar" : "Vacío",
+    cart_status: reservationsCount > 0 ? "Por pagar" : "Vacio",
     cart_amount: cartAmount,
     quantity: reservationsCount,
   });
