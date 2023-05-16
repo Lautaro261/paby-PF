@@ -19,6 +19,7 @@ import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/Par
 // import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
+import UserAdmin from './components/Admin/UsersAdmin/userAdmin';
 // import { useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
 
@@ -62,6 +63,7 @@ const App = () => {
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
+      <Route path='/useradmin' element={<UserAdmin />} />
       </>
       : null }
 
