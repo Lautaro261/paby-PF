@@ -1,0 +1,33 @@
+.dash {
+  background-color: #aedfea;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 10px 13px -7px #00000055, 5px 5px 15px 5px rgba(88, 85, 85, 0);
+  z-index: 100;
+}
+
+.dashList {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  align-items: center;
+}
+
+.dashItem {
+  margin-right: 20px;
+}
+
+.dashLink {
+  font-weight: bold;
+  text-decoration: none;
+  color: #2f6690;
+  transition: color 0.2s ease-in-out;
+}
+
+.dashLink:hover {
+  color: #3a7ca5;
+}
