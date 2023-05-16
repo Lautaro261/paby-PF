@@ -21,6 +21,7 @@ import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 // import { useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
+import ManualReserveForm from './components/ManualReserveForm/ManualReserveForm';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -62,6 +63,7 @@ const App = () => {
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
+      <Route path='/manual-reserve' element={<ManualReserveForm />} />
       </>
       : null }
 
