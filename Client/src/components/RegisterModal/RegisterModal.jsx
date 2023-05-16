@@ -1,12 +1,13 @@
 import React from "react";
-import { useDispatch } from 'react-redux'
-import { sendUserSession } from "../../redux/features/users/usersSlice";
+import { useDispatch, useSelector } from 'react-redux'
+import { sendUserSession, setUserSession } from "../../redux/features/users/usersSlice";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
 
 const RegisterModal = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
+    const error = useSelector(state => state.users.error)
 
     const formik = useFormik({
         initialValues: {
@@ -20,7 +21,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
         validationSchema: Yup.object({
             email: Yup.string().email('Email inválido')
                 .required('Campo requerido'),
-                password: Yup.string()
+            password: Yup.string()
                 .matches(/^[a-z0-9]{8,16}$/, 'La contraseña debe contener solo letras minúsculas y números y tener entre 8 y 16 caracteres')
                 .required('Campo requerido'),
             passwordConfirmation: Yup.string()
@@ -40,19 +41,18 @@ const RegisterModal = ({ isOpen, onClose }) => {
                 name: name,
                 password: password
             };
+            dispatch(sendUserSession(user))
+                .then((response) => {
+                    if (response.payload && response.payload.success) {
+                        dispatch(setUserSession(user))
+                        localStorage.setItem(`sub`, email);
+                        localStorage.setItem(`name`, name);
+                        localStorage.setItem(`email`, email)
+                        localStorage.setItem(`isLoggedIn`, true)
+                        onClose()
+                    }
+                })
 
-            try {
-                const response = dispatch(sendUserSession(user));
-                localStorage.setItem(`sub`, sub);
-                localStorage.setItem(`email`, email);
-                localStorage.setItem(`name`, name);
-            localStorage.setItem('isLoggedIn', true)
-
-                console.log('soy sendUser en RegisterOwn', response);
-                onClose();
-            } catch (error) {
-                console.log(error);
-            }
         }
     });
 
@@ -120,8 +120,9 @@ const RegisterModal = ({ isOpen, onClose }) => {
                         <div>{formik.errors.passwordConfirmation}</div>
                     ) : null}
                     <button type='submit'>Registrarse</button>
+                    {error && <p>Ya existe una cuenta registrada para este email.</p>}
                 </form>
-              
+
             </div>
         </div>
     )

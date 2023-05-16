@@ -20,10 +20,7 @@ const Profile = () => {
     localStorage.setItem(`photo`, photo)
     localStorage.setItem(`name`, name)
     const dispatch = useDispatch();
-    //const [showProfileCompleteModal, setShowProfileCompleteModal] = useState(false);
-    // const [isProfileComplete, setIsProfileComplete] = useState(false);
-
-
+  
     if (!user) {
         return <div>Cargando... </div>
     }
@@ -53,8 +50,6 @@ const Profile = () => {
 
             <Link className={styles.editBoton} to="/editprofile">Editar Perfil</Link>
             <button className={styles.Volver} onClick={() => navigate('/home')}>Volver</button>
-
-
 
         </div>
     )
