@@ -1,7 +1,7 @@
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 
 
-const AdminDetails = ()=>{
+const ManualReserveForm = ()=>{
     const submitHandler = (values)=>{
         alert(JSON.stringify(values))
     }
@@ -58,4 +58,4 @@ const AdminDetails = ()=>{
     )
 }
 
-export default AdminDetails;
+export default ManualReserveForm;

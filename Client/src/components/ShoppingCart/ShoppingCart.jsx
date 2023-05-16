@@ -10,9 +10,9 @@ import { Price } from "../../redux/features/carts/cartsSlice";
 
 const ShoppingCart=()=>{
     const dispatch = useDispatch();
-    //const productos = useSelector(state => state.productos);
     const { user, isLoading} = useAuth0()
-    const userId = user && user.sub;    
+    //const userId = user && user.sub;    
+    const userId =localStorage.getItem(`sub`);
     
     useEffect(() => {
       if (userId) {
@@ -40,11 +40,11 @@ const ShoppingCart=()=>{
 
 
   const renderizarCarrito = () => {
-    if (isLoading ) {
+    if (isLoading || !userId ) {
       console.log( "cargando...")
      return (<div><Loader/></div>);
      }
-        if (!isLoading && cart && cart.cartId) {
+        if ((!isLoading && cart && cart.cartId) || (userId && cart && cart.cartId)) {
          return (<div>agrega reservaciones para continuar...</div>);
          }
          if (cart && cart.length!=0 && !cart.cartId){
