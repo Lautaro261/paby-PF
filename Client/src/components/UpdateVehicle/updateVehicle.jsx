@@ -30,10 +30,15 @@ export default function UpdateVehicle({ vehicle, onClose }) {
                         onChange={(e) => setUpdatedVehicle({...updatedVehicle, car_brand: e.target.value})} />
                     </label>
                     <label>
+                        Año:
+                        <input type="text" name="car_model_year" value={updatedVehicle.car_model_year} 
+                        onChange={(e) => setUpdatedVehicle({...updatedVehicle, car_model_year: e.target.value})} />
+                    </label>
+                    {/*<label>
                         Tipo de servicio:
                         <input type="text" name="type_of_service" value={updatedVehicle.type_of_service} 
                         onChange={(e) => setUpdatedVehicle({...updatedVehicle, type_of_service: e.target.value})} />
-                    </label>
+                    </label>*/}
                     <label>
                         Matrícula:
                         <input type="text" name="license_plate" value={updatedVehicle.license_plate} 
