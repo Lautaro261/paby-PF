@@ -62,7 +62,7 @@ export default function CreateVehicle() {
     car_model: values.car_model,
     car_model_year: values.car_model_year,
     car_color: values.car_color,
-    photo: values.photo,
+    photo: vehiclePhotoForCreationURL,
   };
   try {
     dispatch(createVehicle(requestData));
