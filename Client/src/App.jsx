@@ -23,6 +23,9 @@ import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 import { useAuth0 } from '@auth0/auth0-react'
 import ManualReserveForm from './components/ManualReserveForm/ManualReserveForm';
 import DataEditView from './views/admin/DataEditView/DataEditView';
+import AllUsersAdminView from './views/admin/AllUsersAdminView/AllUsersAdminView';
+import ClientDetailsView from './views/admin/ClientDetailsView/ClientDetailsView';
+import HomeAdminView from './views/admin/HomeAdminView/HomeAdminView';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -69,8 +72,9 @@ const App = () => {
       <Route path='/admin/manual-reserve' element={<DataEditView />} />
       <Route path='/admin/manual-reserve/form' element={<DataEditView />} />
       <Route path='/admin/ok' element={<DataEditView />} />
-      <Route path='/admin/clients' element={<DataEditView />} />
-      <Route path='/admin/clients/details' element={<DataEditView />} />
+      <Route path='/admin/clients' element={<AllUsersAdminView />} />
+      <Route path='/admin/clients/details/:sub' element={<ClientDetailsView />} />
+      <Route path='/admin/home' element={<HomeAdminView />} />
 
 
       
