@@ -5,7 +5,9 @@ import styles from './LoginModal.module.css'
 import { setUserSession, loginUser } from "../../redux/features/users/usersSlice";
 import { loginAdmin} from '../../redux/features/admin/adminSlice'
 
+const { VITE_EMAIL_ADMIN, VITE_PASS_ADMIN } = import.meta.env;
 const LoginModal = ({ isOpen, onClose }) => {
+
     const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,6 +23,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 email: email,
                 password: password,
             }
+            console.log("Soy el admin");
             dispatch(loginAdmin(userAdmin))
             dispatch(setUserSession(userAdmin))
             localStorage.setItem(`sub`, email)
