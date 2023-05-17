@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from './LoginModal.module.css'
 import { setUserSession, loginUser } from "../../redux/features/users/usersSlice";
 import { loginAdmin} from '../../redux/features/admin/adminSlice'
+import { useNavigate } from "react-router-dom";
+
 
 const { VITE_EMAIL_ADMIN, VITE_PASS_ADMIN } = import.meta.env;
 const LoginModal = ({ isOpen, onClose }) => {
-
+    const navigate=useNavigate()
     const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,6 +31,8 @@ const LoginModal = ({ isOpen, onClose }) => {
             localStorage.setItem(`sub`, email)
             localStorage.setItem(`email`, email)
             localStorage.setItem(`isLoggedIn`, true)
+            navigate("/")
+
             onClose()
         } else {
             const sub = email

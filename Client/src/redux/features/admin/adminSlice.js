@@ -119,6 +119,9 @@ const adminSlice = createSlice({
             .addCase(loginAdmin.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.adminAuth = action.payload;
+                const rol=action.payload.rol;
+                console.log("entrada", rol)
+                localStorage.setItem("rol", rol)
                 state.error = null;
             })
             .addCase(loginAdmin.rejected, (state, action) => {
