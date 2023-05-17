@@ -14,7 +14,7 @@ export const toggleUserBan = createAsyncThunk(
     'admin/toggleUserBan',
     async ({ sub, token }) => {
         try {
-            const response = await axios.put(`/admin/delete/${sub}`, { //acá no sé si la ruta esta correcta espero q si
+            const response = await axios.put(`/admin/delete/user`, sub , { //acá no sé si la ruta esta correcta espero q si
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -133,16 +133,16 @@ const adminSlice = createSlice({
                 state.status = 'pending';
             })
             .addCase(toggleUserBan.fulfilled, (state, action) => { 
-                const sub = action.payload;
-                const user = state.allUsers.find((user)=> user.sub === sub);
-                if(user){
-                    user.borrado = !user.borrado
-                    if(user.borrado){
-                        state.bannedUsers.push(user);
+                const sub = action.payload;  // acá tenemos el sub
+                const user = state.allUsers.find((user)=> user.sub === sub); //buscamos en el estado allUsers al usuario
+                if(user){                                              // que corresponde a nuestro sub y verificamos si tenemos el user.
+                    user.borrado = !user.borrado                        // acá cambiamos la propiedad de borrado, si era true ahora es false y viceversa
+                    if(user.borrado){                                   //si la propiedad borrado es true 
+                        state.bannedUsers.push(user);                   //agrega el usuario al array bannedUser
                     }else{
-                        state.bannedUsers = state.bannedUsers.filter((bannedUser)=> bannedUser.sub !== sub)
-                    }
-                }
+                        state.bannedUsers = state.bannedUsers.filter((bannedUser)=> bannedUser.sub !== sub) // si borrado es false, filtra 
+                    }                                                                 // y devuelve los usuarios baneados diferentes a ese sub
+                }                                                   
                 state.error= null;
             })
             .addCase(toggleUserBan.rejected,(state,action)=>{
