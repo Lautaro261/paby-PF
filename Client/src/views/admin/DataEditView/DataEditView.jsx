@@ -2,7 +2,9 @@ import React, { useEffect }from "react";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import AdminDash from "../../../components/Admin/dashboard/AdminDash";
+import UpdateParkin from '../../../components/Admin/ChangeParkingDetails/changeParkingDetails';
 import styles from './DataEditView.module.css';
+
 
 
 const DataEditView = () => {
@@ -12,7 +14,7 @@ const DataEditView = () => {
             <div><Navbar /> </div>
             <div> <AdminDash /></div>
             <div>
-                <div >"aqui tu componente</div>
+                <div ><UpdateParkin /></div>
             </div>
              <div ><Footer/></div>
         </div>

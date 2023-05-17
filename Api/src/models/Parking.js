@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
       },
       photo: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       regulation: {
         type: DataTypes.STRING,

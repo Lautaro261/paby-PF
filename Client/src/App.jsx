@@ -19,7 +19,6 @@ import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/Par
 // import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
-import UserAdmin from './components/Admin/UsersAdmin/userAdmin';
 // import { useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
 import ManualReserveForm from './components/ManualReserveForm/ManualReserveForm';
@@ -63,12 +62,10 @@ const App = () => {
       <Route path='/failure-payment' element={<FailurePayment />} />
       <Route path='/reservations-history' element={<HistoryView />} />
       <Route path='/vehicles' element={<VehiclesView />} />
-      {/* <Route path='/vehicle/:license_plate_id' element={<VehiclesView />} /> */}
       <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
-      <Route path='/useradmin' element={<UserAdmin />} />
       <Route path='/admin/dataedit' element={<DataEditView />} />
       <Route path='/admin/manual-reserve' element={<DataEditView />} />
       <Route path='/admin/manual-reserve/form' element={<DataEditView />} />
