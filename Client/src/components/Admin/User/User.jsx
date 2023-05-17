@@ -1,7 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleUserBan } from "../../../redux/features/admin/adminSlice";
 
 const User = ({sub, name, email}) => {
+    const dispatch = useDispatch();
+    const bannedUsers = useSelector((state)=> state.admin.bannedUsers) //traigo el estado de baneados de admin
+    const token = localStorage.getItem(`token`) // traigo el token de localStorage
+
+    const handleToggleBan = () => {
+        dispatch(toggleUserBan({sub, token}));   //se dispacha la action que tiene la ruta put 
+    }
+
+    const isBanned = bannedUsers.some((user)=> user.sub === sub); // si existe un usuario con el sub igual a nuestro
+                                                                // sub, devuelve true
 
 return ( 
     <div>
@@ -9,8 +21,9 @@ return (
             <p>{name}</p>
             <p>{email}</p>
         </Link>
-        <button>Bannear</button>
-    </div>
+        <p>{ isBanned ? 'Baneado' : 'No baneado'}</p>         // mensaje para saber si esta baneado o no
+        <button onClick={handleToggleBan}>{ isBanned ? 'Desbanear' : 'Banear'}</button> // boton condicional  
+    </div>                                                                             // segun el estado de ban
 )
 }
 

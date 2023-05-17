@@ -7,7 +7,26 @@ const initialState = {
     allUsers: null,
     userDetails: null,
     adminAuth: {},
+    bannedUsers: [], //array de usuarios banneados
 }
+
+export const toggleUserBan = createAsyncThunk(
+    'admin/toggleUserBan',
+    async ({ sub, token }) => {
+        try {
+            const response = await axios.put(`/admin/delete/${sub}`, { //acá no sé si la ruta esta correcta espero q si
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log('soy toggleUserBan fullfiled', response.data)
+            return sub //devuelvo sub 
+        } catch (error) {
+            console.log('soy error en toggleUserBan, adminSlice ', error)
+            throw error
+        }
+    }
+)
 
 export const loginAdmin = createAsyncThunk(
     'admin/loginAdmin',
@@ -30,7 +49,7 @@ export const getAllUserForAdmin = createAsyncThunk(
         try {
             const response = await axios.get('/admin/allusers', {
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
             console.log('soy getAllUserForAdmin en feature admin', response.data)
@@ -44,9 +63,9 @@ export const getAllUserForAdmin = createAsyncThunk(
 
 export const userDetails = createAsyncThunk(
     'admin/userDetails',
-    async ({sub, token}) => {
+    async ({ sub, token }) => {
 
-        console.log('soy userDetails ', sub , token)
+        console.log('soy userDetails ', sub, token)
         try {
             const response = await axios.get(`/admin/user/${sub}`, {
                 headers: {
@@ -67,10 +86,10 @@ export const clearDetails = createAction('admin/clearDetails')
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
-    reducers:{
+    reducers: {
         clearDetails: (state) => {
             state.userDetails = null;
-          },
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -107,6 +126,26 @@ const adminSlice = createSlice({
                 state.error = null;
             })
             .addCase(userDetails.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message;
+            })
+            .addCase(toggleUserBan.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(toggleUserBan.fulfilled, (state, action) => { 
+                const sub = action.payload;
+                const user = state.allUsers.find((user)=> user.sub === sub);
+                if(user){
+                    user.borrado = !user.borrado
+                    if(user.borrado){
+                        state.bannedUsers.push(user);
+                    }else{
+                        state.bannedUsers = state.bannedUsers.filter((bannedUser)=> bannedUser.sub !== sub)
+                    }
+                }
+                state.error= null;
+            })
+            .addCase(toggleUserBan.rejected,(state,action)=>{
                 state.status = 'rejected';
                 state.error = action.error.message;
             })
