@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import axios from 'axios'
 import Landing from './views/Landing/Landing'
 import HomeView from './views/homeView/homeView';
@@ -46,13 +48,16 @@ const App = () => {
   const { isAuthenticated } = useAuth0()
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const isLoggedIn = localStorage.getItem(`isLoggedIn`)
- // const adminAuth = useSelector(state.admin.adminAuth)
+
+  const adminAuth= localStorage.getItem("rol")
+  console.log(adminAuth, "soy el admin")
+ 
 
   return (
 
     <Routes>
       <Route path='/' element={<Landing />} />
-      <Route path='/home' element={<HomeView />} />
+      <Route path='/home' element={adminAuth==="admin" ? <HomeAdminView />:<HomeView />} />
       <Route path='/about-us' element={<AboutUs />} />
       { isAuthenticated || isLoggedIn  ?
       <>
@@ -70,13 +75,16 @@ const App = () => {
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
-      <Route path='/admin/dataedit' element={<DataEditView />} />
-      <Route path='/admin/manual-reserves' element={<ManualReserveView/>} />
-      <Route path='/admin/manual-reserve/form' element={<ManualReserveFormView />} />
-      <Route path='/admin/ok' element={<DataEditView />} />
-      <Route path='/admin/clients' element={<AllUsersAdminView />} />
-      <Route path='/admin/clients/details/:sub' element={<ClientDetailsView />} />
-      <Route path='/admin/home' element={<HomeAdminView />} />
+
+      <Route element={<ProtectedRoutes adminAuth={adminAuth}/>} >
+          <Route path='/admin/dataedit' element={<DataEditView />} />
+          <Route path='/admin/manual-reserves' element={<ManualReserveView/>} />
+          <Route path='/admin/manual-reserve/form' element={<ManualReserveFormView />} />
+          <Route path='/admin/ok' element={<DataEditView />} />
+          <Route path='/admin/clients' element={<AllUsersAdminView />} />
+          <Route path='/admin/clients/details/:sub' element={<ClientDetailsView />} />
+          <Route path='/admin/home' element={<HomeAdminView />} />
+       </Route>
 
 
       

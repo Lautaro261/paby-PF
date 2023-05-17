@@ -69,6 +69,7 @@ color: white;
 animation-name: fadeIn2;
 animation-duration: 1s;
 animation-timing-function: ease-in-out;
+
 }
 
 .introsection p {
@@ -94,13 +95,15 @@ letter-spacing: 0.1rem;
 cursor: pointer;
 transition: 0.5s ease-out;
 animation-name: fadeIn;
-animation-duration: 4s;
+animation-duration: 6s;
 animation-timing-function: ease-in-out;
+
 }
 
 .linktext{
   color:  white;
   text-decoration:none;
+
 }
 .linktext:hover{
   color:  white;

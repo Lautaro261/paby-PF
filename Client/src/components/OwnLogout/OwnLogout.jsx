@@ -18,6 +18,7 @@ const OwnLogout = () => {
         localStorage.removeItem(`token`)
         localStorage.setItem(`isLoggedIn`, false)
         localStorage.removeItem(`isLoggedIn`)
+        localStorage.removeItem("rol")
         navigate('/')
 
     }
