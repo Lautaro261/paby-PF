@@ -3,6 +3,7 @@ import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import AdminDash from "../../../components/Admin/dashboard/AdminDash";
 import styles from './DataEditView.module.css';
+import UpdateParkin from "../../../components/Admin/ChangeParkingDetails/ChangeParkingDetails";
 
 
 const DataEditView = () => {
@@ -12,7 +13,7 @@ const DataEditView = () => {
             <div><Navbar /> </div>
             <div> <AdminDash /></div>
             <div>
-                <div >"aqui tu componente</div>
+                <UpdateParkin/>
             </div>
              <div ><Footer/></div>
         </div>
