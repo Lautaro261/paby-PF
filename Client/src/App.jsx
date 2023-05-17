@@ -21,11 +21,14 @@ import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
 // import { useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
-import ManualReserveForm from './components/ManualReserveForm/ManualReserveForm';
 import DataEditView from './views/admin/DataEditView/DataEditView';
 import AllUsersAdminView from './views/admin/AllUsersAdminView/AllUsersAdminView';
 import ClientDetailsView from './views/admin/ClientDetailsView/ClientDetailsView';
 import HomeAdminView from './views/admin/HomeAdminView/HomeAdminView';
+import ManualReserve from './components/Admin/ManualReserve/ManualReserve';
+import Previous from './components/Admin/ManualReserve/Previous';
+import ManualReserveFormView from './views/admin/ManualReserveFormView/ManualReserveFormView';
+import ManualReserveView from './views/admin/ManualReserveView/ManualReserveview';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -69,8 +72,8 @@ const App = () => {
       <Route path='/Shopping' element={<ShoppingCartView />} />
       //ADMIN ROUTES
       <Route path='/admin/dataedit' element={<DataEditView />} />
-      <Route path='/admin/manual-reserve' element={<DataEditView />} />
-      <Route path='/admin/manual-reserve/form' element={<DataEditView />} />
+      <Route path='/admin/manual-reserves' element={<ManualReserveView/>} />
+      <Route path='/admin/manual-reserve/form' element={<ManualReserveFormView />} />
       <Route path='/admin/ok' element={<DataEditView />} />
       <Route path='/admin/clients' element={<AllUsersAdminView />} />
       <Route path='/admin/clients/details/:sub' element={<ClientDetailsView />} />
