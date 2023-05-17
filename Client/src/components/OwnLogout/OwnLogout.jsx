@@ -15,6 +15,7 @@ const OwnLogout = () => {
         localStorage.removeItem(`email`)
         localStorage.removeItem(`name`)
         localStorage.removeItem(`photo`)
+        localStorage.removeItem(`token`)
         localStorage.setItem(`isLoggedIn`, false)
         localStorage.removeItem(`isLoggedIn`)
         navigate('/')

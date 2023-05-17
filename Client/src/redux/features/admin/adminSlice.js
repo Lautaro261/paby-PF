@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 const initialState = {
@@ -26,11 +26,12 @@ export const loginAdmin = createAsyncThunk(
 export const getAllUserForAdmin = createAsyncThunk(
     'admin/getAllUserForAdmin',
     async (token) => {
+        console.log('soy token en getAllUserForAdmin', token)
         try {
             console.log("Soy el token desde el redux:", token)
             const response = await axios.get('/admin/allusers', {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization:`Bearer ${token}`
                 }
             });
             console.log('soy getAllUserForAdmin en feature admin', response.data)
@@ -44,7 +45,9 @@ export const getAllUserForAdmin = createAsyncThunk(
 
 export const userDetails = createAsyncThunk(
     'admin/userDetails',
-    async (sub, token) => {
+    async ({sub, token}) => {
+
+        console.log('soy userDetails ', sub , token)
         try {
             const response = await axios.get(`/admin/user/${sub}`, {
                 headers: {
@@ -60,9 +63,16 @@ export const userDetails = createAsyncThunk(
     }
 )
 
+export const clearDetails = createAction('admin/clearDetails')
+
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
+    reducers:{
+        clearDetails: (state) => {
+            state.userDetails = null;
+          },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginAdmin.pending, (state) => {
