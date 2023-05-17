@@ -1,21 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUserForAdmin } from "../../redux/features/admin/adminSlice";
+import { getAllUserForAdmin } from "../../../redux/features/admin/adminSlice"
 import User from "../User/User";
 
 const AllUserAdmin = () => {
     const dispatch = useDispatch()
     const allUsers = useSelector(state => state.admin.allUsers)
-    const token = useSelector(state=> state.admin.adminAuth)
-    
+    const token = localStorage.getItem(`token`)
+
     useEffect(()=>{
-        dispatch(getAllUserForAdmin(token.token))
+        console.log(token, 'token de allUser')
+        dispatch(getAllUserForAdmin(token))
     },[dispatch])
 
     return(
         <div>
+            <h2>Lista de clientes</h2>
+            <div>
             {
-                allUsers.length ? 
+               allUsers && allUsers.length ? 
                 allUsers.map((user)=>{
                     return(
                         <div key={user.sub}>
@@ -27,6 +30,7 @@ const AllUserAdmin = () => {
                     <p>Cargando</p>
                 </div>
             }
+            </div>
         </div>
     )
 }

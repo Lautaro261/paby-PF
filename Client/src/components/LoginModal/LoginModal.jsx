@@ -10,10 +10,11 @@ const LoginModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const error = useSelector(state => state.users.error)
+    const {VITE_EMAIL_ADMIN,VITE_PASS_ADMIN } = import.meta.env;
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (email === 'armandoAdmin@gmail.com' && password === 'pabyelmejor') {
+        if (email === VITE_EMAIL_ADMIN && password === VITE_PASS_ADMIN) {
             const sub = email
             const userAdmin = {
                 sub: sub,

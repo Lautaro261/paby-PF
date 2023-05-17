@@ -5,10 +5,11 @@ const User = ({sub, name, email}) => {
 
 return ( 
     <div>
-        <Link to={`to=/admint/clients/details/${sub}`}>
+        <Link to={`/admin/clients/details/${sub}`}>
             <p>{name}</p>
             <p>{email}</p>
         </Link>
+        <button>Bannear</button>
     </div>
 )
 }
