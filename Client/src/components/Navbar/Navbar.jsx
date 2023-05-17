@@ -13,13 +13,19 @@ import style from "./navBar.module.css";
 const Navbar = () => {
   const { isAuthenticated } = useAuth0();
   const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+  const token= localStorage.getItem(`token`)
 
   return (
     <nav className={style.navbarContainer} id="nav">
       <div className={style.logoContainer}>
+        {token && 
+        <Link to="/admin/home" className={style.logo}>
+          <img src={Logopaby} alt="logo" />
+        </Link>}
+        {!token && 
         <Link to="/home" className={style.logo}>
           <img src={Logopaby} alt="logo" />
-        </Link>
+        </Link>}
       </div>
       <ul className={style.navLinks}>
         <li>
