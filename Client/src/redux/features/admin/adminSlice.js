@@ -84,6 +84,24 @@ export const adminPostParkingSpaceReservation = createAsyncThunk(
     }
 );
 
+export const ChangeParkingDetails = createAsyncThunk(
+    'admin/ChangeParkingDetails',
+    async (data) => {
+        try {
+            console.log("desde admin, token:", data[0], " valores: ",data[1], "id: ", data[2])
+            const response = await axios.put(`/admin/parking/${data[2]}`, data[1], {
+                headers: {
+                    Authorization: `Bearer ${data[0]}`
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
+    }
+);
+
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
