@@ -40,6 +40,7 @@ const App = () => {
   const { isAuthenticated } = useAuth0()
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+ // const adminAuth = useSelector(state.admin.adminAuth)
 
   return (
 
