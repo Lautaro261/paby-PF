@@ -27,6 +27,7 @@ export const getAllUserForAdmin = createAsyncThunk(
     'admin/getAllUserForAdmin',
     async (token) => {
         try {
+            console.log("Soy el token desde el redux:", token)
             const response = await axios.get('/admin/allusers', {
                 headers: {
                     Authorization: `Bearer ${token}`

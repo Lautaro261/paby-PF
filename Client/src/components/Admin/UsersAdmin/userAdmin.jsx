@@ -7,12 +7,10 @@ export default function UserAdmin() {
   const allUsers = useSelector((state) => state.admin.allUsers);
   const token = useSelector(state => state.admin.adminAuth )
 
-  console.log(token)
-
   useEffect(() => {
-    dispatch(getAllUserForAdmin(token.token));
-    //console.log(getAllUserForAdmin(token.token))
-  }, [dispatch]);
+    dispatch(getAllUserForAdmin({ token: token.token }));
+    console.log(token.token);
+}, [dispatch, token]);
 
   return (
     <table>
