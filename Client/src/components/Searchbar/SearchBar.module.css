@@ -1,12 +1,10 @@
 /* Estilos generales */
 .searchContainer {
-  display: flex;
   align-items: center;
+  width: 80%;
 }
 
 .searchButton {
-  margin-left: 20px;
-  margin-top: 0px;
   border: none;
   background-color: #194169;
   color: #f5f5f5;
@@ -25,7 +23,8 @@
 
 /* Estilos para el input de búsqueda */
 input[type="text"] {
-  font-size: 17px;
+  margin-top: 13px;
+  font-size: 20px;
   color: #194169;
   border: none;
   border-bottom: 2px solid #bdbdbd;
@@ -41,7 +40,7 @@ input[type="text"]:focus {
 /* Estilos responsivos */
 @media (min-width: 576px) {
   .searchContainer {
-    max-width: 400px;
+    max-width: 450px;
     margin: 0 auto;
   }
 }

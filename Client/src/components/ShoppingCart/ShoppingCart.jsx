@@ -35,6 +35,10 @@ const ShoppingCart = () => {
     refresh();
   };
 
+  const goBack = () => {
+    window.history.back();
+  };
+
   const renderizarCarrito = () => {
     if (isLoading || !userId) {
       console.log("cargando...");
@@ -54,7 +58,9 @@ const ShoppingCart = () => {
           <p className={style.addResercationsText}>
             Agrega reservaciones para continuar...
           </p>
-          <button className={style.buttonAddReservation}>Volver</button>
+          <button onClick={goBack} className={style.buttonAddReservation}>
+            Volver
+          </button>
         </div>
       );
     }
@@ -75,7 +81,7 @@ const ShoppingCart = () => {
   };
   return (
     <div className={style.main}>
-      <p>Tus reservas por pagar</p>
+      <p className={style.mainPtitle}>Tus reservas por pagar</p>
       <div className={style.cont}>
         <div className={style.father}>{renderizarCarrito()}</div>
         {cart && cart.length > 0 && (

@@ -40,9 +40,11 @@ const ReservationsHistory = () => {
     return (
       <div>
         <div className={styles.title}>Historial de Reservas</div>
-        <p className={styles.boxerr}>
-          Vaya... Parece ser que aún no tienes reservaciones hechas
-        </p>
+        <div className={styles.box}>
+          <p className={styles.boxerP}>
+            Vaya... Parece ser que aún no tienes reservaciones hechas
+          </p>
+        </div>
         <button onClick={goBack} className={styles.buttonBack}>
           Volver
         </button>

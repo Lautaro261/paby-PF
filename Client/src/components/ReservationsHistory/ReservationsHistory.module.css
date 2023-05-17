@@ -14,6 +14,8 @@
   
   .box {
     background-color: #f5f5f5;
+    color: #194169;
+    text-align: center;
     border: none;
     border-radius: 13px;
     width: 80%;
@@ -21,32 +23,24 @@
     gap: 2%;
     margin: auto;
     margin-bottom: 22px;
-    padding: 31px;
-  }
-  
-  .boxerr {
-    background-color: #f5f5f5;
-    color: #194169;
-    width: 80%;
-    margin: auto;
-    padding: 22px;
-    text-align: center;
+    padding: 27px;
   }
 
-.boxerr p {
-    background-color: #f5f5f5;
-    color: #194169;
-    width: 80%;
+  .boxerP {
     margin: auto;
-    padding: 22px;
-    text-align: center;
+  font-size: 22px;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: #545454;
+  font-family: 'Rubik', sans-serif;
+  padding: 13px;
   }
 
   .buttonBack {
     display:flex;
     margin: auto;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 31px;
     border-radius: 7px;
     border: none;
     padding: 13px 22px;
