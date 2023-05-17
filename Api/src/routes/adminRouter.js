@@ -6,6 +6,7 @@ const verifyToken = require("../utils/verifyToken");
 
 // USUARIOS
 const handlerGetUsers = require("../handlers/admin/handlerGetUsers.js");
+const handlerDeleteUser = require("../handlers/admin/handlerDeleteUser")
 // VEHICULOS
 const handlerGetVehicle = require("../handlers/admin/handlerGetVehicle.js");
 const handlerLogin = require("../handlers/admin/handlerLogin.js");
@@ -48,6 +49,7 @@ adminRouter.post("/login", handlerLogin);
 // USUARIOS
 adminRouter.get("/allusers", verifyToken, handlerGetUsers);
 adminRouter.get("/user/:idUser", verifyToken, handlerGetUserById);
+adminRouter.put("/delete/user", verifyToken, handlerDeleteUser)
 // VEHICULOS
 adminRouter.get("/allvehicles", verifyToken, handlerGetVehicle);
 // PARQUEADEROS

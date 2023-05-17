@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setVehiclePhotoForReservationURL } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 
@@ -6,10 +6,10 @@ const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 
 const UploadWidget = () => {
     const dispatch = useDispatch();
-    let widget = {};
+    const widgetRef = useRef(null);
 
     useEffect(() => {
-        widget = window.cloudinary.createUploadWidget({
+        widgetRef.current = window.cloudinary.createUploadWidget({
             cloudName: VITE_CLOUD_NAME,
             uploadPreset: VITE_UPLOAD_PRESET
         }, (error, result) => {
@@ -17,10 +17,10 @@ const UploadWidget = () => {
                 dispatch(setVehiclePhotoForReservationURL(result.info.secure_url));
             }
         });
-    }, [widget, dispatch]);
+    }, [dispatch]);
 
     const handleClick = () => {
-        widget.open();
+        widgetRef.current.open();
     };
 
     return (
@@ -31,4 +31,5 @@ const UploadWidget = () => {
 };
 
 export default UploadWidget;
+
 

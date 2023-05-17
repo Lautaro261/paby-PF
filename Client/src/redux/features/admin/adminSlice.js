@@ -8,7 +8,28 @@ const initialState = {
     userDetails: null,
     reservationBooking: '',
     adminAuth: {},
+    bannedUsers: [], //array de usuarios banneados
 }
+
+export const toggleUserBan = createAsyncThunk(
+    'admin/toggleUserBan',
+    async ({ sub, token }) => {
+        try {
+            console.log("TOGGLE USER BAN", sub)
+            console.log("TOKEN ", token)
+            const response = await axios.put(`/admin/delete/user`, {sub: sub} , { //acá no sé si la ruta esta correcta espero q si
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            console.log('soy toggleUserBan fullfiled', response.data)
+            return sub //devuelvo sub 
+        } catch (error) {
+            console.log('soy error en toggleUserBan, adminSlice ', error)
+            throw error
+        }
+    }
+)
 
 export const loginAdmin = createAsyncThunk(
     'admin/loginAdmin',
@@ -32,7 +53,7 @@ export const getAllUserForAdmin = createAsyncThunk(
         try {
             const response = await axios.get('/admin/allusers', {
                 headers: {
-                    Authorization:`Bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             });
             console.log('soy getAllUserForAdmin en feature admin', response.data)
@@ -46,9 +67,9 @@ export const getAllUserForAdmin = createAsyncThunk(
 
 export const userDetails = createAsyncThunk(
     'admin/userDetails',
-    async ({sub, token}) => {
+    async ({ sub, token }) => {
 
-        console.log('soy userDetails ', sub , token)
+        console.log('soy userDetails ', sub, token)
         try {
             const response = await axios.get(`/admin/user/${sub}`, {
                 headers: {
@@ -64,7 +85,6 @@ export const userDetails = createAsyncThunk(
     }
 )
 
-export const clearDetails = createAction('admin/clearDetails')
 
 export const adminPostParkingSpaceReservation = createAsyncThunk(
     'admin/adminPostParkingSpaceReservation',
@@ -82,8 +102,9 @@ export const adminPostParkingSpaceReservation = createAsyncThunk(
             throw error;
         }
     }
-);
-
+    );
+    export const clearDetails = createAction('admin/clearDetails')
+    
 export const ChangeParkingDetails = createAsyncThunk(
     'admin/ChangeParkingDetails',
     async (data) => {
@@ -98,17 +119,17 @@ export const ChangeParkingDetails = createAsyncThunk(
         } catch (error) {
             console.error(error.message);
             throw error;
-        }
-    }
+        }
+    }
 );
 
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
-    reducers:{
+    reducers: {
         clearDetails: (state) => {
             state.userDetails = null;
-          },
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -151,6 +172,26 @@ const adminSlice = createSlice({
                 state.error = null;
             })
             .addCase(userDetails.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message;
+            })
+            .addCase(toggleUserBan.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(toggleUserBan.fulfilled, (state, action) => { 
+                const sub = action.payload;  // acá tenemos el sub
+                const user = state.allUsers.find((user)=> user.sub === sub); //buscamos en el estado allUsers al usuario
+                if(user){                                              // que corresponde a nuestro sub y verificamos si tenemos el user.
+                    user.borrado = !user.borrado                        // acá cambiamos la propiedad de borrado, si era true ahora es false y viceversa
+                    if(user.borrado){                                   //si la propiedad borrado es true 
+                        state.bannedUsers.push(user);                   //agrega el usuario al array bannedUser
+                    }else{
+                        state.bannedUsers = state.bannedUsers.filter((bannedUser)=> bannedUser.sub !== sub) // si borrado es false, filtra 
+                    }                                                                 // y devuelve los usuarios baneados diferentes a ese sub
+                }                                                   
+                state.error= null;
+            })
+            .addCase(toggleUserBan.rejected,(state,action)=>{
                 state.status = 'rejected';
                 state.error = action.error.message;
             })
