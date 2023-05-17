@@ -83,7 +83,6 @@ export const userDetails = createAsyncThunk(
     }
 )
 
-export const clearDetails = createAction('admin/clearDetails')
 
 export const adminPostParkingSpaceReservation = createAsyncThunk(
     'admin/adminPostParkingSpaceReservation',
@@ -101,8 +100,9 @@ export const adminPostParkingSpaceReservation = createAsyncThunk(
             throw error;
         }
     }
-);
-
+    );
+    export const clearDetails = createAction('admin/clearDetails')
+    
 const adminSlice = createSlice({
     name: 'admin',
     initialState,
