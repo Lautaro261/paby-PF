@@ -1,54 +1,74 @@
-.Home{
-  width:99vw;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  line-height: 1.5;
-  text-rendering: optimizeLegibility;
-   color: #414346;
-  height: 100%
-}
-p{
-  font-family: 'Ysabeau', serif;
-}
-.Home h1 {
-  font-size: 3em;
-  line-height: 1.1;
-  color: #16425B;
-  font-family: 'Rubik', sans-serif;
-}
-h2{
-  font-family: 'Rubik', sans-serif;
+/* Home.module.css */
 
+.Home {
+  width: 80vw;
+  margin: 0 auto;
+  padding: 22px;
+  text-align: center;
+  line-height: 1.3;
+  text-rendering: optimizeLegibility;
+  color: #545454;
+  height: 100%;
+}
+
+p {
+  font-family: 'Rubik', sans-serif;
+}
+
+.Home h1 {
+  font-size: 45px;
+  line-height: 1.3;
+  color: #194169;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: 'Rubik', sans-serif;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 22px;
   border: none;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: 13px 22px;
+  font-size: 8px;
   font-weight: 500;
   font-family: inherit;
-  background-color: #16425B;
-  color: #FFFCF7;
+  background-color: #85add6;
+  color: #194169;
   cursor: pointer;
-  transition: background-color 0.25s;
-  margin: 0.5rem;
+  transition: background-color 0.31s;
   font-family: 'Rubik', sans-serif;
-
 }
 
 button:hover {
-  background-color: #81C3D7;
+  background-color: #4575a5;
+  color:#f5f5f5;
+}
+
+.buttonHome {
+  border-radius: 7px;
+  border: none;
+  padding: 13px 22px;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #194169;
+  color: #f5f5f5;
+  cursor: pointer;
+  transition: background-color 0.31s;
+  font-family: 'Rubik', sans-serif;
+}
+
+.buttonHome:hover {
+  background-color: #6699cc;
+  color:#f5f5f5;
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px auto -webkit-focus-ring-color;
 }
-
-
-
 
 .flexcontainer {
   display: flex;
@@ -57,9 +77,9 @@ button:focus-visible {
   justify-content: normal;
   align-items: normal;
   align-content: normal;
-  gap: 35vh ;
-  margin-top: 10vh;
-  margin-bottom: 20vh;
+  gap: 27vh;
+  margin-top: 13vh;
+  margin-bottom: 22vh;
 }
 
 .flexitems:nth-child(1) {
@@ -84,7 +104,6 @@ button:focus-visible {
   flex-basis: auto;
   align-self: auto;
   order: 0;
-  
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -100,7 +119,6 @@ button:focus-visible {
   flex-basis: auto;
   align-self: auto;
   order: 0;
-
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -116,7 +134,6 @@ button:focus-visible {
   flex-basis: auto;
   align-self: auto;
   order: 0;
-
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -125,29 +142,27 @@ button:focus-visible {
   align-content: normal;
 }
 
-
-
-.imgs{
+.imgs {
   max-width: 450px;
   height: auto;
 }
-.logoPaby{
+
+.logoPaby
+{
   max-width: 200px;
   height: auto;
-}
-
-.description{
+  }
+  
+  .description {
   font-weight: bold;
-}
-.scroll{
+  }
+  
+  .scroll {
   position: absolute;
   top: 80vh;
+  }
   
-}
-
-
-
-.downarrow:after {
+  .downarrow:after {
   content: " ";
   position: absolute;
   top: 30px;
@@ -159,17 +174,45 @@ button:focus-visible {
   border-radius: 4px;
   transform: rotateZ(45deg);
   animation: jumpInfinite 3s infinite;
-}
-
-
-@keyframes jumpInfinite {
+  }
+  
+  @keyframes jumpInfinite {
   0% {
-    margin-top: 0;
+  margin-top: 0;
   }
   50% {
-    margin-top: 20px;
+  margin-top: 20px;
   }
   100% {
-    margin-top: 0;
+  margin-top: 0;
   }
-}
+  }
+  
+  /* Estilos responsivos */
+  
+  @media screen and (max-width: 768px) {
+  .flexcontainer {
+  gap: 20vh;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  }
+  
+  .flexitems:nth-child(1),
+  .flexitems:nth-child(2),
+  .flexitems:nth-child(3),
+  .flexitems:nth-child(4) {
+  font-size: 20px;
+  }
+  
+  .imgs {
+  max-width: 250px;
+  }
+  
+  .scroll {
+  top: 50vh;
+  }
+  
+  .Home h1 {
+  font-size: 2em;
+  }
+  }

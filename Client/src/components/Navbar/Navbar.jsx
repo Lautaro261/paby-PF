@@ -7,12 +7,12 @@ import RegisterOwn from "../RegisterOwn/RegisterOwn";
 import OwnLogin from "../OwnLogin/OwnLogin";
 import OwnLogout from "../OwnLogout/OwnLogout";
 
-import Logopaby from "../../imgs/Logopaby.png";
+import Logopaby from "../../imgs/LOGO-NEGATIVO.png";
 import style from "./navBar.module.css";
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth0();
-  const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+  const isLoggedIn = localStorage.getItem(`isLoggedIn`);
 
   return (
     <nav className={style.navbarContainer} id="nav">
@@ -24,7 +24,7 @@ const Navbar = () => {
       <ul className={style.navLinks}>
         <li>
           <Link to="/about-us" className={style.navLink}>
-            Acerca de nosotros
+            Acerca de Nosotros
           </Link>
         </li>
 
@@ -43,7 +43,6 @@ const Navbar = () => {
         <li className={style.buttonContainer}>
           {isAuthenticated ? <LogoutButton /> : null}
         </li>
-
       </ul>
     </nav>
   );

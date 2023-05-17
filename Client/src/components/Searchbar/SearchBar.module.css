@@ -1,6 +1,47 @@
-.searchButton i {
-  font-size: 1.2rem;
-  margin-right: 10px;
-  color: #fff;
+/* Estilos generales */
+.searchContainer {
+  display: flex;
+  align-items: center;
 }
 
+.searchButton {
+  margin-left: 20px;
+  margin-top: 0px;
+  border: none;
+  background-color: #194169;
+  color: #f5f5f5;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 13px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.searchButton:hover {
+  background-color: #4575a5;
+  color:#f5f5f5;
+}
+
+/* Estilos para el input de búsqueda */
+input[type="text"] {
+  font-size: 17px;
+  color: #194169;
+  border: none;
+  border-bottom: 2px solid #bdbdbd;
+  padding: 8px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #21568c;
+}
+
+/* Estilos responsivos */
+@media (min-width: 576px) {
+  .searchContainer {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
