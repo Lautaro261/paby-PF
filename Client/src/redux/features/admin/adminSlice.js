@@ -15,7 +15,9 @@ export const toggleUserBan = createAsyncThunk(
     'admin/toggleUserBan',
     async ({ sub, token }) => {
         try {
-            const response = await axios.put(`/admin/delete/user`, sub , { //acá no sé si la ruta esta correcta espero q si
+            console.log("TOGGLE USER BAN", sub)
+            console.log("TOKEN ", token)
+            const response = await axios.put(`/admin/delete/user`, {sub: sub} , { //acá no sé si la ruta esta correcta espero q si
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

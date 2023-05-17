@@ -9,20 +9,20 @@ const User = ({sub, name, email}) => {
     const token = localStorage.getItem(`token`) // traigo el token de localStorage
 
     const handleToggleBan = () => {
+        console.log('LINEA 12 HANDLER DE USER.JSX', sub, token)
         dispatch(toggleUserBan({sub, token}));   //se dispacha la action que tiene la ruta put 
     }
 
     const isBanned = bannedUsers.some((user)=> user.sub === sub); // si existe un usuario con el sub igual a nuestro
-                                                                // sub, devuelve true
-
+                                                                
 return ( 
     <div>
         <Link to={`/admin/clients/details/${sub}`}>
             <p>{name}</p>
             <p>{email}</p>
         </Link>
-        <p>{ isBanned ? 'Baneado' : 'No baneado'}</p>         // mensaje para saber si esta baneado o no
-        <button onClick={handleToggleBan}>{ isBanned ? 'Desbanear' : 'Banear'}</button> // boton condicional  
+        <p>{ isBanned ? 'Baneado' : 'No baneado'}</p>       {/*   // mensaje para saber si esta baneado o no */}
+        <button onClick={handleToggleBan}>{ isBanned ? 'Desbanear' : 'Banear'}</button> {/* // boton condicional   */}
     </div>                                                                             // segun el estado de ban
 )
 }
