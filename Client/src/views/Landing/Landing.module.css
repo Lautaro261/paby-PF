@@ -10,52 +10,27 @@
 @import url('https://fonts.google.com/specimen/Rubik?query=rub');
 @import url('https://fonts.google.com/specimen/Ysabeau');
 
-:root {
---primary-color: #4d8bc6;
---secondary-color: #A1B5D8;
---font1:@import url('https://fonts.google.com/specimen/Rubik?query=rub');
-}
-
 .body {
 margin: 0;
 padding: 0;
 font-family: 'Ysabeau', sans-serif;
-color: var(--secondary-color);
-
 }
 
-header {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 80px;
-background-color: var(--secondary-color);
-}
 .imglogo{
-filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.449)); 
+filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2)); 
 position: relative;
 overflow: hidden;
-width:40%;
-top: 5%;
+width:45%;
 animation-name: fadeIn;
-animation-duration: 3s;
+animation-duration: 3.1s;
 animation-timing-function: ease-in-out;
-
-}
-
-.headertitle {
-font-family: 'Rubik';
-font-weight: bold;
-font-size: 2rem;
-text-transform: uppercase;
-color: rgb(0, 0, 0);
 }
 
 main {
 display: flex;
 justify-content: center;
 align-items: center;
-height: calc(95vh - 80px);
+height: calc(100vh - 130px);
 }
 
 .introsection {
@@ -63,78 +38,66 @@ text-align: center;
 }
 
 .introsection h2 {
-font-size: 3rem;
-margin-bottom: 1rem;
-color: white;
+  margin-top: 0px;
+font-size: 69px;
+color: #f5f5f5;
+filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+font-family: 'Rubik', sans-serif;
+font-weight: 800;
 animation-name: fadeIn2;
-animation-duration: 1s;
+animation-duration: 2s;
 animation-timing-function: ease-in-out;
+text-rendering: optimizeLegibility;
 }
 
 .introsection p {
-font-size: 1.5rem;
-margin-bottom: 2rem;
-color: white;
+font-size: 31px;
+color: #f5f5f5;
+filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+font-family: 'Rubik', sans-serif;
+font-weight: 200;
 animation-name: fadeIn;
 animation-duration: 2s;
 animation-timing-function: ease-in-out;
+text-rendering: optimizeLegibility;
 }
 
 .Link {
-display: inline-block;
-padding: 1rem 2rem;
-border-radius: 3rem;
+display: inline-flex;
+padding: 10px 50px;
+border-radius: 31px;
 border: none;
-background-color: #A1B5D8;
-color:  white;
-font-family: 'Ysabeau', sans-serif;
-font-size: 1.5rem;
+background-color: #194169;
+color:  #f5f5f5;
+font-family: 'Rubik', sans-serif;
+font-size: 22px;
 text-transform: uppercase;
-letter-spacing: 0.1rem;
 cursor: pointer;
-transition: 0.5s ease-out;
+transition: 0.7s ease-out;
 animation-name: fadeIn;
-animation-duration: 4s;
+animation-duration: 3.1s;
 animation-timing-function: ease-in-out;
+margin-top: 7px;
+filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
 }
-
-.linktext{
-  color:  white;
-  text-decoration:none;
-}
-.linktext:hover{
-  color:  white;
-  text-decoration:none;
-}
-
 
 .Link:hover {
-background-color: #6855f8;
-color: bisque;
+  background-color: #6699cc;
+  color:#f5f5f5;
+  }
 
-}
-
-.footertext{
-  color:rgb(77, 77, 77);
+.linktext{
+  color:  #f5f5f5;
   text-decoration:none;
-  padding: auto;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+  text-rendering: optimizeLegibility;
 }
 
-.footerLanding {
-display: flex;
-position: fixed;
-justify-content: center;
-align-items: center;
-height:10%;
-width: 100%;
-background-color: var(--secondary-color);
-gap: 15px;
-bottom:0%;
-left: 0%;
-animation-name: fadeIn;
-animation-duration: 0.5s;
-animation-timing-function: ease-in-out;
+.linktext:hover{
+  color:  #f5f5f5;
+  text-decoration:none;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
