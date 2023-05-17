@@ -46,6 +46,7 @@ const App = () => {
   const { isAuthenticated } = useAuth0()
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+ // const adminAuth = useSelector(state.admin.adminAuth)
 
   return (
 
@@ -65,12 +66,10 @@ const App = () => {
       <Route path='/failure-payment' element={<FailurePayment />} />
       <Route path='/reservations-history' element={<HistoryView />} />
       <Route path='/vehicles' element={<VehiclesView />} />
-      {/* <Route path='/vehicle/:license_plate_id' element={<VehiclesView />} /> */}
       <Route path='/profile' element={<ProfileView />} />
       <Route path='/editprofile' element={<EditProfileView />} />
       <Route path='/online-support' element={< OnlineSupportView />} />
       <Route path='/Shopping' element={<ShoppingCartView />} />
-      //ADMIN ROUTES
       <Route path='/admin/dataedit' element={<DataEditView />} />
       <Route path='/admin/manual-reserves' element={<ManualReserveView/>} />
       <Route path='/admin/manual-reserve/form' element={<ManualReserveFormView />} />
