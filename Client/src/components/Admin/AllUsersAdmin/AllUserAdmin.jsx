@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserForAdmin } from "../../../redux/features/admin/adminSlice";
 import User from "../User/User";
+import styles from "../AllUsersAdmin/allUsersAdmin.module.css";
+import { useState } from "react";
 
 const AllUserAdmin = () => {
   const dispatch = useDispatch();
@@ -32,17 +34,19 @@ const AllUserAdmin = () => {
       : [];
 
   return (
-    <div>
-      <h2>Lista de clientes</h2>
-      <button onClick={handleSortChange}>Cambiar orden</button>
-      <div>
+    <div className={styles.allUsersContainer}>
+      <h2 className={styles.allUsersTitle}>Lista de clientes</h2>
+      <button className={styles.allUsersButton} onClick={handleSortChange}>
+        Cambiar orden
+      </button>
+      <div className={styles.allUsersList}>
         {sortedUsers && sortedUsers.length ? (
           sortedUsers.map((user) => {
             if (user.email === "armandoAdmin@gmail.com") {
               return true;
             } else {
               return (
-                <div key={user.sub}>
+                <div className={styles.userCard} key={user.sub}>
                   <User
                     email={user.email}
                     name={user.name}
@@ -54,7 +58,7 @@ const AllUserAdmin = () => {
             }
           })
         ) : (
-          <div>
+          <div className={styles.allUsersLoading}>
             <p>Cargando</p>
           </div>
         )}

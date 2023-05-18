@@ -5,7 +5,7 @@ import {
   userDetails,
   clearDetails,
 } from "../../../redux/features/admin/adminSlice";
-import styles from "./ClientDetails.module.css";
+import styles from "../ClientDetails/clientDetails.module.css";
 
 const ClientDetails = () => {
   const dispatch = useDispatch();
@@ -22,31 +22,38 @@ const ClientDetails = () => {
     };
   }, [dispatch, sub]);
   return (
-    <div>
-      <div className={styles.clientDetailsCointeinter}>
-        <button onClick={() => navigate("/admin/clients")}>X</button>
-        <h2>Cliente {user?.userById?.name}</h2>
-        <label>
-          Apodo: <p>{user?.profileById?.nickname}</p>
-        </label>
-        <label>
-          Email: <p>{user?.userById?.email}</p>
-        </label>
-        <label>
-          Telefono: <p>{user?.profikeById?.email}</p>
-        </label>
-        <label>
-          País: <p>{user?.profileById?.country}</p>
-        </label>
-        <label>
-          Ciudad: <p>{user?.profileById?.city}</p>
-        </label>
-        <label>
-          Dirección: <p>{user?.profileById?.address}</p>
-        </label>
-        <label>
-          Vecindario: <p>{user?.profileById?.neighborhood}</p>
-        </label>
+    <div className={styles.clientDetailsContainer}>
+      <div>
+        <button
+          className={styles.clientDetailsButton}
+          onClick={() => navigate("/admin/clients")}
+        >
+          X
+        </button>
+        <h2 className={styles.clientDetailsTitle}>
+          Cliente {user?.userById?.name}
+        </h2>
+        <p className={styles.clientDetailsItem}>
+          Apodo: {user?.profileById?.nickname}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          Email: {user?.userById?.email}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          Telefono: {user?.profikeById?.email}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          País: {user?.profileById?.country}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          Ciudad: {user?.profileById?.city}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          Dirección: {user?.profileById?.address}
+        </p>
+        <p className={styles.clientDetailsItem}>
+          Vecindario: {user?.profileById?.neighborhood}
+        </p>
       </div>
     </div>
   );
