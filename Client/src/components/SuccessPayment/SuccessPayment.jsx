@@ -30,7 +30,7 @@ const SuccessPayment = () => {
 
     useEffect(() => {
         console.log(selectedParkingSpace, "aqui esta el parkingspace")
-        if (selectedParkingSpace) {
+        if (true) {
             console.log("entré al usefect")
             dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
             dispatch(updateParkingSpaceStatus(selectedParkingSpace));
