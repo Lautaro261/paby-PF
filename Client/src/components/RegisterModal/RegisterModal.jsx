@@ -43,17 +43,20 @@ const RegisterModal = ({ isOpen, onClose }) => {
             };
             dispatch(sendUserSession(user))
                 .then((response) => {
-                    if (response.payload && response.payload.success) {
+                    console.log('RESPUESTA!!!', response)
+                    if (response.meta.arg ) {
+                        console.log('ENTRE AL IF GATO!!!', response.meta.arg )
                         dispatch(setUserSession(user))
                         localStorage.setItem(`sub`, email);
                         localStorage.setItem(`name`, name);
                         localStorage.setItem(`email`, email)
                         localStorage.setItem(`isLoggedIn`, true)
                         onClose()
+                        alert("se ha logeado localmente")
+                        navigate("/")
                     }
                 })
-                alert("se ha logeado localmente")
-                navigate("/")
+         
 
         }
     });
@@ -122,8 +125,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
                         <div>{formik.errors.passwordConfirmation}</div>
                     ) : null}
                     <button type='submit'>Registrarse</button>
-                    {error && <p>Ya existe una cuenta registrada para este email.</p>}
                 </form>
+                    {error && <p>{error.messagge}</p>}
 
             </div>
         </div>

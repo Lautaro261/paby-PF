@@ -12,6 +12,7 @@ const HomeView = () => {
     const { isAuthenticated } = useAuth0();
     
  const dispatch = useDispatch()
+//  const isLoggedIn = localStorage.getItem(`isLoggedIn`)
  const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
 
   useEffect(() => {
