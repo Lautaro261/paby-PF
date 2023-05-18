@@ -32,9 +32,9 @@ import ManualReserveView from "./views/admin/ManualReserveView/ManualReserveView
 import ManualReserveFormView from "./views/admin/ManualReserveFormView/ManualReserveFormView";
 import { setUserSession } from "./redux/features/users/usersSlice";
 
-axios.defaults.baseURL = "http://localhost:3001";
+//axios.defaults.baseURL = "http://localhost:3001";
 
-//axios.defaults.baseURL = 'https://pruebadeploy-production-abaa.up.railway.app/'
+axios.defaults.baseURL = 'https://paby-pf-production.up.railway.app/'
 
 //pueden hacer pruebas de su componente importandolo y descomentando la ruta que les correspode (ctrl+k+u)
 //y cambiando debajo la ruta que se renderiza el elemento que corresponde a su componente
