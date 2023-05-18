@@ -7,21 +7,34 @@ const AllUserAdmin = () => {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.admin.allUsers); // []
   const token = localStorage.getItem(`token`);
-//   const [sortDirection, setSortDirection] = useState("asc");
+  // const [sortOrder, setSortOrder] = useState("asc");
+  const [sortDirection, setSortDirection] = useState("asc");
 
   useEffect(() => {
     console.log(token, "LINEA 13 TRAIGO TODOS LOS USERS. ALLUSERS.JSX"); 
     dispatch(getAllUserForAdmin(token));
   }, [dispatch, token]);
 
+  const handleSortChange = () => {
+    const newSortDirection = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(newSortDirection);
+  };
+
+  const sortedUsers = allUsers && allUsers.length ? allUsers.slice().sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    if (nameA < nameB) return sortDirection === "asc" ? -1 : 1;
+    if (nameA > nameB) return sortDirection === "asc" ? 1 : -1;
+    return 0;
+  }) : [];
 
   return (
     <div>
       <h2>Lista de clientes</h2>
-      <button >Cambiar orden</button>
+      <button onClick={handleSortChange}>Cambiar orden</button>
       <div>
-        { allUsers && allUsers.length ? (
-          allUsers.map((user) => {
+        {sortedUsers && sortedUsers.length ? (
+          sortedUsers.map((user) => {  // Aquí se cambió allUsers por sortedUsers
             return (
               <div key={user.sub}>
                 <User email={user.email} name={user.name} sub={user.sub} />
