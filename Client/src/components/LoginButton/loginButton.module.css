@@ -1,0 +1,18 @@
+.buttonLoginIn {
+    border-radius: 7px;
+    border: none;
+    padding: 13px 22px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #85add6;
+    color: #194169;
+    cursor: pointer;
+    transition: background-color 0.31s;
+    font-family: 'Rubik', sans-serif;
+}
+
+.buttonLoginIn:hover {
+    background-color: #4575a5;
+    color:#f5f5f5;
+  }   
