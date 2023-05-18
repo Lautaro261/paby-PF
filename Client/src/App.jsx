@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
@@ -27,10 +26,10 @@ import DataEditView from './views/admin/DataEditView/DataEditView';
 import AllUsersAdminView from './views/admin/AllUsersAdminView/AllUsersAdminView';
 import ClientDetailsView from './views/admin/ClientDetailsView/ClientDetailsView';
 import HomeAdminView from './views/admin/HomeAdminView/HomeAdminView';
-import ManualReserve from './components/Admin/ManualReserve/ManualReserve';
-import Previous from './components/Admin/ManualReserve/Previous';
+import ManualParkingLotFilterView from './views/admin/ManualParkingLotFilterView/ManualParkingLotFilterView';
+import ManualParkingLotSelectionView from './views/admin/ManualParkingLotSelectionView/ManualParkingLotSelectionView';
+import ManualReserveView from './views/admin/ManualReserveView/ManualReserveView';
 import ManualReserveFormView from './views/admin/ManualReserveFormView/ManualReserveFormView';
-import ManualReserveView from './views/admin/ManualReserveView/ManualReserveview';
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -78,7 +77,9 @@ const App = () => {
 
       <Route element={<ProtectedRoutes adminAuth={adminAuth}/>} >
           <Route path='/admin/dataedit' element={<DataEditView />} />
-          <Route path='/admin/manual-reserves' element={<ManualReserveView/>} />
+          <Route path='/admin/manual-parking-lot-filter' element={ <ManualParkingLotFilterView /> } />
+          <Route path='/admin/manual-parking-lot-selection' element={ <ManualParkingLotSelectionView /> } />
+          <Route path='/admin/manual-reserve' element={<ManualReserveView />} />
           <Route path='/admin/manual-reserve/form' element={<ManualReserveFormView />} />
           <Route path='/admin/ok' element={<DataEditView />} />
           <Route path='/admin/clients' element={<AllUsersAdminView />} />
