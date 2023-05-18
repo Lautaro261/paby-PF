@@ -52,6 +52,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
                         onClose()
                     }
                 })
+                alert("se ha logeado localmente")
+                navigate("/")
 
         }
     });
