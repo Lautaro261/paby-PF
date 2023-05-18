@@ -15,14 +15,18 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         //allowNull: false,
       },
-        password:{ 
-          type:DataTypes.STRING,
-          // allowNull:false 
+      password: {
+        type: DataTypes.STRING,
+        // allowNull:false
       },
-       rol: {
-        type: DataTypes.ENUM('admin', 'client'),
-        defaultValue: 'client',
-        allowNull: false
+      rol: {
+        type: DataTypes.ENUM("admin", "client"),
+        defaultValue: "client",
+        allowNull: false,
+      },
+      borrado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       photo: {
         type: DataTypes.TEXT,

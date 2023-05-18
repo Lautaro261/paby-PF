@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to right, #a1b5d8, #e4f0d0);
+  background-image: linear-gradient(to right, #21578caf, #85add689);
   animation: gradient 6s ease infinite;
   
 }
@@ -19,7 +19,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  background-color: #f8f8f8;
+  background-color: #f5f5f5;
   padding: 1rem;
   margin-bottom: 3rem;
 }

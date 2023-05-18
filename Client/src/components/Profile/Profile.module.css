@@ -4,33 +4,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  background-color: rgba(242, 242, 242, 0.85);
-  padding: 20px;
-  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding: 31px;
+  border-radius: 13px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-
-
-.continer2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 50px;
-  background-color: #E6EDF1;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 450px;
+  margin: auto;
+  margin-top: 31px;
+  margin-bottom: 31px;
+  font-family: 'Rubik', sans-serif;
 }
 
 .imgProfile {
-  width: 120px;
-  height: 120px;
+  margin-top: 7px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -42,54 +30,112 @@
 }
 
 .nombreUsuario {
-  font-size: 32px;
+  color: #194169;
+  font-size: 31px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
+  margin-top: 22px;
   text-align: center;
 }
 
 .profileText {
+  color: #545454;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 2;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
   max-width: 600px;
   font-weight: bold;
 }
 
-
-.editBoton {
-  display: inline-block;
-  background-color: #0077ff;
-  color: #fff;
-  font-size: 18px;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin-right: 10px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.editBoton:hover {
-  background-color: #0063c5;
-}
-
+.editBoton,
 .Volver {
-  display: inline-block;
-  background-color: #fff;
-  color: #0077ff;
-  font-size: 18px;
-  border: 1px solid #0077ff;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin-left: 10px;
+  border-radius: 7px;
+  border: none;
+  padding: 13px 22px;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: 'Rubik', sans-serif;
+  background-color: #194169;
+  color: #f5f5f5;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.31s;
+  text-decoration: none;
+  margin-bottom: 13px;
+  margin-top: 7px;
 }
 
+.editBoton:hover,
 .Volver:hover {
-  background-color: #0077ff;
-  color: #fff;
+  background-color: #6699cc;
+  color: #f5f5f5;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 768px) {
+  .conteinerPrincial {
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .imgProfile {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+  }
+
+  .nombreUsuario {
+    font-size: 22px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .profileText {
+    font-size: 13px;
+    margin-bottom: 13px;
+  }
+
+  .editBoton,
+  .Volver {
+    padding: 8px 13px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .conteinerPrincial {
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .imgProfile {
+    width: 80px;
+    height: 80px;
+    margin-top: 8px;
+  }
+
+  .nombreUsuario {
+    font-size: 20px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .profileText {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .editBoton,
+  .Volver {
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
 }

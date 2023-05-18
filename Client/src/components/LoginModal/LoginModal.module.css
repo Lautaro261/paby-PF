@@ -1,45 +1,137 @@
-.modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modalContent {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-  }
-
-  .buttonLoginOnClose{
-    border: 2px solid #81C3D7;
-    background-color: #16425B;
-    color: #f1f1f1;
-    border-radius: 5px;
-    width: 20px;
-    height: 20px;
-    position: relative;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .buttonLoginOnClose:hover {
-    color: #16425B;
-  }
-
-.modalElements{
+/* Estilos para el fondo oscuro de la ventana modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+  z-index: 999;
 }
-.formLoginOwn{
+
+/* Estilos para el contenido de la ventana modal */
+.modalContent {
+  background-color:#f5f5f5;
   padding: 20px;
+  border-radius: 13px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 450px;
+  width: 80%;
+  position: relative;
 }
+
+/* Estilos para el botón de cerrar ventana modal */
+.buttonLoginOnClose {
+  border: none;
+  background-color: transparent;
+  color: #545454;
+  font-size: 17px;
+  font-weight: bolder;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.31s ease-in-out;
+}
+
+/* Estilos para el título del formulario */
+.modalContent h2 {
+  font-size: 31px;
+  font-weight: 700;
+  color: #194169;
+  margin-top: 31px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+/* Estilos para el formulario */
+.formLoginOwn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 7px;
+  margin-top: 13px;
+}
+
+.formLoginOwn label {
+  font-size: 17px;
+  font-weight: 500;
+  color: #545454;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.formLoginOwn label input {
+  font-size: 17px;
+  color: #194169;
+  border: none;
+  border: 1.3px solid #bdbdbd;
+  padding: 8px;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.formLoginOwn label input:focus {
+  outline: none;
+  border-color: #21568c;
+}
+
+.formLoginOwn button[type="submit"] {
+  margin-top: 0px;
+  border: none;
+  background-color: #194169;
+  color: #f5f5f5;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 13px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.formLoginOwn button[type="submit"]:hover {
+  background-color: #4575a5;
+  color:#f5f5f5;
+}
+
+/* Estilos para el mensaje de error */
+.formLoginOwn p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fe5454;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Estilos para los botones de redes sociales */
+.modalElements {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: center;
+  margin-top: 31px;
+  margin-bottom: 22px;
+  }
+
+  .buttonLoginIn {
+    border-radius: 7px;
+    border: none;
+    padding: 13px 22px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #85add6;
+    color: #194169;
+    cursor: pointer;
+    transition: background-color 0.31s;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  .buttonLoginIn:hover {
+    background-color: #4575a5;
+    color:#f5f5f5;
+  }   

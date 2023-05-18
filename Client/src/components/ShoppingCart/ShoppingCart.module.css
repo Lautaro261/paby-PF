@@ -1,46 +1,192 @@
-.main{
-    width: 70%;
-    margin: auto;
-    padding: 10px;
-    align-items: center;
-    align-content: center;
-    text-align: center; 
-}
-.cont{
-    min-height: calc(100vh - 80px); 
-    width: 80%;
-    margin: auto;
-    padding: 10px;
+/* Estilos para la vista del carrito de compras */
+.main {
+    max-width: 80%;
+    margin: 0 auto;
+  }
 
-    background-color: aliceblue;
-    align-items: center;
-    align-content: center;
+  .mainPtitle{
     text-align: center;
-}
-.father{
+    font-size: 31px;
+    font-weight: 700;
+    color: #194169;
+    font-family: 'Rubik', sans-serif;
+    padding: 22px;
+  }
+
+  .addResercationsText {
+    font-size: 22px;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+    color: #545454;
+    font-family: 'Rubik', sans-serif;
+    padding: 13px;
+  }
+
+  .buttonAddReservation {
+    display:flex;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 13px;
+    border-radius: 7px;
+    border: none;
+    padding: 13px 22px;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #194169;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.31s;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  .buttonAddReservation:hover {
+    background-color: #6699cc;
+    color:#f5f5f5;
+  }
+  
+  .cont {
+    margin-top: 20px;
+    margin-bottom: 31px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 7px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 13px;
+  }
+  
+  .father {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: normal;
-    align-items: normal;
-    align-content: flex-start;
-}
-.element{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 20px;
     width: 100%;
+    padding: 20px;
+  }
+  
+  .element {
+    background-color: #cedeef;
+    color: #194169;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 8px;
+    padding: 16px;
+    border-radius: 0.5rem;
+  }
+  
+  .element p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .element p:nth-child(1) {
+    font-weight: 700;
+    grid-column: 1 / -1;
+    font-weight: bolder;
+    font-size: 22px;
+  }
+  
+  .element p:nth-child(2) {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+  
+  .element p:nth-child(3) {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+  }
+  
+  .element p:nth-child(4) {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+  
+  .element p:nth-child(5) {
+    grid-column: 3 / span 2;
+    grid-row: 3;
+  }
+
+  .element p:nth-child(6) {
+    grid-column: 1 / span 2;
+    grid-row: 4;
+    font-weight: bolder;
+    font-size: 22px;
+    align-items: center;
+  }
+
+  .element p:nth-child(7) {
+    grid-column: 2 / span 2;
+    grid-row: 4;
+    font-weight: bolder;
+    font-size: 22px;
+    align-items: center;
+  }
+  
+  .element button {
+    grid-column: 4;
+    grid-row: 2 / span 2;
+  }
+  
+  
+  .element button {
+    background-color: #cf4444;
+    color: #fff;
+    font-size: 20px;
+    padding: 7px 7px;
+    border: none;
+    border-radius: 31px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-right: 20px;
+  }
+  
+  .element button:hover {
+    background-color: #8d2020;
+  }
+  
+  .buttons {
     display: flex;
-    margin: auto;
-    padding: 10px;
-    gap: 6%;
-    background-color: aliceblue;
-    border: solid ;
-    border-left: 0px solid rgb(211, 211, 225);
-    border-right: 0px solid rgb(229, 229, 240);
-    border-top: 0rem ;
-    border-bottom: 0.2rem solid rgb(230, 231, 244);
-
-
-}
-.buttons{
-    margin: auto;
-    position: relative;
-}
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin-top: 20px;
+    margin-bottom: 31px;
+  }
+  
+  .buttons p {
+    font-size: 31px;
+    font-weight: 700;
+    color: #194169;
+    margin-top: 2px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  
+  .buttons a {
+    border-radius: 7px;
+    border: none;
+    padding: 13px 69px;
+    font-size: 22px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #008720;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: background-color 0.31s;
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+  }
+  
+  .buttons a:hover {
+    background-color: #004310;
+    color:#f5f5f5;
+  }
+  

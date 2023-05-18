@@ -9,8 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import { 
     setVehiclePhotoForReservationURL, 
-    postParkingSpaceReservation, 
-    setParkingSpacePaymentLink 
+    postParkingSpaceReservation 
 } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 
 const initialValues = {
@@ -40,7 +39,6 @@ const validationSchema = Yup.object({
             return parseInt(departure_time) - parseInt(admission_time) >= 0;
         }
     ).required('Debe seleccionar la hora de salida'),
-    instant_photo: Yup.string().required('Debe tomar foto a su vehículo'),
     comments: Yup.string().required('Debe indicar algún comentario acerca de su vehículo')
 });
 
@@ -58,13 +56,6 @@ const ParkingSpaceReservation = () => {
     const [show, setShow] = useState(false);
 
     const dispatch = useDispatch();
-    const parkingSpacePaymentLink = useSelector(state => state.parkingSpacesReservation.parkingSpacePaymentLink);
-
-    useEffect(() => {
-        if (parkingSpacePaymentLink) {
-            setShow(true);
-        }
-    }, [parkingSpacePaymentLink]);
 
     let hoursCheckIn = [];
     for (let i = 0; i < 24; i++) {
@@ -78,13 +69,14 @@ const ParkingSpaceReservation = () => {
 
     const handleSubmit = (values, { resetForm }) => {
         dispatch(postParkingSpaceReservation(values));
+        setShow(true);
         resetForm();
     };
 
     const handleClose = () => setShow(false);
 
     const handleBackButton = () => {
-        dispatch(setParkingSpacePaymentLink(''));
+        setShow(false);
     };
 
     return (
@@ -109,7 +101,7 @@ const ParkingSpaceReservation = () => {
 
                     useEffect(() => {
                         dispatch(setVehiclePhotoForReservationURL(''));
-                        dispatch(setParkingSpacePaymentLink(''));
+                        setShow(false);
                     }, []);
 
                     useEffect(() => {
@@ -231,7 +223,7 @@ const ParkingSpaceReservation = () => {
                                 <ErrorMessage name='comments' />
                             </div>
                             <button type='submit' disabled={ isSubmitting }>
-                                PAGAR DE INMEDIATO
+                                CONTINUAR
                             </button>
                             <Link to='/reservation-panel'>
                                 <button type='button'>ATRÁS</button>
@@ -251,8 +243,8 @@ const ParkingSpaceReservation = () => {
                     <Link to='/reservation-panel' onClick={ handleBackButton }>
                         <Button>Hacer otra reserva</Button>
                     </Link>
-                    <Link to={ parkingSpacePaymentLink }>
-                        <Button>Continuar con el pago</Button>
+                    <Link to='/shopping'>
+                        <Button>Ir al carrito</Button>
                     </Link>
                 </Modal.Footer>
             </Modal>

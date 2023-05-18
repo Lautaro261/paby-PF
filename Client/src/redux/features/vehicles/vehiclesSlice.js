@@ -11,15 +11,17 @@ const initialState = {
 }
 
 //Crear un vehiculo para un usuario:
-
 export const createVehicle = createAsyncThunk(
     'vehicles/createVehicle',
-    async (requestData, { rejectWithValue }) => {
+    async (values) => {
         try {
-            const response = await axios.post('/user/create/vehicle', requestData);
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(error.response.data);
+
+            const response = await axios.post('/user/vehicle/create', values);
+            return response.data && response.data.message;
+        } catch(error) {
+            console.error(error.message);
+            throw error;
+
         }
     }
 );
@@ -64,14 +66,17 @@ const vehiclesSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(createVehicle.pending, (state) => {
-                state.createVehicleStatus = 'loading';
+                state.status = 'loading'
             })
-            .addCase(createVehicle.fulfilled, (state) => {
-                state.createVehicleStatus = 'succeeded';
+            .addCase(createVehicle.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.vehicleCreationNotification = action.payload
+                state.allVehicles = [];
+                state.error = null;
             })
             .addCase(createVehicle.rejected, (state, action) => {
-                state.createVehicleStatus = 'failed';
-                state.error = action.payload;
+                state.status = 'rejected'
+                state.error = action.error.message;
             })
             .addCase(getAllVehicles.pending, (state) => {
                 state.status = 'loading';
@@ -79,6 +84,7 @@ const vehiclesSlice = createSlice({
             .addCase(getAllVehicles.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.allVehicles = action.payload;
+                state.error = null;
             })
             .addCase(getAllVehicles.rejected, (state, action) => {
                 state.status = 'rejected';
@@ -90,6 +96,7 @@ const vehiclesSlice = createSlice({
             .addCase(searchVehicleBrandByName.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.searchedBrandName = [action.payload];
+                state.error = null;
             })
             .addCase(searchVehicleBrandByName.rejected, (state, action) => {
                 state.status = 'rejected';

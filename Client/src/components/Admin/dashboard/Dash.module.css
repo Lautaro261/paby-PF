@@ -1,0 +1,54 @@
+/* Estilos del dashboard del administrador */
+.dash {
+  background-color: #85add6;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 10px 13px -7px #00000055, 4px 5px 13px 7px rgba(77, 77, 77, 0);
+}
+
+.dashList {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 13px;
+  align-items: center;
+}
+
+.dashItem {
+  margin-right: 31px;
+}
+
+.dashLink {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 200;
+  transition: all 0.31s ease-in-out;
+  font-weight: bold;
+  text-decoration: none;
+  color: #194169;
+  transition: color 0.2s ease-in-out;
+}
+
+.dashLink:hover {
+  color: #454545;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .dash {
+    height: auto;
+    padding: 13px;
+  }
+
+  .dashList {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashItem {
+    margin-right: 0;
+    margin-bottom: 13px;
+  }
+}
