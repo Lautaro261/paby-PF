@@ -46,13 +46,20 @@ const LoginModal = ({ isOpen, onClose }) => {
       localStorage.setItem(`rol`, "user");
       dispatch(loginUser(userSession)).then((response) => {
         if (response.payload && response.payload.success) {
-          console.log(response)
-          dispatch(setUserSession(userSession));
-          localStorage.setItem(`sub`, email);
-          localStorage.setItem(`email`, email);
-          localStorage.setItem(`isLoggedIn`, true);
-          onClose();
-          navigate("/");
+          const ban=response.payload.response.user.userById.borrado
+          console.log(response.payload.response.user.userById.borrado, "VENGO DEL MODAL")
+          if (!ban){
+            dispatch(setUserSession(userSession));
+            localStorage.setItem(`sub`, email);
+            localStorage.setItem(`email`, email);
+            localStorage.setItem(`isLoggedIn`, true);
+            onClose();
+            navigate("/");
+          }else{
+            localStorage.setItem(`sub`, false);
+            navigate("/banned");
+            onClose();
+          }
         }
       });
     }

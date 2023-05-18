@@ -31,6 +31,7 @@ import ManualParkingLotSelectionView from "./views/admin/ManualParkingLotSelecti
 import ManualReserveView from "./views/admin/ManualReserveView/ManualReserveView";
 import ManualReserveFormView from "./views/admin/ManualReserveFormView/ManualReserveFormView";
 import { setUserSession } from "./redux/features/users/usersSlice";
+import UserBanError from "./views/Errors/UserBanError";
 
 //axios.defaults.baseURL = "http://localhost:3001";
 
@@ -60,6 +61,7 @@ const App = () => {
 
   return (
     <Routes>
+      <Route path="/banned" element={<UserBanError />} />
       <Route path="/" element={<Landing />} />
       <Route
         path="/home"
