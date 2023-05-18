@@ -32,6 +32,7 @@ import ManualReserveView from './views/admin/ManualReserveView/ManualReserveView
 import ManualReserveFormView from './views/admin/ManualReserveFormView/ManualReserveFormView';
 import { setUserSession } from './redux/features/users/usersSlice';
 
+
 axios.defaults.baseURL = 'http://localhost:3001'
 
 
@@ -52,6 +53,8 @@ const App = () => {
      if (isLoggedIn === 'true') {
        dispatch(setUserSession());
      }
+
+     
    }, [dispatch]);
      
 
@@ -59,7 +62,7 @@ const App = () => {
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   // const isLoggedIn = localStorage.getItem(`isLoggedIn`)
 
-  const adminAuth= localStorage.getItem("rol")
+  var adminAuth= localStorage.getItem("rol")
   console.log(adminAuth, "soy el admin")
  
 

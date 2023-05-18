@@ -25,15 +25,14 @@ const LoginModal = ({ isOpen, onClose }) => {
                 email: email,
                 password: password,
             }
+            localStorage.setItem(`rol`, "admin")
             console.log("Soy el admin");
             dispatch(loginAdmin(userAdmin))
             dispatch(setUserSession(userAdmin))
             localStorage.setItem(`sub`, email)
             localStorage.setItem(`email`, email)
             localStorage.setItem(`isLoggedIn`, true)
-            alert("se ha logeado localmente")
-            navigate("/")
-
+            navigate("/admin/home")
             onClose()
         } else {
             const sub = email
@@ -42,6 +41,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 email: email,
                 password: password
             }
+            localStorage.setItem(`rol`, "user")
             dispatch(loginUser(userSession))
                 .then((response) => {
                     if (response.payload && response.payload.success) {
@@ -50,6 +50,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         localStorage.setItem(`email`, email)
                         localStorage.setItem(`isLoggedIn`, true)
                         onClose()
+                        navigate('/')
                     }
                 })
                

@@ -4,8 +4,10 @@ import { sendUserSession, setUserSession } from "../../redux/features/users/user
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = ({ isOpen, onClose }) => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const error = useSelector(state => state.users.error)
 
@@ -52,8 +54,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
                         localStorage.setItem(`email`, email)
                         localStorage.setItem(`isLoggedIn`, true)
                         onClose()
-                        alert("se ha logeado localmente")
-                        navigate("/")
+                        navigate('/')
                     }
                 })
          
