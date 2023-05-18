@@ -76,7 +76,9 @@ const LoginModal = ({ isOpen, onClose }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <button type="submit">Ingresar</button>
+          <button className={styles.buttonLoginIn} type="submit">
+            Ingresar
+          </button>
           {error && (
             <p>
               ¡Algo salio mal! Verifica que tu email y contraseña sean

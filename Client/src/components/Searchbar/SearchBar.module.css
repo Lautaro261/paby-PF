@@ -4,7 +4,7 @@
   width: 80%;
 }
 
-.searchButton {
+.searchButton[type="submit"] {
   border: none;
   background-color: #194169;
   color: #f5f5f5;
@@ -14,25 +14,26 @@
   border-radius: 7px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  margin-top: 7px;
 }
 
-.searchButton:hover {
+.searchButton:hover[type="submit"] {
   background-color: #4575a5;
   color:#f5f5f5;
 }
 
 /* Estilos para el input de búsqueda */
-input[type="text"] {
+.searchContainer input[type="text"] {
   margin-top: 13px;
   font-size: 20px;
   color: #194169;
   border: none;
-  border-bottom: 2px solid #bdbdbd;
+  border: 2px solid #bdbdbd;
   padding: 8px;
   transition: border-color 0.2s ease-in-out;
 }
 
-input[type="text"]:focus {
+.searchContainer input[type="text"]:focus {
   outline: none;
   border-color: #21568c;
 }
