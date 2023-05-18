@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUserForAdmin } from "../../../redux/features/admin/adminSlice";
 import User from "../User/User";
 import styles from "../AllUsersAdmin/allUsersAdmin.module.css";
+import { useState } from "react";
 
 const AllUserAdmin = () => {
   const dispatch = useDispatch();

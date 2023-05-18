@@ -64,6 +64,7 @@ export default function UpdateParkin(parking) {
         >
           <div className={styles.updateParkingContainer}>
             <h2 className={styles.updateParkingTitle}>Modificar Parqueadero</h2>
+            <p>Seleccionado: {selectedParkingLot.name}</p>
             <Form className={styles.updateParkingForm}>
               <div className={styles.updateParkingLabel}>
                 <label htmlFor="name">Nombre del parqueadero:</label>
