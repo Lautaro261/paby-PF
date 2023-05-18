@@ -31,6 +31,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             localStorage.setItem(`sub`, email)
             localStorage.setItem(`email`, email)
             localStorage.setItem(`isLoggedIn`, true)
+            alert("se ha logeado localmente")
             navigate("/")
 
             onClose()

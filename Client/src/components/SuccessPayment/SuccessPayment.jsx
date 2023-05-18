@@ -29,6 +29,7 @@ const SuccessPayment = () => {
     const selectedParkingSpace = JSON.parse(localStorage.getItem('selectedParkingSpace'));
 
     useEffect(() => {
+        console.log(selectedParkingSpace, "aqui esta el parkingspace")
         if (selectedParkingSpace) {
             console.log("entré al usefect")
             dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
