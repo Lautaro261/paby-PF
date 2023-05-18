@@ -104,6 +104,7 @@ const parkingSpacesSlice = createSlice({
         },
         setSelectedParkingSpace: (state, action) => {
             state.selectedParkingSpace = action.payload
+            console.log(action.payload)
         },
         setParkingSpaceStatusFromFilter: (state, action) => {
             state.parkingSpaceStatusFromFilter = action.payload
