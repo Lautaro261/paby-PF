@@ -1,0 +1,60 @@
+.clientDetailsContainer {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.2);
+    padding-left: 31px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 450px;
+  }
+  
+  .clientDetailsButton {
+    font-family: 'Rubik', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    color: #194169;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 84%;
+  }
+  
+  .clientDetailsTitle {
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #194169;
+    margin-top: 13px;
+    margin-bottom: 27px;
+  }
+  
+  .clientDetailsItem {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+    color: #194169;
+    margin-bottom: 13px;
+    line-height: 2;
+    text-rendering: optimizeLegibility;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .clientDetailsContainer {
+      padding: 15px;
+    }
+  
+    .clientDetailsTitle {
+      font-size: 20px;
+    }
+  
+    .clientDetailsItem {
+      font-size: 14px;
+    }
+  }
+  
