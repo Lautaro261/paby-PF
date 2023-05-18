@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import axios from 'axios'
@@ -20,7 +20,7 @@ import ParkingSpaceReservationView from './views/ParkingSpaceReservationView/Par
 // import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import OnlineSupportView from './views/OnlineSupportView/OnlineSupportView';
 import ShoppingCartView from './views/ShoppingCartView/ShoppingCartView';
-// import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'
 import DataEditView from './views/admin/DataEditView/DataEditView';
 import AllUsersAdminView from './views/admin/AllUsersAdminView/AllUsersAdminView';
@@ -30,6 +30,8 @@ import ManualParkingLotFilterView from './views/admin/ManualParkingLotFilterView
 import ManualParkingLotSelectionView from './views/admin/ManualParkingLotSelectionView/ManualParkingLotSelectionView';
 import ManualReserveView from './views/admin/ManualReserveView/ManualReserveView';
 import ManualReserveFormView from './views/admin/ManualReserveFormView/ManualReserveFormView';
+import { setUserSession } from './redux/features/users/usersSlice';
+
 
 axios.defaults.baseURL = 'http://localhost:3001'
 
@@ -43,12 +45,24 @@ axios.defaults.baseURL = 'http://localhost:3001'
 const App = () => {
   
   //Para verificar si el usuario esta logueado 
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+ 
+   useEffect(() => {
+     const isLoggedIn = localStorage.getItem('isLoggedIn');
+     if (isLoggedIn === 'true') {
+       dispatch(setUserSession());
+     }
+
+     
+   }, [dispatch]);
+     
 
   const { isAuthenticated } = useAuth0()
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
-  const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+  // const isLoggedIn = localStorage.getItem(`isLoggedIn`)
 
-  const adminAuth= localStorage.getItem("rol")
+  var adminAuth= localStorage.getItem("rol")
   console.log(adminAuth, "soy el admin")
  
 

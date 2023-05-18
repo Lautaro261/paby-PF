@@ -4,8 +4,10 @@ import { sendUserSession, setUserSession } from "../../redux/features/users/user
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import style from './RegisterModal.module.css';
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = ({ isOpen, onClose }) => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const error = useSelector(state => state.users.error)
 
@@ -43,17 +45,19 @@ const RegisterModal = ({ isOpen, onClose }) => {
             };
             dispatch(sendUserSession(user))
                 .then((response) => {
-                    if (response.payload && response.payload.success) {
+                    console.log('RESPUESTA!!!', response)
+                    if (response.meta.arg ) {
+                        console.log('ENTRE AL IF GATO!!!', response.meta.arg )
                         dispatch(setUserSession(user))
                         localStorage.setItem(`sub`, email);
                         localStorage.setItem(`name`, name);
                         localStorage.setItem(`email`, email)
                         localStorage.setItem(`isLoggedIn`, true)
                         onClose()
+                        navigate('/')
                     }
                 })
-                alert("se ha logeado localmente")
-                navigate("/")
+         
 
         }
     });
@@ -122,8 +126,8 @@ const RegisterModal = ({ isOpen, onClose }) => {
                         <div>{formik.errors.passwordConfirmation}</div>
                     ) : null}
                     <button type='submit'>Registrarse</button>
-                    {error && <p>Ya existe una cuenta registrada para este email.</p>}
                 </form>
+                    {error && <p>{error.messagge}</p>}
 
             </div>
         </div>

@@ -5,7 +5,6 @@ import { clearError } from "../../redux/features/users/usersSlice";
 
 const RegisterOwn = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const dispatch = useDispatch()
 
     const handleRegisterClick = () => {
         setIsModalOpen(true);

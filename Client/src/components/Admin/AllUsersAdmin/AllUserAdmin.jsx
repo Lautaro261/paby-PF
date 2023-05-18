@@ -34,12 +34,16 @@ const AllUserAdmin = () => {
       <button onClick={handleSortChange}>Cambiar orden</button>
       <div>
         {sortedUsers && sortedUsers.length ? (
-          sortedUsers.map((user) => {  // Aquí se cambió allUsers por sortedUsers
-            return (
-              <div key={user.sub}>
-                <User email={user.email} name={user.name} sub={user.sub} />
-              </div>
-            );
+          sortedUsers.map((user) => {
+            if(user.email==="armandoAdmin@gmail.com"){
+              return(true)
+            }else{
+              return (
+                <div key={user.sub}>
+                  <User email={user.email} name={user.name} sub={user.sub} borrado={user.borrado} />
+                </div>
+              );
+            }  
           })
         ) : (
           <div>
