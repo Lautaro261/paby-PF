@@ -1,15 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { sendUserSession, setUserSession } from "../../redux/features/users/usersSlice";
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import style from './RegisterModal.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import {
+  sendUserSession,
+  setUserSession,
+} from "../../redux/features/users/usersSlice";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import style from "./RegisterModal.module.css";
 import { useNavigate } from "react-router-dom";
 
 const RegisterModal = ({ isOpen, onClose }) => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch();
-    const error = useSelector(state => state.users.error)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.users.error);
 
   const formik = useFormik({
     initialValues: {
@@ -38,28 +41,23 @@ const RegisterModal = ({ isOpen, onClose }) => {
       const { email, password, name } = values;
       const sub = email;
 
-            const user = {
-                sub: sub,
-                email: email,
-                name: name,
-                password: password
-            };
-            dispatch(sendUserSession(user))
-                .then((response) => {
-                    console.log('RESPUESTA!!!', response)
-                    if (response.meta.arg ) {
-                        console.log('ENTRE AL IF GATO!!!', response.meta.arg )
-                        dispatch(setUserSession(user))
-                        localStorage.setItem(`sub`, email);
-                        localStorage.setItem(`name`, name);
-                        localStorage.setItem(`email`, email)
-                        localStorage.setItem(`isLoggedIn`, true)
-                        onClose()
-                        navigate('/')
-                    }
-                })
-         
-
+      const user = {
+        sub: sub,
+        email: email,
+        name: name,
+        password: password,
+      };
+      dispatch(sendUserSession(user)).then((response) => {
+        console.log("RESPUESTA!!!", response);
+        if (response.meta.arg) {
+          console.log("ENTRE AL IF GATO!!!", response.meta.arg);
+          dispatch(setUserSession(user));
+          localStorage.setItem(`sub`, email);
+          localStorage.setItem(`name`, name);
+          localStorage.setItem(`email`, email);
+          localStorage.setItem(`isLoggedIn`, true);
+          onClose();
+          navigate("/");
         }
       });
     },
@@ -86,7 +84,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
             />
           </label>
           {formik.touched.name && formik.errors.name ? (
-            <p>{formik.errors.name}</p>
+            <div>{formik.errors.name}</div>
           ) : null}
 
           <label htmlFor="email">
@@ -101,11 +99,11 @@ const RegisterModal = ({ isOpen, onClose }) => {
             />
           </label>
           {formik.touched.email && formik.errors.email ? (
-            <p>{formik.errors.email}</p>
+            <div>{formik.errors.email}</div>
           ) : null}
 
           <label htmlFor="password">
-            Contraseña:
+            Constraseña:
             <input
               type="password"
               id="password"
@@ -116,31 +114,30 @@ const RegisterModal = ({ isOpen, onClose }) => {
             />
           </label>
           {formik.touched.password && formik.errors.password ? (
-            <p>{formik.errors.password}</p>
+            <div>{formik.errors.password}</div>
           ) : null}
 
-                    <label htmlFor="passwordConfirmation">Repetir contraseña:
-
-                        <input
-                            type='password'
-                            id='passwordConfirmation'
-                            name='passwordConfirmation'
-                            value={formik.values.passwordConfirmation}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                        />
-                    </label>
-                    {formik.touched.passwordConfirmation && formik.errors.passwordConfirmation ? (
-                        <div>{formik.errors.passwordConfirmation}</div>
-                    ) : null}
-                    <button type='submit'>Registrarse</button>
-                </form>
-                    {error && <p>{error.messagge}</p>}
-
-            </div>
-        </div>
-    )
-        : null;
+          <label htmlFor="passwordConfirmation">
+            Repetir contraseña:
+            <input
+              type="password"
+              id="passwordConfirmation"
+              name="passwordConfirmation"
+              value={formik.values.passwordConfirmation}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </label>
+          {formik.touched.passwordConfirmation &&
+          formik.errors.passwordConfirmation ? (
+            <div>{formik.errors.passwordConfirmation}</div>
+          ) : null}
+          <button type="submit">Registrarse</button>
+        </form>
+        {error && <p>{error.messagge}</p>}
+      </div>
+    </div>
+  ) : null;
 };
 
 export default RegisterModal;

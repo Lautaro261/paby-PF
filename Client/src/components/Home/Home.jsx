@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <div className={style.Home}>
       <h1 data-aos="fade-down" data-aos-duration="1000">
-        Bienvenidos a
+        Bienvenidos a{" "}
         <img src={logo} alt="logoPaby" className={style.logoPaby} />
       </h1>
       <div className={style.flexcontainer}>
@@ -132,13 +132,11 @@ export default function Home() {
         </div>
       </div>
       {isAuthenticated || isLoggedIn ? null : (
-        <a href="#nav">
-          <button className={style.buttonHome}>Volver Arriba</button>
-        </a>
+        <a href="#nav">iniciar sesión para continuar</a>
       )}
       {isAuthenticated || isLoggedIn ? (
         <Link to="/parking-lot-filter">
-          <button className={style.buttonHome}>Reservar Zona</button>
+          <button> Reservar plaza</button>
         </Link>
       ) : null}
     </div>
