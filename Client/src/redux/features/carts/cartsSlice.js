@@ -34,7 +34,7 @@ export const Fill = createAsyncThunk(
                 const link = await axios.post(`reservation/${id2}/payment`)
                 console.log(link.data, "link")
                 console.log(fill.data, "reservaciones", link.data,"link")
-                return ([fill.data, link.data, response.data[index].cart_amount ]);
+                return ([fill.data, link.data ]);
              }
         } catch (error) {
             console.log(error)
@@ -90,7 +90,7 @@ export const cartsSlice = createSlice({
                 console.log(action.payload, "toda la data")
                 state.cart = action.payload[0]
                 state.payment=action.payload[1] 
-                state.total=action.payload[2]
+                
             })
             .addCase(Fill.rejected, (state, action) => {
                 state.status = 'rejected',

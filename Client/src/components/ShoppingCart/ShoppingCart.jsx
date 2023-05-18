@@ -22,6 +22,7 @@ const ShoppingCart = () => {
 
   const refresh = () => {
     dispatch(Fill(userId));
+    dispatch(Price(userId));
   };
 
   const cart = useSelector((state) => state.carts.cart);
