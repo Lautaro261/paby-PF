@@ -46,6 +46,7 @@ const LoginModal = ({ isOpen, onClose }) => {
       localStorage.setItem(`rol`, "user");
       dispatch(loginUser(userSession)).then((response) => {
         if (response.payload && response.payload.success) {
+          console.log(response)
           dispatch(setUserSession(userSession));
           localStorage.setItem(`sub`, email);
           localStorage.setItem(`email`, email);
