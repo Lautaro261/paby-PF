@@ -39,7 +39,6 @@ const validationSchema = Yup.object({
             return parseInt(departure_time) - parseInt(admission_time) >= 0;
         }
     ).required('Debe seleccionar la hora de salida'),
-    instant_photo: Yup.string().required('Debe tomar foto a su vehículo'),
     comments: Yup.string().required('Debe indicar algún comentario acerca de su vehículo')
 });
 

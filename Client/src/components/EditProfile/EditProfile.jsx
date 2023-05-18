@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import styles from './EditProfile.module.css'
+import styles from "./EditProfile.module.css";
 import Modal from "../Modal/Modal";
 
 export default function EditProfile({ profile }) {
@@ -15,10 +15,10 @@ export default function EditProfile({ profile }) {
   const [neighborhood, setNeighborhood] = useState(profile?.neighborhood);
   const { isLoading } = useAuth0();
   const user = {
-    "sub": localStorage.getItem(`sub`),
-    "name": localStorage.getItem(`name`),
-    "photo":localStorage.getItem(`photo`),
-    "email":localStorage.getItem(`email`),
+    sub: localStorage.getItem(`sub`),
+    name: localStorage.getItem(`name`),
+    photo: localStorage.getItem(`photo`),
+    email: localStorage.getItem(`email`),
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
@@ -41,38 +41,38 @@ export default function EditProfile({ profile }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
-  const updatedProfile = {
-    sub: user.sub,
-    nickname,
-    phone,
-    country,
-    city,
-    address,
-    neighborhood,
-  };
-  
-  try {
-    const response = await axios.put(
-      '/user/profile/edit/',
-      JSON.stringify(updatedProfile), // convertir objeto a JSON
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    console.log(response.data);
-    setIsModalOpen(true)
-  } catch (error) {
-    console.error(error.message);
-    console.error(error.response.data);
-    console.error(error.response.status);
-  }
+    const updatedProfile = {
+      sub: user.sub,
+      nickname,
+      phone,
+      country,
+      city,
+      address,
+      neighborhood,
+    };
+
+    try {
+      const response = await axios.put(
+        "/user/profile/edit/",
+        JSON.stringify(updatedProfile), // convertir objeto a JSON
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error(error.message);
+      console.error(error.response.data);
+      console.error(error.response.status);
+    }
   }
 
   const closeModal = () => {
     setIsModalOpen(false);
-    navigate('/profile');
+    navigate("/profile");
   };
 
   return (
@@ -83,70 +83,84 @@ export default function EditProfile({ profile }) {
         <input
           type="text"
           id="nickname"
-          value={nickname || ''}
+          value={nickname || ""}
           onChange={(event) => {
             setNickname(event.target.value);
             setHasChanges(true);
           }}
         />
 
-        <label htmlFor="phone">Telefono:</label>
+        <label htmlFor="phone">Celular/Teléfono:</label>
         <input
           type="text"
           id="phone"
-          value={phone || ''}
+          value={phone || ""}
           onChange={(event) => {
             setPhone(event.target.value);
             setHasChanges(true);
           }}
         />
 
-        <label htmlFor="country">Pais</label>
+        <label htmlFor="country">País</label>
         <input
           type="text"
           id="country"
-          value={country || ''} onChange={(event) => {
+          value={country || ""}
+          onChange={(event) => {
             setCountry(event.target.value);
             setHasChanges(true);
-          }} 
+          }}
         />
 
         <label htmlFor="city">Ciudad</label>
-        <input 
-          type="text" 
-          id="city" 
-          value={city || ''} onChange={(event) => {
+        <input
+          type="text"
+          id="city"
+          value={city || ""}
+          onChange={(event) => {
             setCity(event.target.value);
             setHasChanges(true);
-          }} 
+          }}
         />
 
-        <label htmlFor="address">Direccion:</label>
-        <input 
-          type="text" 
-          id="address" 
-          value={address || ''} onChange={(event) => {
+        <label htmlFor="address">Dirección:</label>
+        <input
+          type="text"
+          id="address"
+          value={address || ""}
+          onChange={(event) => {
             setAddress(event.target.value);
             setHasChanges(true);
-          }} 
+          }}
         />
 
         <label htmlFor="neighborhood">Vecindario:</label>
-        <input 
-          type="text" 
-          id="neighborhood" 
-          value={neighborhood || ''} onChange={(event) => {
+        <input
+          type="text"
+          id="neighborhood"
+          value={neighborhood || ""}
+          onChange={(event) => {
             setNeighborhood(event.target.value);
             setHasChanges(true);
-          }} 
+          }}
         />
-      <button type="submit" disabled={!hasChanges}>Guardar Cambios</button>
-    </form>
-      <button onClick={()=> navigate('/profile')}>Cancelar</button>
+        <button
+          className={styles.buttonsEditProfile}
+          type="submit"
+          disabled={!hasChanges}
+        >
+          Guardar Cambios
+        </button>
+      </form>
+      <button
+        className={styles.buttonsEditProfile}
+        onClick={() => navigate("/profile")}
+      >
+        Cancelar
+      </button>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <p>¡Tus cambios se han guardado exitosamente!</p>
       </Modal>
     </div>
   );
 }
-

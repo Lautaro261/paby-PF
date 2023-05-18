@@ -19,7 +19,10 @@ const AdminDash = () => {
         </li>
         <li className={styles.dashItem}>
           {isAuthenticated || isLoggedIn ? (
-            <Link to="/admin/manual-reserves" className={styles.dashLink}>
+            <Link
+              to="/admin/manual-parking-lot-filter"
+              className={styles.dashLink}
+            >
               Modificar Reservas
             </Link>
           ) : null}

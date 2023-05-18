@@ -1,14 +1,19 @@
 import styles from '../../ParkingSpaceReservation/ParkingSpaceReservation.module.css';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import UploadWidget from '../../UploadWidget/UploadWidget';
 import { setVehiclePhotoForReservationURL } from '../../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import { adminPostParkingSpaceReservation } from '../../../redux/features/admin/adminSlice';
-import { postParkingSpaceReservation } from '../../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
-import { updateParkingSpaceStatus } from '../../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { 
+    setSelectedParkingLot, 
+    updateParkingSpaceStatus, 
+    setSelectedParkingSpace 
+} from '../../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { setCurrentPage } from '../../../redux/features/pagination/paginationSlice';
+
 const initialValues = {
     userSub: '',
     zoneId: '',
@@ -51,9 +56,9 @@ const calculateFullReserveValue = (admission_time, departure_time, fee) => {
 
 const ParkingSpaceReservation = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
     const token = localStorage.getItem("token");
-    console.log(token);
 
     let hoursCheckIn = [];
     for (let i = 0; i < 24; i++) {
@@ -66,11 +71,11 @@ const ParkingSpaceReservation = () => {
     }
 
     const handleSubmit = (values, { resetForm }) => {
-     dispatch(adminPostParkingSpaceReservation([values, token]));
-     dispatch(updateParkingSpaceStatus(selectedParkingSpace));
-        //dispatch(postParkingSpaceReservation(values));
-        console.log(values, token);
-        alert("zona actualizada")
+        dispatch(adminPostParkingSpaceReservation([values, token]));
+        dispatch(updateParkingSpaceStatus(selectedParkingSpace));
+        dispatch(setSelectedParkingLot({}));
+        dispatch(setSelectedParkingSpace({}));
+        dispatch(setCurrentPage(1));
         navigate('/admin/home');
         resetForm();
     };
@@ -81,7 +86,6 @@ const ParkingSpaceReservation = () => {
                 initialValues={ initialValues } 
                 validationSchema={ validationSchema }
                 onSubmit={ handleSubmit }
-                
             >
                 { ( { values, isSubmitting, setFieldValue } ) => {
                     const selectedParkingLot = useSelector(state => state.parkingSpaces.selectedParkingLot);
@@ -218,8 +222,11 @@ const ParkingSpaceReservation = () => {
                                 <ErrorMessage name='comments' />
                             </div>
                             <button type='submit' disabled={ isSubmitting }>
-                                CONTINUAR
+                                CREAR RESERVACIÓN
                             </button>
+                            <Link to='/reservation-panel'>
+                                <button type='button'>ATRÁS</button>
+                            </Link>
                         </Form>
                     );
                 } }

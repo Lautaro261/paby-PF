@@ -9,7 +9,6 @@ import {
     setVehicleTypeFromFilter
 } from '../../../redux/features/parkingSpaces/parkingSpacesSlice';
 import { getAllVehicles } from '../../../redux/features/vehicles/vehiclesSlice';
-// import { getAllVehicles } from '../../redux/features/vehicles/vehiclesSlice';
 
 const ManualReserve = () => {
     const dispatch = useDispatch();
@@ -32,7 +31,7 @@ const ManualReserve = () => {
                 <div className={ styles.reservationPanel__error_message }>
                     Por favor, seleccione primero un parqueadero que cuente con pisos y zonas.
                 </div>
-                <Link to={ '/parking-lot-selection' }>
+                <Link to={ '/admin/manual-parking-lot-selection' }>
                     <button>Ir a seleccionar parqueadero</button>
                 </Link>
             </div>
@@ -55,8 +54,7 @@ const ManualReserve = () => {
     const selectedParkingSpace = useSelector(state => state.parkingSpaces.selectedParkingSpace);
     const vehicleTypeFromFilter = useSelector(state => state.parkingSpaces.vehicleTypeFromFilter);
     const parkingSpaceStatusFromFilter = useSelector(state => state.parkingSpaces.parkingSpaceStatusFromFilter);
-    // const userId = useSelector(state => state.parkingSpacesReservation.currentUserId);
-    const userId = localStorage.getItem('sub');
+    const userId = useSelector(state => state.parkingSpacesReservation.currentUserId);
 
     useEffect(() => {
         if (Object.keys(selectedParkingSpace).length > 0) {

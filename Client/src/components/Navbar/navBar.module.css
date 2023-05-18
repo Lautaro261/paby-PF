@@ -1,28 +1,21 @@
+/* navBar.module.css */
+
 .navbarContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  background-color: #2f6690;
-  padding: 0 50px;
-}
-
-.logoContainer {
-  width: 200px;
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  background-color: #194169;
+  padding: 0 70px;
 }
 
 .logo img {
-  max-height: 60px;
+  padding-left: 70px;
+  max-height: 50px;
 }
 
 .navLinks {
+  padding-top: 13px;
   list-style: none;
   display: flex;
   align-items: center;
@@ -31,16 +24,34 @@
 
 .navLink {
   text-decoration: none;
-  color: #d9dcd6;
-  font-size: 18px;
+  color: #f5f5f5;
+  font-size: 20px;
   font-weight: bold;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.31s ease-in-out;
+  padding: 13px;
 }
 
 .navLink:hover {
-  color: #81c3d7;
+  color: #85add6;
 }
 
-.buttonContainer {
-  margin-left: auto;
+
+/* Estilos responsivos */
+
+@media screen and (max-width: 768px) {
+  .navbarContainer {
+    padding: 0 20px;
+  }
+
+  .navLinks {
+    gap: 20px;
+  }
+
+  .navLink {
+    font-size: 13px;
+  }
+
+  .logo img {
+    max-height: 31px;
+  }
 }

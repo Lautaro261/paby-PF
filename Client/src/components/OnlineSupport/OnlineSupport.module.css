@@ -2,20 +2,33 @@
     width: 80%;
     margin: 0 auto;
     text-align: center;
-    height: calc(100vh - 80px); 
-    padding: 10%;
+    margin-top: 13%;
+    margin-bottom: 17%;
+  }
+
+  .onlineSupport p{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.3;
+    color: #545454;
+    font-family: 'Rubik', sans-serif;
+    text-rendering: optimizeLegibility;
+    font-weight: 200;
   }
   
   .supportButton {
-    padding: 10px 20px;
-    background-color: #25d366;
+    padding: 13px 31px;
+    background-color: #00BB2D;
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 18px;
+    border-radius: 31px;
+    font-size: 20px;
     cursor: pointer;
   }
   
   .supportButton:hover {
-    background-color: #128c7e;
+    background-color: #008720;
   }
