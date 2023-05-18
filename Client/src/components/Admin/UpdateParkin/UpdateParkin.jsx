@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { ChangeParkingDetails } from '../../../redux/features/admin/adminSlice';
-
+import SelectorParking from '../../SelectorParking/SelectorParking';
+import { useNavigate } from 'react-router-dom';
 export default function UpdateParkin (parking) {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const token = localStorage.getItem('token');
   //const id = useState(parking);
-  const selectedParkingLot = useSelector(state => state.parkingSpaces.selectedParkingLot);
+  const selectedParkingLot = useSelector(state => state.parkingSpaces.selectedParkingSpace);
   const initialValues = {
     name: '',
     nit: '',
@@ -28,6 +30,7 @@ export default function UpdateParkin (parking) {
     fee: Yup.number().required('El campo es obligatorio'),
     regulation: Yup.string().required('El campo es obligatorio'),
   });
+  console.log(selectedParkingLot, "EL ELEGIDO")
 
   const handleSubmit = (values) => {
     const id= selectedParkingLot.id
@@ -39,11 +42,20 @@ export default function UpdateParkin (parking) {
       })
       .catch((error) => {
         console.error(error.message);
-      });
-    console.log(values);
+      })
+      alert("se modifico correctamente")
+      navigate("/admin/home")
+      console.log(values);
   };
 
+
+
   return (
+    
+    <div>
+      <SelectorParking/>
+      { Object.keys(selectedParkingLot).length === 0 ? <div>seleccione un parqueadero...</div> :   
+       
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -96,6 +108,7 @@ export default function UpdateParkin (parking) {
         <button type="submit">Guardar Cambios</button>
       </Form>
       </div>
-    </Formik>
+    </Formik>}
+    </div>
   );
 };
