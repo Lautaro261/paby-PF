@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleUserBan } from "../../../redux/features/admin/adminSlice";
+import styles from './User.module.css'
 
 const User = ({sub, name, email}) => {
     const dispatch = useDispatch();
@@ -16,11 +17,13 @@ const User = ({sub, name, email}) => {
     const isBanned = bannedUsers.some((user)=> user.sub === sub); // si existe un usuario con el sub igual a nuestro
                                                                 
 return ( 
-    <div>
+    <div className={styles.userConteiner}>
         <Link to={`/admin/clients/details/${sub}`}>
-            <p>{name}</p>
-            <p>{email}</p>
+            <label>Nombre: <p>{name}</p></label>
         </Link>
+        
+        <label>Email: <p>{email}</p></label>
+            
         <p>{ isBanned ? 'Baneado' : 'No baneado'}</p>       {/*   // mensaje para saber si esta baneado o no */}
         <button onClick={handleToggleBan}>{ isBanned ? 'Desbanear' : 'Banear'}</button> {/* // boton condicional   */}
     </div>                                                                             // segun el estado de ban
