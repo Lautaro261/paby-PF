@@ -10,13 +10,13 @@ import { loginAdmin } from "../../redux/features/admin/adminSlice";
 import { useNavigate } from "react-router-dom";
 
 const { VITE_EMAIL_ADMIN, VITE_PASS_ADMIN } = import.meta.env;
+
 const LoginModal = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const error = useSelector((state) => state.users.error);
-  const { VITE_EMAIL_ADMIN, VITE_PASS_ADMIN } = import.meta.env;
 
   const handleLogin = (e) => {
     e.preventDefault();

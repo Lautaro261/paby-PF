@@ -1,3 +1,6 @@
+.conteinerClients{
+  height: calc(100vh - 80px); 
+}
 .clientDetailsCointeinter {
     display: flex;
     flex-direction: column;
