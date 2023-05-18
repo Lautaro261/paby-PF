@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Logopaby from "../../imgs/Logopaby.png";
 
 function Landing() {
+  const adminAuth = localStorage.getItem("rol");
+  console.log(adminAuth);
   return (
     <>
       <div className={style.Bg}>

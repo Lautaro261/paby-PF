@@ -1,48 +1,59 @@
 import React, { useState } from "react";
 import LoginButton from "../../components/LoginButton/LoginButton";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./LoginModal.module.css";
-import {
-  setUserSession,
-  loginUser,
-} from "../../redux/features/users/usersSlice";
-import { loginAdmin } from "../../redux/features/admin/adminSlice";
+import styles from './LoginModal.module.css'
+import { setUserSession, loginUser } from "../../redux/features/users/usersSlice";
+import { loginAdmin} from '../../redux/features/admin/adminSlice'
+import { useNavigate } from "react-router-dom";
 
+
+const { VITE_EMAIL_ADMIN, VITE_PASS_ADMIN } = import.meta.env;
 const LoginModal = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const error = useSelector((state) => state.users.error);
+    const navigate=useNavigate()
+    const dispatch = useDispatch()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const error = useSelector(state => state.users.error)
+    const {VITE_EMAIL_ADMIN,VITE_PASS_ADMIN } = import.meta.env;
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (email === "armandoAdmin@gmail.com" && password === "pabyelmejor") {
-      const sub = email;
-      const userAdmin = {
-        sub: sub,
-        email: email,
-        password: password,
-      };
-      dispatch(loginAdmin(userAdmin));
-      dispatch(setUserSession(userAdmin));
-      localStorage.setItem(`sub`, email);
-      localStorage.setItem(`email`, email);
-      localStorage.setItem(`isLoggedIn`, true);
-      onClose();
-    } else {
-      const sub = email;
-      const userSession = {
-        sub: sub,
-        email: email,
-        password: password,
-      };
-      dispatch(loginUser(userSession)).then((response) => {
-        if (response.payload && response.payload.success) {
-          dispatch(setUserSession(userSession));
-          localStorage.setItem(`sub`, email);
-          localStorage.setItem(`email`, email);
-          localStorage.setItem(`isLoggedIn`, true);
-          onClose();
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (email === VITE_EMAIL_ADMIN && password === VITE_PASS_ADMIN) {
+            const sub = email
+            const userAdmin = {
+                sub: sub,
+                email: email,
+                password: password,
+            }
+            localStorage.setItem(`rol`, "admin")
+            console.log("Soy el admin");
+            dispatch(loginAdmin(userAdmin))
+            dispatch(setUserSession(userAdmin))
+            localStorage.setItem(`sub`, email)
+            localStorage.setItem(`email`, email)
+            localStorage.setItem(`isLoggedIn`, true)
+            navigate("/admin/home")
+            onClose()
+        } else {
+            const sub = email
+            const userSession = {
+                sub: sub,
+                email: email,
+                password: password
+            }
+            localStorage.setItem(`rol`, "user")
+            dispatch(loginUser(userSession))
+                .then((response) => {
+                    if (response.payload && response.payload.success) {
+                        dispatch(setUserSession(userSession))
+                        localStorage.setItem(`sub`, email);
+                        localStorage.setItem(`email`, email)
+                        localStorage.setItem(`isLoggedIn`, true)
+                        onClose()
+                        navigate('/')
+                    }
+                })
+               
         }
       });
     }

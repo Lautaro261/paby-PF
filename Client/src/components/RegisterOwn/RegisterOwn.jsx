@@ -6,7 +6,6 @@ import styles from "../RegisterOwn/registerOwn.module.css";
 
 const RegisterOwn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
 
   const handleRegisterClick = () => {
     setIsModalOpen(true);

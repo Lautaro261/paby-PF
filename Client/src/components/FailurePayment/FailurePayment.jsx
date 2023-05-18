@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postParkingSpaceReservationNotification } from '../../redux/features/parkingSpacesReservation/parkingSpacesReservationSlice';
 import { setSelectedParkingLot } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { setCurrentPage } from '../../redux/features/pagination/paginationSlice';
 
 const FailurePayment = () => {
     const { search } = useLocation();
@@ -26,6 +27,7 @@ const FailurePayment = () => {
     useEffect(() => {
         dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
         dispatch(setSelectedParkingLot({}));
+        dispatch(setCurrentPage(1));
         localStorage.removeItem('selectedParkingSpace');
     }, []);
 

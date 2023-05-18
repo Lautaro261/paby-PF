@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 // import ProfileCompleteModal from '../ProfileCompleteModal/ProfileComplseteModal';
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setUserSession,
   sendUserSession,
@@ -16,9 +16,10 @@ import logo from "../../imgs/Logopaby.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Fill } from "../../redux/features/carts/cartsSlice";
-import { getAllUserForAdmin } from "../../redux/features/admin/adminSlice";
 
 export default function Home() {
+  const tokenAdmin = useSelector((state) => state.admin.adminAuth);
+  const token = tokenAdmin?.token;
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const userSub = user?.sub;
@@ -26,6 +27,11 @@ export default function Home() {
   const photo = user?.photo;
   const email = user?.email;
   const isLoggedIn = localStorage.getItem(`isLoggedIn`);
+
+  if (token) {
+    localStorage.setItem(`token`, token);
+  }
+
   useEffect(() => {
     AOS.init();
   }, []);

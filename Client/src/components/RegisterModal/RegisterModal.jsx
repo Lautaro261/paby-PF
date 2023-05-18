@@ -1,16 +1,15 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  sendUserSession,
-  setUserSession,
-} from "../../redux/features/users/usersSlice";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import style from "./RegisterModal.module.css";
+import { useDispatch, useSelector } from 'react-redux'
+import { sendUserSession, setUserSession } from "../../redux/features/users/usersSlice";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import style from './RegisterModal.module.css';
+import { useNavigate } from "react-router-dom";
 
 const RegisterModal = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch();
-  const error = useSelector((state) => state.users.error);
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const error = useSelector(state => state.users.error)
 
   const formik = useFormik({
     initialValues: {
@@ -39,20 +38,28 @@ const RegisterModal = ({ isOpen, onClose }) => {
       const { email, password, name } = values;
       const sub = email;
 
-      const user = {
-        sub: sub,
-        email: email,
-        name: name,
-        password: password,
-      };
-      dispatch(sendUserSession(user)).then((response) => {
-        if (response.payload && response.payload.success) {
-          dispatch(setUserSession(user));
-          localStorage.setItem(`sub`, email);
-          localStorage.setItem(`name`, name);
-          localStorage.setItem(`email`, email);
-          localStorage.setItem(`isLoggedIn`, true);
-          onClose();
+            const user = {
+                sub: sub,
+                email: email,
+                name: name,
+                password: password
+            };
+            dispatch(sendUserSession(user))
+                .then((response) => {
+                    console.log('RESPUESTA!!!', response)
+                    if (response.meta.arg ) {
+                        console.log('ENTRE AL IF GATO!!!', response.meta.arg )
+                        dispatch(setUserSession(user))
+                        localStorage.setItem(`sub`, email);
+                        localStorage.setItem(`name`, name);
+                        localStorage.setItem(`email`, email)
+                        localStorage.setItem(`isLoggedIn`, true)
+                        onClose()
+                        navigate('/')
+                    }
+                })
+         
+
         }
       });
     },
@@ -112,27 +119,28 @@ const RegisterModal = ({ isOpen, onClose }) => {
             <p>{formik.errors.password}</p>
           ) : null}
 
-          <label htmlFor="passwordConfirmation">
-            Repetir contraseña:
-            <input
-              type="password"
-              id="passwordConfirmation"
-              name="passwordConfirmation"
-              value={formik.values.passwordConfirmation}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-          </label>
-          {formik.touched.passwordConfirmation &&
-          formik.errors.passwordConfirmation ? (
-            <p>{formik.errors.passwordConfirmation}</p>
-          ) : null}
-          <button type="submit">Registrarse</button>
-          {error && <p>Ya existe una cuenta registrada para este email.</p>}
-        </form>
-      </div>
-    </div>
-  ) : null;
+                    <label htmlFor="passwordConfirmation">Repetir contraseña:
+
+                        <input
+                            type='password'
+                            id='passwordConfirmation'
+                            name='passwordConfirmation'
+                            value={formik.values.passwordConfirmation}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                        />
+                    </label>
+                    {formik.touched.passwordConfirmation && formik.errors.passwordConfirmation ? (
+                        <div>{formik.errors.passwordConfirmation}</div>
+                    ) : null}
+                    <button type='submit'>Registrarse</button>
+                </form>
+                    {error && <p>{error.messagge}</p>}
+
+            </div>
+        </div>
+    )
+        : null;
 };
 
 export default RegisterModal;

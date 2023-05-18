@@ -25,8 +25,9 @@ export const postParkingSpaceReservationNotification = createAsyncThunk(
     'parkingSpacesReservation/postParkingSpaceReservationNotification',
     async (queryParams) => {
         try {
+            console.log("ESTO ME LLEGA",queryParams)
             const response = await axios.post(`reservation/notification?${ queryParams }`);
-            console.log("base de datos notificada")
+            console.log("base de datos notificada", response.data)
             return response.data;
         } catch (error) {
             console.error(error.message);

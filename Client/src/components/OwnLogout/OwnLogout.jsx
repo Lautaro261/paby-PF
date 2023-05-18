@@ -14,15 +14,11 @@ const OwnLogout = () => {
     localStorage.removeItem(`email`);
     localStorage.removeItem(`name`);
     localStorage.removeItem(`photo`);
+    localStorage.removeItem(`token`);
     localStorage.setItem(`isLoggedIn`, false);
     localStorage.removeItem(`isLoggedIn`);
+    localStorage.removeItem("rol");
     navigate("/");
   };
-  return (
-    <button className={styles.buttonCloseSesion} onClick={handleLogout}>
-      Cerrar sesión Local
-    </button>
-  );
+  return <button onClick={handleLogout}>Cerrar sesión Local</button>;
 };
-
-export default OwnLogout;

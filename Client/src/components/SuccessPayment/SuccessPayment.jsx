@@ -7,6 +7,7 @@ import {
     setSelectedParkingLot, 
     updateParkingSpaceStatus 
 } from '../../redux/features/parkingSpaces/parkingSpacesSlice';
+import { setCurrentPage } from '../../redux/features/pagination/paginationSlice';
 
 const SuccessPayment = () => {
     const { search } = useLocation();
@@ -26,13 +27,15 @@ const SuccessPayment = () => {
 
     const dispatch = useDispatch();
     const selectedParkingSpace = JSON.parse(localStorage.getItem('selectedParkingSpace'));
-    console.log(selectedParkingSpace)
+
     useEffect(() => {
+        console.log(selectedParkingSpace, "aqui esta el parkingspace")
         if (selectedParkingSpace) {
             console.log("entré al usefect")
             dispatch(postParkingSpaceReservationNotification(`collection_id=${ collection_id }&preference_id=${ preference_id }&collection_status=${ collection_status }`));
             dispatch(updateParkingSpaceStatus(selectedParkingSpace));
             dispatch(setSelectedParkingLot({}));
+            dispatch(setCurrentPage(1));
             localStorage.removeItem('selectedParkingSpace');
         }
     }, [dispatch, selectedParkingSpace]);

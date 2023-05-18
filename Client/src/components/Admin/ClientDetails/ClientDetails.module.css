@@ -1,0 +1,32 @@
+.clientDetailsCointeinter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .clientDetailsCointeinter button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .clientDetailsCointeinter button:hover {
+    background-color: #0056b3;
+  }
+  
+  .clientDetailsCointeinter h2 {
+    margin-top: 10px;
+  }
+  
+  .clientDetailsCointeinter label {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .clientDetailsCointeinter p {
+    margin: 5px 0;
+  }

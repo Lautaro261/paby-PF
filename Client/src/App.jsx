@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import axios from "axios";
 import Landing from "./views/Landing/Landing";
 import HomeView from "./views/homeView/homeView";
@@ -19,12 +20,17 @@ import ParkingSpaceReservationView from "./views/ParkingSpaceReservationView/Par
 // import VehicleDetailsView from './views/VehiclesView/VehiclesView';
 import OnlineSupportView from "./views/OnlineSupportView/OnlineSupportView";
 import ShoppingCartView from "./views/ShoppingCartView/ShoppingCartView";
-// import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import ManualReserveForm from "./components/ManualReserveForm/ManualReserveForm";
 import DataEditView from "./views/admin/DataEditView/DataEditView";
-import Error404 from "./views/Errors/Error404";
-import UserBanError from "./views/Errors/UserBanError";
+import AllUsersAdminView from "./views/admin/AllUsersAdminView/AllUsersAdminView";
+import ClientDetailsView from "./views/admin/ClientDetailsView/ClientDetailsView";
+import HomeAdminView from "./views/admin/HomeAdminView/HomeAdminView";
+import ManualParkingLotFilterView from "./views/admin/ManualParkingLotFilterView/ManualParkingLotFilterView";
+import ManualParkingLotSelectionView from "./views/admin/ManualParkingLotSelectionView/ManualParkingLotSelectionView";
+import ManualReserveView from "./views/admin/ManualReserveView/ManualReserveView";
+import ManualReserveFormView from "./views/admin/ManualReserveFormView/ManualReserveFormView";
+import { setUserSession } from "./redux/features/users/usersSlice";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -35,15 +41,30 @@ axios.defaults.baseURL = "http://localhost:3001";
 
 const App = () => {
   //Para verificar si el usuario esta logueado
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn === "true") {
+      dispatch(setUserSession());
+    }
+  }, [dispatch]);
 
   const { isAuthenticated } = useAuth0();
   // const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
-  const isLoggedIn = localStorage.getItem(`isLoggedIn`);
+  // const isLoggedIn = localStorage.getItem(`isLoggedIn`)
+
+  var adminAuth = localStorage.getItem("rol");
+  console.log(adminAuth, "soy el admin");
 
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/home" element={<HomeView />} />
+      <Route
+        path="/home"
+        element={adminAuth === "admin" ? <HomeAdminView /> : <HomeView />}
+      />
       <Route path="/about-us" element={<AboutUs />} />
       {isAuthenticated || isLoggedIn ? (
         <>
@@ -66,20 +87,37 @@ const App = () => {
           <Route path="/failure-payment" element={<FailurePayment />} />
           <Route path="/reservations-history" element={<HistoryView />} />
           <Route path="/vehicles" element={<VehiclesView />} />
-          {/* <Route path='/vehicle/:license_plate_id' element={<VehiclesView />} /> */}
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/editprofile" element={<EditProfileView />} />
           <Route path="/online-support" element={<OnlineSupportView />} />
           <Route path="/Shopping" element={<ShoppingCartView />} />
-          <Route path="/error404" element={<Error404 />} />
-          <Route path="/banerror" element={<UserBanError />} />
-          //ADMIN ROUTES
-          <Route path="/admin/dataedit" element={<DataEditView />} />
-          <Route path="/admin/manual-reserve" element={<DataEditView />} />
-          <Route path="/admin/manual-reserve/form" element={<DataEditView />} />
-          <Route path="/admin/ok" element={<DataEditView />} />
-          <Route path="/admin/clients" element={<DataEditView />} />
-          <Route path="/admin/clients/details" element={<DataEditView />} />
+
+          <Route element={<ProtectedRoutes adminAuth={adminAuth} />}>
+            <Route path="/admin/dataedit" element={<DataEditView />} />
+            <Route
+              path="/admin/manual-parking-lot-filter"
+              element={<ManualParkingLotFilterView />}
+            />
+            <Route
+              path="/admin/manual-parking-lot-selection"
+              element={<ManualParkingLotSelectionView />}
+            />
+            <Route
+              path="/admin/manual-reserve"
+              element={<ManualReserveView />}
+            />
+            <Route
+              path="/admin/manual-reserve/form"
+              element={<ManualReserveFormView />}
+            />
+            <Route path="/admin/ok" element={<DataEditView />} />
+            <Route path="/admin/clients" element={<AllUsersAdminView />} />
+            <Route
+              path="/admin/clients/details/:sub"
+              element={<ClientDetailsView />}
+            />
+            <Route path="/admin/home" element={<HomeAdminView />} />
+          </Route>
         </>
       ) : null}
     </Routes>
