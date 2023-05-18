@@ -9,13 +9,13 @@ const OwnLogout = () => {
 
   const handleLogout = () => {
     dispatch(logOutUser());
-    localStorage.removeItem(sub);
-    localStorage.removeItem(email);
-    localStorage.removeItem(name);
-    localStorage.removeItem(photo);
-    localStorage.removeItem(token);
-    localStorage.setItem(isLoggedIn, false);
-    localStorage.removeItem(isLoggedIn);
+    localStorage.removeItem("sub");
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    localStorage.removeItem("photo");
+    localStorage.removeItem("token");
+    localStorage.setItem("isLoggedIn", false);
+    localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("rol");
     navigate("/");
   };
